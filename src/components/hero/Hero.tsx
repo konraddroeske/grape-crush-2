@@ -124,7 +124,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     wrapWidth.current = itemWidth.current * count.current
   }, [])
 
-  const setPadding = () => {
+  const setMargin = () => {
     const isNumber = (num: number | undefined): num is number => {
       return !!num
     }
@@ -155,7 +155,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
       Number(gsap.getProperty(proxy.current, "x")) / wrapWidth.current || 0
     setWidths()
     setHeight()
-    setPadding()
+    setMargin()
     gsap.set(proxy.current, {
       x: norm * wrapWidth.current,
     })
@@ -194,7 +194,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
 
     setWidths()
     setHeight()
-    setPadding()
+    setMargin()
     setPosition()
     setDraggable()
     updateAnimation()
