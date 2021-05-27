@@ -29,8 +29,9 @@ const Home: FunctionComponent<Props> = ({ heroSlides }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex justify-center min-h-screen">
+      <main className="min-h-screen">
         <Hero slides={heroSlides} />
+        <h3>Test Div</h3>
       </main>
     </div>
   )

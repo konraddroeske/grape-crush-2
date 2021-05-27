@@ -3,8 +3,8 @@ import React, { FunctionComponent, useCallback, useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { Draggable } from "gsap/Draggable"
 import { InertiaPlugin } from "gsap/InertiaPlugin"
-import debounce from "lodash.debounce"
 
+import SlideButtons from "@components/hero/SlideButtons"
 import { HeroSlides } from "@models/hero"
 
 interface OwnProps {
@@ -14,11 +14,11 @@ interface OwnProps {
 type Props = OwnProps
 
 const Hero: FunctionComponent<Props> = ({ slides }) => {
-  type Tween = gsap.core.Tween
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
   const list = useRef<HTMLUListElement>(null)
   const items = useRef<(HTMLLIElement | null)[]>([])
+  const titles = useRef<(HTMLDivElement | null)[]>([])
   const proxy = useRef<HTMLDivElement | null>(null)
 
   const reorderedSlides = [...slides.slice(-1), ...slides.slice(0, -1)]
@@ -27,9 +27,9 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
   const itemWidth = useRef(0)
   const wrapWidth = useRef(0)
   const draggable = useRef<Draggable | null>(null)
-  const animation = useRef<Tween | null>(null)
+  const animation = useRef<gsap.core.Tween | null>(null)
 
-  const timer = useRef<Tween | null>(null)
+  const timer = useRef<gsap.core.Tween | null>(null)
   const slideDelay = useRef(5)
   const slideDuration = useRef(1)
   const slideAnimation = useRef(
@@ -79,11 +79,12 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
   }
 
   const resetSnapPosition = () => {
-    if (!draggable?.current?.vars?.snap?.x) return
-    draggable.current.vars.snap.x = gsap.utils.snap(itemWidth.current)
+    const snap = draggable?.current?.vars?.snap as Draggable.SnapObject
+    if (!snap.x) return
+    snap.x = gsap.utils.snap(itemWidth.current)
   }
 
-  const animateSlides = useCallback((direction) => {
+  const animateSlides = useCallback((direction: number) => {
     if (draggable.current && draggable.current.isThrowing) {
       draggable.current.tween.kill()
     }
@@ -123,17 +124,47 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     wrapWidth.current = itemWidth.current * count.current
   }, [])
 
-  const resize = useCallback(() => {
+  const setPadding = () => {
+    const isNumber = (num: number | undefined): num is number => {
+      return !!num
+    }
+
+    const titleHeights = titles.current
+      .map((title) => title?.offsetHeight)
+      .filter(isNumber)
+
+    const maxTitleHeight = Math.max(...titleHeights)
+
+    gsap.set(slider.current, {
+      marginBottom: maxTitleHeight,
+    })
+  }
+
+  const setHeight = () => {
+    const [item] = items.current
+
+    if (!item) return
+
+    gsap.set(slider.current, {
+      height: item.offsetHeight,
+    })
+  }
+
+  const resize = () => {
     const norm =
       Number(gsap.getProperty(proxy.current, "x")) / wrapWidth.current || 0
     setWidths()
+    setHeight()
+    setPadding()
     gsap.set(proxy.current, {
       x: norm * wrapWidth.current,
     })
     resetSnapPosition()
     animateSlides(0)
     slideAnimation.current.progress(1)
-  }, [animateSlides, setWidths])
+  }
+
+  const handleResize = useCallback(resize, [resize])
 
   const setDraggable = useCallback(() => {
     draggable.current = new Draggable(proxy.current, {
@@ -162,6 +193,8 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     })
 
     setWidths()
+    setHeight()
+    setPadding()
     setPosition()
     setDraggable()
     updateAnimation()
@@ -170,13 +203,13 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
       ? gsap.delayedCall(slideDelay.current, autoPlay)
       : null
 
-    window.addEventListener("resize", debounce(resize, 150))
+    window.addEventListener("resize", handleResize)
 
     return () => {
-      window.removeEventListener("resize", debounce(resize, 150))
+      window.removeEventListener("resize", handleResize)
     }
   }, [
-    resize,
+    handleResize,
     setDraggable,
     setPosition,
     updateAnimation,
@@ -186,7 +219,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
   ])
 
   return (
-    <div ref={slider} className="slider relative py-12 overflow-hidden">
+    <div ref={slider} className="w-full relative">
       <ul ref={list} className="absolute inset-0 m-0 p-0">
         {reorderedSlides.map((slide) => (
           <li
@@ -194,23 +227,27 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
             ref={(el) => items.current.push(el)}
             className="absolute w-full top-0 left-0"
           >
-            <div className="slide">
-              <div className="w-11/12 my-0 px-6 mx-auto object-cover">
+            <div className="w-screen">
+              <div className="w-full my-0 px-6 mx-auto">
                 <img
-                  className="block w-full my-0 mx-auto object-cover rounded-xl"
+                  className="block w-full my-0 mx-auto rounded-xl"
                   src={slide.image.file["en-US"].url}
                   alt="label"
                 />
               </div>
-              <div className="absolute left-1/2 top-full px-8 transform -translate-x-1/2 -translate-y-5 w-full">
+              <div
+                ref={(el) => titles.current.push(el)}
+                className="absolute left-1/2 top-full px-8 transform -translate-x-1/2 -translate-y-5 w-full"
+              >
                 <h2 className="text-4xl text-center whitespace-normal uppercase font-bold">
                   {slide.title}
                 </h2>
               </div>
-            </div>{" "}
+            </div>
           </li>
         ))}
       </ul>
+      <SlideButtons animateSlides={animateSlides} />
     </div>
   )
 }
