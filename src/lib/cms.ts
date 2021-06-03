@@ -1,15 +1,20 @@
-import { Asset, Collection } from "contentful-management/types"
+import {
+  Asset,
+  Collection,
+  EntryProps,
+  Entry,
+} from "contentful-management/types"
 
 import contentfulClient from "../../getContentfulEnvironment"
 
 const client = await contentfulClient()
 
-export const getHeroEntries = async (): Promise<Collection<any, any>> => {
-  const heroSlides = client.getEntries({
+export const getHeroEntries = async (): Promise<
+  Collection<Entry, EntryProps<Record<string, any>>>
+> => {
+  return client.getEntries({
     content_type: "heroSlide",
   })
-
-  return heroSlides
 }
 
 export const getImage = async (assetId: string): Promise<Asset> => {

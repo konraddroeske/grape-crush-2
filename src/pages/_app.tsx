@@ -1,10 +1,12 @@
-import React from "react"
+import React, { FC } from "react"
 
 import { AppProps } from "next/app"
+
 import "../styles/tailwind.scss"
+import { wrapper } from "@redux/store"
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  return <Component {...pageProps} />
-}
+const App: FC<AppProps> = ({ Component, pageProps }) => (
+  <Component {...pageProps} />
+)
 
-export default MyApp
+export default wrapper.withRedux(App)

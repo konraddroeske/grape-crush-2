@@ -1,11 +1,13 @@
 import React, { FunctionComponent } from "react"
 
 import Head from "next/head"
+import { useSelector } from "react-redux"
 
 import Hero from "@components/hero/Hero"
+import { getHeroEntries, getImage } from "@lib/cms"
 import { HeroSlides } from "@models/hero"
-
-import { getHeroEntries, getImage } from "../lib/cms"
+import { wrapper } from "@redux/store"
+import { fetchSubject, selectSubject } from "@redux/testSlice"
 
 interface OwnProps {
   heroSlides: HeroSlides[]
@@ -13,8 +15,13 @@ interface OwnProps {
 
 type Props = OwnProps
 
-const Home: FunctionComponent<Props> = ({ heroSlides }) => {
-  // console.log(heroSlides)
+const Home: FunctionComponent<Props> = () => {
+  const { heroSlides } = useSelector(selectSubject())
+
+  if (!heroSlides.length) {
+    return <div>No content in store.</div>
+  }
+
   return (
     <div>
       <Head>
@@ -31,13 +38,12 @@ const Home: FunctionComponent<Props> = ({ heroSlides }) => {
 
       <main className="min-h-screen">
         <Hero slides={heroSlides} />
-        <h3>Test Div</h3>
       </main>
     </div>
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const locale = "en-US"
   const { items } = await getHeroEntries()
 
@@ -54,9 +60,11 @@ export async function getStaticProps() {
     })
   )
 
+  await store.dispatch(fetchSubject(heroSlides))
+
   return {
-    props: { heroSlides },
+    props: {},
   }
-}
+})
 
 export default Home
