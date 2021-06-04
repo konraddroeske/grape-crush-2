@@ -3,12 +3,12 @@ import { createWrapper } from "next-redux-wrapper"
 import { Action } from "redux"
 
 // eslint-disable-next-line import/no-cycle
-import { subjectSlice } from "@redux/testSlice"
+import { heroSlice } from "@redux/heroSlice"
 
 const makeStore = () =>
   configureStore({
     reducer: {
-      [subjectSlice.name]: subjectSlice.reducer,
+      [heroSlice.name]: heroSlice.reducer,
     },
     devTools: true,
   })

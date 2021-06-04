@@ -6,8 +6,8 @@ import { useSelector } from "react-redux"
 import Hero from "@components/hero/Hero"
 import { getHeroEntries, getImage } from "@lib/cms"
 import { HeroSlides } from "@models/hero"
+import { selectSubject, setHeroSlides } from "@redux/heroSlice"
 import { wrapper } from "@redux/store"
-import { fetchSubject, selectSubject } from "@redux/testSlice"
 
 interface OwnProps {
   heroSlides: HeroSlides[]
@@ -60,7 +60,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     })
   )
 
-  await store.dispatch(fetchSubject(heroSlides))
+  await store.dispatch(setHeroSlides({ heroSlides }))
 
   return {
     props: {},
