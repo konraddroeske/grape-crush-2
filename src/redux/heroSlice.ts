@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { HYDRATE } from "next-redux-wrapper"
+import { createSlice } from '@reduxjs/toolkit'
+import { HYDRATE } from 'next-redux-wrapper'
 
-import { HeroSlides } from "@models/hero"
+import { HeroSlides } from '@models/hero'
 
 // eslint-disable-next-line import/no-cycle
-import { AppState } from "@redux/store"
+import { AppState } from '@redux/store'
 
 // export const handleHeroSlides = (heroSlides: HeroSlides[]): AppThunk => {
 //   return async (dispatch) => {
@@ -18,19 +18,20 @@ import { AppState } from "@redux/store"
 
 interface HeroSlice {
   heroSlides: HeroSlides[]
+  currentSlide: number
 }
 
 const initialState = {
   heroSlides: [],
+  currentSlide: 0,
 } as HeroSlice
 
 export const heroSlice = createSlice({
-  name: "hero",
+  name: 'hero',
   initialState,
   reducers: {
     setHeroSlides(state, action) {
-      const { heroSlides } = action.payload
-      return { ...state, heroSlides }
+      return { ...state, heroSlides: action.payload }
     },
   },
   extraReducers: {

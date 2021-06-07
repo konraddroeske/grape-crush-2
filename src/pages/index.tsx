@@ -1,13 +1,13 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent } from 'react'
 
-import Head from "next/head"
-import { useSelector } from "react-redux"
+import Head from 'next/head'
+import { useSelector } from 'react-redux'
 
-import Hero from "@components/hero/Hero"
-import { getHeroEntries, getImage } from "@lib/cms"
-import { HeroSlides } from "@models/hero"
-import { selectSubject, setHeroSlides } from "@redux/heroSlice"
-import { wrapper } from "@redux/store"
+import Hero from '@components/hero/Hero'
+import { getHeroEntries, getImage } from '@lib/cms'
+import { HeroSlides } from '@models/hero'
+import { selectSubject, setHeroSlides } from '@redux/heroSlice'
+import { wrapper } from '@redux/store'
 
 interface OwnProps {
   heroSlides: HeroSlides[]
@@ -37,14 +37,14 @@ const Home: FunctionComponent<Props> = () => {
       </Head>
 
       <main className="min-h-screen">
-        <Hero slides={heroSlides} />
+        {heroSlides && <Hero slides={heroSlides} />}
       </main>
     </div>
   )
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const locale = "en-US"
+  const locale = 'en-US'
   const { items } = await getHeroEntries()
 
   const heroSlides = await Promise.all(
@@ -60,7 +60,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     })
   )
 
-  await store.dispatch(setHeroSlides({ heroSlides }))
+  await store.dispatch(setHeroSlides(heroSlides))
 
   return {
     props: {},

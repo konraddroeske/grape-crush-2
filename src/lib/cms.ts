@@ -3,9 +3,9 @@ import {
   Collection,
   EntryProps,
   Entry,
-} from "contentful-management/types"
+} from 'contentful-management/types'
 
-import contentfulClient from "../../getContentfulEnvironment"
+import contentfulClient from '../../getContentfulEnvironment'
 
 const client = await contentfulClient()
 
@@ -13,7 +13,7 @@ export const getHeroEntries = async (): Promise<
   Collection<Entry, EntryProps<Record<string, any>>>
 > => {
   return client.getEntries({
-    content_type: "heroSlide",
+    content_type: 'heroSlide',
   })
 }
 

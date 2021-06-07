@@ -1,11 +1,11 @@
-import { Asset } from "contentful-management/types"
+import { Asset } from 'contentful-management/types'
 
 export interface HeroSlides {
   title: string
-  image: Asset["fields"]
+  image: Asset['fields']
 }
 
 export enum Direction {
-  Left,
-  Right,
+  Left = 1,
+  Right = -1,
 }

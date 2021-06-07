@@ -1,11 +1,12 @@
-import React, { FunctionComponent, useCallback, useEffect, useRef } from "react"
+import React, { FunctionComponent, useCallback, useEffect, useRef } from 'react'
 
-import { gsap } from "gsap"
-import { Draggable } from "gsap/Draggable"
-import { InertiaPlugin } from "gsap/InertiaPlugin"
+import { gsap } from 'gsap'
+import { Draggable } from 'gsap/Draggable'
+import { InertiaPlugin } from 'gsap/InertiaPlugin'
 
-import SlideButtons from "@components/hero/SlideButtons"
-import { HeroSlides } from "@models/hero"
+import RoundedButton from '@components/common/RoundedButton'
+import SlideButtons from '@components/hero/SlideButtons'
+import { Direction, HeroSlides } from '@models/hero'
 
 interface OwnProps {
   slides: HeroSlides[]
@@ -20,6 +21,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
   const items = useRef<(HTMLLIElement | null)[]>([])
   const titles = useRef<(HTMLDivElement | null)[]>([])
   const proxy = useRef<HTMLDivElement | null>(null)
+  const currentSlide = useRef<number>(0)
 
   const reorderedSlides = [...slides.slice(-1), ...slides.slice(0, -1)]
   const count = useRef(slides.length)
@@ -56,7 +58,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
       gsap.utils.wrap(
         0,
         1,
-        Number(gsap.getProperty(proxy.current, "x")) / wrapWidth.current
+        Number(gsap.getProperty(proxy.current, 'x')) / wrapWidth.current
       )
     )
   }
@@ -65,7 +67,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     animation.current = gsap.to(items.current, {
       duration: 1,
       xPercent: `+=${count.current * 100}`,
-      ease: "none",
+      ease: 'none',
       paused: true,
       repeat: -1,
       modifiers: {
@@ -84,25 +86,59 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     snap.x = gsap.utils.snap(itemWidth.current)
   }
 
-  const animateSlides = useCallback((direction: number) => {
-    if (draggable.current && draggable.current.isThrowing) {
-      draggable.current.tween.kill()
-    }
+  const setSlide = useCallback(
+    (snap: number) => {
+      const numSlides = snap / itemWidth.current
 
-    if (timer.current) timer.current.restart(true)
-    slideAnimation.current.kill()
+      if (numSlides === 0 || numSlides % slides.length === 0) {
+        currentSlide.current = 0
+      }
 
-    const xVal = snapX(
-      Number(gsap.getProperty(proxy.current, "x")) +
-        direction * itemWidth.current
-    )
+      if (numSlides < 0) {
+        const upcomingSlide = Math.abs(numSlides) % slides.length
+        currentSlide.current = upcomingSlide
+      }
 
-    slideAnimation.current = gsap.to(proxy.current, {
-      duration: slideDuration.current,
-      x: xVal,
-      onUpdate: updateProgress,
-    })
-  }, [])
+      if (numSlides > 0) {
+        const upcomingSlide = slides.length - (numSlides % slides.length)
+        currentSlide.current = upcomingSlide
+      }
+    },
+    [slides.length]
+  )
+
+  const handleSlide = (direction: Direction) => {
+    animateSlides(direction)
+  }
+
+  const animateSlides = useCallback(
+    (direction: Direction) => {
+      if (draggable.current && draggable.current.isThrowing) {
+        draggable.current.tween.kill()
+      }
+
+      if (timer.current) {
+        timer.current.restart(true)
+      }
+
+      slideAnimation.current.kill()
+
+      const xVal = snapX(
+        Number(gsap.getProperty(proxy.current, 'x')) +
+          direction * itemWidth.current
+      )
+
+      // console.log('alt snap', xVal)
+      setSlide(xVal)
+
+      slideAnimation.current = gsap.to(proxy.current, {
+        duration: slideDuration.current,
+        x: xVal,
+        onUpdate: updateProgress,
+      })
+    },
+    [setSlide]
+  )
 
   const autoPlay = useCallback(() => {
     if (
@@ -152,7 +188,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
 
   const resize = () => {
     const norm =
-      Number(gsap.getProperty(proxy.current, "x")) / wrapWidth.current || 0
+      Number(gsap.getProperty(proxy.current, 'x')) / wrapWidth.current || 0
     setWidths()
     setHeight()
     setMargin()
@@ -166,9 +202,27 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
 
   const handleResize = useCallback(resize, [resize])
 
+  const handleImageLoad = () => {
+    if (list?.current?.offsetHeight === 0) {
+      // console.log('handling image load')
+      resize()
+    }
+  }
+
+  const handleSnap = useCallback(
+    (x: number) => {
+      const snap = gsap.utils.snap(itemWidth.current)(x)
+
+      setSlide(snap)
+
+      return snap
+    },
+    [setSlide]
+  )
+
   const setDraggable = useCallback(() => {
     draggable.current = new Draggable(proxy.current, {
-      type: "x",
+      type: 'x',
       trigger: list.current,
       throwProps: true,
       onPress() {
@@ -179,15 +233,15 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
       onDrag: updateProgress,
       onThrowUpdate: updateProgress,
       snap: {
-        x: gsap.utils.snap(itemWidth.current),
+        x: handleSnap,
       },
     })
-  }, [])
+  }, [handleSnap])
 
   useEffect(() => {
     gsap.registerPlugin(Draggable, InertiaPlugin)
 
-    proxy.current = document.createElement("div")
+    proxy.current = document.createElement('div')
     gsap.set(proxy.current, {
       x: 0,
     })
@@ -203,10 +257,10 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
       ? gsap.delayedCall(slideDelay.current, autoPlay)
       : null
 
-    window.addEventListener("resize", handleResize)
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener("resize", handleResize)
+      window.removeEventListener('resize', handleResize)
     }
   }, [
     handleResize,
@@ -219,36 +273,42 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
   ])
 
   return (
-    <div ref={slider} className="w-full relative">
-      <ul ref={list} className="absolute inset-0 m-0 p-0">
-        {reorderedSlides.map((slide) => (
-          <li
-            key={slide.title}
-            ref={(el) => items.current.push(el)}
-            className="absolute w-full top-0 left-0"
-          >
-            <div className="w-screen">
-              <div className="w-full my-0 px-6 mx-auto">
-                <img
-                  className="block w-full my-0 mx-auto rounded-xl"
-                  src={slide.image.file["en-US"].url}
-                  alt="label"
-                />
+    <section>
+      <div ref={slider} className="w-full relative">
+        <ul ref={list} className="absolute inset-0 m-0 p-0">
+          {reorderedSlides.map((slide) => (
+            <li
+              key={slide.title}
+              ref={(el) => items.current.push(el)}
+              className="absolute w-full top-0 left-0"
+            >
+              <div className="w-screen">
+                <div className="w-full my-0 px-6 mx-auto">
+                  <img
+                    className="block w-full my-0 mx-auto rounded-xl"
+                    src={slide.image.file['en-US'].url}
+                    alt="label"
+                    onLoad={() => handleImageLoad()}
+                  />
+                </div>
+                <div
+                  ref={(el) => titles.current.push(el)}
+                  className="absolute left-1/2 top-full px-8 transform -translate-x-1/2 -translate-y-5 w-full"
+                >
+                  <h2 className="text-4xl text-center whitespace-normal uppercase font-bold">
+                    {slide.title}
+                  </h2>
+                </div>
               </div>
-              <div
-                ref={(el) => titles.current.push(el)}
-                className="absolute left-1/2 top-full px-8 transform -translate-x-1/2 -translate-y-5 w-full"
-              >
-                <h2 className="text-4xl text-center whitespace-normal uppercase font-bold">
-                  {slide.title}
-                </h2>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <SlideButtons animateSlides={animateSlides} />
-    </div>
+            </li>
+          ))}
+        </ul>
+        <SlideButtons handleSlide={handleSlide} />
+      </div>
+      <div className="flex justify-center">
+        <RoundedButton>Shop Now</RoundedButton>
+      </div>
+    </section>
   )
 }
 
