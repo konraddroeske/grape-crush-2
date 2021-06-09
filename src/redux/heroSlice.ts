@@ -15,15 +15,61 @@ import { AppState } from '@redux/store'
 //     )
 //   }
 // }
+interface Theme {
+  nav: string
+  title: string
+  buttonBorder: string
+  buttonText: string
+  background: string
+}
 
 interface HeroSlice {
   heroSlides: HeroSlides[]
-  currentSlide: number
+  // currentSlide: number
+  themes: Theme[]
+  currentTheme: Theme
 }
 
 const initialState = {
   heroSlides: [],
-  currentSlide: 0,
+  // currentSlide: 0,
+  themes: [
+    {
+      nav: 'gray-dark',
+      title: 'lime',
+      buttonBorder: 'lime',
+      buttonText: 'white',
+      background: 'purple',
+    },
+    {
+      nav: 'white',
+      title: 'orange',
+      buttonBorder: 'orange',
+      buttonText: 'white',
+      background: 'blue',
+    },
+    {
+      nav: 'gray-dark',
+      title: 'white',
+      buttonBorder: 'lime',
+      buttonText: 'white',
+      background: 'orange',
+    },
+    {
+      nav: 'gray-dark',
+      title: 'orange',
+      buttonBorder: 'orange',
+      buttonText: 'gray-dark',
+      background: 'gray-light',
+    },
+  ],
+  currentTheme: {
+    nav: 'gray-dark',
+    title: 'lime',
+    buttonBorder: 'lime',
+    buttonText: 'white',
+    background: 'purple',
+  },
 } as HeroSlice
 
 export const heroSlice = createSlice({
@@ -32,6 +78,16 @@ export const heroSlice = createSlice({
   reducers: {
     setHeroSlides(state, action) {
       return { ...state, heroSlides: action.payload }
+    },
+    setCurrentTheme(state, action) {
+      const { themes } = state
+
+      const currentTheme =
+        action.payload <= themes.length - 1
+          ? themes[action.payload]
+          : themes[action.payload % (themes.length - 1)]
+
+      return { ...state, currentTheme }
     },
   },
   extraReducers: {
@@ -44,6 +100,6 @@ export const heroSlice = createSlice({
   },
 })
 
-export const { setHeroSlides } = heroSlice.actions
+export const { setHeroSlides, setCurrentTheme } = heroSlice.actions
 
-export const selectSubject = () => (state: AppState) => state?.[heroSlice.name]
+export const selectHero = () => (state: AppState) => state?.[heroSlice.name]

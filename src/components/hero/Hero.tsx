@@ -4,9 +4,12 @@ import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 
+import { useDispatch, useSelector } from 'react-redux'
+
 import RoundedButton from '@components/common/RoundedButton'
 import SlideButtons from '@components/hero/SlideButtons'
 import { Direction, HeroSlides } from '@models/hero'
+import { selectHero, setCurrentTheme } from '@redux/heroSlice'
 
 interface OwnProps {
   slides: HeroSlides[]
@@ -15,13 +18,16 @@ interface OwnProps {
 type Props = OwnProps
 
 const Hero: FunctionComponent<Props> = ({ slides }) => {
+  const dispatch = useDispatch()
+  const { currentTheme } = useSelector(selectHero())
+  const { background, title } = currentTheme
+
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
   const list = useRef<HTMLUListElement>(null)
   const items = useRef<(HTMLLIElement | null)[]>([])
   const titles = useRef<(HTMLDivElement | null)[]>([])
   const proxy = useRef<HTMLDivElement | null>(null)
-  const currentSlide = useRef<number>(0)
 
   const reorderedSlides = [...slides.slice(-1), ...slides.slice(0, -1)]
   const count = useRef(slides.length)
@@ -52,7 +58,6 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
   }, [])
 
   const updateProgress = () => {
-    // console.log("update progress", animation.current)
     if (!animation.current) return
     animation.current.progress(
       gsap.utils.wrap(
@@ -88,28 +93,28 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
 
   const setSlide = useCallback(
     (snap: number) => {
-      const numSlides = snap / itemWidth.current
+      const totalSlides = snap / itemWidth.current
 
-      if (numSlides === 0 || numSlides % slides.length === 0) {
-        currentSlide.current = 0
+      const getCurrentSlide = (numSlides: number): number => {
+        if (numSlides === 0 || numSlides % slides.length === 0) {
+          return 0
+        }
+        if (numSlides < 0) {
+          return Math.abs(numSlides) % slides.length
+        }
+        return slides.length - (numSlides % slides.length)
       }
 
-      if (numSlides < 0) {
-        const upcomingSlide = Math.abs(numSlides) % slides.length
-        currentSlide.current = upcomingSlide
+      const setSlideState = (newSlide: number) => {
+        dispatch(setCurrentTheme(newSlide))
       }
 
-      if (numSlides > 0) {
-        const upcomingSlide = slides.length - (numSlides % slides.length)
-        currentSlide.current = upcomingSlide
-      }
+      const slide = getCurrentSlide(totalSlides)
+
+      setSlideState(slide)
     },
-    [slides.length]
+    [dispatch, slides.length]
   )
-
-  const handleSlide = (direction: Direction) => {
-    animateSlides(direction)
-  }
 
   const animateSlides = useCallback(
     (direction: Direction) => {
@@ -128,7 +133,6 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
           direction * itemWidth.current
       )
 
-      // console.log('alt snap', xVal)
       setSlide(xVal)
 
       slideAnimation.current = gsap.to(proxy.current, {
@@ -166,7 +170,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     }
 
     const titleHeights = titles.current
-      .map((title) => title?.offsetHeight)
+      .map((titleElement) => titleElement?.offsetHeight)
       .filter(isNumber)
 
     const maxTitleHeight = Math.max(...titleHeights)
@@ -186,7 +190,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     })
   }
 
-  const resize = () => {
+  const handleResize = useCallback(() => {
     const norm =
       Number(gsap.getProperty(proxy.current, 'x')) / wrapWidth.current || 0
     setWidths()
@@ -198,14 +202,11 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     resetSnapPosition()
     animateSlides(0)
     slideAnimation.current.progress(1)
-  }
-
-  const handleResize = useCallback(resize, [resize])
+  }, [animateSlides, setWidths])
 
   const handleImageLoad = () => {
     if (list?.current?.offsetHeight === 0) {
-      // console.log('handling image load')
-      resize()
+      handleResize()
     }
   }
 
@@ -213,6 +214,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     (x: number) => {
       const snap = gsap.utils.snap(itemWidth.current)(x)
 
+      // console.log('handling snap', snap)
       setSlide(snap)
 
       return snap
@@ -239,28 +241,24 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
   }, [handleSnap])
 
   useEffect(() => {
-    gsap.registerPlugin(Draggable, InertiaPlugin)
+    if (!draggable.current) {
+      gsap.registerPlugin(Draggable, InertiaPlugin)
 
-    proxy.current = document.createElement('div')
-    gsap.set(proxy.current, {
-      x: 0,
-    })
+      proxy.current = document.createElement('div')
+      gsap.set(proxy.current, {
+        x: 0,
+      })
 
-    setWidths()
-    setHeight()
-    setMargin()
-    setPosition()
-    setDraggable()
-    updateAnimation()
+      setWidths()
+      setHeight()
+      setMargin()
+      setPosition()
+      setDraggable()
+      updateAnimation()
 
-    timer.current = useTimer
-      ? gsap.delayedCall(slideDelay.current, autoPlay)
-      : null
-
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
+      timer.current = useTimer
+        ? gsap.delayedCall(slideDelay.current, autoPlay)
+        : null
     }
   }, [
     handleResize,
@@ -272,8 +270,31 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     useTimer,
   ])
 
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [handleResize])
+
+  const bgColors: { [key: string]: string } = {
+    purple: 'bg-purple',
+    blue: 'bg-blue',
+    orange: 'bg-orange',
+    'gray-light': 'bg-gray-light',
+  }
+
+  const titleColors: { [key: string]: string } = {
+    lime: 'text-lime',
+    orange: 'text-orange',
+    white: 'text-white',
+  }
+
   return (
-    <section>
+    <section
+      className={`pt-16 transition duration-700 ${bgColors[background]}`}
+    >
       <div ref={slider} className="w-full relative">
         <ul ref={list} className="absolute inset-0 m-0 p-0">
           {reorderedSlides.map((slide) => (
@@ -295,7 +316,9 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
                   ref={(el) => titles.current.push(el)}
                   className="absolute left-1/2 top-full px-8 transform -translate-x-1/2 -translate-y-5 w-full"
                 >
-                  <h2 className="text-4xl text-center whitespace-normal uppercase font-bold">
+                  <h2
+                    className={`transition duration-700 text-4xl text-center whitespace-normal uppercase font-bold ${titleColors[title]}`}
+                  >
                     {slide.title}
                   </h2>
                 </div>
@@ -303,7 +326,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
             </li>
           ))}
         </ul>
-        <SlideButtons handleSlide={handleSlide} />
+        <SlideButtons handleSlide={animateSlides} />
       </div>
       <div className="flex justify-center">
         <RoundedButton>Shop Now</RoundedButton>

@@ -90,10 +90,10 @@ First party dependency for resetting input styles so you don't have to manually 
 
 ```css
 textarea,
-input[type="text"],
-input[type="search"],
-input[type="button"],
-input[type="submit"] {
+input[type='text'],
+input[type='search'],
+input[type='button'],
+input[type='submit'] {
   -webkit-appearance: none;
   border-radius: 0;
 }

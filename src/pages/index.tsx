@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import Hero from '@components/hero/Hero'
 import { getHeroEntries, getImage } from '@lib/cms'
 import { HeroSlides } from '@models/hero'
-import { selectSubject, setHeroSlides } from '@redux/heroSlice'
+import { selectHero, setHeroSlides } from '@redux/heroSlice'
 import { wrapper } from '@redux/store'
 
 interface OwnProps {
@@ -16,7 +16,7 @@ interface OwnProps {
 type Props = OwnProps
 
 const Home: FunctionComponent<Props> = () => {
-  const { heroSlides } = useSelector(selectSubject())
+  const { heroSlides } = useSelector(selectHero())
 
   if (!heroSlides.length) {
     return <div>No content in store.</div>
@@ -25,7 +25,7 @@ const Home: FunctionComponent<Props> = () => {
   return (
     <div>
       <Head>
-        <title>Next.js advanced start template.</title>
+        <title>Grape Crush</title>
 
         <meta
           name="description"

@@ -1,4 +1,4 @@
-const withTM = require("next-transpile-modules")(["gsap"])
+const withTM = require('next-transpile-modules')(['gsap'])
 
 module.exports = withTM({
   future: {
@@ -7,7 +7,7 @@ module.exports = withTM({
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"],
+      use: [{ loader: '@svgr/webpack', options: { ref: true } }],
     })
 
     return {

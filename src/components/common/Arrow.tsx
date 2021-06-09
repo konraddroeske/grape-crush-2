@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent } from 'react'
 
-import { Direction } from "@models/hero"
+import { Direction } from '@models/hero'
 
-import LeftArrow from "../../assets/svgs/left-arrow.svg"
-import RightArrow from "../../assets/svgs/right-arrow.svg"
+import LeftArrow from '../../assets/svgs/left-arrow.svg'
+import RightArrow from '../../assets/svgs/right-arrow.svg'
 
 interface OwnProps {
   direction: Direction

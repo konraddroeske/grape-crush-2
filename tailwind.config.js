@@ -10,12 +10,19 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+        headline: ['Stolzl', 'Arial'],
       },
     },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
+      white: {
+        DEFAULT: '#FFFFFF',
+      },
+      black: {
+        DEFAULT: '#000000',
+      },
       blue: {
         DEFAULT: '#4348E3',
       },

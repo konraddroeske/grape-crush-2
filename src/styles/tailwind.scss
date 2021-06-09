@@ -5,6 +5,111 @@
 /* purgecss end ignore */
 @tailwind utilities;
 
+@layer base {
+  @font-face {
+    font-family: 'Stolzl';
+    font-weight: 350;
+    src: url(/fonts/stolzl/stolzl-book.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: 'Stolzl';
+    font-weight: 400;
+    src: url(/fonts/stolzl/stolzl-regular.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: 'Stolzl';
+    font-weight: 500;
+    src: url(/fonts/stolzl/stolzl-medium.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: 'Stolzl';
+    font-weight: 700;
+    src: url(/fonts/stolzl/stolzl-bold.woff2) format("woff2");
+  }
+}
+
+@layer utilities {
+
+  h1, h2, h3, h4, h5, h6, button, body {
+    font-family: 'Stolzl', Arian, sans-serif;
+    color: #414042;
+  }
+
+  p {
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #414042;
+  }
+
+  .svg-white {
+    path {
+      fill: #FFFFFF;
+      transition: all;
+      transition-duration: 700ms;
+    }
+  }
+
+  .svg-black {
+    path {
+      fill: #000000;
+    }
+  }
+
+  .svg-blue {
+    path {
+      fill: #4348E3;
+    }
+  }
+
+  .svg-purple {
+    path {
+      fill: #C297EF;
+    }
+  }
+
+  .svg-lime {
+    path {
+      fill: #D9FF6C;
+    }
+  }
+
+  .svg-gray {
+    path {
+      fill: #828282;
+    }
+  }
+
+  .svg-gray-light {
+    path {
+      fill: #F1F2F2;
+    }
+  }
+
+  .svg-gray-dark {
+    path {
+      fill: #414042;
+      transition: all;
+      transition-duration: 700ms;
+    }
+  }
+
+  @variants responsive {
+    .gutter-s {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+
+    .gutter-m {
+      padding-left: 3.5rem;
+      padding-right: 3.5rem;
+    }
+
+    .gutter-l {
+      padding-left: 4.5rem;
+      padding-right: 4.5rem;
+    }
+  }
+}
+
 /* purgecss start ignore */
 html {
   @apply antialiased;

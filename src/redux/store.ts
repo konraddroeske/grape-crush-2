@@ -1,9 +1,9 @@
-import { configureStore, ThunkAction } from "@reduxjs/toolkit"
-import { createWrapper } from "next-redux-wrapper"
-import { Action } from "redux"
+import { configureStore, ThunkAction } from '@reduxjs/toolkit'
+import { createWrapper } from 'next-redux-wrapper'
+import { Action } from 'redux'
 
 // eslint-disable-next-line import/no-cycle
-import { heroSlice } from "@redux/heroSlice"
+import { heroSlice } from '@redux/heroSlice'
 
 const makeStore = () =>
   configureStore({
@@ -14,7 +14,7 @@ const makeStore = () =>
   })
 
 export type AppStore = ReturnType<typeof makeStore>
-export type AppState = ReturnType<AppStore["getState"]>
+export type AppState = ReturnType<AppStore['getState']>
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   AppState,
