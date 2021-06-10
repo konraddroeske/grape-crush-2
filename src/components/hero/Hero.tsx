@@ -1,7 +1,13 @@
-import React, { FunctionComponent, useCallback, useEffect, useRef } from 'react'
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import { gsap } from 'gsap'
-import { Draggable } from 'gsap/Draggable'
+import _Draggable, { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -35,8 +41,9 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
 
   const itemWidth = useRef(0)
   const wrapWidth = useRef(0)
-  const draggable = useRef<Draggable | null>(null)
   const animation = useRef<gsap.core.Tween | null>(null)
+
+  const [draggable, setDraggable] = useState<_Draggable | null>(null)
 
   const timer = useRef<gsap.core.Tween | null>(null)
   const slideDelay = useRef(5)
@@ -86,12 +93,6 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     return Math.round(x / itemWidth.current) * itemWidth.current
   }
 
-  const resetSnapPosition = () => {
-    const snap = draggable?.current?.vars?.snap as Draggable.SnapObject
-    if (!snap.x) return
-    snap.x = gsap.utils.snap(itemWidth.current)
-  }
-
   const setSlide = useCallback(
     (snap: number) => {
       const totalSlides = snap / itemWidth.current
@@ -119,8 +120,8 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
 
   const animateSlides = useCallback(
     (direction: Direction) => {
-      if (draggable.current && draggable.current.isThrowing) {
-        draggable.current.tween.kill()
+      if (draggable && draggable.isThrowing) {
+        draggable.tween.kill()
       }
 
       if (timer.current) {
@@ -142,21 +143,20 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
         onUpdate: updateProgress,
       })
     },
-    [setSlide]
+    [draggable, setSlide]
   )
 
   const autoPlay = useCallback(() => {
     if (
-      draggable.current &&
+      draggable &&
       timer.current &&
-      // draggable.current.isPressed ||
-      (draggable.current.isDragging || draggable.current.isThrowing)
+      (draggable.isDragging || draggable.isThrowing)
     ) {
       timer.current.restart(true)
     } else {
       animateSlides(-1)
     }
-  }, [animateSlides])
+  }, [draggable, animateSlides])
 
   const setWidths = useCallback(() => {
     const [item] = items.current
@@ -200,7 +200,7 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     gsap.set(proxy.current, {
       x: norm * wrapWidth.current,
     })
-    resetSnapPosition()
+    // resetSnapPosition()
     animateSlides(0)
     slideAnimation.current.progress(1)
   }, [animateSlides, setWidths])
@@ -222,8 +222,8 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     [setSlide]
   )
 
-  const setDraggable = useCallback(() => {
-    draggable.current = new Draggable(proxy.current, {
+  const initDraggable = useCallback(() => {
+    const instance = new Draggable(proxy.current, {
       type: 'x',
       trigger: list.current,
       throwProps: true,
@@ -238,22 +238,22 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
         x: handleSnap,
       },
     })
+
+    setDraggable(instance)
   }, [handleSnap])
 
   useEffect(() => {
-    if (!draggable.current) {
+    if (!draggable) {
       gsap.registerPlugin(Draggable, InertiaPlugin)
-
       proxy.current = document.createElement('div')
       gsap.set(proxy.current, {
         x: 0,
       })
-
       setWidths()
       setHeight()
       setMargin()
       setPosition()
-      setDraggable()
+      initDraggable()
       updateAnimation()
 
       timer.current = useTimer
@@ -261,8 +261,9 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
         : null
     }
   }, [
+    draggable,
+    initDraggable,
     handleResize,
-    setDraggable,
     setPosition,
     updateAnimation,
     setWidths,
