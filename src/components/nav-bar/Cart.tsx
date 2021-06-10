@@ -1,5 +1,6 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useRef } from 'react'
 
+import gsap from 'gsap'
 import { useSelector } from 'react-redux'
 
 import { selectHero } from '@redux/heroSlice'
@@ -8,22 +9,28 @@ import CartIcon from '../../assets/svgs/cart.svg'
 
 const Cart: FunctionComponent = () => {
   const { currentTheme } = useSelector(selectHero())
-  const { nav } = currentTheme
+  const { nav, duration } = currentTheme
 
-  const textColor: { [key: string]: string } = {
-    'gray-dark': 'text-gray-dark',
-    white: 'text-white',
-  }
+  const counterRef = useRef(null)
 
-  const svgColor: { [key: string]: string } = {
-    'gray-dark': 'svg-gray-dark',
-    white: 'svg-white',
-  }
+  useEffect(() => {
+    gsap.to(counterRef.current, {
+      duration,
+      color: nav,
+    })
+
+    gsap.to('.svg-cart path', {
+      duration,
+      fill: nav,
+    })
+  }, [duration, nav])
 
   return (
     <div className="flex">
-      <div className={`mr-1 transition duration-700 ${textColor[nav]}`}>0</div>
-      <CartIcon className={`w-5 ${svgColor[nav]}`} />
+      <div ref={counterRef} className="mr-1">
+        0
+      </div>
+      <CartIcon className="w-5 svg-cart svg-gray-dark" />
     </div>
   )
 }

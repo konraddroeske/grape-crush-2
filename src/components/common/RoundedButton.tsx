@@ -1,5 +1,6 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useRef } from 'react'
 
+import gsap from 'gsap'
 import { useSelector } from 'react-redux'
 
 import { selectHero } from '@redux/heroSlice'
@@ -12,24 +13,23 @@ type Props = OwnProps
 
 const RoundedButton: FunctionComponent<Props> = ({ children }) => {
   const { currentTheme } = useSelector(selectHero())
-  const { buttonText, buttonBorder } = currentTheme
+  const { buttonText, buttonBorder, duration } = currentTheme
 
-  const textColors: { [key: string]: string } = {
-    white: 'text-white',
-    'gray-dark': 'text-gray-dark',
-  }
+  const buttonRef = useRef<HTMLButtonElement | null>(null)
 
-  const borderColors: { [key: string]: string } = {
-    lime: 'border-lime',
-    orange: 'border-orange',
-  }
+  useEffect(() => {
+    gsap.to(buttonRef.current, {
+      duration,
+      borderColor: buttonBorder,
+      color: buttonText,
+    })
+  }, [duration, buttonText, buttonBorder])
+
   return (
     <button
       type="button"
-      className={`py-2 mx-auto my-3 w-48 font-bold 
-      ${textColors[buttonText]} text-xs uppercase 
-      rounded-3xl border-2 ${borderColors[buttonBorder]}
-      transition duration-700`}
+      ref={buttonRef}
+      className="py-2 mx-auto my-3 w-48 font-bold text-xs uppercase rounded-3xl border-2"
     >
       {children}
     </button>

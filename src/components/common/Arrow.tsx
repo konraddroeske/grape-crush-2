@@ -14,8 +14,16 @@ type Props = OwnProps
 const Arrow: FunctionComponent<Props> = ({ direction }) => {
   return (
     <>
-      {direction === Direction.Left && <LeftArrow />}
-      {direction === Direction.Right && <RightArrow />}
+      {direction === Direction.Left && (
+        <div className="w-8">
+          <LeftArrow />
+        </div>
+      )}
+      {direction === Direction.Right && (
+        <div className="w-8">
+          <RightArrow />
+        </div>
+      )}
     </>
   )
 }

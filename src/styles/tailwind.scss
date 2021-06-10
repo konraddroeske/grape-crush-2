@@ -9,28 +9,34 @@
   @font-face {
     font-family: 'Stolzl';
     font-weight: 350;
-    src: url(/fonts/stolzl/stolzl-book.woff2) format("woff2");
+    src: url(/fonts/stolzl/stolzl-book.woff2) format('woff2');
   }
   @font-face {
     font-family: 'Stolzl';
     font-weight: 400;
-    src: url(/fonts/stolzl/stolzl-regular.woff2) format("woff2");
+    src: url(/fonts/stolzl/stolzl-regular.woff2) format('woff2');
   }
   @font-face {
     font-family: 'Stolzl';
     font-weight: 500;
-    src: url(/fonts/stolzl/stolzl-medium.woff2) format("woff2");
+    src: url(/fonts/stolzl/stolzl-medium.woff2) format('woff2');
   }
   @font-face {
     font-family: 'Stolzl';
     font-weight: 700;
-    src: url(/fonts/stolzl/stolzl-bold.woff2) format("woff2");
+    src: url(/fonts/stolzl/stolzl-bold.woff2) format('woff2');
   }
 }
 
 @layer utilities {
-
-  h1, h2, h3, h4, h5, h6, button, body {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button,
+  body {
     font-family: 'Stolzl', Arian, sans-serif;
     color: #414042;
   }
@@ -42,9 +48,7 @@
 
   .svg-white {
     path {
-      fill: #FFFFFF;
-      transition: all;
-      transition-duration: 700ms;
+      fill: #ffffff;
     }
   }
 
@@ -56,19 +60,25 @@
 
   .svg-blue {
     path {
-      fill: #4348E3;
+      fill: #4348e3;
     }
   }
 
   .svg-purple {
     path {
-      fill: #C297EF;
+      fill: #c297ef;
+    }
+  }
+
+  .svg-orange {
+    path {
+      fill: #FF8657;
     }
   }
 
   .svg-lime {
     path {
-      fill: #D9FF6C;
+      fill: #d9ff6c;
     }
   }
 
@@ -80,22 +90,20 @@
 
   .svg-gray-light {
     path {
-      fill: #F1F2F2;
+      fill: #f1f2f2;
     }
   }
 
   .svg-gray-dark {
     path {
       fill: #414042;
-      transition: all;
-      transition-duration: 700ms;
     }
   }
 
   @variants responsive {
     .gutter-s {
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
+      padding-left: 0.625rem;
+      padding-right: 0.625rem;
     }
 
     .gutter-m {

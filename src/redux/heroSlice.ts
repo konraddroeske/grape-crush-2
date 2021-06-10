@@ -21,6 +21,7 @@ interface Theme {
   buttonBorder: string
   buttonText: string
   background: string
+  duration: number
 }
 
 interface HeroSlice {
@@ -35,40 +36,45 @@ const initialState = {
   // currentSlide: 0,
   themes: [
     {
-      nav: 'gray-dark',
-      title: 'lime',
-      buttonBorder: 'lime',
+      nav: '#414042',
+      title: '#d9ff6c',
+      buttonBorder: '#d9ff6c',
       buttonText: 'white',
-      background: 'purple',
+      background: '#c297ef',
+      duration: 0.7,
     },
     {
       nav: 'white',
-      title: 'orange',
-      buttonBorder: 'orange',
+      title: '#FF8657',
+      buttonBorder: '#FF8657',
       buttonText: 'white',
-      background: 'blue',
+      background: '#4348e3',
+      duration: 0.7,
     },
     {
-      nav: 'gray-dark',
+      nav: '#414042',
       title: 'white',
-      buttonBorder: 'lime',
+      buttonBorder: '#d9ff6c',
       buttonText: 'white',
-      background: 'orange',
+      background: '#FF8657',
+      duration: 0.7,
     },
     {
-      nav: 'gray-dark',
-      title: 'orange',
-      buttonBorder: 'orange',
-      buttonText: 'gray-dark',
-      background: 'gray-light',
+      nav: '#414042',
+      title: '#FF8657',
+      buttonBorder: '#FF8657',
+      buttonText: '#414042',
+      background: '#f1f2f2',
+      duration: 0.7,
     },
   ],
   currentTheme: {
-    nav: 'gray-dark',
-    title: 'lime',
-    buttonBorder: 'lime',
+    nav: '#414042',
+    title: '#d9ff6c',
+    buttonBorder: '#d9ff6c',
     buttonText: 'white',
-    background: 'purple',
+    background: '#c297ef',
+    duration: 0.7,
   },
 } as HeroSlice
 

@@ -3,13 +3,14 @@ import React, { FunctionComponent, useCallback, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
-
 import { useDispatch, useSelector } from 'react-redux'
 
 import RoundedButton from '@components/common/RoundedButton'
 import SlideButtons from '@components/hero/SlideButtons'
 import { Direction, HeroSlides } from '@models/hero'
 import { selectHero, setCurrentTheme } from '@redux/heroSlice'
+
+import Wave from '../../assets/svgs/wave.svg'
 
 interface OwnProps {
   slides: HeroSlides[]
@@ -20,7 +21,7 @@ type Props = OwnProps
 const Hero: FunctionComponent<Props> = ({ slides }) => {
   const dispatch = useDispatch()
   const { currentTheme } = useSelector(selectHero())
-  const { background, title } = currentTheme
+  const { background: bgColor, title: titleColor, duration } = currentTheme
 
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
@@ -214,7 +215,6 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     (x: number) => {
       const snap = gsap.utils.snap(itemWidth.current)(x)
 
-      // console.log('handling snap', snap)
       setSlide(snap)
 
       return snap
@@ -278,58 +278,69 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
     }
   }, [handleResize])
 
-  const bgColors: { [key: string]: string } = {
-    purple: 'bg-purple',
-    blue: 'bg-blue',
-    orange: 'bg-orange',
-    'gray-light': 'bg-gray-light',
-  }
+  const bg = useRef<HTMLDivElement>(null)
+  const headings = useRef<(HTMLHeadingElement | null)[]>([])
 
-  const titleColors: { [key: string]: string } = {
-    lime: 'text-lime',
-    orange: 'text-orange',
-    white: 'text-white',
-  }
+  useEffect(() => {
+    gsap.to(bg.current, {
+      duration,
+      backgroundColor: bgColor,
+    })
+
+    gsap.to('.svg-wave path', {
+      duration,
+      fill: bgColor,
+    })
+
+    gsap.to(headings.current, {
+      duration,
+      color: titleColor,
+    })
+  }, [bgColor, titleColor, duration])
 
   return (
-    <section
-      className={`pt-16 transition duration-700 ${bgColors[background]}`}
-    >
-      <div ref={slider} className="w-full relative">
-        <ul ref={list} className="absolute inset-0 m-0 p-0">
-          {reorderedSlides.map((slide) => (
-            <li
-              key={slide.title}
-              ref={(el) => items.current.push(el)}
-              className="absolute w-full top-0 left-0"
-            >
-              <div className="w-screen">
-                <div className="w-full my-0 px-6 mx-auto">
-                  <img
-                    className="block w-full my-0 mx-auto rounded-xl"
-                    src={slide.image.file['en-US'].url}
-                    alt="label"
-                    onLoad={() => handleImageLoad()}
-                  />
-                </div>
-                <div
-                  ref={(el) => titles.current.push(el)}
-                  className="absolute left-1/2 top-full px-8 transform -translate-x-1/2 -translate-y-5 w-full"
-                >
-                  <h2
-                    className={`transition duration-700 text-4xl text-center whitespace-normal uppercase font-bold ${titleColors[title]}`}
+    <section>
+      <div ref={bg} className="pt-16 pb-6 hero-background bg-purple">
+        <div ref={slider} className="w-full relative">
+          <ul ref={list} className="absolute inset-0 m-0 p-0">
+            {reorderedSlides.map((slide) => (
+              <li
+                key={slide.title}
+                ref={(el) => items.current.push(el)}
+                className="absolute w-full top-0 left-0"
+              >
+                <div className="w-screen">
+                  <div className="w-full my-0 px-6 mx-auto">
+                    <img
+                      className="block w-full my-0 mx-auto rounded-xl"
+                      src={slide.image.file['en-US'].url}
+                      alt="label"
+                      onLoad={() => handleImageLoad()}
+                    />
+                  </div>
+                  <div
+                    ref={(el) => titles.current.push(el)}
+                    className="absolute left-1/2 top-full px-8 transform -translate-x-1/2 -translate-y-5 w-full"
                   >
-                    {slide.title}
-                  </h2>
+                    <h2
+                      ref={(el) => headings.current.push(el)}
+                      className="text-4xl text-center whitespace-normal uppercase font-bold color-lime"
+                    >
+                      {slide.title}
+                    </h2>
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-        <SlideButtons handleSlide={animateSlides} />
+              </li>
+            ))}
+          </ul>
+          <SlideButtons handleSlide={animateSlides} />
+        </div>
+        <div className="flex justify-center">
+          <RoundedButton>Shop Now</RoundedButton>
+        </div>
       </div>
-      <div className="flex justify-center">
-        <RoundedButton>Shop Now</RoundedButton>
+      <div>
+        <Wave className="w-full svg-wave svg-purple" />
       </div>
     </section>
   )
