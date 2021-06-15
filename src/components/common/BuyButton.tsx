@@ -10,18 +10,20 @@ type Props = OwnProps
 
 const BuyButton: FunctionComponent<Props> = ({ productId }) => {
   const handleClick = () => {
-    if (window.AmbassadorChat) {
-      window.AmbassadorChat.send({
-        command: 'webview',
-        webview: 'payment-xdoxqKHH',
-        webviewCommands: [
-          {
-            command: 'addToCart',
-            productId,
-          },
-        ],
-      })
-    }
+    // if (window.AmbassadorChat) {
+    //   window.AmbassadorChat.send({
+    //     command: 'webview',
+    //     webview: 'payment-xdoxqKHH',
+    //     webviewCommands: [
+    //       {
+    //         command: 'addToCart',
+    //         productId,
+    //       },
+    //     ],
+    //   })
+    // }
+    // eslint-disable-next-line no-console
+    console.log(productId)
   }
 
   return (
