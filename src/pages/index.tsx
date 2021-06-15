@@ -4,9 +4,12 @@ import Head from 'next/head'
 import { useSelector } from 'react-redux'
 
 import Hero from '@components/hero/Hero'
+import agent from '@lib/agent'
 import { getHeroEntries, getImage } from '@lib/cms'
+import { AmbassadorResponse } from '@models/ambassador'
 import { HeroSlides } from '@models/hero'
-import { selectHero, setHeroSlides } from '@redux/heroSlice'
+import { setHeroSlides } from '@redux/heroSlice'
+import { selectProducts, setNewArrivals } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 interface OwnProps {
@@ -16,9 +19,11 @@ interface OwnProps {
 type Props = OwnProps
 
 const Home: FunctionComponent<Props> = () => {
-  const { heroSlides } = useSelector(selectHero())
+  const { newArrivals } = useSelector(selectProducts())
 
-  if (!heroSlides.length) {
+  // console.log('index', newArrivals)
+
+  if (!newArrivals) {
     return <div>No content in store.</div>
   }
 
@@ -37,7 +42,7 @@ const Home: FunctionComponent<Props> = () => {
       </Head>
 
       <main className="min-h-screen">
-        {heroSlides && <Hero slides={heroSlides} />}
+        <Hero />
       </main>
     </div>
   )
@@ -60,7 +65,13 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     })
   )
 
-  await store.dispatch(setHeroSlides(heroSlides))
+  const { data: newArrivals }: AmbassadorResponse =
+    await agent.ambassador.filterByKey('Type', 'new!')
+
+  // console.log('ambassador response', newArrivals)
+
+  store.dispatch(setHeroSlides(heroSlides))
+  store.dispatch(setNewArrivals(newArrivals))
 
   return {
     props: {},

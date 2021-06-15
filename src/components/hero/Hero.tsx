@@ -13,20 +13,14 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import RoundedButton from '@components/common/RoundedButton'
 import SlideButtons from '@components/hero/SlideButtons'
-import { Direction, HeroSlides } from '@models/hero'
+import { Direction } from '@models/hero'
 import { selectHero, setCurrentTheme } from '@redux/heroSlice'
 
 import Wave from '../../assets/svgs/wave.svg'
 
-interface OwnProps {
-  slides: HeroSlides[]
-}
-
-type Props = OwnProps
-
-const Hero: FunctionComponent<Props> = ({ slides }) => {
+const Hero: FunctionComponent = () => {
   const dispatch = useDispatch()
-  const { currentTheme } = useSelector(selectHero())
+  const { heroSlides: slides, currentTheme } = useSelector(selectHero())
   const { background: bgColor, title: titleColor, duration } = currentTheme
 
   const useTimer = false
@@ -300,50 +294,54 @@ const Hero: FunctionComponent<Props> = ({ slides }) => {
   }, [bgColor, titleColor, duration])
 
   return (
-    <section>
-      <div ref={bg} className="pt-16 pb-6 hero-background bg-purple">
-        <div ref={slider} className="w-full relative">
-          <ul ref={list} className="absolute inset-0 m-0 p-0">
-            {reorderedSlides.map((slide) => (
-              <li
-                key={slide.title}
-                ref={(el) => items.current.push(el)}
-                className="absolute w-full top-0 left-0"
-              >
-                <div className="w-screen">
-                  <div className="w-full my-0 px-6 mx-auto">
-                    <img
-                      className="block w-full my-0 mx-auto rounded-xl"
-                      src={slide.image.file['en-US'].url}
-                      alt="label"
-                      onLoad={() => handleImageLoad()}
-                    />
-                  </div>
-                  <div
-                    ref={(el) => titles.current.push(el)}
-                    className="absolute left-1/2 top-full px-8 transform -translate-x-1/2 -translate-y-5 w-full"
+    <>
+      {slides && (
+        <section>
+          <div ref={bg} className="pt-16 pb-6 hero-background bg-purple">
+            <div ref={slider} className="w-full relative">
+              <ul ref={list} className="absolute inset-0 m-0 p-0">
+                {reorderedSlides.map((slide) => (
+                  <li
+                    key={slide.title}
+                    ref={(el) => items.current.push(el)}
+                    className="absolute w-full top-0 left-0"
                   >
-                    <h2
-                      ref={(el) => headings.current.push(el)}
-                      className="text-4xl text-center whitespace-normal uppercase font-bold color-lime"
-                    >
-                      {slide.title}
-                    </h2>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <SlideButtons handleSlide={animateSlides} />
-        </div>
-        <div className="flex justify-center">
-          <RoundedButton>Shop Now</RoundedButton>
-        </div>
-      </div>
-      <div>
-        <Wave className="w-full svg-wave svg-purple" />
-      </div>
-    </section>
+                    <div className="w-screen">
+                      <div className="w-full my-0 px-6 mx-auto">
+                        <img
+                          className="block w-full my-0 mx-auto rounded-xl"
+                          src={slide.image.file['en-US'].url}
+                          alt="label"
+                          onLoad={() => handleImageLoad()}
+                        />
+                      </div>
+                      <div
+                        ref={(el) => titles.current.push(el)}
+                        className="absolute left-1/2 top-full px-8 transform -translate-x-1/2 -translate-y-5 w-full"
+                      >
+                        <h2
+                          ref={(el) => headings.current.push(el)}
+                          className="text-4xl text-center whitespace-normal uppercase font-bold color-lime"
+                        >
+                          {slide.title}
+                        </h2>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <SlideButtons handleSlide={animateSlides} />
+            </div>
+            <div className="flex justify-center">
+              <RoundedButton>Shop Now</RoundedButton>
+            </div>
+          </div>
+          <div>
+            <Wave className="w-full svg-wave svg-purple" />
+          </div>
+        </section>
+      )}
+    </>
   )
 }
 
