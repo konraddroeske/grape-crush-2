@@ -20,11 +20,11 @@ import type { AppState } from '@redux/store'
 // }
 
 interface ProductsSlice {
-  newArrivals: Shop[]
+  newArrivals: Shop
 }
 
 const initialState = {
-  newArrivals: [],
+  newArrivals: {},
 } as ProductsSlice
 
 export const productsSlice = createSlice({
@@ -32,8 +32,9 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     setNewArrivals(state, action) {
-      // console.log('Setting new arrivals')
-      return { ...state, newArrivals: action.payload }
+      const { shops } = action.payload
+      const [shop] = shops
+      return { ...state, newArrivals: shop }
     },
   },
   extraReducers: {

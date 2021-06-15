@@ -1,15 +1,15 @@
 import React, { FunctionComponent } from 'react'
 
 import Head from 'next/head'
-import { useSelector } from 'react-redux'
 
 import Hero from '@components/hero/Hero'
+import NewArrivals from '@components/new-arrivals/NewArrivals'
 import agent from '@lib/agent'
 import { getHeroEntries, getImage } from '@lib/cms'
 import { AmbassadorResponse } from '@models/ambassador'
 import { HeroSlides } from '@models/hero'
 import { setHeroSlides } from '@redux/heroSlice'
-import { selectProducts, setNewArrivals } from '@redux/productsSlice'
+import { setNewArrivals } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 interface OwnProps {
@@ -19,13 +19,9 @@ interface OwnProps {
 type Props = OwnProps
 
 const Home: FunctionComponent<Props> = () => {
-  const { newArrivals } = useSelector(selectProducts())
-
-  // console.log('index', newArrivals)
-
-  if (!newArrivals) {
-    return <div>No content in store.</div>
-  }
+  // if (!newArrivals) {
+  //   return <div>No content in store.</div>
+  // }
 
   return (
     <div>
@@ -43,6 +39,7 @@ const Home: FunctionComponent<Props> = () => {
 
       <main className="min-h-screen">
         <Hero />
+        <NewArrivals />
       </main>
     </div>
   )

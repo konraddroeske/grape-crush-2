@@ -28,7 +28,7 @@ export interface ProductData {
   subtype: string
   tags: string[]
   taxable: boolean
-  variants: Variants
+  variants: Variants[]
   vintage: string
   winery: string
 }
