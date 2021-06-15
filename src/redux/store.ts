@@ -1,14 +1,15 @@
 import { configureStore, ThunkAction } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
-import { Action } from 'redux'
+import type { Action } from 'redux'
 
-// eslint-disable-next-line import/no-cycle
 import { heroSlice } from '@redux/heroSlice'
+import { productsSlice } from '@redux/productsSlice'
 
 const makeStore = () =>
   configureStore({
     reducer: {
       [heroSlice.name]: heroSlice.reducer,
+      [productsSlice.name]: productsSlice.reducer,
     },
     devTools: true,
   })

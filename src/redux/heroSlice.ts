@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { HeroSlides } from '@models/hero'
-
-// eslint-disable-next-line import/no-cycle
-import { AppState } from '@redux/store'
+import type { HeroSlides } from '@models/hero'
+import type { AppState } from '@redux/store'
 
 // export const handleHeroSlides = (heroSlides: HeroSlides[]): AppThunk => {
 //   return async (dispatch) => {
@@ -26,14 +24,12 @@ interface Theme {
 
 interface HeroSlice {
   heroSlides: HeroSlides[]
-  // currentSlide: number
   themes: Theme[]
   currentTheme: Theme
 }
 
 const initialState = {
   heroSlides: [],
-  // currentSlide: 0,
   themes: [
     {
       nav: '#414042',
