@@ -18,16 +18,20 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
 
   return (
     <div className="w-52 p-3 border rounded-xl border-gray-light overflow-hidden">
-      <div className="image-container">
-        <img src={primaryImage} alt="" />
+      <div className="image-container flex h-56">
+        <img
+          src={primaryImage}
+          alt=""
+          className="block w-full object-cover min-h-full"
+        />
       </div>
       <div className="mt-3">
-        <h3 className="title text-base leading-4 font-bold uppercase">
+        <h3 className="title text-base leading-4 font-bold uppercase line-clamp">
           {name}
         </h3>
         <div className="flex">
           <div className="flex-grow">
-            <div className="flex text-xs capitalize">
+            <div className="flex text-xs capitalize h-5">
               {Country?.length > 0 && <p className="">{Country[0]}</p>}
               {Country?.length > 0 && vintage && (
                 <span>&nbsp;&#8226;&nbsp;</span>
