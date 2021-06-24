@@ -11,17 +11,21 @@ import _Draggable, { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 import { useDispatch, useSelector } from 'react-redux'
 
-import RoundedButton from '@components/common/RoundedButton'
-import SlideButtons from '@components/hero/SlideButtons'
+import HeroButton from '@components/common/HeroButton'
+import SlideButtons from '@components/landing-page/hero/SlideButtons'
 import { Direction } from '@models/hero'
+import { selectGlobal } from '@redux/globalSlice'
 import { selectHero, setCurrentTheme } from '@redux/heroSlice'
 
-import Wave from '../../assets/svgs/wave.svg'
+import Wave from '../../../assets/svgs/purple-wave.svg'
 
 const Hero: FunctionComponent = () => {
   const dispatch = useDispatch()
   const { heroSlides: slides, currentTheme } = useSelector(selectHero())
+  const { locale } = useSelector(selectGlobal())
   const { background: bgColor, title: titleColor, duration } = currentTheme
+
+  // console.log(slides)
 
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
@@ -297,20 +301,23 @@ const Hero: FunctionComponent = () => {
     <>
       {slides && (
         <section>
-          <div ref={bg} className="pt-16 pb-6 hero-background bg-purple">
+          <div
+            ref={bg}
+            className="pt-16 pb-6 hero-background bg-purple overflow-hidden"
+          >
             <div ref={slider} className="w-full relative">
               <ul ref={list} className="absolute inset-0 m-0 p-0">
                 {reorderedSlides.map((slide) => (
                   <li
-                    key={slide.title}
+                    key={slide.title[locale]}
                     ref={(el) => items.current.push(el)}
                     className="absolute w-full top-0 left-0"
                   >
-                    <div className="w-screen">
-                      <div className="w-full my-0 px-6 mx-auto">
+                    <div className="w-full">
+                      <div className="my-0 px-6 mx-auto">
                         <img
                           className="block w-full my-0 mx-auto rounded-xl"
-                          src={slide.image.file['en-US'].url}
+                          src={slide.image.file[locale].url}
                           alt="label"
                           onLoad={() => handleImageLoad()}
                         />
@@ -323,7 +330,7 @@ const Hero: FunctionComponent = () => {
                           ref={(el) => headings.current.push(el)}
                           className="text-4xl text-center whitespace-normal uppercase font-bold color-lime"
                         >
-                          {slide.title}
+                          {slide.title[locale]}
                         </h2>
                       </div>
                     </div>
@@ -333,7 +340,7 @@ const Hero: FunctionComponent = () => {
               <SlideButtons handleSlide={animateSlides} />
             </div>
             <div className="flex justify-center">
-              <RoundedButton>Shop Now</RoundedButton>
+              <HeroButton>Shop Now</HeroButton>
             </div>
           </div>
           <div>

@@ -2,14 +2,18 @@ import { configureStore, ThunkAction } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 import type { Action } from 'redux'
 
+import { globalSlice } from '@redux/globalSlice'
 import { heroSlice } from '@redux/heroSlice'
 import { productsSlice } from '@redux/productsSlice'
+import { socialSlice } from '@redux/socialSlice'
 
 const makeStore = () =>
   configureStore({
     reducer: {
+      [globalSlice.name]: globalSlice.reducer,
       [heroSlice.name]: heroSlice.reducer,
       [productsSlice.name]: productsSlice.reducer,
+      [socialSlice.name]: socialSlice.reducer,
     },
     devTools: true,
   })

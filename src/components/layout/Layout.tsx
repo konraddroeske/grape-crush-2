@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
+import Footer from '@components/footer/Footer'
 import NavBar from '@components/nav-bar/NavBar'
 
 interface OwnProps {
@@ -13,6 +14,7 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
     <>
       <NavBar />
       {children}
+      <Footer />
     </>
   )
 }

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import type { HeroSlides } from '@models/hero'
+import { CmsAssets } from '@lib/cms'
 import type { AppState } from '@redux/store'
 
 // export const handleHeroSlides = (heroSlides: HeroSlides[]): AppThunk => {
@@ -23,7 +23,7 @@ interface Theme {
 }
 
 interface HeroSlice {
-  heroSlides: HeroSlides[]
+  heroSlides: CmsAssets[]
   themes: Theme[]
   currentTheme: Theme
 }

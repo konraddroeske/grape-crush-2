@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { Shop } from '@models/ambassador'
+import { CmsAssets } from '@lib/cms'
+import { Category, Shop } from '@models/ambassador'
 import type { AppState } from '@redux/store'
 
 // export const setNewArrivals = (newArrivals: any[]): AppThunk => {
@@ -19,22 +20,77 @@ import type { AppState } from '@redux/store'
 //   description: string
 // }
 
-interface ProductsSlice {
-  newArrivals: Shop
+interface MatchedCategory extends CmsAssets {
+  tags: string[]
+  id: string
 }
 
-const initialState = {
-  newArrivals: {},
-} as ProductsSlice
+interface ProductsSlice {
+  newArrivals: Shop | null
+  categories: MatchedCategory[]
+  infoBox1: CmsAssets | null
+  infoBox2: CmsAssets | null
+  infoBox3: CmsAssets | null
+}
+
+const initialState: ProductsSlice = {
+  newArrivals: null,
+  categories: [],
+  infoBox1: null,
+  infoBox2: null,
+  infoBox3: null,
+}
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
     setNewArrivals(state, action) {
-      const { shops } = action.payload
-      const [shop] = shops
-      return { ...state, newArrivals: shop }
+      return { ...state, newArrivals: action.payload }
+    },
+    setInfoBoxes(state, action) {
+      const locale = 'en-US'
+
+      const [infoBox1, infoBox2, infoBox3] = action.payload.sort(
+        (a: CmsAssets, b: CmsAssets) => {
+          return a.order[locale] - b.order[locale]
+        }
+      )
+
+      return { ...state, infoBox1, infoBox2, infoBox3 }
+    },
+    setCategories(state, action) {
+      const {
+        categories,
+        categoryAssets,
+        locale,
+      }: {
+        categories: Category[]
+        categoryAssets: CmsAssets[]
+        locale: string
+      } = action.payload
+
+      const merged = categoryAssets
+        .map((entry) => {
+          const { categoryName } = entry
+          const match = categories.find(
+            (category) => category.label === categoryName[locale]
+          )
+
+          if (match) {
+            const { tags, id } = match
+            return {
+              ...entry,
+              tags,
+              id,
+            }
+          }
+
+          return null
+        })
+        .filter((category): category is MatchedCategory => !!category)
+
+      return { ...state, categories: merged }
     },
   },
   extraReducers: {
@@ -47,7 +103,8 @@ export const productsSlice = createSlice({
   },
 })
 
-export const { setNewArrivals } = productsSlice.actions
+export const { setNewArrivals, setCategories, setInfoBoxes } =
+  productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>
   state?.[productsSlice.name]

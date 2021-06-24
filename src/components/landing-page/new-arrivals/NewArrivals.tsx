@@ -10,6 +10,8 @@ import { gsap } from 'gsap'
 import { Draggable, InertiaPlugin } from 'gsap/all'
 import { useSelector } from 'react-redux'
 
+import Wave from '@assets/svgs/lime-wave.svg'
+import RoundedButton from '@components/common/RoundedButton'
 import ProductCard from '@components/product-card/ProductCard'
 import { selectProducts } from '@redux/productsSlice'
 
@@ -22,16 +24,10 @@ const NewArrivals: FunctionComponent = () => {
   const list = useRef<HTMLUListElement>(null)
   const items = useRef<(HTMLLIElement | null)[]>([])
   const itemWidth = useRef(0)
-  // const count = newArrivals.products.length
 
   const remToPixels = (rem: number) => {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
   }
-
-  // const resetSlider = useCallback(() => {
-  //   gsap.to(list.current, { x: 0 })
-  //   // handleButtonVisibility(0)
-  // }, [])
 
   const snapX = useCallback((x) => {
     const snapVal = Math.round(x / itemWidth.current) * itemWidth.current
@@ -47,7 +43,6 @@ const NewArrivals: FunctionComponent = () => {
     const [item] = items.current
     if (!item) return
     itemWidth.current = item.offsetWidth
-    // wrapWidth.current = itemWidth.current * count.current
   }, [])
 
   const initDraggable = useCallback(() => {
@@ -73,9 +68,12 @@ const NewArrivals: FunctionComponent = () => {
   }, [initDraggable, draggable, setWidths])
 
   return (
-    <section ref={slider} className="overflow-hidden relative vert-space-s">
-      <ul ref={list} className="whitespace-nowrap inline-block pl-6">
-        {newArrivals.products.map((product) => {
+    <section ref={slider} className="overflow-hidden relative mt-8">
+      <h3 className="text-3xl font-bold center text-blue text-center uppercase">
+        New Arrivals
+      </h3>
+      <ul ref={list} className="whitespace-nowrap inline-block pl-6 my-6">
+        {newArrivals?.products.map((product) => {
           return (
             <li
               ref={(el) => items.current.push(el)}
@@ -87,6 +85,12 @@ const NewArrivals: FunctionComponent = () => {
           )
         })}
       </ul>
+      <div className="flex justify-center">
+        <RoundedButton variant="md">Browse More Wines</RoundedButton>
+      </div>
+      <div>
+        <Wave className="w-full" />
+      </div>
     </section>
   )
 }

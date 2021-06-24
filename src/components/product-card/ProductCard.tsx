@@ -26,9 +26,9 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
         />
       </div>
       <div className="mt-3">
-        <h3 className="title text-base leading-4 font-bold uppercase line-clamp">
+        <h4 className="title text-base leading-4 font-bold uppercase line-clamp">
           {name}
-        </h3>
+        </h4>
         <div className="flex">
           <div className="flex-grow">
             <div className="flex text-xs capitalize h-5">

@@ -41,9 +41,15 @@ export interface Product {
   _id: string
 }
 
+export interface Category {
+  id: string
+  label: string
+  tags: string[]
+}
+
 export interface Shop {
   baseTags: string[]
-  categories: { id: string; label: string; tags: string[] }[]
+  categories: Category[]
   filterTags: string[]
   headerImg: string | null
   id: string
@@ -57,6 +63,27 @@ export interface Shops {
   shops: Shop[]
 }
 
-export interface AmbassadorResponse {
+export interface IgImage {
+  id: string
+  caption: string
+  // eslint-disable-next-line camelcase
+  media_type: string
+  // eslint-disable-next-line camelcase
+  media_url: string
+  owner: { id: string }
+  permalink: string
+  timestamp: string
+}
+
+export interface IgMedia {
+  pageId: string
+  media: IgImage[]
+}
+
+export interface AmbassadorIg {
+  data: IgMedia[]
+}
+
+export interface AmbassadorShops {
   data: Shops
 }

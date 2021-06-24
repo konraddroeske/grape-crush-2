@@ -6,7 +6,7 @@ import Hamburger from '@components/nav-bar/Hamburger'
 
 const NavBar: FunctionComponent = () => {
   return (
-    <div className="fixed z-10 top-0 left-0 right-0 py-4 flex justify-between items-center gutter-s">
+    <div className="fixed z-10 top-0 left-0 right-0 py-4 flex justify-between items-center nav-gutter-s">
       <Hamburger />
       <Logo />
       <Cart />

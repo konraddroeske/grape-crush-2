@@ -101,6 +101,28 @@
     }
   }
 
+  .top-9\/10 {
+    top: 90%;
+  }
+
+  .border-r-transparent {
+    border-right: 0px solid transparent;
+  }
+
+  .border-l-transparent {
+    border-left: 0px solid transparent;
+  }
+
+  .form-divider::after {
+    content: "";
+    position: absolute;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    left: 0;
+    width: 1px;
+    background-color: white;
+  }
+
   .line-clamp {
     display: -webkit-box;
     overflow: hidden;
@@ -110,25 +132,41 @@
   }
 
   @variants responsive {
-    .gutter-s {
+    .nav-gutter-s {
       padding-left: 0.625rem;
       padding-right: 0.625rem;
     }
 
-    .gutter-m {
+    .nav-gutter-m {
       padding-left: 3.5rem;
       padding-right: 3.5rem;
     }
 
-    .gutter-l {
+    .nav-gutter-l {
       padding-left: 4.5rem;
       padding-right: 4.5rem;
     }
 
     .vert-space-s {
-      margin-top: 3rem;
-      margin-bottom: 3rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
     }
+
+    .body-gutter-s {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .body-gutter-m {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .body-gutter-l {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
   }
 }
 

@@ -27,10 +27,12 @@ module.exports = {
         DEFAULT: '#4348E3',
       },
       purple: {
+        light: '#eee5fa',
         DEFAULT: '#C297EF',
       },
       lime: {
-        DEFAULT: '#D9FF6C',
+        DEFAULT: 'rgba(216, 255, 108, 1.0)',
+        light: 'rgba(217, 255, 108, 0.5)',
       },
       orange: {
         DEFAULT: '#FF8657',
