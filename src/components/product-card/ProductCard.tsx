@@ -17,8 +17,8 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
   const { value } = primaryVariant
 
   return (
-    <div className="w-52 p-3 border rounded-xl border-gray-light overflow-hidden">
-      <div className="image-container flex h-56">
+    <div className="w-52 md:w-64 xl:w-80 p-3 border rounded-xl border-gray-light overflow-hidden">
+      <div className="image-container flex h-56 md:h-72 xl:h-96">
         <img
           src={primaryImage}
           alt=""

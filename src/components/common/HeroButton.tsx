@@ -29,7 +29,7 @@ const HeroButton: FunctionComponent<Props> = ({ children }) => {
     <button
       type="button"
       ref={buttonRef}
-      className="py-2 mx-auto my-3 w-48 font-bold text-xs uppercase rounded-3xl border-2"
+      className="py-2 mx-auto my-0 w-48 font-bold text-xs uppercase rounded-3xl border-2"
     >
       {children}
     </button>

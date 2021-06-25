@@ -15,6 +15,8 @@ import RoundedButton from '@components/common/RoundedButton'
 import { Direction } from '@models/hero'
 import { selectSocial } from '@redux/socialSlice'
 
+import SocialWave from '../../../assets/svgs/social-wave.svg'
+
 const SocialGallery: FunctionComponent = () => {
   const { igImages } = useSelector(selectSocial())
 
@@ -198,27 +200,29 @@ const SocialGallery: FunctionComponent = () => {
   ])
 
   return (
-    <section className="py-12 overflow-hidden">
+    <section className="pb-12 pt-24 overflow-hidden relative sm:pt-28 lg:pt-40 xl:pt-48">
+      <SocialWave className="absolute top-0 left-0 right-0 w-full" />
       <h3 className="text-3xl font-bold center text-blue text-center uppercase">
         Get Social!
       </h3>
       {reorderedSlides.length > 0 && (
-        <div ref={slider} className="w-full relative my-14">
+        <div
+          ref={slider}
+          className="w-full relative mt-14 mb-12 sm:mt-14 sm:mb-24 lg:mt-24 lg:mb-40 xl:mb-60"
+        >
           <ul ref={list} className="absolute inset-0 m-0 p-0">
             {reorderedSlides.map((slide) => (
               <li
                 key={slide.id}
                 ref={(el) => items.current.push(el)}
-                className="absolute w-36 top-0 left-0"
+                className="absolute w-36 top-0 left-0 sm:w-48 lg:w-64 xl:w-80"
               >
-                <div className="w-36">
-                  <div className="w-full my-0 px-3 mx-auto">
-                    <img
-                      className="block w-full my-0 mx-auto"
-                      src={slide.media_url}
-                      alt={slide.caption}
-                    />
-                  </div>
+                <div className="flex w-full h-36 my-0 px-3 mx-auto sm:px-4 sm:h-48 lg:px-5 lg:h-64 xl:h-80">
+                  <img
+                    className="object-cover w-full block w-full my-0 mx-auto"
+                    src={slide.media_url}
+                    alt={slide.caption}
+                  />
                 </div>
               </li>
             ))}

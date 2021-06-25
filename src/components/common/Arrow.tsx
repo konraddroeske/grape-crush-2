@@ -15,12 +15,12 @@ const Arrow: FunctionComponent<Props> = ({ direction }) => {
   return (
     <>
       {direction === Direction.Left && (
-        <div className="w-8">
+        <div className="w-8 md:w-12 lg:w-16">
           <LeftArrow />
         </div>
       )}
       {direction === Direction.Right && (
-        <div className="w-8">
+        <div className="w-8 md:w-12 lg:w-16">
           <RightArrow />
         </div>
       )}

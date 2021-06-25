@@ -59,6 +59,9 @@ const Hero: FunctionComponent = () => {
     items.current.forEach((item, i) =>
       gsap.set(item, {
         xPercent: i * 100,
+        modifiers: {
+          xPercent: gsap.utils.wrap(-200, (count.current - 2) * 100),
+        },
       })
     )
   }, [])
@@ -82,7 +85,7 @@ const Hero: FunctionComponent = () => {
       paused: true,
       repeat: -1,
       modifiers: {
-        xPercent: gsap.utils.wrap(-100, (count.current - 1) * 100),
+        xPercent: gsap.utils.wrap(-200, (count.current - 2) * 100),
       },
     })
   }, [])
@@ -311,12 +314,12 @@ const Hero: FunctionComponent = () => {
                   <li
                     key={slide.title[locale]}
                     ref={(el) => items.current.push(el)}
-                    className="absolute w-full top-0 left-0"
+                    className="absolute w-full sm:w-2/3 top-0 right-0 sm:right-1/6"
                   >
                     <div className="w-full">
-                      <div className="my-0 px-6 mx-auto">
+                      <div className="my-0 px-6 sm:px-10 md:px-12 lg:px-24 mx-auto max-h-hero flex">
                         <img
-                          className="block w-full my-0 mx-auto rounded-xl"
+                          className="block w-full my-0 mx-auto rounded-xl xl:rounded-2xl object-cover"
                           src={slide.image.file[locale].url}
                           alt="label"
                           onLoad={() => handleImageLoad()}
@@ -324,11 +327,13 @@ const Hero: FunctionComponent = () => {
                       </div>
                       <div
                         ref={(el) => titles.current.push(el)}
-                        className="absolute left-1/2 top-full px-8 transform -translate-x-1/2 -translate-y-5 w-full"
+                        className="absolute left-1/2 top-full px-8 sm:px-12 lg:px-28 transform
+                        -translate-x-1/2 -translate-y-5 md:-translate-y-8 xl:-translate-y-12 w-full"
                       >
                         <h2
                           ref={(el) => headings.current.push(el)}
-                          className="text-4xl text-center whitespace-normal uppercase font-bold color-lime"
+                          className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl text-center
+                          whitespace-normal uppercase font-bold color-lime"
                         >
                           {slide.title[locale]}
                         </h2>

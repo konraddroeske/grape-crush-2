@@ -68,11 +68,17 @@ const NewArrivals: FunctionComponent = () => {
   }, [initDraggable, draggable, setWidths])
 
   return (
-    <section ref={slider} className="overflow-hidden relative mt-8">
+    <section
+      ref={slider}
+      className="overflow-hidden relative mt-8 md:mt-16 xl:mt-24"
+    >
       <h3 className="text-3xl font-bold center text-blue text-center uppercase">
         New Arrivals
       </h3>
-      <ul ref={list} className="whitespace-nowrap inline-block pl-6 my-6">
+      <ul
+        ref={list}
+        className="whitespace-nowrap inline-block pl-6 my-6 md:my-8 xl:my-12"
+      >
         {newArrivals?.products.map((product) => {
           return (
             <li
