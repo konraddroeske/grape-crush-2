@@ -9,6 +9,7 @@ interface Global {
   locales: string[]
   helpPages: CmsAssets[]
   legalPages: CmsAssets[]
+  navOpen: boolean
 }
 
 const initialState: Global = {
@@ -16,6 +17,7 @@ const initialState: Global = {
   locales: ['en-US'],
   helpPages: [],
   legalPages: [],
+  navOpen: false,
 }
 
 export const globalSlice = createSlice({
@@ -36,6 +38,9 @@ export const globalSlice = createSlice({
 
       return { ...state, legalPages, helpPages }
     },
+    setNavOpen(state) {
+      return { ...state, navOpen: !state.navOpen }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -47,6 +52,6 @@ export const globalSlice = createSlice({
   },
 })
 
-export const { setLocale, setPages } = globalSlice.actions
+export const { setLocale, setPages, setNavOpen } = globalSlice.actions
 
 export const selectGlobal = () => (state: AppState) => state?.[globalSlice.name]

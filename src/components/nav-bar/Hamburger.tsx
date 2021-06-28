@@ -1,11 +1,14 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
 import gsap from 'gsap'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { selectGlobal, setNavOpen } from '@redux/globalSlice'
 import { selectHero } from '@redux/heroSlice'
 
 const Hamburger: FunctionComponent = () => {
+  const dispatch = useDispatch()
+  const { navOpen } = useSelector(selectGlobal())
   const { currentTheme } = useSelector(selectHero())
   const { nav, duration } = currentTheme
 
@@ -20,12 +23,22 @@ const Hamburger: FunctionComponent = () => {
     })
   }, [nav, duration])
 
+  useEffect(() => {
+    gsap.set([topBar.current, midBar.current, lowBar.current], {
+      backgroundColor: navOpen ? '#414042' : nav,
+    })
+  }, [nav, navOpen])
+
   return (
-    <div className="flex flex-col justify-between h-3.5">
+    <button
+      type="button"
+      className="flex flex-col justify-between h-3.5"
+      onClick={() => dispatch(setNavOpen())}
+    >
       <div ref={topBar} className="w-5 h-0.5" />
       <div ref={midBar} className="w-5 h-0.5" />
       <div ref={lowBar} className="w-5 h-0.5" />
-    </div>
+    </button>
   )
 }
 

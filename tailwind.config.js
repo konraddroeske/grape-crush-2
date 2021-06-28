@@ -40,7 +40,8 @@ module.exports = {
       gray: {
         dark: '#414042',
         DEFAULT: '#828282',
-        light: '#F1F2F2',
+        light: '#BDBDBD',
+        lightest: '#F1F2F2',
       },
     },
     screens: {

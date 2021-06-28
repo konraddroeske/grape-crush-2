@@ -89,7 +89,7 @@
     }
   }
 
-  .svg-gray-light {
+  .svg-gray-lightest {
     path {
       fill: #f1f2f2;
     }
@@ -99,6 +99,16 @@
     path {
       fill: #414042;
     }
+  }
+
+  .px-1\/10 {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  .px-1\/8 {
+    padding-left: calc(100% / 8);
+    padding-right: calc(100% / 8);
   }
 
   .right-1\/20 {
@@ -172,7 +182,7 @@
   }
 
   @variants responsive {
-    .nav-gutter-s {
+    .nav-gutter-sm {
       padding-left: 0.625rem;
       padding-right: 0.625rem;
     }

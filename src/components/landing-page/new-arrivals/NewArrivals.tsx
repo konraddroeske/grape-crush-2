@@ -67,6 +67,18 @@ const NewArrivals: FunctionComponent = () => {
     }
   }, [initDraggable, draggable, setWidths])
 
+  const handleResize = useCallback(() => {
+    gsap.to(list.current, { x: 0 })
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [handleResize])
+
   return (
     <section
       ref={slider}
@@ -77,7 +89,8 @@ const NewArrivals: FunctionComponent = () => {
       </h3>
       <ul
         ref={list}
-        className="whitespace-nowrap inline-block pl-6 my-6 md:my-8 xl:my-12"
+        className="whitespace-nowrap inline-block pl-6 my-6 md:my-8 xl:my-12
+        sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl"
       >
         {newArrivals?.products.map((product) => {
           return (

@@ -185,7 +185,7 @@ const SocialGallery: FunctionComponent = () => {
         x: 0,
       })
       setWidths()
-      setHeight()
+      // setHeight()
       setPosition()
       initDraggable()
       updateAnimation()
@@ -199,6 +199,14 @@ const SocialGallery: FunctionComponent = () => {
     setWidths,
   ])
 
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleResize)
+  //
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize)
+  //   }
+  // }, [handleResize])
+
   return (
     <section className="pb-12 pt-24 overflow-hidden relative sm:pt-28 lg:pt-40 xl:pt-48">
       <SocialWave className="absolute top-0 left-0 right-0 w-full" />
@@ -208,7 +216,8 @@ const SocialGallery: FunctionComponent = () => {
       {reorderedSlides.length > 0 && (
         <div
           ref={slider}
-          className="w-full relative mt-14 mb-12 sm:mt-14 sm:mb-24 lg:mt-24 lg:mb-40 xl:mb-60"
+          className="w-full relative mt-14 mb-16 h-36 sm:mt-14 sm:h-48
+          lg:mt-24 lg:mb-20 lg:h-64 xl:mb-24 xl:h-80"
         >
           <ul ref={list} className="absolute inset-0 m-0 p-0">
             {reorderedSlides.map((slide) => (

@@ -2,7 +2,7 @@ import React, { FunctionComponent, useRef } from 'react'
 
 interface OwnProps {
   children: React.ReactNode
-  variant: 'lg' | 'md' | 'sm'
+  variant: 'full' | 'lg' | 'md' | 'sm'
   margin?: string
 }
 
@@ -16,6 +16,7 @@ const RoundedButton: FunctionComponent<Props> = ({
   const buttonRef = useRef<HTMLButtonElement | null>(null)
 
   const variants = {
+    full: 'w-full',
     lg: 'w-60',
     md: 'w-48',
     sm: 'w-32',

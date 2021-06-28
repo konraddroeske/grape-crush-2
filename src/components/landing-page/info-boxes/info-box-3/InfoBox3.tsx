@@ -20,7 +20,7 @@ const InfoBox3: FunctionComponent = () => {
   const { title, description, image } = infoBox3
   return (
     <section className="sm:flex">
-      <div className="relative pt-6 bg-gray-light sm:w-2/5 sm:pt-0 sm:flex sm:items-center">
+      <div className="relative pt-6 bg-gray-lightest sm:w-2/5 sm:pt-0 sm:flex sm:items-center">
         <div className="flex flex-col items-center body-gutter-sm sm:items-start lg:body-gutter-lg xl:body-gutter-xl">
           <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
           <InfoBoxText>{description[locale]} </InfoBoxText>

@@ -20,6 +20,7 @@ interface Theme {
   buttonText: string
   background: string
   duration: number
+  arrows: string
 }
 
 interface HeroSlice {
@@ -38,6 +39,7 @@ const initialState = {
       buttonText: 'white',
       background: '#c297ef',
       duration: 0.7,
+      arrows: '#d9ff6c',
     },
     {
       nav: 'white',
@@ -46,6 +48,7 @@ const initialState = {
       buttonText: 'white',
       background: '#4348e3',
       duration: 0.7,
+      arrows: '#d9ff6c',
     },
     {
       nav: '#414042',
@@ -54,6 +57,7 @@ const initialState = {
       buttonText: 'white',
       background: '#FF8657',
       duration: 0.7,
+      arrows: 'white',
     },
     {
       nav: '#414042',
@@ -62,6 +66,7 @@ const initialState = {
       buttonText: '#414042',
       background: '#f1f2f2',
       duration: 0.7,
+      arrows: '#414042',
     },
   ],
   currentTheme: {
@@ -71,6 +76,7 @@ const initialState = {
     buttonText: 'white',
     background: '#c297ef',
     duration: 0.7,
+    arrows: '#d9ff6c',
   },
 } as HeroSlice
 

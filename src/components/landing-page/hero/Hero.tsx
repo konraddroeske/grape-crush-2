@@ -317,7 +317,7 @@ const Hero: FunctionComponent = () => {
                     className="absolute w-full sm:w-2/3 top-0 right-0 sm:right-1/6"
                   >
                     <div className="w-full">
-                      <div className="my-0 px-6 sm:px-10 md:px-12 lg:px-24 mx-auto max-h-hero flex">
+                      <div className="my-0 px-6 sm:px-10 md:px-12 xl:px-24 mx-auto max-h-hero flex">
                         <img
                           className="block w-full my-0 mx-auto rounded-xl xl:rounded-2xl object-cover"
                           src={slide.image.file[locale].url}
@@ -327,8 +327,9 @@ const Hero: FunctionComponent = () => {
                       </div>
                       <div
                         ref={(el) => titles.current.push(el)}
-                        className="absolute left-1/2 top-full px-8 sm:px-12 lg:px-28 transform
-                        -translate-x-1/2 -translate-y-5 md:-translate-y-8 xl:-translate-y-12 w-full"
+                        className="absolute left-1/2 top-full px-1/10 transform
+                        -translate-x-1/2 -translate-y-5 md:-translate-y-8 lg:px-1/8
+                        xl:-translate-y-12 w-full"
                       >
                         <h2
                           ref={(el) => headings.current.push(el)}

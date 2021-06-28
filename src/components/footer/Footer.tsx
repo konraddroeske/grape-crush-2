@@ -30,14 +30,17 @@ const Footer: FunctionComponent = () => {
   return (
     <footer className="overflow-x-hidden">
       <FooterTop />
-      <div className="relative z-30 mt-16 bg-gray-light xl:mt-20">
-        <div className="flex flex-wrap body-gutter-sm relative z-10 md:flex-nowrap md:py-6">
-          <div
-            className="absolute bottom-full left-1/2 transform -translate-x-1/2
+      <div className="relative z-30 mt-16 bg-gray-lightest xl:mt-20">
+        <div
+          className="absolute bottom-full left-1/2 transform -translate-x-1/2
           translate-y-1/3 min-w-footer w-full"
-          >
-            <FooterWave className="w-full" />
-          </div>
+        >
+          <FooterWave className="w-full" />
+        </div>
+        <div
+          className="flex flex-wrap body-gutter-sm relative z-10 md:flex-nowrap md:py-6
+        lg:body-gutter-lg xl:body-gutter-xl"
+        >
           <div className="w-1/2 pr-1 md:w-auto md:flex-grow z-10">
             <FooterTitle>Help</FooterTitle>
             <ul className="font-normal text-xs text-center mt-1 leading-5 md:flex">
@@ -65,7 +68,7 @@ const Footer: FunctionComponent = () => {
             </ul>
           </div>
           <div
-            className="flex flex-grow justify-center py-8 bg-gray-light md:py-0 md:justify-end
+            className="flex flex-grow justify-center py-8 bg-gray-lightest md:py-0 md:justify-end
           md:flex-grow-0"
           >
             <LogoContainer>
