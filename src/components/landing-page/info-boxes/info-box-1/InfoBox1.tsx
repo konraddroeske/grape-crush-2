@@ -24,7 +24,7 @@ const InfoBox1: FunctionComponent = () => {
         <div className="flex flex-col items-center body-gutter-sm sm:items-start lg:body-gutter-lg xl:body-gutter-xl">
           <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
           <InfoBoxText>{description[locale]}</InfoBoxText>
-          <RoundedButton variant="sm" margin="mx-0">
+          <RoundedButton variant="sm" marginX="mx-0">
             Explore
           </RoundedButton>
         </div>

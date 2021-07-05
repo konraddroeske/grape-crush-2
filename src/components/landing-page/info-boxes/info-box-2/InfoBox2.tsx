@@ -33,7 +33,7 @@ const InfoBox2: FunctionComponent = () => {
         >
           <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
           <InfoBoxText>{description[locale]}</InfoBoxText>
-          <RoundedButton variant="sm" margin="mx-0">
+          <RoundedButton variant="sm" marginX="mx-0">
             Explore
           </RoundedButton>
         </div>
