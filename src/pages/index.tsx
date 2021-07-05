@@ -19,19 +19,18 @@ import {
   setCategories,
   setInfoBoxes,
   setNewArrivals,
+  setTags,
 } from '@redux/productsSlice'
 import { setIgImages } from '@redux/socialSlice'
 import { wrapper } from '@redux/store'
 
 const Home: FunctionComponent = () => {
-  // const { newArrivals } = useSelector(selectProducts())
+  // const dispatch = useDispatch()
 
-  // console.log(newArrivals)
-
-  // console.log(allShops)
-  // if (!newArrivals) {
-  //   return <div>No content in store.</div>
-  // }
+  // useEffect(() => {
+  //   console.log('resetting nav')
+  //   dispatch(setNavOpen)
+  // }, [dispatch])
 
   return (
     <div>
@@ -83,6 +82,9 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const [shop] = shops
   const { categories } = shop
 
+  const { data: allShops } = await ambassador.api.allShops()
+
+  store.dispatch(setTags(allShops))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setHeroSlides(heroAssets))

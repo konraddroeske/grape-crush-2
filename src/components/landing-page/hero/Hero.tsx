@@ -25,8 +25,6 @@ const Hero: FunctionComponent = () => {
   const { locale } = useSelector(selectGlobal())
   const { background: bgColor, title: titleColor, duration } = currentTheme
 
-  // console.log(slides)
-
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
   const list = useRef<HTMLUListElement>(null)
@@ -306,7 +304,8 @@ const Hero: FunctionComponent = () => {
         <section>
           <div
             ref={bg}
-            className="pt-16 pb-6 hero-background bg-purple overflow-hidden"
+            className="pt-20 pb-6 hero-background bg-purple overflow-hidden
+            md:pt-24 xl:pt-28"
           >
             <div ref={slider} className="w-full relative">
               <ul ref={list} className="absolute inset-0 m-0 p-0">

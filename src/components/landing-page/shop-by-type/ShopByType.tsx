@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 
+import Categories from '@components/common/Categories'
 import RoundedButton from '@components/common/RoundedButton'
-import Categories from '@components/landing-page/shop-by-type/Categories'
 
 const ShopByType: FunctionComponent = () => {
   return (

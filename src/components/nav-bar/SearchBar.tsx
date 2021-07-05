@@ -2,9 +2,18 @@ import React, { FunctionComponent } from 'react'
 
 import Search from '../../assets/svgs/search.svg'
 
-const SearchBar: FunctionComponent = () => {
+interface Props {
+  variant: 'mobile' | 'desktop'
+}
+
+const SearchBar: FunctionComponent<Props> = ({ variant }) => {
+  const variants = {
+    mobile: 'mt-6',
+    desktop: 'my-0',
+  }
+
   return (
-    <div className="flex mt-6 w-full mx-auto">
+    <div className={`flex ${variants[variant]} w-full mx-auto h-9`}>
       <input
         type="text"
         placeholder="Search"

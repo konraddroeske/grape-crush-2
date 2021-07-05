@@ -101,6 +101,10 @@
     }
   }
 
+  .-z-10 {
+    z-index: -10;
+  }
+
   .px-1\/10 {
     padding-left: 10%;
     padding-right: 10%;
@@ -187,14 +191,14 @@
       padding-right: 0.625rem;
     }
 
-    .nav-gutter-m {
-      padding-left: 3.5rem;
-      padding-right: 3.5rem;
+    .nav-gutter-lg {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
 
-    .nav-gutter-l {
-      padding-left: 4.5rem;
-      padding-right: 4.5rem;
+    .nav-gutter-xl {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
     }
 
     .vert-space-s {

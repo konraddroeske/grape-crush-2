@@ -25,12 +25,17 @@ interface MatchedCategory extends CmsAssets {
   id: string
 }
 
+interface Styles {
+  [key: string]: number
+}
+
 interface ProductsSlice {
   newArrivals: Shop | null
   categories: MatchedCategory[]
   infoBox1: CmsAssets | null
   infoBox2: CmsAssets | null
   infoBox3: CmsAssets | null
+  styles: Styles | null
 }
 
 const initialState: ProductsSlice = {
@@ -39,6 +44,7 @@ const initialState: ProductsSlice = {
   infoBox1: null,
   infoBox2: null,
   infoBox3: null,
+  styles: null,
 }
 
 export const productsSlice = createSlice({
@@ -92,6 +98,23 @@ export const productsSlice = createSlice({
 
       return { ...state, categories: merged }
     },
+    setTags(state, action) {
+      const { shops }: { shops: Shop[] } = action.payload
+      const [shop] = shops
+      const { products } = shop
+      const styles = products.flatMap((product) => {
+        if (product.data?.Style) {
+          return product.data.Style
+        }
+        return []
+      })
+
+      const stylesCount = styles.reduce((prev: Styles, cur) => {
+        return { ...prev, [cur]: (prev[cur] || 0) + 1 }
+      }, {})
+
+      return { ...state, styles: stylesCount }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -103,7 +126,7 @@ export const productsSlice = createSlice({
   },
 })
 
-export const { setNewArrivals, setCategories, setInfoBoxes } =
+export const { setNewArrivals, setCategories, setInfoBoxes, setTags } =
   productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>

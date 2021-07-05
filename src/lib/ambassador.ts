@@ -18,7 +18,7 @@ const requests = {
 }
 
 const api = {
-  // getAll: () => requests.get<AmbassadorResponse>(`/shops`),
+  allShops: () => requests.get<any>(`/shops`),
   filterByKey: (key: string, type: string) =>
     requests.get<AmbassadorShops>(`/shops?data.${key}=${type}`),
   getSocial: () => requests.get<AmbassadorIg>('/instagram'),
