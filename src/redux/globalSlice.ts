@@ -38,8 +38,8 @@ export const globalSlice = createSlice({
 
       return { ...state, legalPages, helpPages }
     },
-    setNavOpen(state) {
-      return { ...state, navOpen: !state.navOpen }
+    setNavOpen(state, action) {
+      return { ...state, navOpen: action.payload }
     },
   },
   extraReducers: {

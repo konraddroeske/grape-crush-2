@@ -1,15 +1,18 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent } from 'react'
+
+import { useSelector } from 'react-redux'
 
 import DesktopCategories from '@components/nav-bar/DesktopCategories'
 import MenuButtonDesktop from '@components/nav-bar/MenuButtonDesktop'
 import MenuLink from '@components/nav-bar/MenuLink'
+import { selectGlobal } from '@redux/globalSlice'
 
-const DesktopMenu: FunctionComponent = () => {
-  const [open, setOpen] = useState(false)
+interface Props {
+  isDesktop: boolean
+}
 
-  const handleOpen = (bool: boolean) => {
-    setOpen(bool)
-  }
+const DesktopMenu: FunctionComponent<Props> = ({ isDesktop }) => {
+  const { navOpen } = useSelector(selectGlobal())
 
   return (
     <div className="hidden ml-auto mr-8 lg:flex">
@@ -19,14 +22,8 @@ const DesktopMenu: FunctionComponent = () => {
         // onMouseLeave={() => setOpen(false)}
         // onClick={() => setOpen(true)}
       >
-        <MenuButtonDesktop
-          handleOpen={handleOpen}
-          open={open}
-          variant="desktop"
-        >
-          Shop
-        </MenuButtonDesktop>
-        {open && <DesktopCategories />}
+        <MenuButtonDesktop>Shop</MenuButtonDesktop>
+        {navOpen && isDesktop && <DesktopCategories />}
       </div>
       <MenuLink variant="desktop">About Us</MenuLink>
       <MenuLink variant="desktop">Visit Us</MenuLink>

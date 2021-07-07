@@ -19,21 +19,15 @@ const Hamburger: FunctionComponent = () => {
   useEffect(() => {
     gsap.to([topBar.current, midBar.current, lowBar.current], {
       duration,
-      backgroundColor: nav,
-    })
-  }, [nav, duration])
-
-  useEffect(() => {
-    gsap.set([topBar.current, midBar.current, lowBar.current], {
       backgroundColor: navOpen ? '#414042' : nav,
     })
-  }, [nav, navOpen])
+  }, [nav, navOpen, duration])
 
   return (
     <button
       type="button"
       className="flex flex-col justify-between h-3.5 lg:hidden"
-      onClick={() => dispatch(setNavOpen())}
+      onClick={() => dispatch(setNavOpen(!navOpen))}
     >
       <div ref={topBar} className="w-5 h-0.5" />
       <div ref={midBar} className="w-5 h-0.5" />

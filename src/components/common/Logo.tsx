@@ -16,22 +16,16 @@ const Logo: FunctionComponent = () => {
   useEffect(() => {
     gsap.to('.svg-logo path', {
       duration,
-      fill: nav,
-    })
-  }, [nav, duration])
-
-  useEffect(() => {
-    gsap.set('.svg-logo path', {
       fill: navOpen ? '#414042' : nav,
     })
-  }, [navOpen, nav])
+  }, [nav, navOpen, duration])
 
   return (
     <div
       className="font-sans w-36 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
     lg:static lg:inset-auto lg:translate-x-0 lg:translate-y-0"
     >
-      <GrapeCrushLogo className="w-full svg-logo svg-gray-dark" />
+      <GrapeCrushLogo className="w-full svg-logo" />
     </div>
   )
 }

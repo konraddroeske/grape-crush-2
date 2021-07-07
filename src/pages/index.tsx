@@ -84,12 +84,24 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   const { data: allShops } = await ambassador.api.allShops()
 
+  // const {
+  //   allShops,
+  //   locale,
+  //   pageAssets,
+  //   heroAssets,
+  //   shop,
+  //   categories,
+  //   infoBoxAssets,
+  //   igImages,
+  // } = await getMembers()
+
   store.dispatch(setTags(allShops))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setHeroSlides(heroAssets))
   store.dispatch(setNewArrivals(shop))
   store.dispatch(setCategories({ categories, categoryAssets, locale }))
+  // store.dispatch(setCategories(categories))
   store.dispatch(setInfoBoxes(infoBoxAssets))
   store.dispatch(setIgImages(igImages))
 

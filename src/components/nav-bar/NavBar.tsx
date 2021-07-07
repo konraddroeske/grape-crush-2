@@ -24,18 +24,18 @@ const NavBar: FunctionComponent = () => {
     const body = document.getElementsByTagName('BODY')[0]
 
     gsap.set(body, {
-      overflowY: navOpen ? 'hidden' : 'auto',
+      overflowY: navOpen && !isDesktop ? 'hidden' : 'auto',
     })
 
     gsap.set(navRef.current, {
-      backgroundColor: navOpen ? 'white' : 'transparent',
-      bottom: navOpen ? 0 : 'auto',
+      backgroundColor: navOpen && !isDesktop ? 'white' : 'transparent',
+      bottom: navOpen && !isDesktop ? 0 : 'auto',
     })
-  }, [navOpen])
+  }, [navOpen, isDesktop])
 
   useEffect(() => {
-    if (navOpen && isDesktop) {
-      dispatch(setNavOpen())
+    if (navOpen && !isDesktop) {
+      dispatch(setNavOpen(true))
     }
   }, [navOpen, dispatch, isDesktop])
 
@@ -48,10 +48,10 @@ const NavBar: FunctionComponent = () => {
       <div className="relative flex h-16 justify-between items-center">
         <Hamburger />
         <Logo />
-        <DesktopMenu />
+        <DesktopMenu isDesktop={isDesktop} />
         <Cart />
       </div>
-      {navOpen && <MobileMenu />}
+      {navOpen && !isDesktop && <MobileMenu />}
     </nav>
   )
 }
