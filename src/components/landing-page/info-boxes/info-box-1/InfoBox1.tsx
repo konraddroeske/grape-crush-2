@@ -9,10 +9,10 @@ import RoundedButton from '@components/common/RoundedButton'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
 import { selectGlobal } from '@redux/globalSlice'
-import { selectProducts } from '@redux/productsSlice'
+import { selectIndex } from '@redux/indexSlice'
 
 const InfoBox1: FunctionComponent = () => {
-  const { infoBox1 } = useSelector(selectProducts())
+  const { infoBox1 } = useSelector(selectIndex())
   const { locale } = useSelector(selectGlobal())
 
   if (!infoBox1) return <></>

@@ -7,12 +7,12 @@ import HoriWave from '@assets/svgs/info-box-3-wave.svg'
 import Speedy from '@assets/svgs/speedy.svg'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import { selectGlobal } from '@redux/globalSlice'
-import { selectProducts } from '@redux/productsSlice'
+import { selectIndex } from '@redux/indexSlice'
 
 import InfoBoxTitle from '../InfoBoxTitle'
 
 const InfoBox3: FunctionComponent = () => {
-  const { infoBox3 } = useSelector(selectProducts())
+  const { infoBox3 } = useSelector(selectIndex())
   const { locale } = useSelector(selectGlobal())
 
   if (!infoBox3) return <></>

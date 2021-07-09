@@ -13,10 +13,10 @@ import { useSelector } from 'react-redux'
 import Wave from '@assets/svgs/lime-wave.svg'
 import RoundedButton from '@components/common/RoundedButton'
 import ProductCard from '@components/product-card/ProductCard'
-import { selectProducts } from '@redux/productsSlice'
+import { selectIndex } from '@redux/indexSlice'
 
 const NewArrivals: FunctionComponent = () => {
-  const { newArrivals } = useSelector(selectProducts())
+  const { newArrivals } = useSelector(selectIndex())
 
   const [draggable, setDraggable] = useState<Draggable | null>(null)
 

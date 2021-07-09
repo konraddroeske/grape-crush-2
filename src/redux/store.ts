@@ -4,6 +4,7 @@ import type { Action } from 'redux'
 
 import { globalSlice } from '@redux/globalSlice'
 import { heroSlice } from '@redux/heroSlice'
+import { indexSlice } from '@redux/indexSlice'
 import { productsSlice } from '@redux/productsSlice'
 import { socialSlice } from '@redux/socialSlice'
 
@@ -12,8 +13,9 @@ const makeStore = () =>
     reducer: {
       [globalSlice.name]: globalSlice.reducer,
       [heroSlice.name]: heroSlice.reducer,
-      [productsSlice.name]: productsSlice.reducer,
+      [indexSlice.name]: indexSlice.reducer,
       [socialSlice.name]: socialSlice.reducer,
+      [productsSlice.name]: productsSlice.reducer,
     },
     devTools: true,
   })

@@ -2,49 +2,36 @@ import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import { CmsAssets } from '@lib/cms'
-import { Category, Shop } from '@models/ambassador'
+import { Category, Product, Shop } from '@models/ambassador'
 import type { AppState } from '@redux/store'
-
-// export const setNewArrivals = (newArrivals: any[]): AppThunk => {
-//   return async (dispatch) => {
-//     dispatch(
-//       productsSlice.actions.setNewArrivals({
-//         newArrivals,
-//       })
-//     )
-//   }
-// }
-// interface NewArrival {
-//   title: string
-//   url: string
-//   description: string
-// }
 
 interface MatchedCategory extends CmsAssets {
   tags: string[]
   id: string
 }
 
-interface Styles {
-  [key: string]: number
+interface TagsByCategory {
+  style: string[]
+  country: string[]
+  varietal: string[]
 }
 
-interface ProductsSlice {
-  newArrivals: Shop | null
+interface TagsByCount {
+  style: Record<string, number>
+  country: Record<string, number>
+  varietal: Record<string, number>
+}
+
+interface IndexSlice {
   categories: MatchedCategory[]
-  infoBox1: CmsAssets | null
-  infoBox2: CmsAssets | null
-  infoBox3: CmsAssets | null
-  styles: Styles | null
+  styles: Record<string, number> | null
+  allTags: TagsByCount | null
 }
 
-const initialState: ProductsSlice = {
-  newArrivals: null,
+const initialState: IndexSlice = {
   categories: [],
-  infoBox1: null,
-  infoBox2: null,
-  infoBox3: null,
   styles: null,
+  allTags: null,
 }
 
 export const productsSlice = createSlice({
@@ -98,6 +85,55 @@ export const productsSlice = createSlice({
 
       return { ...state, categories: merged }
     },
+    setAllTags(state, action) {
+      const { shops }: { shops: Shop[] } = action.payload
+      const [shop] = shops
+      const { products } = shop
+
+      const getCategories = (
+        acc: TagsByCategory,
+        cur: Product,
+        category: 'Style' | 'Varietal' | 'Country'
+      ) => {
+        if (cur.data?.[category]) {
+          const tagCategory = category.toLowerCase() as keyof TagsByCategory
+          const mergedCategories = acc[tagCategory]
+            ? acc[tagCategory].concat(cur.data[category])
+            : cur.data[category]
+
+          return { ...acc, [category.toLowerCase()]: mergedCategories }
+        }
+
+        return acc
+      }
+
+      const tagsByCategory = products.reduce((acc, cur) => {
+        const accWithStyle = getCategories(acc, cur, 'Style')
+        const accWithVarietal = getCategories(accWithStyle, cur, 'Varietal')
+        const accWithCountry = getCategories(accWithVarietal, cur, 'Country')
+
+        if (Object.keys(accWithCountry).length !== 0) {
+          return accWithCountry
+        }
+
+        return acc
+      }, {} as TagsByCategory)
+
+      const tagsByCount = Object.entries(tagsByCategory).reduce(
+        (parentAcc, category) => {
+          const [name, tags]: [string, string[]] = category
+
+          const count = tags.reduce((childAcc: Record<string, number>, tag) => {
+            return { ...childAcc, [tag]: (childAcc[tag] || 0) + 1 }
+          }, {})
+
+          return { ...parentAcc, [name]: count }
+        },
+        {} as TagsByCount
+      )
+
+      return { ...state, allTags: tagsByCount }
+    },
     setTags(state, action) {
       const { shops }: { shops: Shop[] } = action.payload
       const [shop] = shops
@@ -106,10 +142,11 @@ export const productsSlice = createSlice({
         if (product.data?.Style) {
           return product.data.Style
         }
+
         return []
       })
 
-      const stylesCount = styles.reduce((prev: Styles, cur) => {
+      const stylesCount = styles.reduce((prev: Record<string, number>, cur) => {
         return { ...prev, [cur]: (prev[cur] || 0) + 1 }
       }, {})
 
@@ -126,8 +163,7 @@ export const productsSlice = createSlice({
   },
 })
 
-export const { setNewArrivals, setCategories, setInfoBoxes, setTags } =
-  productsSlice.actions
+export const { setCategories, setTags, setAllTags } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>
   state?.[productsSlice.name]
