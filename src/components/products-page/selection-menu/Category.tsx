@@ -12,8 +12,8 @@ type Props = OwnProps
 
 const Category: FunctionComponent<Props> = ({ title, items }) => {
   return (
-    <div>
-      <h3 className="text-2xl font-bold uppercase mb-2">{title}</h3>
+    <div className="border-b border-blue pb-4 mb-4">
+      <h3 className="text-2xl text-blue font-bold uppercase mb-3">{title}</h3>
       <ul>
         {items.map((item: string) => {
           return (
@@ -22,13 +22,13 @@ const Category: FunctionComponent<Props> = ({ title, items }) => {
                 type="button"
                 className="flex text-sm capitalize items-center"
               >
-                <div className="flex items-center mr-3">
+                <span className="flex items-center mr-3">
                   <Box />
-                </div>
+                </span>
                 <div className="flex items-center hidden mr-3">
                   <Selected />
                 </div>
-                <div className="flex items-center">{item}</div>
+                <span className="flex items-center leading-none">{item}</span>
               </button>
             </li>
           )

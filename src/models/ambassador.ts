@@ -11,6 +11,8 @@ export interface Variants {
   tags: string[]
 }
 
+export type ProductCategories = 'Country' | 'Style' | 'Varietal'
+
 export interface ProductData {
   Country: string[]
   Style: string[]

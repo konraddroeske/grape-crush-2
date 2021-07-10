@@ -12,20 +12,22 @@ import NavWave from '../../assets/svgs/nav-wave.svg'
 
 const DesktopCategories: FunctionComponent = () => {
   const { locale } = useSelector(selectGlobal())
-  const { categories, styles } = useSelector(selectProducts())
+  const { categories, allTags } = useSelector(selectProducts())
   const [topStyles, setTopStyles] = useState<string[]>([])
 
   useEffect(() => {
-    if (styles) {
-      const sortedStyles = Object.entries(styles)
+    if (allTags) {
+      const { style } = allTags
+
+      const sortedStyles = Object.entries(style)
         .sort((a, b) => {
           return b[1] - a[1]
         })
-        .map((style) => style[0])
+        .map((tag) => tag[0])
 
       setTopStyles(sortedStyles)
     }
-  }, [styles])
+  }, [allTags])
 
   return (
     <div

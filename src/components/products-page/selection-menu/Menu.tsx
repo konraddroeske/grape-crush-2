@@ -22,7 +22,7 @@ const Menu: FunctionComponent = () => {
       .sort((a, b) => {
         return b[1] - a[1]
       })
-      .map((style) => style[0])
+      .map((tag) => tag[0])
 
     return sorted.length > 14 ? sorted.slice(0, 14) : sorted
   }

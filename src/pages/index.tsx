@@ -15,7 +15,7 @@ import fetchIndexData from '@lib/fetchIndexData'
 import { setLocale, setPages } from '@redux/globalSlice'
 import { setHeroSlides } from '@redux/heroSlice'
 import { setInfoBoxes, setNewArrivals } from '@redux/indexSlice'
-import { setCategories, setTags } from '@redux/productsSlice'
+import { setAllTags, setCategories } from '@redux/productsSlice'
 import { setIgImages } from '@redux/socialSlice'
 import { wrapper } from '@redux/store'
 
@@ -64,7 +64,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const { heroAssets, shop, infoBoxAssets } = await fetchIndexData()
 
   // Global
-  store.dispatch(setTags(allShops))
+  store.dispatch(setAllTags(allShops))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories({ categories, categoryAssets, locale }))

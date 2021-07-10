@@ -2,10 +2,11 @@ import React, { FunctionComponent } from 'react'
 
 import { useRouter } from 'next/router'
 
+import ProductsList from '@components/products-page/products-list/ProductsList'
 import Menu from '@components/products-page/selection-menu/Menu'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { setLocale, setPages } from '@redux/globalSlice'
-import { setAllTags, setCategories, setTags } from '@redux/productsSlice'
+import { setAllTags, setCategories, setProducts } from '@redux/productsSlice'
 import { setIgImages } from '@redux/socialSlice'
 import { wrapper } from '@redux/store'
 
@@ -22,6 +23,7 @@ const Products: FunctionComponent = () => {
       </div>
       <div className="flex-grow">
         <h1>Products page: {query}</h1>
+        <ProductsList />
       </div>
     </div>
   )
@@ -35,11 +37,13 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   // Global
   store.dispatch(setAllTags(allShops))
-  store.dispatch(setTags(allShops))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories({ categories, categoryAssets, locale }))
   store.dispatch(setIgImages(igImages))
+
+  // Products
+  store.dispatch(setProducts(allShops))
 
   return {
     props: {},

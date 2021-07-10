@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import { CmsAssets } from '@lib/cms'
-import { Category, Product, Shop } from '@models/ambassador'
+import { Category, Product, ProductCategories, Shop } from '@models/ambassador'
 import type { AppState } from '@redux/store'
 
 interface MatchedCategory extends CmsAssets {
@@ -22,15 +22,15 @@ interface TagsByCount {
   varietal: Record<string, number>
 }
 
-interface IndexSlice {
+interface ProductsSlice {
   categories: MatchedCategory[]
-  styles: Record<string, number> | null
+  products: Product[]
   allTags: TagsByCount | null
 }
 
-const initialState: IndexSlice = {
+const initialState: ProductsSlice = {
   categories: [],
-  styles: null,
+  products: [],
   allTags: null,
 }
 
@@ -85,6 +85,15 @@ export const productsSlice = createSlice({
 
       return { ...state, categories: merged }
     },
+    setProducts(state, action) {
+      const { shops }: { shops: Shop[] } = action.payload
+      const [shop] = shops
+      const { products } = shop
+
+      // console.log('setting products', products)
+
+      return { ...state, products }
+    },
     setAllTags(state, action) {
       const { shops }: { shops: Shop[] } = action.payload
       const [shop] = shops
@@ -93,7 +102,7 @@ export const productsSlice = createSlice({
       const getCategories = (
         acc: TagsByCategory,
         cur: Product,
-        category: 'Style' | 'Varietal' | 'Country'
+        category: ProductCategories
       ) => {
         if (cur.data?.[category]) {
           const tagCategory = category.toLowerCase() as keyof TagsByCategory
@@ -107,13 +116,15 @@ export const productsSlice = createSlice({
         return acc
       }
 
-      const tagsByCategory = products.reduce((acc, cur) => {
-        const accWithStyle = getCategories(acc, cur, 'Style')
-        const accWithVarietal = getCategories(accWithStyle, cur, 'Varietal')
-        const accWithCountry = getCategories(accWithVarietal, cur, 'Country')
+      const categories: ProductCategories[] = ['Style', 'Varietal', 'Country']
 
-        if (Object.keys(accWithCountry).length !== 0) {
-          return accWithCountry
+      const tagsByCategory = products.reduce((acc, cur) => {
+        const newAcc = categories.reduce((childAcc, childCur) => {
+          return getCategories(childAcc, cur, childCur)
+        }, acc as TagsByCategory)
+
+        if (Object.keys(newAcc).length !== 0) {
+          return newAcc
         }
 
         return acc
@@ -134,24 +145,6 @@ export const productsSlice = createSlice({
 
       return { ...state, allTags: tagsByCount }
     },
-    setTags(state, action) {
-      const { shops }: { shops: Shop[] } = action.payload
-      const [shop] = shops
-      const { products } = shop
-      const styles = products.flatMap((product) => {
-        if (product.data?.Style) {
-          return product.data.Style
-        }
-
-        return []
-      })
-
-      const stylesCount = styles.reduce((prev: Record<string, number>, cur) => {
-        return { ...prev, [cur]: (prev[cur] || 0) + 1 }
-      }, {})
-
-      return { ...state, styles: stylesCount }
-    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -163,7 +156,7 @@ export const productsSlice = createSlice({
   },
 })
 
-export const { setCategories, setTags, setAllTags } = productsSlice.actions
+export const { setCategories, setAllTags, setProducts } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>
   state?.[productsSlice.name]
