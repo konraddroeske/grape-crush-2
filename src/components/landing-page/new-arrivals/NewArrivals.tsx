@@ -11,8 +11,8 @@ import { Draggable, InertiaPlugin } from 'gsap/all'
 import { useSelector } from 'react-redux'
 
 import Wave from '@assets/svgs/lime-wave.svg'
+import ProductCard from '@components/common/product/ProductSlide'
 import RoundedButton from '@components/common/RoundedButton'
-import ProductCard from '@components/product-card/ProductCard'
 import { selectIndex } from '@redux/indexSlice'
 
 const NewArrivals: FunctionComponent = () => {

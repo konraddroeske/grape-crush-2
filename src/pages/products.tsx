@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from 'react'
 
-import { useRouter } from 'next/router'
-
 import ProductsList from '@components/products-page/products-list/ProductsList'
 import Menu from '@components/products-page/selection-menu/Menu'
 import fetchGlobalData from '@lib/fetchGlobalData'
@@ -11,8 +9,8 @@ import { setIgImages } from '@redux/socialSlice'
 import { wrapper } from '@redux/store'
 
 const Products: FunctionComponent = () => {
-  const router = useRouter()
-  const { query } = router.query
+  // const router = useRouter()
+  // const { query } = router.query
   return (
     <div
       className="flex min-h-screen py-28 body-gutter-sm lg:body-gutter-lg
@@ -22,7 +20,7 @@ const Products: FunctionComponent = () => {
         <Menu />
       </div>
       <div className="flex-grow">
-        <h1>Products page: {query}</h1>
+        {/* <h1>Products page: {query}</h1> */}
         <ProductsList />
       </div>
     </div>

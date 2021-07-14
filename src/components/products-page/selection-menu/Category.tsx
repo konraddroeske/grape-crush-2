@@ -28,7 +28,9 @@ const Category: FunctionComponent<Props> = ({ title, items }) => {
                 <div className="flex items-center hidden mr-3">
                   <Selected />
                 </div>
-                <span className="flex items-center leading-none">{item}</span>
+                <span className="flex items-center leading-none text-left whitespace-nowrap">
+                  {item}
+                </span>
               </button>
             </li>
           )

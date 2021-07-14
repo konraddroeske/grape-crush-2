@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react'
 
 import BuyButton from '@components/common/BuyButton'
+import ProductSubheading from '@components/common/product/ProductSubheading'
+import ProductTitle from '@components/common/product/ProductTitle'
 import { Product } from '@models/ambassador'
 
 interface OwnProps {
@@ -9,9 +11,9 @@ interface OwnProps {
 
 type Props = OwnProps
 
-const ProductCard: FunctionComponent<Props> = ({ product }) => {
+const ProductSlide: FunctionComponent<Props> = ({ product }) => {
   const { _id: productId, data } = product
-  const { Country, name, vintage, variants, imageUrl } = data
+  const { name, vintage, variants, imageUrl, region } = data
   const [primaryImage] = imageUrl
   const [primaryVariant] = variants
   const { value } = primaryVariant
@@ -26,18 +28,10 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
         />
       </div>
       <div className="mt-3">
-        <h4 className="title text-base leading-4 font-bold uppercase line-clamp">
-          {name}
-        </h4>
+        <ProductTitle name={name} />
         <div className="flex">
           <div className="flex-grow">
-            <div className="flex text-xs capitalize h-5">
-              {Country?.length > 0 && <p className="">{Country[0]}</p>}
-              {Country?.length > 0 && vintage && (
-                <span>&nbsp;&#8226;&nbsp;</span>
-              )}
-              <p>{vintage}</p>
-            </div>
+            <ProductSubheading region={region} vintage={vintage} />
             <p className="text-xs text-purple mt-1 font-bold">${value}</p>
           </div>
           <BuyButton productId={productId} />
@@ -47,4 +41,4 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
   )
 }
 
-export default ProductCard
+export default ProductSlide

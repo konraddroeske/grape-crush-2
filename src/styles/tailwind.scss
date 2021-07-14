@@ -185,6 +185,10 @@
     -webkit-box-orient: vertical;
   }
 
+  .line-clamp-p {
+    -webkit-line-clamp: 4;
+  }
+
   @variants responsive {
     .nav-gutter-sm {
       padding-left: 0.625rem;

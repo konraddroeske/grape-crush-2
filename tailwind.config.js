@@ -33,6 +33,7 @@ module.exports = {
       lime: {
         DEFAULT: 'rgba(216, 255, 108, 1.0)',
         light: 'rgba(217, 255, 108, 0.5)',
+        lightest: '#F5FFDA',
       },
       orange: {
         DEFAULT: '#FF8657',
