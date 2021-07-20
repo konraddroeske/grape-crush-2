@@ -1,5 +1,7 @@
+import { addPriceRange } from '@lib/addPriceRange'
 import ambassador from '@lib/ambassador'
 import { getAssets, getEntries } from '@lib/cms'
+import { renameKeys } from '@lib/renameKeys'
 import { AmbassadorIg } from '@models/ambassador'
 
 export default async function fetchGlobalData() {
@@ -20,14 +22,17 @@ export default async function fetchGlobalData() {
 
   const { shops } = allShops
   const [shop] = shops
-  const { categories } = shop
+  const { categories, products } = shop
+
+  const productsWithPriceRange = addPriceRange(products)
+  const productsWithNewKeys = renameKeys(productsWithPriceRange)
 
   return {
-    allShops,
     locale,
     pageAssets,
     categoryAssets,
     categories,
     igImages,
+    products: productsWithNewKeys,
   }
 }

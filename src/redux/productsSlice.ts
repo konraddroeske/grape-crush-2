@@ -2,7 +2,11 @@ import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import { CmsAssets } from '@lib/cms'
-import { Category, Product, ProductCategories, Shop } from '@models/ambassador'
+import {
+  Category,
+  ProductCategories,
+  ProductLowercase,
+} from '@models/ambassador'
 import type { AppState } from '@redux/store'
 
 interface MatchedCategory extends CmsAssets {
@@ -10,28 +14,48 @@ interface MatchedCategory extends CmsAssets {
   id: string
 }
 
-interface TagsByCategory {
+export interface TagsByCategory {
+  type: string[]
   style: string[]
   country: string[]
   varietal: string[]
+  range: string[]
 }
 
-interface TagsByCount {
+export interface TagsByCount {
   style: Record<string, number>
   country: Record<string, number>
   varietal: Record<string, number>
+  type: Record<string, number>
+  range: Record<string, number>
 }
 
 interface ProductsSlice {
   categories: MatchedCategory[]
-  products: Product[]
+  products: ProductLowercase[]
   allTags: TagsByCount | null
+  selectedProducts: ProductLowercase[]
+  totalSelected: number
+  selectedTags: TagsByCategory
+  page: number
+  productsPerPage: number
 }
 
 const initialState: ProductsSlice = {
   categories: [],
   products: [],
   allTags: null,
+  selectedProducts: [],
+  totalSelected: 0,
+  selectedTags: {
+    type: [],
+    style: [],
+    country: [],
+    varietal: [],
+    range: [],
+  },
+  page: 1,
+  productsPerPage: 25,
 }
 
 export const productsSlice = createSlice({
@@ -86,22 +110,64 @@ export const productsSlice = createSlice({
       return { ...state, categories: merged }
     },
     setProducts(state, action) {
-      const { shops }: { shops: Shop[] } = action.payload
-      const [shop] = shops
-      const { products } = shop
+      return { ...state, products: action.payload }
+    },
+    handleProducts(state, action) {
+      const { products } = state
+      const selectedTagsObj = action.payload as TagsByCategory
+      const selectedTagsCategories = Object.keys(selectedTagsObj)
+      const selectedTags = Object.values(selectedTagsObj).flat()
 
-      // console.log('setting products', products)
+      const selectedProducts =
+        selectedTags.length === 0
+          ? products
+          : products.filter((product) => {
+              const { data } = product
 
-      return { ...state, products }
+              const productTags = Object.entries(data).reduce((acc, cur) => {
+                if (selectedTagsCategories.includes(cur[0])) {
+                  const tags = cur[1] as string[]
+                  return [...acc, ...tags]
+                }
+
+                return acc
+              }, [] as string[])
+
+              return selectedTags.every((ele) => productTags.includes(ele))
+            })
+
+      const maxPage = Math.ceil(selectedProducts.length / state.productsPerPage)
+
+      if (state.page !== 1 && state.page >= maxPage) {
+        const lastPageStart =
+          selectedProducts.length -
+          (selectedProducts.length % state.productsPerPage)
+        const selectedProductsByPage = selectedProducts.slice(lastPageStart)
+        return {
+          ...state,
+          page: maxPage,
+          selectedProducts: selectedProductsByPage,
+          totalSelected: selectedProducts.length,
+        }
+      }
+
+      const start = (state.page - 1) * state.productsPerPage
+      const end = state.page * state.productsPerPage
+
+      const selectedProductsByPage = selectedProducts.slice(start, end)
+
+      return {
+        ...state,
+        selectedProducts: selectedProductsByPage,
+        totalSelected: selectedProducts.length,
+      }
     },
     setAllTags(state, action) {
-      const { shops }: { shops: Shop[] } = action.payload
-      const [shop] = shops
-      const { products } = shop
+      const products = action.payload as ProductLowercase[]
 
       const getCategories = (
         acc: TagsByCategory,
-        cur: Product,
+        cur: ProductLowercase,
         category: ProductCategories
       ) => {
         if (cur.data?.[category]) {
@@ -116,7 +182,13 @@ export const productsSlice = createSlice({
         return acc
       }
 
-      const categories: ProductCategories[] = ['Style', 'Varietal', 'Country']
+      const categories: ProductCategories[] = [
+        'type',
+        'style',
+        'varietal',
+        'country',
+        'range',
+      ]
 
       const tagsByCategory = products.reduce((acc, cur) => {
         const newAcc = categories.reduce((childAcc, childCur) => {
@@ -145,6 +217,42 @@ export const productsSlice = createSlice({
 
       return { ...state, allTags: tagsByCount }
     },
+    handleTags(state, action) {
+      const { selectedTags } = state
+
+      const tags = action.payload as Record<string, string>
+
+      const sortedTags = Object.entries(tags).reduce((acc, cur) => {
+        const isCategory = Object.keys(selectedTags).includes(cur[0])
+
+        if (isCategory) {
+          const splitTags = cur[1].split(',')
+
+          return { ...acc, [cur[0]]: splitTags }
+        }
+
+        return acc
+      }, {})
+
+      return { ...state, selectedTags: { ...selectedTags, ...sortedTags } }
+    },
+    handlePage(state, action) {
+      // console.log('handle page', action.payload)
+      const page = action.payload || 1
+      return { ...state, page }
+    },
+    resetTags(state) {
+      return {
+        ...state,
+        selectedTags: {
+          type: [],
+          style: [],
+          country: [],
+          varietal: [],
+          range: [],
+        },
+      }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -156,7 +264,15 @@ export const productsSlice = createSlice({
   },
 })
 
-export const { setCategories, setAllTags, setProducts } = productsSlice.actions
+export const {
+  setCategories,
+  setAllTags,
+  setProducts,
+  handleTags,
+  resetTags,
+  handleProducts,
+  handlePage,
+} = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>
   state?.[productsSlice.name]

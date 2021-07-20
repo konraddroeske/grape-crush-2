@@ -1,21 +1,24 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import ProductCard from '@components/common/product/ProductCard'
 
-import { selectProducts } from '@redux/productsSlice'
+import PageNav from '@components/products-page/products-list/PageNav'
+import { handleProducts, selectProducts } from '@redux/productsSlice'
 
 const ProductsList: FunctionComponent = () => {
-  const { products } = useSelector(selectProducts())
+  const dispatch = useDispatch()
+  const { selectedProducts, page, selectedTags } = useSelector(selectProducts())
 
-  const initial = products.slice(0, 10)
-  // console.log(initial)
+  useEffect(() => {
+    dispatch(handleProducts(selectedTags))
+  }, [selectedTags, page, dispatch])
 
   return (
     <div>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-        {initial.slice(0, 10).map((product) => {
+        {selectedProducts.map((product) => {
           const { data } = product
           return (
             <li key={product._id}>
@@ -24,6 +27,7 @@ const ProductsList: FunctionComponent = () => {
           )
         })}
       </ul>
+      <PageNav />
     </div>
   )
 }

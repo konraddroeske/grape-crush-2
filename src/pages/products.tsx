@@ -10,7 +10,16 @@ import { wrapper } from '@redux/store'
 
 const Products: FunctionComponent = () => {
   // const router = useRouter()
-  // const { query } = router.query
+  // const dispatch = useDispatch()
+  //
+  // useEffect(() => {
+  //   if (Object.values(router.query).length > 0) {
+  //     dispatch(handleTags(router.query))
+  //   } else {
+  //     dispatch(resetTags())
+  //   }
+  // }, [router, dispatch])
+
   return (
     <div
       className="flex min-h-screen py-28 body-gutter-sm lg:body-gutter-lg
@@ -20,7 +29,6 @@ const Products: FunctionComponent = () => {
         <Menu />
       </div>
       <div className="flex-grow">
-        {/* <h1>Products page: {query}</h1> */}
         <ProductsList />
       </div>
     </div>
@@ -29,19 +37,21 @@ const Products: FunctionComponent = () => {
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   // const { locale: defaultLocale = 'en-US' } = ctx
+  // console.log('store', store.getState())
+  // const { products: currentProducts } = store.getState()
 
-  const { allShops, locale, pageAssets, igImages, categoryAssets, categories } =
+  const { products, locale, pageAssets, igImages, categoryAssets, categories } =
     await fetchGlobalData()
 
   // Global
-  store.dispatch(setAllTags(allShops))
+  store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories({ categories, categoryAssets, locale }))
   store.dispatch(setIgImages(igImages))
 
   // Products
-  store.dispatch(setProducts(allShops))
+  store.dispatch(setProducts(products))
 
   return {
     props: {},

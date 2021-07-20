@@ -11,13 +11,42 @@ export interface Variants {
   tags: string[]
 }
 
-export type ProductCategories = 'Country' | 'Style' | 'Varietal'
+export type ProductCategories =
+  | 'country'
+  | 'style'
+  | 'varietal'
+  | 'type'
+  | 'range'
 
 export interface ProductData {
   Country: string[]
   Style: string[]
   Type: string[]
   Varietal: string[]
+  range: string[]
+  // eslint-disable-next-line camelcase
+  Varietal_Text: string
+  addons: Addons
+  bottleSize: string
+  category: string
+  description: string
+  imageUrl: string[]
+  name: string
+  region: string
+  subtype: string
+  tags: string[]
+  taxable: boolean
+  variants: Variants[]
+  vintage: string
+  winery: string
+}
+
+export interface ProductDataLowercase {
+  country: string[]
+  style: string[]
+  type: string[]
+  varietal: string[]
+  range: string[]
   // eslint-disable-next-line camelcase
   Varietal_Text: string
   addons: Addons
@@ -37,6 +66,14 @@ export interface ProductData {
 
 export interface Product {
   data: ProductData
+  link: string
+  productTypeId: string
+  type: string
+  _id: string
+}
+
+export interface ProductLowercase {
+  data: ProductDataLowercase
   link: string
   productTypeId: string
   type: string

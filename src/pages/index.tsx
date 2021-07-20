@@ -58,13 +58,13 @@ const Home: FunctionComponent = () => {
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   // const { locale: defaultLocale = 'en-US' } = ctx
 
-  const { allShops, locale, pageAssets, igImages, categoryAssets, categories } =
+  const { products, locale, pageAssets, igImages, categoryAssets, categories } =
     await fetchGlobalData()
 
   const { heroAssets, shop, infoBoxAssets } = await fetchIndexData()
 
   // Global
-  store.dispatch(setAllTags(allShops))
+  store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories({ categories, categoryAssets, locale }))

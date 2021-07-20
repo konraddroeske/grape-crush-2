@@ -4,13 +4,14 @@ import BuyButton from '@components/common/BuyButton'
 import LearnMore from '@components/common/product/LearnMore'
 import ProductSubheading from '@components/common/product/ProductSubheading'
 import ProductTags from '@components/common/product/ProductTags'
-import { ProductData } from '@models/ambassador'
+
+import { ProductDataLowercase } from '@models/ambassador'
 
 import ProductTitle from './ProductTitle'
 
 interface OwnProps {
   id: string
-  data: ProductData
+  data: ProductDataLowercase
 }
 
 type Props = OwnProps
@@ -22,9 +23,9 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
   const {
     // imageUrl,
     name,
-    Country: country,
-    Style: style,
-    Varietal: varietal,
+    country,
+    style,
+    varietal,
     vintage,
     // tags,
     variants,
