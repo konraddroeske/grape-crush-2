@@ -19,13 +19,12 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
   const router = useRouter()
   const { selectedTags } = useSelector(selectProducts())
   const [selected, setSelected] = useState(false)
-  const linkTags = selectedTags[category]
 
   const getUpdatedTags = (
     categoryName: keyof TagsByCategory,
     tagName: string
   ) => {
-    if (linkTags.includes(tagName)) {
+    if (selectedTags[categoryName].includes(tagName)) {
       const categoryTags = selectedTags[category].filter(
         (categoryTag) => categoryTag !== tagName
       )
@@ -38,7 +37,7 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
 
     return {
       ...selectedTags,
-      [categoryName]: [...linkTags, tagName],
+      [categoryName]: [...selectedTags[category], tagName],
     }
   }
 
@@ -59,8 +58,8 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
   }
 
   useEffect(() => {
-    setSelected(linkTags.includes(tag))
-  }, [linkTags, tag])
+    setSelected(selectedTags[category].includes(tag))
+  }, [selectedTags, category, tag])
 
   return (
     <button

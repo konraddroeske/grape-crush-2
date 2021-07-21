@@ -222,19 +222,19 @@ export const productsSlice = createSlice({
 
       const tags = action.payload as Record<string, string>
 
-      const sortedTags = Object.entries(tags).reduce((acc, cur) => {
-        const isCategory = Object.keys(selectedTags).includes(cur[0])
+      const sortedTags = Object.entries(selectedTags).reduce((acc, cur) => {
+        const isCategory = Object.keys(tags).includes(cur[0])
 
         if (isCategory) {
-          const splitTags = cur[1].split(',')
+          const splitTags = tags[cur[0]].split(',')
 
           return { ...acc, [cur[0]]: splitTags }
         }
 
-        return acc
-      }, {})
+        return { ...acc, [cur[0]]: [] }
+      }, {} as TagsByCategory)
 
-      return { ...state, selectedTags: { ...selectedTags, ...sortedTags } }
+      return { ...state, selectedTags: sortedTags }
     },
     handlePage(state, action) {
       // console.log('handle page', action.payload)
