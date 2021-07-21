@@ -15,28 +15,34 @@ const ProductTags: FunctionComponent<Props> = ({
   style,
   varietal,
 }) => {
-  const [tags, setTags] = useState<string[]>([])
+  const [pairs, setPairs] = useState<string[][]>([])
 
-  const getTags = (arr: string[], amount: number) => {
-    return arr.length >= amount ? arr.slice(0, amount) : arr
+  const getTags = (arr: string[], category: string, amount: number) => {
+    const tagsOnly = arr.length >= amount ? arr.slice(0, amount) : arr
+    return tagsOnly.map((singleTag) => [category, singleTag])
   }
 
   useEffect(() => {
-    const primaryCountry = getTags(country, 1)
-    const primaryVarietal = getTags(varietal, 1)
-    const primaryStyles = getTags(style, 2)
+    const primaryCountry = getTags(country, 'country', 1)
+    const primaryVarietal = getTags(varietal, 'varietal', 1)
+    const primaryStyles = getTags(style, 'style', 2)
 
-    const mergedTags = [...primaryCountry, ...primaryVarietal, ...primaryStyles]
+    const mergedPairs = [
+      ...primaryCountry,
+      ...primaryVarietal,
+      ...primaryStyles,
+    ]
 
-    setTags(mergedTags)
+    setPairs(mergedPairs)
   }, [country, style, varietal])
 
   return (
     <ul className="flex flex-wrap mt-4 mb-2">
-      {tags.map((tag) => {
+      {pairs.map((pair) => {
+        const [category, tag] = pair
         return (
           <li key={tag} className="mr-2 mb-2">
-            <Tag>{tag}</Tag>
+            <Tag category={category} tag={tag} />
           </li>
         )
       })}
