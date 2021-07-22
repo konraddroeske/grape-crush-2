@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import RoundedButton from '@components/common/RoundedButton'
-import SearchBar from '@components/nav-bar/SearchBar'
+import NavSearch from '@components/nav-bar/NavSearch'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
@@ -77,7 +77,7 @@ const DesktopCategories: FunctionComponent = () => {
           </RoundedButton>
         </div>
         <div className="w-1/2">
-          <SearchBar variant="desktop" />
+          <NavSearch variant="desktop" />
         </div>
       </div>
       <NavWave className="absolute left-0 top-full w-full" />

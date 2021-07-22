@@ -171,6 +171,10 @@
     border-left: 0px solid transparent;
   }
 
+  .border-r-blue {
+    border-right: 1px solid #4348e3;
+  }
+
   .form-divider::after {
     content: '';
     position: absolute;

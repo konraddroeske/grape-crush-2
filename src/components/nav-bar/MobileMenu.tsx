@@ -5,7 +5,7 @@ import RoundedButton from '@components/common/RoundedButton'
 
 import MenuButtonMobile from '@components/nav-bar/MenuButtonMobile'
 import MenuLink from '@components/nav-bar/MenuLink'
-import SearchBar from '@components/nav-bar/SearchBar'
+import NavSearch from '@components/nav-bar/NavSearch'
 
 const MobileMenu: FunctionComponent = () => {
   const [open, setOpen] = useState(false)
@@ -26,7 +26,7 @@ const MobileMenu: FunctionComponent = () => {
         <MenuLink variant="mobile">FAQ</MenuLink>
       </div>
       <RoundedButton variant="full">Shop All Wines</RoundedButton>
-      <SearchBar variant="mobile" />
+      <NavSearch variant="mobile" />
     </div>
   )
 }

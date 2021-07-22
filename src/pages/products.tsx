@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react'
 
 import ProductsList from '@components/products-page/products-list/ProductsList'
+import ProductsSearch from '@components/products-page/ProductsSearch'
+import ProductsSort from '@components/products-page/ProductsSort'
 import Menu from '@components/products-page/selection-menu/Menu'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { setLocale, setPages } from '@redux/globalSlice'
@@ -22,14 +24,24 @@ const Products: FunctionComponent = () => {
 
   return (
     <div
-      className="flex min-h-screen py-28 body-gutter-sm lg:body-gutter-lg
+      className="min-h-screen py-28 body-gutter-sm lg:body-gutter-lg
     xl:body-gutter-xl 2xl:body-gutter-2xl"
     >
-      <div className="mr-12">
-        <Menu />
+      <div className="flex mb-10">
+        <div className="flex-grow">
+          <ProductsSearch />
+        </div>
+        <div className="w-2/5 ml-8">
+          <ProductsSort />
+        </div>
       </div>
-      <div className="flex-grow">
-        <ProductsList />
+      <div className="flex">
+        <div className="mr-12">
+          <Menu />
+        </div>
+        <div className="flex-grow">
+          <ProductsList />
+        </div>
       </div>
     </div>
   )

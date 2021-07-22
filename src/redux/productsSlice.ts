@@ -39,6 +39,7 @@ interface ProductsSlice {
   selectedTags: TagsByCategory
   page: number
   productsPerPage: number
+  productsSearch: string
 }
 
 const initialState: ProductsSlice = {
@@ -56,6 +57,7 @@ const initialState: ProductsSlice = {
   },
   page: 1,
   productsPerPage: 25,
+  productsSearch: '',
 }
 
 export const productsSlice = createSlice({
@@ -253,6 +255,13 @@ export const productsSlice = createSlice({
         },
       }
     },
+    handleProductsSearch(state, action) {
+      const { selectedProducts } = state
+
+      // console.log(action.payload)
+
+      return { ...state, selectedProducts, productsSearch: action.payload }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -272,6 +281,7 @@ export const {
   resetTags,
   handleProducts,
   handlePage,
+  handleProductsSearch,
 } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>

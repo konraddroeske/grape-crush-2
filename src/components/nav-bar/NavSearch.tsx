@@ -6,7 +6,7 @@ interface Props {
   variant: 'mobile' | 'desktop'
 }
 
-const SearchBar: FunctionComponent<Props> = ({ variant }) => {
+const NavSearch: FunctionComponent<Props> = ({ variant }) => {
   const variants = {
     mobile: 'mt-6',
     desktop: 'my-0',
@@ -33,4 +33,4 @@ const SearchBar: FunctionComponent<Props> = ({ variant }) => {
   )
 }
 
-export default SearchBar
+export default NavSearch
