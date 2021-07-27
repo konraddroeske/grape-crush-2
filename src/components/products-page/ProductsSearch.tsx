@@ -7,7 +7,6 @@ import { handleProductsSearch } from '@redux/productsSlice'
 
 const ProductsSearch: FunctionComponent = () => {
   const dispatch = useDispatch()
-  // const { productsSearch } = useSelector(selectProducts())
   const [search, setSearch] = useState<string>('')
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {

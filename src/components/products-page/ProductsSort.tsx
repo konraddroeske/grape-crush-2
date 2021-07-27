@@ -1,18 +1,33 @@
 import React, { FunctionComponent, useState } from 'react'
 
+import { useDispatch, useSelector } from 'react-redux'
+
+import {
+  handleProductsSort,
+  selectProducts,
+  SortOption,
+} from '@redux/productsSlice'
+
 import SortArrow from '../../assets/svgs/sort-arrow.svg'
 
 const ProductsSort: FunctionComponent = () => {
-  const [current, setCurrent] = useState('alphabetical, a - z')
-  const [expanded, setExpanded] = useState(true)
-  const options = [
+  const { productsSort } = useSelector(selectProducts())
+  const dispatch = useDispatch()
+
+  const [expanded, setExpanded] = useState(false)
+
+  const handleSelect = (option: string) => {
+    dispatch(handleProductsSort(option))
+  }
+
+  const sortOptions = [
     'alphabetical, a - z',
     'alphabetical, z - a',
     'price, high to low',
-    'price low to high',
+    'price, low to high',
     'date, new to old',
     'date, old to new',
-  ]
+  ] as SortOption[]
 
   const variant = {
     open: 'rounded-l-2xl rounded-b-none border-blue',
@@ -31,7 +46,7 @@ const ProductsSort: FunctionComponent = () => {
             expanded ? variant.open : variant.close
           }`}
         >
-          <span className="capitalize">{current}</span>
+          <span className="capitalize">{productsSort}</span>
         </div>
         <div
           className="relative h-full flex justify-center items-center flex-none
@@ -42,8 +57,8 @@ const ProductsSort: FunctionComponent = () => {
       </button>
       {expanded && (
         <ul className="absolute top-full left-0 right-14">
-          {options
-            .filter((option) => option !== current)
+          {sortOptions
+            .filter((option) => option !== productsSort)
             .map((option) => {
               return (
                 <li
@@ -53,7 +68,7 @@ const ProductsSort: FunctionComponent = () => {
                   <button
                     type="button"
                     className="h-full w-full pl-4 capitalize text-left text-xs"
-                    onClick={() => setCurrent(option)}
+                    onClick={() => handleSelect(option)}
                   >
                     {option}
                   </button>

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import { CmsAssets } from '@lib/cms'
+import { sortProducts } from '@lib/sortProducts'
 import {
   Category,
   ProductCategories,
@@ -30,6 +31,14 @@ export interface TagsByCount {
   range: Record<string, number>
 }
 
+export type SortOption =
+  | 'alphabetical, a - z'
+  | 'alphabetical, z - a'
+  | 'price, high to low'
+  | 'price, low to high'
+  | 'date, new to old'
+  | 'date, old to new'
+
 interface ProductsSlice {
   categories: MatchedCategory[]
   products: ProductLowercase[]
@@ -40,6 +49,7 @@ interface ProductsSlice {
   page: number
   productsPerPage: number
   productsSearch: string
+  productsSort: SortOption
 }
 
 const initialState: ProductsSlice = {
@@ -58,6 +68,7 @@ const initialState: ProductsSlice = {
   page: 1,
   productsPerPage: 25,
   productsSearch: '',
+  productsSort: 'alphabetical, a - z',
 }
 
 export const productsSlice = createSlice({
@@ -115,8 +126,18 @@ export const productsSlice = createSlice({
       return { ...state, products: action.payload }
     },
     handleProducts(state, action) {
+      // console.log('handling products')
       const { products } = state
-      const selectedTagsObj = action.payload as TagsByCategory
+      const {
+        selectedTags: selectedTagsObj,
+        productsSearch,
+        productsSort,
+      }: // productsSort,
+      {
+        selectedTags: TagsByCategory
+        productsSearch: string
+        productsSort: SortOption
+      } = action.payload
       const selectedTagsCategories = Object.keys(selectedTagsObj)
       const selectedTags = Object.values(selectedTagsObj).flat()
 
@@ -138,30 +159,56 @@ export const productsSlice = createSlice({
               return selectedTags.every((ele) => productTags.includes(ele))
             })
 
-      const maxPage = Math.ceil(selectedProducts.length / state.productsPerPage)
+      const searchedProducts =
+        productsSearch.length === 0
+          ? selectedProducts
+          : selectedProducts.filter((product) => {
+              const { data } = product
+              const { name, description, country, tags } = data
+
+              const compareString = (parent: string, child: string) =>
+                parent ? parent.toLowerCase().includes(child) : false
+
+              const compareArr = (arr: string[], child: string) =>
+                arr.length > 0
+                  ? arr.some((ele) => compareString(ele, child))
+                  : false
+
+              const inCountry = compareArr(country, productsSearch)
+              const inTags = compareArr(tags, productsSearch)
+              const inName = compareString(name, productsSearch)
+              const inDescription = compareString(description, productsSearch)
+
+              return inCountry || inTags || inName || inDescription
+            })
+
+      const sortedProducts = sortProducts([...searchedProducts], productsSort)
+      // const sortedProducts = searchedProducts
+
+      const maxPage = Math.ceil(sortedProducts.length / state.productsPerPage)
 
       if (state.page !== 1 && state.page >= maxPage) {
         const lastPageStart =
-          selectedProducts.length -
-          (selectedProducts.length % state.productsPerPage)
-        const selectedProductsByPage = selectedProducts.slice(lastPageStart)
+          sortedProducts.length -
+          (sortedProducts.length % state.productsPerPage)
+        const sortedProductsByPage = sortedProducts.slice(lastPageStart)
         return {
           ...state,
           page: maxPage,
-          selectedProducts: selectedProductsByPage,
-          totalSelected: selectedProducts.length,
+          selectedProducts: sortedProductsByPage,
+          totalSelected: sortedProducts.length,
         }
       }
 
       const start = (state.page - 1) * state.productsPerPage
       const end = state.page * state.productsPerPage
 
-      const selectedProductsByPage = selectedProducts.slice(start, end)
+      const sortedProductsByPage = sortedProducts.slice(start, end)
 
       return {
         ...state,
-        selectedProducts: selectedProductsByPage,
-        totalSelected: selectedProducts.length,
+        selectedProducts: sortedProductsByPage,
+        totalSelected: sortedProducts.length,
       }
     },
     setAllTags(state, action) {
@@ -256,11 +303,10 @@ export const productsSlice = createSlice({
       }
     },
     handleProductsSearch(state, action) {
-      const { selectedProducts } = state
-
-      // console.log(action.payload)
-
-      return { ...state, selectedProducts, productsSearch: action.payload }
+      return { ...state, productsSearch: action.payload }
+    },
+    handleProductsSort(state, action) {
+      return { ...state, productsSort: action.payload }
     },
   },
   extraReducers: {
@@ -282,6 +328,7 @@ export const {
   handleProducts,
   handlePage,
   handleProductsSearch,
+  handleProductsSort,
 } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>

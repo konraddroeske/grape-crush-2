@@ -9,11 +9,12 @@ import { handleProducts, selectProducts } from '@redux/productsSlice'
 
 const ProductsList: FunctionComponent = () => {
   const dispatch = useDispatch()
-  const { selectedProducts, page, selectedTags } = useSelector(selectProducts())
+  const { selectedProducts, page, selectedTags, productsSearch, productsSort } =
+    useSelector(selectProducts())
 
   useEffect(() => {
-    dispatch(handleProducts(selectedTags))
-  }, [selectedTags, page, dispatch])
+    dispatch(handleProducts({ selectedTags, productsSearch, productsSort }))
+  }, [selectedTags, productsSearch, productsSort, page, dispatch])
 
   return (
     <div>
