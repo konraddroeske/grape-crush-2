@@ -6,6 +6,7 @@ interface OwnProps {
   country: string[]
   style: string[]
   varietal: string[]
+  variant: 'primary' | 'secondary'
 }
 
 type Props = OwnProps
@@ -14,6 +15,7 @@ const ProductTags: FunctionComponent<Props> = ({
   country,
   style,
   varietal,
+  variant,
 }) => {
   const [pairs, setPairs] = useState<string[][]>([])
 
@@ -42,7 +44,7 @@ const ProductTags: FunctionComponent<Props> = ({
         const [category, tag] = pair
         return (
           <li key={tag} className="mr-2 mb-2">
-            <Tag category={category} tag={tag} />
+            <Tag category={category} tag={tag} variant={variant} />
           </li>
         )
       })}

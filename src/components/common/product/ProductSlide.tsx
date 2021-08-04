@@ -3,10 +3,10 @@ import React, { FunctionComponent } from 'react'
 import BuyButton from '@components/common/BuyButton'
 import ProductSubheading from '@components/common/product/ProductSubheading'
 import ProductTitle from '@components/common/product/ProductTitle'
-import { Product } from '@models/ambassador'
+import { ProductLowercase } from '@models/ambassador'
 
 interface OwnProps {
-  product: Product
+  product: ProductLowercase
 }
 
 type Props = OwnProps

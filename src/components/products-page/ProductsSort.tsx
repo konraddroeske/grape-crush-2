@@ -68,7 +68,10 @@ const ProductsSort: FunctionComponent = () => {
                   <button
                     type="button"
                     className="h-full w-full pl-4 capitalize text-left text-xs"
-                    onClick={() => handleSelect(option)}
+                    onClick={() => {
+                      setExpanded(!expanded)
+                      handleSelect(option)
+                    }}
                   >
                     {option}
                   </button>

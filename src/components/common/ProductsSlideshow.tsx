@@ -8,16 +8,20 @@ import React, {
 
 import { gsap } from 'gsap'
 import { Draggable, InertiaPlugin } from 'gsap/all'
-import { useSelector } from 'react-redux'
 
-import Wave from '@assets/svgs/lime-wave.svg'
 import ProductCard from '@components/common/product/ProductSlide'
 import RoundedButton from '@components/common/RoundedButton'
-import { selectIndex } from '@redux/indexSlice'
+import { ProductLowercase } from '@models/ambassador'
 
-const NewArrivals: FunctionComponent = () => {
-  const { newArrivals } = useSelector(selectIndex())
+interface Props {
+  products: ProductLowercase[]
+  headline: string
+}
 
+const ProductsSlideshow: FunctionComponent<Props> = ({
+  products,
+  headline,
+}) => {
   const [draggable, setDraggable] = useState<Draggable | null>(null)
 
   const slider = useRef<HTMLElement>(null)
@@ -85,14 +89,14 @@ const NewArrivals: FunctionComponent = () => {
       className="overflow-hidden relative mt-8 md:mt-16 xl:mt-24"
     >
       <h3 className="text-3xl font-bold center text-blue text-center uppercase">
-        New Arrivals
+        {headline}
       </h3>
       <ul
         ref={list}
         className="whitespace-nowrap inline-block pl-6 my-6 md:my-8 xl:my-12
         sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl"
       >
-        {newArrivals?.products.map((product) => {
+        {products.map((product) => {
           return (
             <li
               ref={(el) => items.current.push(el)}
@@ -107,11 +111,11 @@ const NewArrivals: FunctionComponent = () => {
       <div className="flex justify-center">
         <RoundedButton variant="md">Browse More Wines</RoundedButton>
       </div>
-      <div>
-        <Wave className="w-full" />
-      </div>
+      {/* <div> */}
+      {/*  <Wave className="w-full" /> */}
+      {/* </div> */}
     </section>
   )
 }
 
-export default NewArrivals
+export default ProductsSlideshow

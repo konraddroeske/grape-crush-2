@@ -16,6 +16,8 @@ const Menu: FunctionComponent = () => {
   const { locale } = useSelector(selectGlobal())
   const { allTags } = useSelector(selectProducts())
 
+  const [parentTypeOptions, setParentTypeOptions] = useState<string[]>([])
+  const [categoryOptions, setCategoryOptions] = useState<string[]>([])
   const [typeOptions, setTypeOptions] = useState<string[]>([])
   const [styleOptions, setStyleOptions] = useState<string[]>([])
   const [countryOptions, setCountryOptions] = useState<string[]>([])
@@ -45,14 +47,19 @@ const Menu: FunctionComponent = () => {
 
   useEffect(() => {
     if (allTags) {
-      const { country, style, varietal, type, range } = allTags
+      const { parentType, category, type, country, style, varietal, range } =
+        allTags
 
+      const sortedParentType = sortTags(parentType)
+      const sortedCategory = sortTags(category)
       const sortedType = sortTags(type)
       const sortedCountry = sortTags(country)
       const sortedStyle = sortTags(style)
       const sortedVarietal = sortTags(varietal)
       const sortedPriceRange = sortPriceRange(range)
 
+      setParentTypeOptions(sortedParentType)
+      setCategoryOptions(sortedCategory)
       setTypeOptions(sortedType)
       setCountryOptions(sortedCountry)
       setStyleOptions(sortedStyle)
@@ -77,7 +84,9 @@ const Menu: FunctionComponent = () => {
 
   return (
     <div className="w-full">
-      <Category title="Type" category="type" tags={typeOptions} />
+      <Category title="Type" category="parentType" tags={parentTypeOptions} />
+      <Category title="Category" category="category" tags={categoryOptions} />
+      <Category title="Featured" category="type" tags={typeOptions} />
       <Category title="Style" category="style" tags={styleOptions} />
       <Category title="Price Range" category="range" tags={priceRangeOptions} />
       <Category title="Varietal" category="varietal" tags={varietalOptions} />

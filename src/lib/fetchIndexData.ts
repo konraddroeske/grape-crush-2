@@ -1,5 +1,7 @@
+import { addPriceRange } from '@lib/addPriceRange'
 import ambassador from '@lib/ambassador'
 import { getAssets, getEntries } from '@lib/cms'
+import { renameKeys } from '@lib/renameKeys'
 import { AmbassadorShops } from '@models/ambassador'
 
 export default async function fetchIndexData() {
@@ -21,10 +23,14 @@ export default async function fetchIndexData() {
 
   const { shops } = newArrivals
   const [shop] = shops
+  const { products } = shop
+
+  const productsWithPriceRange = addPriceRange(products)
+  const productsWithNewKeys = renameKeys(productsWithPriceRange)
 
   return {
     heroAssets,
-    shop,
+    newArrivals: productsWithNewKeys,
     infoBoxAssets,
   }
 }

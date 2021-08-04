@@ -12,6 +12,8 @@ const ProductsList: FunctionComponent = () => {
   const { selectedProducts, page, selectedTags, productsSearch, productsSort } =
     useSelector(selectProducts())
 
+  // console.log('selected Products', selectedProducts)
+
   useEffect(() => {
     dispatch(handleProducts({ selectedTags, productsSearch, productsSort }))
   }, [selectedTags, productsSearch, productsSort, page, dispatch])

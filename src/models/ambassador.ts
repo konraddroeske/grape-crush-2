@@ -12,6 +12,7 @@ export interface Variants {
 }
 
 export type ProductCategories =
+  | 'category'
   | 'country'
   | 'style'
   | 'varietal'

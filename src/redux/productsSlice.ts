@@ -16,6 +16,8 @@ interface MatchedCategory extends CmsAssets {
 }
 
 export interface TagsByCategory {
+  parentType: string[]
+  category: string[]
   type: string[]
   style: string[]
   country: string[]
@@ -24,12 +26,24 @@ export interface TagsByCategory {
 }
 
 export interface TagsByCount {
+  parentType: Record<string, number>
+  category: Record<string, number>
   style: Record<string, number>
   country: Record<string, number>
   varietal: Record<string, number>
   type: Record<string, number>
   range: Record<string, number>
 }
+
+// export interface ProductsByTag {
+//   parentType: Record<string, ProductLowercase[]>
+//   category: Record<string, ProductLowercase[]>
+//   style: Record<string, ProductLowercase[]>
+//   country: Record<string, ProductLowercase[]>
+//   varietal: Record<string, ProductLowercase[]>
+//   type: Record<string, ProductLowercase[]>
+//   range: Record<string, ProductLowercase[]>
+// }
 
 export type SortOption =
   | 'alphabetical, a - z'
@@ -43,8 +57,9 @@ interface ProductsSlice {
   categories: MatchedCategory[]
   products: ProductLowercase[]
   allTags: TagsByCount | null
+  // productsByTag: ProductsByTag | null
   selectedProducts: ProductLowercase[]
-  totalSelected: number
+  totalSelected: ProductLowercase[]
   selectedTags: TagsByCategory
   page: number
   productsPerPage: number
@@ -56,9 +71,12 @@ const initialState: ProductsSlice = {
   categories: [],
   products: [],
   allTags: null,
+  // productsByTag: null,
   selectedProducts: [],
-  totalSelected: 0,
+  totalSelected: [],
   selectedTags: {
+    parentType: [],
+    category: [],
     type: [],
     style: [],
     country: [],
@@ -126,18 +144,17 @@ export const productsSlice = createSlice({
       return { ...state, products: action.payload }
     },
     handleProducts(state, action) {
-      // console.log('handling products')
       const { products } = state
       const {
         selectedTags: selectedTagsObj,
         productsSearch,
         productsSort,
-      }: // productsSort,
-      {
+      }: {
         selectedTags: TagsByCategory
         productsSearch: string
         productsSort: SortOption
       } = action.payload
+
       const selectedTagsCategories = Object.keys(selectedTagsObj)
       const selectedTags = Object.values(selectedTagsObj).flat()
 
@@ -145,16 +162,22 @@ export const productsSlice = createSlice({
         selectedTags.length === 0
           ? products
           : products.filter((product) => {
-              const { data } = product
+              const { type, data } = product
 
-              const productTags = Object.entries(data).reduce((acc, cur) => {
-                if (selectedTagsCategories.includes(cur[0])) {
-                  const tags = cur[1] as string[]
-                  return [...acc, ...tags]
-                }
+              const productTags = Object.entries(data)
+                .reduce((acc, cur) => {
+                  if (selectedTagsCategories.includes(cur[0])) {
+                    const tags = cur[1] as string[]
+                    if (Array.isArray(tags)) {
+                      return [...acc, ...tags]
+                    }
 
-                return acc
-              }, [] as string[])
+                    return [...acc, tags]
+                  }
+
+                  return acc
+                }, [] as string[])
+                .concat([type])
 
               return selectedTags.every((ele) => productTags.includes(ele))
             })
@@ -183,7 +206,6 @@ export const productsSlice = createSlice({
             })
 
       const sortedProducts = sortProducts([...searchedProducts], productsSort)
-      // const sortedProducts = searchedProducts
 
       const maxPage = Math.ceil(sortedProducts.length / state.productsPerPage)
 
@@ -196,7 +218,7 @@ export const productsSlice = createSlice({
           ...state,
           page: maxPage,
           selectedProducts: sortedProductsByPage,
-          totalSelected: sortedProducts.length,
+          totalSelected: sortedProducts,
         }
       }
 
@@ -208,7 +230,7 @@ export const productsSlice = createSlice({
       return {
         ...state,
         selectedProducts: sortedProductsByPage,
-        totalSelected: sortedProducts.length,
+        totalSelected: sortedProducts,
       }
     },
     setAllTags(state, action) {
@@ -219,11 +241,20 @@ export const productsSlice = createSlice({
         cur: ProductLowercase,
         category: ProductCategories
       ) => {
+        const tagCategory = category.toLowerCase() as keyof TagsByCategory
+
         if (cur.data?.[category]) {
-          const tagCategory = category.toLowerCase() as keyof TagsByCategory
-          const mergedCategories = acc[tagCategory]
-            ? acc[tagCategory].concat(cur.data[category])
-            : cur.data[category]
+          if (Array.isArray(cur.data[category])) {
+            const mergedCategories = acc[tagCategory]
+              ? acc[tagCategory].concat(cur.data[category])
+              : cur.data[category]
+
+            return { ...acc, [category.toLowerCase()]: mergedCategories }
+          }
+
+          const mergedCategories = Array.isArray(acc?.[tagCategory])
+            ? [...acc[tagCategory], cur.data[category]]
+            : [cur.data[category]]
 
           return { ...acc, [category.toLowerCase()]: mergedCategories }
         }
@@ -232,6 +263,7 @@ export const productsSlice = createSlice({
       }
 
       const categories: ProductCategories[] = [
+        'category',
         'type',
         'style',
         'varietal',
@@ -243,6 +275,15 @@ export const productsSlice = createSlice({
         const newAcc = categories.reduce((childAcc, childCur) => {
           return getCategories(childAcc, cur, childCur)
         }, acc as TagsByCategory)
+
+        if (cur.type) {
+          const mergedType =
+            acc.parentType?.length > 0
+              ? acc.parentType.concat([cur.type])
+              : [cur.type]
+
+          return { ...newAcc, parentType: mergedType }
+        }
 
         if (Object.keys(newAcc).length !== 0) {
           return newAcc
@@ -286,7 +327,6 @@ export const productsSlice = createSlice({
       return { ...state, selectedTags: sortedTags }
     },
     handlePage(state, action) {
-      // console.log('handle page', action.payload)
       const page = action.payload || 1
       return { ...state, page }
     },
@@ -294,6 +334,8 @@ export const productsSlice = createSlice({
       return {
         ...state,
         selectedTags: {
+          parentType: [],
+          category: [],
           type: [],
           style: [],
           country: [],

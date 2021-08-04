@@ -10,7 +10,7 @@ const PageNav: FunctionComponent = () => {
   const [pages, setPages] = useState(1)
 
   useEffect(() => {
-    const numberOfPages = Math.ceil(totalSelected / productsPerPage)
+    const numberOfPages = Math.ceil(totalSelected.length / productsPerPage)
     setPages(numberOfPages)
   }, [totalSelected, productsPerPage])
 

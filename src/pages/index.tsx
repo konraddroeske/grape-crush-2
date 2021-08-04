@@ -2,30 +2,27 @@ import React, { FunctionComponent } from 'react'
 
 import Head from 'next/head'
 
+import { useSelector } from 'react-redux'
+
+import ProductsSlideshow from '@components/common/ProductsSlideshow'
 import Hero from '@components/landing-page/hero/Hero'
 import InfoBox1 from '@components/landing-page/info-boxes/info-box-1/InfoBox1'
 import InfoBox2 from '@components/landing-page/info-boxes/info-box-2/InfoBox2'
 import InfoBox3 from '@components/landing-page/info-boxes/info-box-3/InfoBox3'
 import Mailer from '@components/landing-page/mailer/Mailer'
-import NewArrivals from '@components/landing-page/new-arrivals/NewArrivals'
 import ShopByType from '@components/landing-page/shop-by-type/ShopByType'
 import SocialGallery from '@components/landing-page/social-gallery/SocialGallery'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchIndexData from '@lib/fetchIndexData'
 import { setLocale, setPages } from '@redux/globalSlice'
 import { setHeroSlides } from '@redux/heroSlice'
-import { setInfoBoxes, setNewArrivals } from '@redux/indexSlice'
+import { selectIndex, setInfoBoxes, setNewArrivals } from '@redux/indexSlice'
 import { setAllTags, setCategories } from '@redux/productsSlice'
 import { setIgImages } from '@redux/socialSlice'
 import { wrapper } from '@redux/store'
 
 const Home: FunctionComponent = () => {
-  // const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   console.log('resetting nav')
-  //   dispatch(setNavOpen)
-  // }, [dispatch])
+  const { newArrivals } = useSelector(selectIndex())
 
   return (
     <div>
@@ -43,7 +40,9 @@ const Home: FunctionComponent = () => {
 
       <main className="min-h-screen">
         <Hero />
-        <NewArrivals />
+        {newArrivals && (
+          <ProductsSlideshow products={newArrivals} headline="New Arrivals" />
+        )}
         <ShopByType />
         <InfoBox1 />
         <InfoBox2 />
@@ -61,7 +60,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const { products, locale, pageAssets, igImages, categoryAssets, categories } =
     await fetchGlobalData()
 
-  const { heroAssets, shop, infoBoxAssets } = await fetchIndexData()
+  const { heroAssets, newArrivals, infoBoxAssets } = await fetchIndexData()
 
   // Global
   store.dispatch(setAllTags(products))
@@ -72,7 +71,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   // Index
   store.dispatch(setHeroSlides(heroAssets))
-  store.dispatch(setNewArrivals(shop))
+  store.dispatch(setNewArrivals(newArrivals))
   store.dispatch(setInfoBoxes(infoBoxAssets))
 
   return {

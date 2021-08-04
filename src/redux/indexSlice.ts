@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import { CmsAssets } from '@lib/cms'
-import { Shop } from '@models/ambassador'
+import { ProductLowercase } from '@models/ambassador'
 import type { AppState } from '@redux/store'
 
 // export const setNewArrivals = (newArrivals: any[]): AppThunk => {
@@ -21,7 +21,7 @@ import type { AppState } from '@redux/store'
 // }
 
 interface IndexSlice {
-  newArrivals: Shop | null
+  newArrivals: ProductLowercase[] | null
   infoBox1: CmsAssets | null
   infoBox2: CmsAssets | null
   infoBox3: CmsAssets | null

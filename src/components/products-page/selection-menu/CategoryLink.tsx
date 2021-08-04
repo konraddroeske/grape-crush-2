@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 
 import Selected from '@assets/svgs/box-selected.svg'
 import Box from '@assets/svgs/box.svg'
+import { ProductLowercase } from '@models/ambassador'
 import { selectProducts, TagsByCategory } from '@redux/productsSlice'
 
 interface OwnProps {
@@ -17,8 +18,31 @@ type Props = OwnProps
 
 const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
   const router = useRouter()
-  const { selectedTags } = useSelector(selectProducts())
+  const { selectedTags, products, totalSelected } = useSelector(
+    selectProducts()
+  )
   const [selected, setSelected] = useState(false)
+  const [categoryProducts, setCategoryProducts] =
+    useState<ProductLowercase[] | null>(null)
+
+  useEffect(() => {
+    if (products) {
+      const filtered = products.filter((product) => {
+        if (category === 'parentType') {
+          return product.type === tag
+        }
+
+        const { data } = product
+
+        return (
+          data[category] &&
+          (data[category] === tag || data[category].includes(tag))
+        )
+      })
+
+      setCategoryProducts(filtered)
+    }
+  }, [products, category, tag])
 
   const getUpdatedTags = (
     categoryName: keyof TagsByCategory,
@@ -61,6 +85,10 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
     setSelected(selectedTags[category].includes(tag))
   }, [selectedTags, category, tag])
 
+  const handleIntersect = (a: ProductLowercase[], b: ProductLowercase[]) => {
+    return a.filter(Set.prototype.has, new Set(b))
+  }
+
   return (
     <button
       type="button"
@@ -78,6 +106,12 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
       )}
       <span className="flex items-center leading-none text-left whitespace-nowrap">
         {tag}
+      </span>
+      <span className="ml-1 text-2xs font-bold leading-none">
+        (
+        {categoryProducts &&
+          handleIntersect(categoryProducts, totalSelected).length}
+        )
       </span>
     </button>
   )
