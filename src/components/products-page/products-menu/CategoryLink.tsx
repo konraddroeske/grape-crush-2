@@ -92,27 +92,25 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
   return (
     <button
       type="button"
-      className="font-sans flex text-sm capitalize items-center"
+      className="font-sans flex text-sm capitalize items-center justify-start"
       onClick={() => handleClick(category, tag)}
     >
       {selected ? (
-        <div className="flex items-center mr-3">
-          <Selected />
+        <div className="mr-2">
+          <Selected className="w-4" />
         </div>
       ) : (
-        <span className="flex items-center mr-3">
-          <Box />
-        </span>
+        <div className="mr-2">
+          <Box className="w-4" />
+        </div>
       )}
-      <span className="flex items-center leading-none text-left whitespace-nowrap">
-        {tag}
-      </span>
-      <span className="ml-1 text-2xs font-bold leading-none">
+      <span className="leading-5 text-left">{tag}</span>
+      <div className="ml-2 mr-auto text-2xs text-left font-bold leading-none">
         (
         {categoryProducts &&
           handleIntersect(categoryProducts, totalSelected).length}
         )
-      </span>
+      </div>
     </button>
   )
 }

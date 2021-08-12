@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { useSelector } from 'react-redux'
 
 import ProductsSlideshow from '@components/common/ProductsSlideshow'
-import Hero from '@components/landing-page/hero/Hero'
+import NewHero from '@components/landing-page/hero/NewHero'
 import InfoBox1 from '@components/landing-page/info-boxes/info-box-1/InfoBox1'
 import InfoBox2 from '@components/landing-page/info-boxes/info-box-2/InfoBox2'
 import InfoBox3 from '@components/landing-page/info-boxes/info-box-3/InfoBox3'
@@ -38,8 +38,9 @@ const Home: FunctionComponent = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen">
-        <Hero />
+      <main className="min-h-screen overflow-hidden">
+        {/* <Hero /> */}
+        <NewHero />
         {newArrivals && (
           <ProductsSlideshow products={newArrivals} headline="New Arrivals" />
         )}

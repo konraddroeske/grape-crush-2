@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
-import CategoryLink from '@components/products-page/selection-menu/CategoryLink'
+import CategoryLink from '@components/products-page/products-menu/CategoryLink'
 import { TagsByCategory } from '@redux/productsSlice'
 
 interface OwnProps {
@@ -14,9 +14,7 @@ type Props = OwnProps
 const Category: FunctionComponent<Props> = ({ title, category, tags }) => {
   return (
     <div className="border-b border-blue pb-4 mb-4">
-      <h3 className="text-2xl text-blue font-bold uppercase mb-3 whitespace-nowrap">
-        {title}
-      </h3>
+      <h3 className="text-2xl text-blue font-bold uppercase mb-3">{title}</h3>
       <ul>
         {tags.map((tag: string) => {
           return (

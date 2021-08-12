@@ -5,30 +5,34 @@
 /* purgecss end ignore */
 @tailwind utilities;
 
-@layer base {
-  @font-face {
-    font-family: 'Stolzl';
-    font-weight: 350;
-    src: url(/fonts/stolzl/stolzl-book.woff2) format('woff2');
-  }
-  @font-face {
-    font-family: 'Stolzl';
-    font-weight: 400;
-    src: url(/fonts/stolzl/stolzl-regular.woff2) format('woff2');
-  }
-  @font-face {
-    font-family: 'Stolzl';
-    font-weight: 500;
-    src: url(/fonts/stolzl/stolzl-medium.woff2) format('woff2');
-  }
-  @font-face {
-    font-family: 'Stolzl';
-    font-weight: 700;
-    src: url(/fonts/stolzl/stolzl-bold.woff2) format('woff2');
-  }
-}
+//@layer base {
+//  @font-face {
+//    font-family: 'Stolzl';
+//    font-weight: 350;
+//    src: url(/fonts/stolzl/stolzl-book.woff2) format('woff2');
+//  }
+//  @font-face {
+//    font-family: 'Stolzl';
+//    font-weight: 400;
+//    src: url(/fonts/stolzl/stolzl-regular.woff2) format('woff2');
+//  }
+//  @font-face {
+//    font-family: 'Stolzl';
+//    font-weight: 500;
+//    src: url(/fonts/stolzl/stolzl-medium.woff2) format('woff2');
+//  }
+//  @font-face {
+//    font-family: 'Stolzl';
+//    font-weight: 700;
+//    src: url(/fonts/stolzl/stolzl-bold.woff2) format('woff2');
+//  }
+//}
 
 @layer utilities {
+  img {
+    width: 100%;
+  }
+
   h1,
   h2,
   h3,
@@ -37,7 +41,7 @@
   h6,
   button,
   body {
-    font-family: 'Stolzl', Arian, sans-serif;
+    font-family: 'Gopher', Arial, sans-serif;
     color: #414042;
   }
 
@@ -105,6 +109,14 @@
     }
   }
 
+  .w-188 {
+    width: 47rem;
+  }
+
+  .leading-30 {
+    line-height: 7.5rem;
+  }
+
   .-z-10 {
     z-index: -10;
   }
@@ -162,6 +174,7 @@
   .min-w-footer {
     min-width: 1440px;
   }
+
 
   .border-r-transparent {
     border-right: 0px solid transparent;

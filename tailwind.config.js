@@ -11,7 +11,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Roboto', ...defaultTheme.fontFamily.sans],
-        headline: ['Stolzl', 'Arial'],
+        // headline: ['Stolzl', 'Arial'],
+        headline: ['Gopher', 'Serif'],
       },
     },
     colors: {
@@ -24,6 +25,7 @@ module.exports = {
         DEFAULT: '#000000',
       },
       blue: {
+        dark: '#2C148E',
         DEFAULT: '#4348E3',
       },
       purple: {

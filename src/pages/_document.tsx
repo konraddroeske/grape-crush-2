@@ -22,8 +22,10 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
             rel="stylesheet"
           />
+          <link rel="stylesheet" href="https://use.typekit.net/jpe6etz.css" />
         </Head>
-        <body className="overflow-hidden">
+        {/* <body className="overflow-hidden"> */}
+        <body>
           <Main />
           <NextScript />
         </body>

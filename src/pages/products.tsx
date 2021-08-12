@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react'
 
 import ProductsList from '@components/products-page/products-list/ProductsList'
+import ProductsMenu from '@components/products-page/products-menu/ProductsMenu'
 import ProductsSearch from '@components/products-page/ProductsSearch'
 import ProductsSort from '@components/products-page/ProductsSort'
-import Menu from '@components/products-page/selection-menu/Menu'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { setLocale, setPages } from '@redux/globalSlice'
 import { setAllTags, setCategories, setProducts } from '@redux/productsSlice'
@@ -11,23 +11,12 @@ import { setIgImages } from '@redux/socialSlice'
 import { wrapper } from '@redux/store'
 
 const Products: FunctionComponent = () => {
-  // const router = useRouter()
-  // const dispatch = useDispatch()
-  //
-  // useEffect(() => {
-  //   if (Object.values(router.query).length > 0) {
-  //     dispatch(handleTags(router.query))
-  //   } else {
-  //     dispatch(resetTags())
-  //   }
-  // }, [router, dispatch])
-
   return (
     <div
       className="min-h-screen py-28 body-gutter-sm lg:body-gutter-lg
     xl:body-gutter-xl 2xl:body-gutter-2xl"
     >
-      <div className="flex mb-10">
+      <div className="flex flex-wrap mb-10">
         <div className="flex-grow">
           <ProductsSearch />
         </div>
@@ -36,8 +25,8 @@ const Products: FunctionComponent = () => {
         </div>
       </div>
       <div className="flex">
-        <div className="mr-12">
-          <Menu />
+        <div className="lg:mr-8">
+          <ProductsMenu />
         </div>
         <div className="flex-grow">
           <ProductsList />
