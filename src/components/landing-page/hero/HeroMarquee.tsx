@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { v4 as uuid } from 'uuid'
 
-const Marquee: FunctionComponent = () => {
+const HeroMarquee: FunctionComponent = () => {
   const buttonRef = useRef<HTMLButtonElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const textRefs = useRef<(HTMLSpanElement | null)[]>([])
@@ -11,7 +11,6 @@ const Marquee: FunctionComponent = () => {
   const textArr = Array(3).fill('Shop wines')
 
   useEffect(() => {
-    // console.log('rerunning marquee animation')
     if (textRefs.current.length > 0) {
       const [textElement] = textRefs.current
 
@@ -70,4 +69,4 @@ const Marquee: FunctionComponent = () => {
   )
 }
 
-export default Marquee
+export default HeroMarquee

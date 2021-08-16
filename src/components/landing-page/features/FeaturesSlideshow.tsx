@@ -9,21 +9,19 @@ import React, {
 import { gsap } from 'gsap'
 import _Draggable, { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import HeroButton from '@components/common/HeroButton'
-import SlideButtons from '@components/landing-page/hero/SlideButtons'
+import ShadowButton from '@components/common/ShadowButton'
+import SlideButtons from '@components/landing-page/features/SlideButtons'
 import { Direction } from '@models/hero'
 import { selectGlobal } from '@redux/globalSlice'
-import { selectHero, setCurrentTheme } from '@redux/heroSlice'
+import { selectHero } from '@redux/heroSlice'
 
-import Wave from '../../../assets/svgs/purple-wave.svg'
-
-const Hero: FunctionComponent = () => {
-  const dispatch = useDispatch()
-  const { heroSlides: slides, currentTheme } = useSelector(selectHero())
+const FeaturesSlideshow: FunctionComponent = () => {
+  // const dispatch = useDispatch()
+  const { heroSlides: slides } = useSelector(selectHero())
   const { locale } = useSelector(selectGlobal())
-  const { background: bgColor, title: titleColor, duration } = currentTheme
+  // const { background: bgColor, title: titleColor, duration } = currentTheme
 
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
@@ -92,30 +90,30 @@ const Hero: FunctionComponent = () => {
     return Math.round(x / itemWidth.current) * itemWidth.current
   }
 
-  const setSlide = useCallback(
-    (snap: number) => {
-      const totalSlides = snap / itemWidth.current
-
-      const getCurrentSlide = (numSlides: number): number => {
-        if (numSlides === 0 || numSlides % slides.length === 0) {
-          return 0
-        }
-        if (numSlides < 0) {
-          return Math.abs(numSlides) % slides.length
-        }
-        return slides.length - (numSlides % slides.length)
-      }
-
-      const setSlideState = (newSlide: number) => {
-        dispatch(setCurrentTheme(newSlide))
-      }
-
-      const slide = getCurrentSlide(totalSlides)
-
-      setSlideState(slide)
-    },
-    [dispatch, slides.length]
-  )
+  // const setSlide = useCallback(
+  //   (snap: number) => {
+  //     const totalSlides = snap / itemWidth.current
+  //
+  //     const getCurrentSlide = (numSlides: number): number => {
+  //       if (numSlides === 0 || numSlides % slides.length === 0) {
+  //         return 0
+  //       }
+  //       if (numSlides < 0) {
+  //         return Math.abs(numSlides) % slides.length
+  //       }
+  //       return slides.length - (numSlides % slides.length)
+  //     }
+  //
+  //     const setSlideState = (newSlide: number) => {
+  //       dispatch(setCurrentTheme(newSlide))
+  //     }
+  //
+  //     const slide = getCurrentSlide(totalSlides)
+  //
+  //     setSlideState(slide)
+  //   },
+  //   [dispatch, slides.length]
+  // )
 
   const animateSlides = useCallback(
     (direction: Direction) => {
@@ -134,7 +132,7 @@ const Hero: FunctionComponent = () => {
           direction * itemWidth.current
       )
 
-      setSlide(xVal)
+      // setSlide(xVal)
 
       slideAnimation.current = gsap.to(proxy.current, {
         duration: slideDuration.current,
@@ -142,7 +140,7 @@ const Hero: FunctionComponent = () => {
         onUpdate: updateProgress,
       })
     },
-    [draggable, setSlide]
+    [draggable]
   )
 
   const autoPlay = useCallback(() => {
@@ -210,16 +208,13 @@ const Hero: FunctionComponent = () => {
     }
   }
 
-  const handleSnap = useCallback(
-    (x: number) => {
-      const snap = gsap.utils.snap(itemWidth.current)(x)
+  const handleSnap = useCallback((x: number) => {
+    return gsap.utils.snap(itemWidth.current)(x)
 
-      setSlide(snap)
+    // setSlide(snap)
 
-      return snap
-    },
-    [setSlide]
-  )
+    // return snap
+  }, [])
 
   const initDraggable = useCallback(() => {
     const instance = new Draggable(proxy.current, {
@@ -281,31 +276,14 @@ const Hero: FunctionComponent = () => {
   const bg = useRef<HTMLDivElement>(null)
   const headings = useRef<(HTMLHeadingElement | null)[]>([])
 
-  useEffect(() => {
-    gsap.to(bg.current, {
-      duration,
-      backgroundColor: bgColor,
-    })
-
-    gsap.to('.svg-wave path', {
-      duration,
-      fill: bgColor,
-    })
-
-    gsap.to(headings.current, {
-      duration,
-      color: titleColor,
-    })
-  }, [bgColor, titleColor, duration])
-
   return (
     <>
       {slides && (
         <section>
           <div
             ref={bg}
-            className="pt-20 pb-6 hero-background bg-purple overflow-hidden
-            md:pt-24 xl:pt-28"
+            className="py-20 hero-background bg-lime overflow-hidden
+            md:py-24 xl:py-28"
           >
             <div ref={slider} className="w-full relative">
               <ul ref={list} className="absolute inset-0 m-0 p-0">
@@ -316,9 +294,9 @@ const Hero: FunctionComponent = () => {
                     className="absolute w-full sm:w-2/3 top-0 right-0 sm:right-1/6"
                   >
                     <div className="w-full">
-                      <div className="my-0 px-6 sm:px-10 md:px-12 xl:px-24 mx-auto max-h-hero flex">
+                      <div className="my-0 px-6 sm:px-6 md:px-8 lg:px-10 xl:px-12 mx-auto max-h-hero flex">
                         <img
-                          className="block w-full my-0 mx-auto rounded-xl xl:rounded-2xl object-cover"
+                          className="block w-full my-0 mx-auto object-cover"
                           src={slide.image.file[locale].url}
                           alt="label"
                           onLoad={() => handleImageLoad()}
@@ -333,7 +311,7 @@ const Hero: FunctionComponent = () => {
                         <h2
                           ref={(el) => headings.current.push(el)}
                           className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl text-center
-                          whitespace-normal uppercase font-bold color-lime"
+                          whitespace-normal uppercase font-bold text-blue-dark"
                         >
                           {slide.title[locale]}
                         </h2>
@@ -345,11 +323,8 @@ const Hero: FunctionComponent = () => {
               <SlideButtons handleSlide={animateSlides} />
             </div>
             <div className="flex justify-center">
-              <HeroButton>Shop Now</HeroButton>
+              <ShadowButton text="Explore" />
             </div>
-          </div>
-          <div>
-            <Wave className="w-full svg-wave svg-purple" />
           </div>
         </section>
       )}
@@ -357,4 +332,4 @@ const Hero: FunctionComponent = () => {
   )
 }
 
-export default Hero
+export default FeaturesSlideshow

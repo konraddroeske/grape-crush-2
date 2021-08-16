@@ -62,17 +62,20 @@ const NewHero: FunctionComponent = () => {
         <div className="absolute top-10 left-10 right-0">
           <HeroTitle />
         </div>
-        <div ref={logoRef} className="absolute left-16 bottom-16">
+        <div ref={logoRef} className="absolute left-16 bottom-24">
           <div className={`${isSticky ? 'fixed top-8' : 'relative'} z-10`}>
             <div
               className={`${
                 isSticky ? 'w-36' : 'w-44'
-              } absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}
+              } absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+              transition-all`}
             >
               <SpinningStar />
             </div>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <NewLogo className={`${isSticky ? 'w-20' : 'w-24'}`} />
+              <NewLogo
+                className={`${isSticky ? 'w-20' : 'w-24'} transition-all`}
+              />
             </div>
           </div>
         </div>

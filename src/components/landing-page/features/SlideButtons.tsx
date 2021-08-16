@@ -17,14 +17,14 @@ const SlideButtons: FunctionComponent<Props> = ({ handleSlide }) => {
     >
       <button
         type="button"
-        className="pointer-events-auto sm:transform sm:-translate-x-1/2"
+        className="pointer-events-auto sm:transform sm:-translate-x-full"
         onClick={() => handleSlide(Direction.Left)}
       >
         <Arrow direction={Direction.Left} />
       </button>
       <button
         type="button"
-        className="pointer-events-auto sm:transform sm:translate-x-1/2"
+        className="pointer-events-auto sm:transform sm:translate-x-full"
         onClick={() => handleSlide(Direction.Right)}
       >
         <Arrow direction={Direction.Right} />

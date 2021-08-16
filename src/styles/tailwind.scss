@@ -175,7 +175,6 @@
     min-width: 1440px;
   }
 
-
   .border-r-transparent {
     border-right: 0px solid transparent;
   }
@@ -206,8 +205,16 @@
     -webkit-box-orient: vertical;
   }
 
+  .text-stroke-blue {
+    -webkit-text-stroke: 1px #2C148E;
+  }
+
   .line-clamp-p {
     -webkit-line-clamp: 4;
+  }
+
+  .shadow-blue-dark {
+    box-shadow: 0.2rem 0.2rem #2C148E;
   }
 
   @variants responsive {
