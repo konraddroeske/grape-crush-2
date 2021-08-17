@@ -13,14 +13,18 @@ import { useSelector } from 'react-redux'
 
 import ShadowButton from '@components/common/ShadowButton'
 import SlideButtons from '@components/landing-page/features/SlideButtons'
+import SpinningCircle from '@components/landing-page/features/SpinningCircle'
 import { Direction } from '@models/hero'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectHero } from '@redux/heroSlice'
+
+// export type CircleDirection = 'clockwise' | 'counter'
 
 const FeaturesSlideshow: FunctionComponent = () => {
   // const dispatch = useDispatch()
   const { heroSlides: slides } = useSelector(selectHero())
   const { locale } = useSelector(selectGlobal())
+  const [circleDirection, setCircleDirection] = useState<Direction>(-1)
   // const { background: bgColor, title: titleColor, duration } = currentTheme
 
   const useTimer = false
@@ -29,6 +33,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
   const items = useRef<(HTMLLIElement | null)[]>([])
   const titles = useRef<(HTMLDivElement | null)[]>([])
   const proxy = useRef<HTMLDivElement | null>(null)
+  const prevPosition = useRef<number>(0)
 
   const reorderedSlides = [...slides.slice(-1), ...slides.slice(0, -1)]
   const count = useRef(slides.length)
@@ -87,6 +92,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
   }, [])
 
   const snapX = (x: number) => {
+    // console.log('snap position', x)
     return Math.round(x / itemWidth.current) * itemWidth.current
   }
 
@@ -139,6 +145,8 @@ const FeaturesSlideshow: FunctionComponent = () => {
         x: xVal,
         onUpdate: updateProgress,
       })
+
+      setCircleDirection(direction)
     },
     [draggable]
   )
@@ -209,7 +217,19 @@ const FeaturesSlideshow: FunctionComponent = () => {
   }
 
   const handleSnap = useCallback((x: number) => {
-    return gsap.utils.snap(itemWidth.current)(x)
+    const newPosition = gsap.utils.snap(itemWidth.current)(x)
+
+    if (prevPosition.current < newPosition) {
+      setCircleDirection(Direction.Left)
+    }
+
+    if (prevPosition.current > newPosition) {
+      setCircleDirection(Direction.Right)
+    }
+
+    prevPosition.current = newPosition
+
+    return newPosition
 
     // setSlide(snap)
 
@@ -321,6 +341,9 @@ const FeaturesSlideshow: FunctionComponent = () => {
                 ))}
               </ul>
               <SlideButtons handleSlide={animateSlides} />
+              <div className="absolute circle-position">
+                <SpinningCircle direction={circleDirection} />
+              </div>
             </div>
             <div className="flex justify-center">
               <ShadowButton text="Explore" />

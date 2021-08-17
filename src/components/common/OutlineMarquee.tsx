@@ -12,7 +12,6 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   text,
   direction = '+=',
 }) => {
-  // const buttonRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const textRefs = useRef<(HTMLSpanElement | null)[]>([])
 
@@ -60,8 +59,8 @@ const OutlineMarquee: FunctionComponent<Props> = ({
         return (
           <div
             key={uuid()}
-            className="uppercase text-7xl italic absolute px-2 font-bold
-              text-transparent text-stroke-blue"
+            className="uppercase text-7xl xl:text-8xl italic absolute px-2 font-bold
+              text-transparent text-stroke-blue whitespace-nowrap"
             ref={(el) => {
               textRefs.current[index] = el
             }}
