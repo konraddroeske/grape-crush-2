@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import SimpleBarReact from 'simplebar-react'
 import 'simplebar-react/dist/simplebar.min.css'
 
+import ProductsTags from '@components/products-page/products-bar/ProductsTags'
 import Category from '@components/products-page/products-menu/Category'
 import { remToPixels } from '@lib/remToPixels'
 import { selectGlobal } from '@redux/globalSlice'
@@ -176,6 +177,7 @@ const ProductsMenu: FunctionComponent = () => {
             height: maxHeight,
           }}
         >
+          <ProductsTags />
           <Category
             title="Type"
             category="parentType"

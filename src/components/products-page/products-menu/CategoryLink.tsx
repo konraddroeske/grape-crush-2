@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 
 import Selected from '@assets/svgs/box-selected.svg'
 import Box from '@assets/svgs/box.svg'
-import { ProductLowercase } from '@models/ambassador'
 import { selectProducts, TagsByCategory } from '@redux/productsSlice'
 
 interface OwnProps {
@@ -18,31 +17,8 @@ type Props = OwnProps
 
 const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
   const router = useRouter()
-  const { selectedTags, products, totalSelected } = useSelector(
-    selectProducts()
-  )
+  const { selectedTags } = useSelector(selectProducts())
   const [selected, setSelected] = useState(false)
-  const [categoryProducts, setCategoryProducts] =
-    useState<ProductLowercase[] | null>(null)
-
-  useEffect(() => {
-    if (products) {
-      const filtered = products.filter((product) => {
-        if (category === 'parentType') {
-          return product.type === tag
-        }
-
-        const { data } = product
-
-        return (
-          data[category] &&
-          (data[category] === tag || data[category].includes(tag))
-        )
-      })
-
-      setCategoryProducts(filtered)
-    }
-  }, [products, category, tag])
 
   const getUpdatedTags = (
     categoryName: keyof TagsByCategory,
@@ -85,10 +61,6 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
     setSelected(selectedTags[category].includes(tag))
   }, [selectedTags, category, tag])
 
-  const handleIntersect = (a: ProductLowercase[], b: ProductLowercase[]) => {
-    return a.filter(Set.prototype.has, new Set(b))
-  }
-
   return (
     <button
       type="button"
@@ -105,12 +77,6 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
         </div>
       )}
       <span className="leading-5 text-left">{tag}</span>
-      <div className="ml-2 mr-auto text-2xs text-left font-bold leading-none">
-        (
-        {categoryProducts &&
-          handleIntersect(categoryProducts, totalSelected).length}
-        )
-      </div>
     </button>
   )
 }

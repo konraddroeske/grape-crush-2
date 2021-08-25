@@ -51,6 +51,10 @@
     line-height: 1.6;
   }
 
+  li {
+    list-style-type: none;
+  }
+
   .text-2xs {
     font-size: 0.7rem;
   }
@@ -266,7 +270,7 @@
   }
 
   .shadow-white {
-    box-shadow: 0.2rem 0.2rem #FFFFFF;
+    box-shadow: 0.2rem 0.2rem #ffffff;
   }
 
   @variants responsive {
