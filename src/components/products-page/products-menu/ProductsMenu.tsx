@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 
 import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
+import gsap from 'gsap'
 
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -30,7 +31,9 @@ const ProductsMenu: FunctionComponent = () => {
 
   const { locale } = useSelector(selectGlobal())
   const { allTags } = useSelector(selectProducts())
+  const { menuOpen } = useSelector(selectProducts())
 
+  const containerRef = useRef<HTMLDivElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
 
   const [isSticky, setIsSticky] = useState<boolean>(false)
@@ -142,8 +145,25 @@ const ProductsMenu: FunctionComponent = () => {
       clearAllBodyScrollLocks()
     }
   }, [open])
+
+  useEffect(() => {
+    const width = containerRef?.current?.offsetWidth
+
+    if (!menuOpen && width) {
+      gsap.to(containerRef.current, {
+        marginLeft: -width,
+      })
+    }
+
+    if (menuOpen) {
+      gsap.to(containerRef.current, {
+        marginLeft: 0,
+      })
+    }
+  }, [menuOpen])
+
   return (
-    <>
+    <div ref={containerRef} className="sm:pl-6 lg:pl-12 xl:pl-24 2xl:pl-32">
       <div
         ref={menuRef}
         className={`${open ? 'fixed' : 'hidden'} 
@@ -189,7 +209,7 @@ const ProductsMenu: FunctionComponent = () => {
       >
         Filter
       </button>
-    </>
+    </div>
   )
 }
 

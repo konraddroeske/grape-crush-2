@@ -65,6 +65,7 @@ interface ProductsSlice {
   productsPerPage: number
   productsSearch: string
   productsSort: SortOption
+  menuOpen: boolean
 }
 
 const initialState: ProductsSlice = {
@@ -87,6 +88,7 @@ const initialState: ProductsSlice = {
   productsPerPage: 25,
   productsSearch: '',
   productsSort: 'alphabetical, a - z',
+  menuOpen: true,
 }
 
 export const productsSlice = createSlice({
@@ -350,6 +352,10 @@ export const productsSlice = createSlice({
     handleProductsSort(state, action) {
       return { ...state, productsSort: action.payload }
     },
+    handleMenuOpen(state) {
+      const { menuOpen } = state
+      return { ...state, menuOpen: !menuOpen }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -371,6 +377,7 @@ export const {
   handlePage,
   handleProductsSearch,
   handleProductsSort,
+  handleMenuOpen,
 } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>

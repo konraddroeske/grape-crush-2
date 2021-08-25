@@ -43,8 +43,8 @@ const NavBar: FunctionComponent = () => {
   return (
     <nav
       ref={navRef}
-      className="fixed z-30 top-0 left-0 right-0 nav-gutter-sm overflow-y-auto
-      lg:nav-gutter-lg xl:nav-gutter-xl"
+      className="fixed z-30 top-0 left-0 right-0 body-gutter-sm overflow-y-auto
+      lg:body-gutter-lg xl:body-gutter-xl"
     >
       <div className="relative flex h-16 justify-between items-center">
         <Hamburger />

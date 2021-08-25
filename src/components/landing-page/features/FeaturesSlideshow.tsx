@@ -11,7 +11,6 @@ import _Draggable, { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 import { useSelector } from 'react-redux'
 
-import ShadowButton from '@components/common/ShadowButton'
 import SlideButtons from '@components/landing-page/features/SlideButtons'
 import SpinningCircle from '@components/landing-page/features/SpinningCircle'
 import { Direction } from '@models/hero'
@@ -302,8 +301,8 @@ const FeaturesSlideshow: FunctionComponent = () => {
         <section>
           <div
             ref={bg}
-            className="py-20 hero-background bg-lime overflow-hidden
-            md:py-24 xl:py-28"
+            className="pt-20 pb-10 hero-background bg-lime overflow-hidden
+            md:pt-24 md:pb-12 xl:pt-28 xl:pb-14"
           >
             <div ref={slider} className="w-full relative">
               <ul ref={list} className="absolute inset-0 m-0 p-0">
@@ -330,7 +329,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
                       >
                         <h2
                           ref={(el) => headings.current.push(el)}
-                          className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl text-center
+                          className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-8xl text-center
                           whitespace-normal uppercase font-bold text-blue-dark"
                         >
                           {slide.title[locale]}
@@ -345,9 +344,9 @@ const FeaturesSlideshow: FunctionComponent = () => {
                 <SpinningCircle direction={circleDirection} />
               </div>
             </div>
-            <div className="flex justify-center">
-              <ShadowButton text="Explore" />
-            </div>
+            {/* <div className="flex justify-center"> */}
+            {/*  <ShadowButton text="Explore" /> */}
+            {/* </div> */}
           </div>
         </section>
       )}

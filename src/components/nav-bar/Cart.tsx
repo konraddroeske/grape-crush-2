@@ -16,7 +16,7 @@ const Cart: FunctionComponent = () => {
   useEffect(() => {
     gsap.to('.svg-cart path', {
       duration,
-      fill: navOpen ? '#414042' : nav,
+      fill: navOpen ? '#FFFFFF' : nav,
     })
   }, [navOpen, nav, duration])
 

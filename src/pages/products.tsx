@@ -1,34 +1,23 @@
 import React, { FunctionComponent } from 'react'
 
+import ProductsBar from '@components/products-page/products-bar/ProductsBar'
 import ProductsList from '@components/products-page/products-list/ProductsList'
 import ProductsMenu from '@components/products-page/products-menu/ProductsMenu'
-import ProductsSearch from '@components/products-page/ProductsSearch'
-import ProductsSort from '@components/products-page/ProductsSort'
 import fetchGlobalData from '@lib/fetchGlobalData'
-import { setLocale, setPages } from '@redux/globalSlice'
+import { setFooter, setLocale, setNav, setPages } from '@redux/globalSlice'
 import { setAllTags, setCategories, setProducts } from '@redux/productsSlice'
 import { setIgImages } from '@redux/socialSlice'
 import { wrapper } from '@redux/store'
 
 const Products: FunctionComponent = () => {
   return (
-    <div
-      className="min-h-screen py-28 body-gutter-sm lg:body-gutter-lg
-    xl:body-gutter-xl 2xl:body-gutter-2xl"
-    >
-      <div className="flex flex-wrap mb-10">
-        <div className="flex-grow">
-          <ProductsSearch />
-        </div>
-        <div className="w-2/5 ml-8">
-          <ProductsSort />
-        </div>
+    <div className="min-h-screen py-28">
+      <div className="mb-10 border border-l-0 border-r-0 border-dark-blue">
+        <ProductsBar />
       </div>
       <div className="flex">
-        <div className="lg:mr-8">
-          <ProductsMenu />
-        </div>
-        <div className="flex-grow">
+        <ProductsMenu />
+        <div className="flex-grow body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
           <ProductsList />
         </div>
       </div>
@@ -41,8 +30,16 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   // console.log('store', store.getState())
   // const { products: currentProducts } = store.getState()
 
-  const { products, locale, pageAssets, igImages, categoryAssets, categories } =
-    await fetchGlobalData()
+  const {
+    products,
+    locale,
+    pageAssets,
+    igImages,
+    categoryAssets,
+    categories,
+    footerAssets,
+    navAssets,
+  } = await fetchGlobalData()
 
   // Global
   store.dispatch(setAllTags(products))
@@ -50,6 +47,8 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories({ categories, categoryAssets, locale }))
   store.dispatch(setIgImages(igImages))
+  store.dispatch(setFooter(footerAssets))
+  store.dispatch(setNav(navAssets))
 
   // Products
   store.dispatch(setProducts(products))

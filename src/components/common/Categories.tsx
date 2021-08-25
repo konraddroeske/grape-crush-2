@@ -16,7 +16,7 @@ const Categories: FunctionComponent = () => {
             <div className="flex">
               <img
                 className="object-cover w-full"
-                src={category.image.file[locale].url}
+                src={category?.image?.file[locale].url}
                 alt=""
               />
             </div>

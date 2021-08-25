@@ -2,16 +2,24 @@ import React, { FunctionComponent } from 'react'
 
 interface OwnProps {
   text: string
+  variant?: 'default' | 'nav'
 }
 
 type Props = OwnProps
 
-const ShadowButton: FunctionComponent<Props> = ({ text }) => {
+const ShadowButton: FunctionComponent<Props> = ({
+  text,
+  variant = 'default',
+}) => {
+  const variants = {
+    default: 'text-blue-dark bg-lime shadow-blue-dark border-blue-dark',
+    nav: 'text-lime bg-transparent shadow-white border-white',
+  }
+
   return (
     <button
       type="button"
-      className="text-md text-blue-dark font-bold uppercase bg-lime py-2 px-6
-      shadow-blue-dark border border-blue-dark"
+      className={`${variants[variant]} text-md font-bold uppercase py-2 px-6 border`}
     >
       {text}
     </button>

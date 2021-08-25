@@ -56,7 +56,7 @@ const NewHero: FunctionComponent = () => {
       <div className="p-16 h-screen relative flex">
         <img
           className="block w-full my-0 mx-auto object-cover"
-          src={firstSlide.image.file[locale].url}
+          src={firstSlide?.image?.file[locale].url}
           alt="label"
         />
         <div className="absolute top-10 left-10 right-0">

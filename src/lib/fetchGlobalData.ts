@@ -6,15 +6,16 @@ import { AmbassadorIg } from '@models/ambassador'
 
 export default async function fetchGlobalData() {
   const locale = 'en-US'
-  const contentIds = ['category', 'page']
+  const contentIds = ['category', 'page', 'footer', 'nav']
 
   const groupedEntries = await Promise.all(
     contentIds.map((id) => getEntries(id))
   )
 
-  const [categoryAssets, pageAssets] = await Promise.all(
-    groupedEntries.map((entries) => getAssets(entries, locale))
-  )
+  const [categoryAssets, pageAssets, footerAssets, navAssets] =
+    await Promise.all(
+      groupedEntries.map((entries) => getAssets(entries, locale))
+    )
 
   const { data: igImages }: AmbassadorIg = await ambassador.api.getSocial()
 
@@ -31,8 +32,10 @@ export default async function fetchGlobalData() {
     locale,
     pageAssets,
     categoryAssets,
+    footerAssets,
     categories,
     igImages,
+    navAssets,
     products: productsWithNewKeys,
   }
 }

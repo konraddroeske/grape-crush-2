@@ -16,12 +16,7 @@ const DesktopMenu: FunctionComponent<Props> = ({ isDesktop }) => {
 
   return (
     <div className="hidden ml-auto mr-8 lg:flex">
-      <div
-        className="flex items-center"
-        // onMouseEnter={() => setOpen(true)}
-        // onMouseLeave={() => setOpen(false)}
-        // onClick={() => setOpen(true)}
-      >
+      <div className="flex items-center">
         <MenuButtonDesktop>Shop</MenuButtonDesktop>
         {navOpen && isDesktop && <DesktopCategories />}
       </div>

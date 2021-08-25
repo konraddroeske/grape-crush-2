@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef } from 'react'
+import React, { FunctionComponent, useCallback, useEffect, useRef } from 'react'
 
 import gsap from 'gsap'
 import { v4 as uuid } from 'uuid'
@@ -14,42 +14,58 @@ const OutlineMarquee: FunctionComponent<Props> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const textRefs = useRef<(HTMLSpanElement | null)[]>([])
-
+  const animation = useRef<gsap.core.Timeline | null>(null)
   const textArr = Array(4).fill(text)
 
+  const initAnimation = useCallback(() => {
+    const [textElement] = textRefs.current
+
+    const dimensions = textElement ? textElement.getBoundingClientRect() : null
+
+    if (!dimensions) return
+
+    const { width, height } = dimensions
+
+    gsap.set(containerRef.current, {
+      x: -width,
+      height,
+    })
+
+    gsap.set(textRefs.current, {
+      x: (i) => i * width,
+    })
+
+    const totalWidth = width * 4
+    const mod = gsap.utils.wrap(0, totalWidth)
+
+    const tl = gsap.timeline()
+
+    animation.current = tl.to(textRefs.current, {
+      duration: 20,
+      ease: 'none',
+      x: `${direction}${totalWidth}`,
+      modifiers: {
+        x: (x) => `${mod(parseFloat(x))}px`,
+      },
+      repeat: -1,
+    })
+  }, [direction])
+
+  const updateAnimation = useCallback(() => {
+    if (animation.current) {
+      animation.current.pause()
+      initAnimation()
+    }
+  }, [initAnimation])
+
   useEffect(() => {
-    if (textRefs.current.length > 0) {
-      const [textElement] = textRefs.current
+    if (window && textRefs.current.length > 0) {
+      initAnimation()
+      window.addEventListener('resize', updateAnimation)
+    }
 
-      const dimensions = textElement
-        ? textElement.getBoundingClientRect()
-        : null
-
-      if (!dimensions) return
-
-      const { width, height } = dimensions
-
-      gsap.set(containerRef.current, {
-        x: -width,
-        height,
-      })
-
-      gsap.set(textRefs.current, {
-        x: (i) => i * width,
-      })
-
-      const totalWidth = width * 4
-      const mod = gsap.utils.wrap(0, totalWidth)
-
-      gsap.to(textRefs.current, {
-        duration: 20,
-        ease: 'none',
-        x: `${direction}${totalWidth}`,
-        modifiers: {
-          x: (x) => `${mod(parseFloat(x))}px`,
-        },
-        repeat: -1,
-      })
+    return () => {
+      window.removeEventListener('resize', updateAnimation)
     }
   })
 

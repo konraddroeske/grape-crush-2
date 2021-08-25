@@ -26,12 +26,12 @@ const MenuButtonDesktop: FunctionComponent<MenuButtonProps> = ({
   useEffect(() => {
     gsap.to(buttonRef.current, {
       duration,
-      color: navOpen ? '#414042' : nav,
+      color: navOpen ? '#FFFFFF' : nav,
     })
 
     gsap.to('.svg-desktop-button path', {
       duration,
-      fill: navOpen ? '#414042' : nav,
+      fill: navOpen ? '#FFFFFF' : nav,
     })
   }, [navOpen, nav, duration])
 

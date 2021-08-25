@@ -15,11 +15,26 @@ module.exports = {
         headline: ['Gopher', 'Serif'],
       },
     },
-    // stroke: (theme) => ({
-    //   blue: '#2C148E',
-    // }),
     stroke: {
       blue: '#2C148E',
+    },
+    backgroundColor: {
+      blue: {
+        dark: '#2C148E',
+        DEFAULT: '#4348E3',
+      },
+      lime: {
+        // DEFAULT: 'rgba(216, 255, 108, 1.0)',
+        DEFAULT: '#DFFF85',
+        light: 'rgba(217, 255, 108, 0.5)',
+        lightest: '#F5FFDA',
+      },
+      white: {
+        DEFAULT: '#FFFFFF',
+      },
+      transparent: {
+        DEFAULT: 'transparent',
+      },
     },
     colors: {
       transparent: 'transparent',

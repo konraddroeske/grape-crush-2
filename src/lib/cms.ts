@@ -12,6 +12,25 @@ export const getEntries = async (contentType: string): Promise<Entry[]> => {
   return items
 }
 
+export interface CmsImage {
+  title: {
+    [key: string]: string
+  }
+  description?: {
+    [key: string]: string
+  }
+  file: {
+    [key: string]: {
+      fileName: string
+      contentType: string
+      upload?: string
+      url?: string
+      details?: Record<string, any>
+      uploadFrom?: Record<string, any>
+    }
+  }
+}
+
 export interface CmsAssets {
   title: {
     [key: string]: string
@@ -37,24 +56,25 @@ export interface CmsAssets {
   slug: {
     [key: string]: string
   }
-  image: {
-    title: {
-      [key: string]: string
-    }
-    description?: {
-      [key: string]: string
-    }
-    file: {
-      [key: string]: {
-        fileName: string
-        contentType: string
-        upload?: string
-        url?: string
-        details?: Record<string, any>
-        uploadFrom?: Record<string, any>
-      }
-    }
-  }
+  // image?: {
+  //   title: {
+  //     [key: string]: string
+  //   }
+  //   description?: {
+  //     [key: string]: string
+  //   }
+  //   file: {
+  //     [key: string]: {
+  //       fileName: string
+  //       contentType: string
+  //       upload?: string
+  //       url?: string
+  //       details?: Record<string, any>
+  //       uploadFrom?: Record<string, any>
+  //     }
+  //   }
+  // }
+  image?: CmsImage
 }
 
 export const getAssets = async (entries: Entry[], locale = 'en-US') => {

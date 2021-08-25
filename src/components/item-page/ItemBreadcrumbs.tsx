@@ -13,12 +13,10 @@ interface OwnProps {
 
 type Props = OwnProps
 
-const Breadcrumbs: FunctionComponent<Props> = ({ product }) => {
+const ItemBreadcrumbs: FunctionComponent<Props> = ({ product }) => {
   const { data, type } = product
   const { category, varietal } = data
   const [primaryVarietal] = varietal
-
-  // console.log(product)
 
   const router = useRouter()
   const handleClick = (newCategory: string, newTag: string) => {
@@ -58,4 +56,4 @@ const Breadcrumbs: FunctionComponent<Props> = ({ product }) => {
   )
 }
 
-export default Breadcrumbs
+export default ItemBreadcrumbs

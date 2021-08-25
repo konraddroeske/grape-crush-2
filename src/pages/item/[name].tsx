@@ -4,13 +4,13 @@ import { useRouter } from 'next/router'
 
 import { useSelector } from 'react-redux'
 
-import Breadcrumbs from '@components/item-page/Breadcrumbs'
+import ItemBreadcrumbs from '@components/item-page/ItemBreadcrumbs'
 import ItemContent from '@components/item-page/ItemContent'
 import Suggested from '@components/item-page/Suggested'
 import ambassador from '@lib/ambassador'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { Product, ProductLowercase } from '@models/ambassador'
-import { setLocale, setPages } from '@redux/globalSlice'
+import { setFooter, setLocale, setNav, setPages } from '@redux/globalSlice'
 import {
   selectProducts,
   setAllTags,
@@ -45,7 +45,7 @@ const Item: FunctionComponent = () => {
           className="min-h-screen pt-28 body-gutter-sm lg:body-gutter-lg
     xl:body-gutter-xl 2xl:body-gutter-2xl bg-purple"
         >
-          <Breadcrumbs product={productData} />
+          <ItemBreadcrumbs product={productData} />
           <ItemContent product={productData} />
         </div>
       )}
@@ -74,8 +74,16 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   // const { locale: defaultLocale = 'en-US' } = ctx
   // console.log('store', store.getState())
 
-  const { products, locale, pageAssets, igImages, categoryAssets, categories } =
-    await fetchGlobalData()
+  const {
+    products,
+    locale,
+    pageAssets,
+    igImages,
+    categoryAssets,
+    categories,
+    footerAssets,
+    navAssets,
+  } = await fetchGlobalData()
 
   // Global
   store.dispatch(setAllTags(products))
@@ -83,6 +91,8 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories({ categories, categoryAssets, locale }))
   store.dispatch(setIgImages(igImages))
+  store.dispatch(setFooter(footerAssets))
+  store.dispatch(setNav(navAssets))
 
   // Products
   store.dispatch(setProducts(products))

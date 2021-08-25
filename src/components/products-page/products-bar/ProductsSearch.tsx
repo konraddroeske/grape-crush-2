@@ -15,24 +15,15 @@ const ProductsSearch: FunctionComponent = () => {
   }
 
   return (
-    <div className="flex h-10">
+    <div className="relative flex h-7 bg-lime-light">
       <input
         type="text"
         placeholder="Search"
-        className="border border-gray-light flex-grow min-w-0 bg-transparent
-            rounded-l-3xl placeholder-gray-dark text-xs pl-4 pr-2 py-2
-            border-r-transparent"
+        className="border-none bg-transparent font-bold placeholder-transparent py-0 pr-8"
         value={search}
         onChange={handleChange}
       />
-      <button
-        type="submit"
-        className="relative flex justify-center items-center flex-none border bg-blue
-        border-blue rounded-r-3xl w-14 text-lime uppercase font-bold text-xs
-        border-l-transparent"
-      >
-        <Search className="w-6" />
-      </button>
+      <Search className="absolute right-2 top-1/2 transform -translate-y-1/2 w-5" />
     </div>
   )
 }

@@ -70,7 +70,7 @@ const initialState = {
     },
   ],
   currentTheme: {
-    nav: '#414042',
+    nav: '#2C148E',
     title: '#d9ff6c',
     buttonBorder: '#d9ff6c',
     buttonText: 'white',

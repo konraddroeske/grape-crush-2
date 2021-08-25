@@ -26,6 +26,7 @@ const SocialGallery: FunctionComponent = () => {
   const list = useRef<HTMLUListElement>(null)
   const items = useRef<(HTMLLIElement | null)[]>([])
   const proxy = useRef<HTMLDivElement | null>(null)
+  const height = useRef<number>(0)
 
   // const reorderedSlides =
   //   igImages.length % 2 === 0
@@ -127,9 +128,9 @@ const SocialGallery: FunctionComponent = () => {
   const setHeight = () => {
     const [item] = items.current
 
-    if (!item) return
+    if (!item || height.current === item.offsetHeight) return
 
-    // console.log(item.offsetHeight)
+    height.current = item.offsetHeight
 
     gsap.set(slider.current, {
       height: item.offsetHeight,
@@ -180,7 +181,7 @@ const SocialGallery: FunctionComponent = () => {
         x: 0,
       })
       setWidths()
-      setHeight()
+      // setHeight()
       setPosition()
       initDraggable()
       updateAnimation()
@@ -209,29 +210,32 @@ const SocialGallery: FunctionComponent = () => {
         {categories.length > 0 && (
           <div ref={slider} className="w-full relative">
             <ul ref={list} className="absolute inset-0 m-0 p-0">
-              {categories.map((category) => (
-                <li
-                  key={category.id}
-                  ref={(el) => items.current.push(el)}
-                  className="absolute px-2 w-36 top-0 left-0 sm:px-4 sm:w-48
-                lg:px-6 lg:w-64 xl:px-8 xl:w-80"
-                >
-                  <div className="relative flex shadow-blue-dark">
-                    <img
-                      className="object-cover w-full"
-                      src={category.image.file[locale].url}
-                      alt=""
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    className="block mt-3 mx-auto text-base text-center text-blue-dark
-                   font-bold uppercase lg:text-lg xl:text-xl"
+              {categories.map((category) => {
+                return (
+                  <li
+                    key={category.id}
+                    ref={(el) => items.current.push(el)}
+                    className="absolute px-2 w-48 top-0 left-0 sm:px-4 sm:w-60
+                  lg:px-6 lg:w-72 xl:px-8 xl:w-80"
                   >
-                    {category.title[locale]}
-                  </button>
-                </li>
-              ))}
+                    <div className="relative flex shadow-blue-dark">
+                      <img
+                        className="object-cover w-full"
+                        src={category?.image?.file[locale].url}
+                        alt=""
+                        onLoad={() => setHeight()}
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      className="block mt-3 mx-auto text-base text-center text-blue-dark
+                     font-bold uppercase lg:text-lg xl:text-xl"
+                    >
+                      {category.title[locale]}
+                    </button>
+                  </li>
+                )
+              })}
             </ul>
           </div>
         )}

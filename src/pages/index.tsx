@@ -5,15 +5,12 @@ import Head from 'next/head'
 import Description from '@components/landing-page/description/Description'
 import FeaturesSlideshow from '@components/landing-page/features/FeaturesSlideshow'
 import NewHero from '@components/landing-page/hero/NewHero'
-import InfoBox1 from '@components/landing-page/info-boxes/info-box-1/InfoBox1'
-import InfoBox2 from '@components/landing-page/info-boxes/info-box-2/InfoBox2'
-import InfoBox3 from '@components/landing-page/info-boxes/info-box-3/InfoBox3'
-import Mailer from '@components/landing-page/mailer/Mailer'
+import NewInfoBox1 from '@components/landing-page/info-boxes/info-box-1/NewInfoBox1'
+import NewInfoBox3 from '@components/landing-page/info-boxes/info-box-3/NewInfoBox3'
 import NewShopByType from '@components/landing-page/shop-by-type/NewShopByType'
-import SocialGallery from '@components/landing-page/social-gallery/SocialGallery'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchIndexData from '@lib/fetchIndexData'
-import { setLocale, setPages } from '@redux/globalSlice'
+import { setFooter, setLocale, setNav, setPages } from '@redux/globalSlice'
 import { setHeroSlides } from '@redux/heroSlice'
 import { setInfoBoxes, setNewArrivals } from '@redux/indexSlice'
 import { setAllTags, setCategories } from '@redux/productsSlice'
@@ -42,11 +39,8 @@ const Home: FunctionComponent = () => {
         <Description />
         <NewShopByType />
         <FeaturesSlideshow />
-        <InfoBox1 />
-        <InfoBox2 />
-        <InfoBox3 />
-        <Mailer />
-        <SocialGallery />
+        <NewInfoBox3 />
+        <NewInfoBox1 />
       </main>
     </div>
   )
@@ -55,8 +49,16 @@ const Home: FunctionComponent = () => {
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   // const { locale: defaultLocale = 'en-US' } = ctx
 
-  const { products, locale, pageAssets, igImages, categoryAssets, categories } =
-    await fetchGlobalData()
+  const {
+    products,
+    locale,
+    pageAssets,
+    igImages,
+    categoryAssets,
+    categories,
+    footerAssets,
+    navAssets,
+  } = await fetchGlobalData()
 
   const { heroAssets, newArrivals, infoBoxAssets } = await fetchIndexData()
 
@@ -66,6 +68,8 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories({ categories, categoryAssets, locale }))
   store.dispatch(setIgImages(igImages))
+  store.dispatch(setFooter(footerAssets))
+  store.dispatch(setNav(navAssets))
 
   // Index
   store.dispatch(setHeroSlides(heroAssets))
