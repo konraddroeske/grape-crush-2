@@ -31,6 +31,21 @@ export interface CmsImage {
   }
 }
 
+export interface FaqAssets {
+  anchor: {
+    [key: string]: string
+  }
+  answer: {
+    [key: string]: string
+  }
+  published: {
+    [key: string]: string
+  }
+  question: {
+    [key: string]: string
+  }
+}
+
 export interface CmsAssets {
   title: {
     [key: string]: string
@@ -56,24 +71,6 @@ export interface CmsAssets {
   slug: {
     [key: string]: string
   }
-  // image?: {
-  //   title: {
-  //     [key: string]: string
-  //   }
-  //   description?: {
-  //     [key: string]: string
-  //   }
-  //   file: {
-  //     [key: string]: {
-  //       fileName: string
-  //       contentType: string
-  //       upload?: string
-  //       url?: string
-  //       details?: Record<string, any>
-  //       uploadFrom?: Record<string, any>
-  //     }
-  //   }
-  // }
   image?: CmsImage
 }
 

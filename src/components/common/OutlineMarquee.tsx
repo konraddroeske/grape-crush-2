@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useCallback, useEffect, useRef } from 'react'
 
 import gsap from 'gsap'
+import { useInView } from 'react-intersection-observer'
 import { v4 as uuid } from 'uuid'
 
 interface Props {
@@ -12,10 +13,15 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   text,
   direction = '+=',
 }) => {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  })
+
   const containerRef = useRef<HTMLDivElement>(null)
   const textRefs = useRef<(HTMLSpanElement | null)[]>([])
   const animation = useRef<gsap.core.Timeline | null>(null)
-  const textArr = Array(4).fill(text)
+  const count = 8
+  const textArr = Array(count).fill(text)
 
   const initAnimation = useCallback(() => {
     const [textElement] = textRefs.current
@@ -35,13 +41,13 @@ const OutlineMarquee: FunctionComponent<Props> = ({
       x: (i) => i * width,
     })
 
-    const totalWidth = width * 4
+    const totalWidth = width * count
     const mod = gsap.utils.wrap(0, totalWidth)
 
     const tl = gsap.timeline()
 
     animation.current = tl.to(textRefs.current, {
-      duration: 20,
+      duration: totalWidth / 100,
       ease: 'none',
       x: `${direction}${totalWidth}`,
       modifiers: {
@@ -69,22 +75,35 @@ const OutlineMarquee: FunctionComponent<Props> = ({
     }
   })
 
+  useEffect(() => {
+    // console.log('marquee in view', inView)
+    if (!inView && animation.current) {
+      animation.current.pause()
+    }
+
+    if (inView && animation.current) {
+      animation.current.play()
+    }
+  }, [inView])
+
   return (
-    <div ref={containerRef} className="relative h-40 w-full">
-      {textArr.map((ele, index) => {
-        return (
-          <div
-            key={uuid()}
-            className="uppercase text-7xl xl:text-8xl italic absolute px-2 font-bold
+    <div ref={ref} className="pointer-events-none">
+      <div ref={containerRef} className="relative h-40 w-full">
+        {textArr.map((ele, index) => {
+          return (
+            <div
+              key={uuid()}
+              className="uppercase text-7xl xl:text-8xl italic absolute px-2 font-bold
               text-transparent text-stroke-blue whitespace-nowrap"
-            ref={(el) => {
-              textRefs.current[index] = el
-            }}
-          >
-            {ele}
-          </div>
-        )
-      })}
+              ref={(el) => {
+                textRefs.current[index] = el
+              }}
+            >
+              {ele}
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

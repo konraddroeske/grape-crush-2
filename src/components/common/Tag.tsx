@@ -24,7 +24,7 @@ const Tag: FunctionComponent<Props> = ({
 
   const variants = {
     primary:
-      'font-sans text-2xs font-light py-2 px-4 rounded-3xl uppercase bg-lime-lightest',
+      'font-sans text-2xs font-light text-blue-dark py-1 px-3 uppercase bg-transparent border border-blue-dark hover:bg-lime',
     secondary:
       'font-sans text-2xs font-light py-2 px-4 rounded-3xl uppercase bg-transparent border border-lime',
   }

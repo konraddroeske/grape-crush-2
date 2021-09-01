@@ -2,6 +2,7 @@ import { configureStore, ThunkAction } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 import type { Action } from 'redux'
 
+import { faqSlice } from '@redux/faqSlice'
 import { globalSlice } from '@redux/globalSlice'
 import { heroSlice } from '@redux/heroSlice'
 import { indexSlice } from '@redux/indexSlice'
@@ -16,6 +17,7 @@ const makeStore = () =>
       [indexSlice.name]: indexSlice.reducer,
       [socialSlice.name]: socialSlice.reducer,
       [productsSlice.name]: productsSlice.reducer,
+      [faqSlice.name]: faqSlice.reducer,
     },
     devTools: true,
   })

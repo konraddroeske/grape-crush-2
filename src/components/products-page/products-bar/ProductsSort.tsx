@@ -8,7 +8,7 @@ import {
   SortOption,
 } from '@redux/productsSlice'
 
-import SortArrow from '../../../assets/svgs/sort-arrow.svg'
+import TriangleArrow from '../../../assets/svgs/triangle-arrow.svg'
 
 const ProductsSort: FunctionComponent = () => {
   const { productsSort } = useSelector(selectProducts())
@@ -39,10 +39,10 @@ const ProductsSort: FunctionComponent = () => {
         <span className="uppercase text-blue-dark text-base font-bold mr-2">
           Sort
         </span>
-        <SortArrow className="w-2" />
+        <TriangleArrow className="w-2" />
       </button>
       {expanded && (
-        <ul className="absolute top-full left-0 right-14 bg-white w-48 border">
+        <ul className="absolute z-10 top-full left-0 right-14 bg-white w-48 border">
           {sortOptions.map((option) => {
             return (
               <li

@@ -11,7 +11,7 @@ interface OwnProps {
 
 type Props = OwnProps
 
-const ProductTags: FunctionComponent<Props> = ({
+const Tags: FunctionComponent<Props> = ({
   country,
   style,
   varietal,
@@ -39,7 +39,7 @@ const ProductTags: FunctionComponent<Props> = ({
   }, [country, style, varietal])
 
   return (
-    <ul className="flex flex-wrap mt-4 mb-2">
+    <ul className="flex flex-wrap">
       {pairs.map((pair) => {
         const [category, tag] = pair
         return (
@@ -52,4 +52,4 @@ const ProductTags: FunctionComponent<Props> = ({
   )
 }
 
-export default ProductTags
+export default Tags

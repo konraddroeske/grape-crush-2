@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 
 import { useSelector } from 'react-redux'
 
-import ItemBreadcrumbs from '@components/item-page/ItemBreadcrumbs'
+import OutlineMarquee from '@components/common/OutlineMarquee'
+import ItemBar from '@components/item-page/item-bar/ItemBar'
 import ItemContent from '@components/item-page/ItemContent'
-import Suggested from '@components/item-page/Suggested'
 import ambassador from '@lib/ambassador'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { Product, ProductLowercase } from '@models/ambassador'
@@ -31,25 +31,27 @@ const Item: FunctionComponent = () => {
       (product) => product.data.name === name
     )
 
-    // console.log(currentProduct)
-
     if (currentProduct) {
       setProductData(currentProduct)
     }
   }, [name, products])
 
   return (
-    <div>
+    <div className="min-h-screen py-12 pb-28">
+      <div className="my-4 overflow-hidden">
+        <OutlineMarquee text="shop" />
+      </div>
       {productData && (
-        <div
-          className="min-h-screen pt-28 body-gutter-sm lg:body-gutter-lg
-    xl:body-gutter-xl 2xl:body-gutter-2xl bg-purple"
-        >
-          <ItemBreadcrumbs product={productData} />
-          <ItemContent product={productData} />
-        </div>
+        <>
+          <div className="mb-4 lg:mb-10 lg:border lg:border-l-0 lg:border-r-0 border-dark-blue">
+            <ItemBar product={productData} />
+          </div>
+          <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl bg-purple">
+            <ItemContent product={productData} />
+          </div>
+          {/* <Suggested product={productData} /> */}
+        </>
       )}
-      {productData && <Suggested product={productData} />}{' '}
     </div>
   )
 }

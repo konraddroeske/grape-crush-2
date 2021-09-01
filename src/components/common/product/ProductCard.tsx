@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import BuyButton from '@components/common/BuyButton'
 import LearnMore from '@components/common/product/LearnMore'
 import ProductSubheading from '@components/common/product/ProductSubheading'
-import ProductTags from '@components/common/product/ProductTags'
+import Tags from '@components/common/product/Tags'
 
 import { ProductDataLowercase } from '@models/ambassador'
 
@@ -18,6 +18,7 @@ type Props = OwnProps
 
 const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
   const [price, setPrice] = useState<number | null>(null)
+  const [label, setLabel] = useState<string>('')
   const [url, setUrl] = useState<string | null>(null)
   // console.log(data)
   const {
@@ -36,8 +37,9 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
   useEffect(() => {
     const [variant] = variants
     if (variant) {
-      const { amount } = variant
+      const { amount, label: primaryLabel } = variant
       setPrice(amount / 100)
+      setLabel(primaryLabel)
     }
 
     const { imageUrl } = data
@@ -47,20 +49,28 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
     }
   }, [data, variants, price])
 
-  // console.log(tags)
+  // console.log('variants', variants)
 
   return (
-    <div className="border border-gray-lightest rounded-3xl p-4">
-      <div>{url && <img src={url} alt="" className="pb-6" />}</div>
+    <div className="p-4">
+      <div className="bg-blue-light py-2 mb-6 hover:bg-lime-background">
+        {url && <img src={url} alt="" className="mix-blend-multiply" />}
+      </div>
       <ProductTitle name={name} fontSize="text-xl" />
       <ProductSubheading region={region} vintage={vintage} />
-      <ProductTags country={country} varietal={varietal} style={style} />
-      <h5 className="text-lg font-bold my-2">${price}</h5>
-      <p className="text-sm line-clamp line-clamp-p leading-5">{description}</p>
-      <div className="flex justify-between items-center mt-4">
-        <LearnMore name={name} />
-        <BuyButton productId={id} />
+      <div>
+        <h5 className="text-xl text-center font-bold my-2">
+          ${price} / {label}
+        </h5>
       </div>
+      <div className="my-4">
+        <BuyButton productId={id} label={label} />
+      </div>
+      <p className="text-sm line-clamp line-clamp-p leading-5">{description}</p>
+      <div className="flex justify-between items-center my-2">
+        <LearnMore name={name} />
+      </div>
+      <Tags country={country} varietal={varietal} style={style} />
     </div>
   )
 }

@@ -93,19 +93,30 @@ const ProductsMenu: FunctionComponent = () => {
   }, [allTags, locale])
 
   const handleHeight = useCallback(() => {
-    if (window && menuRef?.current) {
+    if (window && menuRef?.current && containerRef?.current) {
       const windowHeight = window.innerHeight
-      const distanceToTop = menuRef.current.getBoundingClientRect().top
-      const pixels = remToPixels(4)
+      const menuDistanceToTop = menuRef.current.getBoundingClientRect().top
+      const containerDistanceTopTo =
+        containerRef.current.getBoundingClientRect().top
+      const pixels = remToPixels(5)
 
-      const height = windowHeight - distanceToTop
-      setMaxHeight(height)
+      const menuHeight = windowHeight - menuDistanceToTop
 
-      if (distanceToTop <= pixels && !isSticky) {
+      const menuBottomDistance = menuDistanceToTop + menuHeight
+      const containerBottomDistance =
+        containerDistanceTopTo + containerRef.current.offsetHeight
+
+      if (containerBottomDistance <= menuBottomDistance) {
+        setMaxHeight(windowHeight)
+      } else {
+        setMaxHeight(menuHeight)
+      }
+
+      if (menuDistanceToTop <= pixels && !isSticky) {
         setIsSticky(true)
       }
 
-      if (distanceToTop > pixels && isSticky) {
+      if (menuDistanceToTop > pixels && isSticky) {
         setIsSticky(false)
       }
     }
@@ -169,7 +180,7 @@ const ProductsMenu: FunctionComponent = () => {
         ref={menuRef}
         className={`${open ? 'fixed' : 'hidden'} 
         max-w-full max-h-screen pb-20 z-40 inset-0 right-0 bg-white lg:block 
-        ${isSticky ? 'lg:sticky lg:top-16' : 'lg:static'} lg:px-0 lg:z-20`}
+        ${isSticky ? 'lg:sticky lg:top-20' : 'lg:static'} lg:px-0 lg:z-20`}
       >
         <SimpleBarReact
           className="max-h-full pt-8 body-gutter-sm lg:w-64 lg:p-0 lg:pr-6"

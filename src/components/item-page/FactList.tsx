@@ -15,19 +15,20 @@ const FactList: FunctionComponent<Props> = ({ facts }) => {
       {facts.map((fact, index) => {
         const [pair] = Object.entries(fact)
         const borderStyle =
-          index === facts.length - 1 ? 'border-b border-t' : 'border-t'
+          index === facts.length - 1 ? 'border-b-2 border-t-2' : 'border-t-2'
         const [category, value] = pair
+
         if (Array.isArray(value)) {
           const [ele] = value
           return (
-            <li className={`${borderStyle} border-white`} key={category}>
+            <li className={`${borderStyle} border-lime`} key={category}>
               <Fact category={category} value={ele} />
             </li>
           )
         }
 
         return (
-          <li className={`${borderStyle} border-white`} key={category}>
+          <li className={`${borderStyle} border-lime`} key={category}>
             <Fact category={category} value={value} />
           </li>
         )

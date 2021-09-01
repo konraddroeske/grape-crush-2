@@ -9,7 +9,7 @@ import RippleOutline from '../../assets/svgs/ripple-outline.svg'
 const FooterNav: FunctionComponent = () => {
   return (
     <div
-      className="relative z-10 flex justify-between py-20 body-gutter-sm
+      className="relative z-10 flex flex-col sm:flex-row justify-between py-6 lg:py-20 body-gutter-sm
     md:flex-nowrap lg:body-gutter-lg xl:body-gutter-xl"
     >
       <FooterPageLink text="Shop">

@@ -23,34 +23,42 @@ const ItemBreadcrumbs: FunctionComponent<Props> = ({ product }) => {
     const href = `/products/?${newCategory}=${newTag}`
     router.push(href, href, { shallow: true })
   }
+
   return (
     <div className="flex flex-wrap text-xs leading-none">
-      <button
-        type="button"
-        className="mr-2 uppercase mb-2"
-        onClick={() => handleClick('type', type)}
-      >
-        {type}
-      </button>
+      <div className="flex h-8 lg:h-12 items-center mr-2">
+        <button
+          type="button"
+          className="leading-none uppercase text-xs lg:text-base text-blue-dark font-bold"
+          onClick={() => handleClick('type', type)}
+        >
+          {type}
+        </button>
+      </div>
       {category && (
-        <span className="flex items-center mr-2 mb-2">
-          <span className="mr-2 leading-none">{'>'}</span>
-          <button type="button" className="uppercase">
-            {category}
-          </button>
-        </span>
-      )}
-      {primaryVarietal && (
-        <span className="flex items-center mb-2">
-          <span className="mr-2">{'>'}</span>
+        <div className="flex h-8 lg:h-12 items-center">
+          <span className="leading-none uppercase mr-2 text-sm lg:text-base text-blue-dark font-bold">
+            {'>'}
+          </span>
           <button
             type="button"
-            className="uppercase"
+            className="uppercase mr-2 whitespace-nowrap text-sm lg:text-base text-blue-dark font-bold"
+          >
+            {category}
+          </button>
+        </div>
+      )}
+      {primaryVarietal && (
+        <div className="flex h-8 lg:h-12 items-center">
+          <span className="mr-2 text-base text-blue-dark font-bold">{'>'}</span>
+          <button
+            type="button"
+            className="uppercase mr-2 whitespace-nowrap text-sm lg:text-base text-blue-dark font-bold"
             onClick={() => handleClick('varietal', primaryVarietal)}
           >
             {primaryVarietal}
           </button>
-        </span>
+        </div>
       )}
     </div>
   )

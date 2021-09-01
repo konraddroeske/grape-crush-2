@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
+import OutlineMarquee from '@components/common/OutlineMarquee'
 import ProductsBar from '@components/products-page/products-bar/ProductsBar'
 import ProductsList from '@components/products-page/products-list/ProductsList'
 import ProductsMenu from '@components/products-page/products-menu/ProductsMenu'
@@ -11,7 +12,10 @@ import { wrapper } from '@redux/store'
 
 const Products: FunctionComponent = () => {
   return (
-    <div className="min-h-screen py-28">
+    <div className="min-h-screen py-12 pb-28">
+      <div className="my-4 overflow-hidden">
+        <OutlineMarquee text="shop" />
+      </div>
       <div className="mb-10 border border-l-0 border-r-0 border-dark-blue">
         <ProductsBar />
       </div>

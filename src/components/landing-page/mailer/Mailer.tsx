@@ -3,8 +3,8 @@ import React, { FunctionComponent } from 'react'
 const Mailer: FunctionComponent = () => {
   return (
     <div
-      className="flex flex-col justify-center w-full body-gutter-sm border
-    border-t border-b border-blue-dark"
+      className="flex flex-col justify-center w-full body-gutter-sm
+    border-t border-b border-blue-dark lg:border-0"
     >
       <h3 className="font-bold center text-blue-dark text-center text-3xl lg:text-4xl">
         Let's be friends

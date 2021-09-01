@@ -31,7 +31,7 @@ const FooterInfo: FunctionComponent = () => {
     <div className="relative z-30 bg-blue-dark xl:flex xl:overflow-hidden">
       <FooterLogo />
       <div
-        className="flex flex-wrap sm:py-6 lg:py-8 sm:body-gutter-sm
+        className="flex flex-wrap pt-4 sm:py-6 lg:py-8 sm:body-gutter-sm
         lg:body-gutter-lg xl:w-6/12 xl:items-center xl:pl-1/8 xl:pr-0 xl:pt-16"
       >
         <div
@@ -40,7 +40,7 @@ const FooterInfo: FunctionComponent = () => {
         >
           <FooterTitle>Help</FooterTitle>
           <ul
-            className="font-normal text-xs text-white text-center mt-1 leading-5
+            className="font-normal text-xs sm:text-sm text-white text-center mt-1 leading-5
           md:flex xl:block xl:text-left"
           >
             <FooterLink>Contact</FooterLink>
@@ -60,7 +60,7 @@ const FooterInfo: FunctionComponent = () => {
         >
           <FooterTitle>Legal Info</FooterTitle>
           <ul
-            className="font-normal text-xs text-white text-center mt-1 leading-5
+            className="font-normal text-xs sm:text-sm text-white text-center mt-1 leading-5
           md:flex xl:block xl:text-left"
           >
             {legalPages.map((page) => {
@@ -74,7 +74,7 @@ const FooterInfo: FunctionComponent = () => {
         </div>
         <div
           className="flex flex-grow justify-center py-8 md:py-0 md:justify-end
-          md:flex-grow-0 xl:py-0 xl:ml-1/2"
+          md:flex-grow-0 sm:pb-0 xl:py-0 xl:ml-1/2"
         >
           <LogoContainer>
             <IgLogo />

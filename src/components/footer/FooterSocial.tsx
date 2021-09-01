@@ -22,14 +22,14 @@ const FooterSocial: FunctionComponent = () => {
   }, [footer])
 
   return (
-    <div className="flex">
-      <div className="flex w-1/2">
+    <div className="flex flex-col lg:flex-row lg:border-t lg:border-b lg:border-blue-dark">
+      <div className="flex w-full h-60 sm:h-96 lg:w-1/2 lg:h-auto">
         <Mailer />
       </div>
-      <div className="relative w-1/2">
+      <div className="relative w-full flex h-60 sm:h-96 lg:w-1/2 lg:h-auto lg:max-h-70vh">
         <div
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2
-        -translate-y-1/2 font-bold text-3xl text-lime"
+        -translate-y-1/2 font-bold text-3xl text-lime xl:text-4xl 2xl:text-5xl"
         >
           <a href="https://instagram.com/grapecrush.wine">@grapecrush.wine</a>
         </div>
@@ -37,6 +37,7 @@ const FooterSocial: FunctionComponent = () => {
           <img
             src={image.file[locale].url}
             alt={image?.description?.[locale] || 'Wine racks'}
+            className="object-cover"
           />
         )}
       </div>

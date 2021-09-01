@@ -49,7 +49,7 @@ const NavBar: FunctionComponent = () => {
       <div className="relative flex h-16 justify-between items-center">
         <Hamburger />
         <Logo />
-        <DesktopMenu isDesktop={isDesktop} />
+        <DesktopMenu />
         <Cart />
       </div>
       {navOpen && !isDesktop && <MobileMenu />}

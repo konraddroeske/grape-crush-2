@@ -10,8 +10,8 @@ type Props = OwnProps
 const Fact: FunctionComponent<Props> = ({ category, value }) => {
   return (
     <div className="my-2">
-      <span className="capitalize font-bold text-lime">{category}: </span>
-      <span className="capitalize font-sans text-white">{value}</span>
+      <span className="font-bold text-blue-dark uppercase">{category}: </span>
+      <span className="text-sm text-blue-dark uppercase">{value}</span>
     </div>
   )
 }

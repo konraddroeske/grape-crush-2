@@ -7,7 +7,7 @@ import ProductsSort from '@components/products-page/products-bar/ProductsSort'
 
 const ProductsBar: FunctionComponent = () => {
   return (
-    <div className="flex body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+    <div className="flex h-12 body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
       <div className="flex items-center mr-auto">
         <ProductsBreadcrumbs />
       </div>
