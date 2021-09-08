@@ -11,7 +11,40 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Roboto', ...defaultTheme.fontFamily.sans],
-        headline: ['Stolzl', 'Arial'],
+        // headline: ['Stolzl', 'Arial'],
+        headline: ['Gopher', 'Serif'],
+      },
+    },
+    stroke: {
+      blue: '#2C148E',
+    },
+    backgroundColor: {
+      blue: {
+        dark: '#2C148E',
+        DEFAULT: '#4348E3',
+        light: 'rgba(44, 20, 142, 0.05)',
+      },
+      lime: {
+        // DEFAULT: 'rgba(216, 255, 108, 1.0)',
+        background: 'rgba(223,255,133,0.2)',
+        DEFAULT: '#DFFF85',
+        light: 'rgba(217, 255, 108, 0.5)',
+        lightest: '#F5FFDA',
+      },
+      // paleLime: {
+      //   DEFAULT:
+      // },
+      white: {
+        DEFAULT: '#FFFFFF',
+      },
+      transparent: {
+        DEFAULT: 'transparent',
+      },
+      gray: {
+        dark: '#414042',
+        DEFAULT: '#828282',
+        light: '#BDBDBD',
+        lightest: '#F1F2F2',
       },
     },
     colors: {
@@ -24,13 +57,18 @@ module.exports = {
         DEFAULT: '#000000',
       },
       blue: {
+        dark: '#2C148E',
         DEFAULT: '#4348E3',
       },
       purple: {
+        light: '#eee5fa',
         DEFAULT: '#C297EF',
       },
       lime: {
-        DEFAULT: '#D9FF6C',
+        // DEFAULT: 'rgba(216, 255, 108, 1.0)',
+        DEFAULT: '#DFFF85',
+        light: 'rgba(217, 255, 108, 0.5)',
+        lightest: '#F5FFDA',
       },
       orange: {
         DEFAULT: '#FF8657',
@@ -38,8 +76,25 @@ module.exports = {
       gray: {
         dark: '#414042',
         DEFAULT: '#828282',
-        light: '#F1F2F2',
+        light: '#BDBDBD',
+        lightest: '#F1F2F2',
       },
+    },
+    screens: {
+      sm: '640px',
+      // => @media (min-width: 640px) { ... }
+
+      md: '768px',
+      // => @media (min-width: 768px) { ... }
+
+      lg: '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      xl: '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
     },
   },
   variants: {

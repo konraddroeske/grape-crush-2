@@ -42,7 +42,7 @@ export interface IHeroSlideFields {
   link?: string | undefined
 }
 
-/** Grape Crush 2.0 Hero Slideshow */
+/** Grape Crush 2.0 FeaturesSlideshow Slideshow */
 
 export interface IHeroSlide extends Entry<IHeroSlideFields> {
   sys: {

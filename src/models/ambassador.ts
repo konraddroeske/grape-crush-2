@@ -11,11 +11,20 @@ export interface Variants {
   tags: string[]
 }
 
+export type ProductCategories =
+  | 'category'
+  | 'country'
+  | 'style'
+  | 'varietal'
+  | 'type'
+  | 'range'
+
 export interface ProductData {
   Country: string[]
   Style: string[]
   Type: string[]
   Varietal: string[]
+  range: string[]
   // eslint-disable-next-line camelcase
   Varietal_Text: string
   addons: Addons
@@ -28,7 +37,30 @@ export interface ProductData {
   subtype: string
   tags: string[]
   taxable: boolean
-  variants: Variants
+  variants: Variants[]
+  vintage: string
+  winery: string
+}
+
+export interface ProductDataLowercase {
+  country: string[]
+  style: string[]
+  type: string[]
+  varietal: string[]
+  range: string[]
+  // eslint-disable-next-line camelcase
+  Varietal_Text: string
+  addons: Addons
+  bottleSize: string
+  category: string
+  description: string
+  imageUrl: string[]
+  name: string
+  region: string
+  subtype: string
+  tags: string[]
+  taxable: boolean
+  variants: Variants[]
   vintage: string
   winery: string
 }
@@ -41,9 +73,23 @@ export interface Product {
   _id: string
 }
 
+export interface ProductLowercase {
+  data: ProductDataLowercase
+  link: string
+  productTypeId: string
+  type: string
+  _id: string
+}
+
+export interface Category {
+  id: string
+  label: string
+  tags: string[]
+}
+
 export interface Shop {
   baseTags: string[]
-  categories: { id: string; label: string; tags: string[] }[]
+  categories: Category[]
   filterTags: string[]
   headerImg: string | null
   id: string
@@ -57,6 +103,27 @@ export interface Shops {
   shops: Shop[]
 }
 
-export interface AmbassadorResponse {
+export interface IgImage {
+  id: string
+  caption: string
+  // eslint-disable-next-line camelcase
+  media_type: string
+  // eslint-disable-next-line camelcase
+  media_url: string
+  owner: { id: string }
+  permalink: string
+  timestamp: string
+}
+
+export interface IgMedia {
+  pageId: string
+  media: IgImage[]
+}
+
+export interface AmbassadorIg {
+  data: IgMedia[]
+}
+
+export interface AmbassadorShops {
   data: Shops
 }

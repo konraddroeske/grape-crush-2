@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import type { HeroSlides } from '@models/hero'
+import { CmsAssets } from '@lib/cms'
 import type { AppState } from '@redux/store'
 
 // export const handleHeroSlides = (heroSlides: HeroSlides[]): AppThunk => {
@@ -20,10 +20,11 @@ interface Theme {
   buttonText: string
   background: string
   duration: number
+  arrows: string
 }
 
 interface HeroSlice {
-  heroSlides: HeroSlides[]
+  heroSlides: CmsAssets[]
   themes: Theme[]
   currentTheme: Theme
 }
@@ -38,6 +39,7 @@ const initialState = {
       buttonText: 'white',
       background: '#c297ef',
       duration: 0.7,
+      arrows: '#d9ff6c',
     },
     {
       nav: 'white',
@@ -46,6 +48,7 @@ const initialState = {
       buttonText: 'white',
       background: '#4348e3',
       duration: 0.7,
+      arrows: '#d9ff6c',
     },
     {
       nav: '#414042',
@@ -54,6 +57,7 @@ const initialState = {
       buttonText: 'white',
       background: '#FF8657',
       duration: 0.7,
+      arrows: 'white',
     },
     {
       nav: '#414042',
@@ -62,15 +66,17 @@ const initialState = {
       buttonText: '#414042',
       background: '#f1f2f2',
       duration: 0.7,
+      arrows: '#414042',
     },
   ],
   currentTheme: {
-    nav: '#414042',
+    nav: '#2C148E',
     title: '#d9ff6c',
     buttonBorder: '#d9ff6c',
     buttonText: 'white',
     background: '#c297ef',
     duration: 0.7,
+    arrows: '#d9ff6c',
   },
 } as HeroSlice
 

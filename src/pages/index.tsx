@@ -1,31 +1,23 @@
 import React, { FunctionComponent } from 'react'
 
 import Head from 'next/head'
-import { useSelector } from 'react-redux'
 
-import Hero from '@components/hero/Hero'
-import agent from '@lib/agent'
-import { getHeroEntries, getImage } from '@lib/cms'
-import { AmbassadorResponse } from '@models/ambassador'
-import { HeroSlides } from '@models/hero'
+import Description from '@components/landing-page/description/Description'
+import FeaturesSlideshow from '@components/landing-page/features/FeaturesSlideshow'
+import NewHero from '@components/landing-page/hero/NewHero'
+import NewInfoBox1 from '@components/landing-page/info-boxes/info-box-1/NewInfoBox1'
+import NewInfoBox3 from '@components/landing-page/info-boxes/info-box-3/NewInfoBox3'
+import NewShopByType from '@components/landing-page/shop-by-type/ShopByType'
+import fetchGlobalData from '@lib/fetchGlobalData'
+import fetchIndexData from '@lib/fetchIndexData'
+import { setFooter, setLocale, setNav, setPages } from '@redux/globalSlice'
 import { setHeroSlides } from '@redux/heroSlice'
-import { selectProducts, setNewArrivals } from '@redux/productsSlice'
+import { setInfoBoxes, setNewArrivals } from '@redux/indexSlice'
+import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
-interface OwnProps {
-  heroSlides: HeroSlides[]
-}
-
-type Props = OwnProps
-
-const Home: FunctionComponent<Props> = () => {
-  const { newArrivals } = useSelector(selectProducts())
-
-  // console.log('index', newArrivals)
-
-  if (!newArrivals) {
-    return <div>No content in store.</div>
-  }
+const Home: FunctionComponent = () => {
+  // const { newArrivals } = useSelector(selectIndex())
 
   return (
     <div>
@@ -41,37 +33,47 @@ const Home: FunctionComponent<Props> = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen">
-        <Hero />
+      <main id="main" className="min-h-screen overflow-hidden">
+        <NewHero />
+        <Description />
+        <NewShopByType />
+        <FeaturesSlideshow />
+        <NewInfoBox3 />
+        <NewInfoBox1 />
       </main>
     </div>
   )
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const locale = 'en-US'
-  const { items } = await getHeroEntries()
+  // const { locale: defaultLocale = 'en-US' } = ctx
 
-  const heroSlides = await Promise.all(
-    items.map(async (slide) => {
-      const title = slide.fields.title[locale]
-      const imageId = slide.fields.image[locale].sys.id
-      const { fields } = await getImage(imageId)
+  const {
+    products,
+    locale,
+    pageAssets,
+    // igImages,
+    categoryAssets,
+    categories,
+    footerAssets,
+    navAssets,
+  } = await fetchGlobalData()
 
-      return {
-        title,
-        image: fields,
-      }
-    })
-  )
+  const { heroAssets, newArrivals, infoBoxAssets } = await fetchIndexData()
 
-  const { data: newArrivals }: AmbassadorResponse =
-    await agent.ambassador.filterByKey('Type', 'new!')
+  // Global
+  store.dispatch(setAllTags(products))
+  store.dispatch(setLocale(locale))
+  store.dispatch(setPages(pageAssets))
+  store.dispatch(setCategories({ categories, categoryAssets, locale }))
+  // store.dispatch(setIgImages(igImages))
+  store.dispatch(setFooter(footerAssets))
+  store.dispatch(setNav(navAssets))
 
-  // console.log('ambassador response', newArrivals)
-
-  store.dispatch(setHeroSlides(heroSlides))
+  // Index
+  store.dispatch(setHeroSlides(heroAssets))
   store.dispatch(setNewArrivals(newArrivals))
+  store.dispatch(setInfoBoxes(infoBoxAssets))
 
   return {
     props: {},

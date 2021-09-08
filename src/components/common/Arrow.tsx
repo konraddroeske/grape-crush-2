@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react'
 
 import { Direction } from '@models/hero'
 
-import LeftArrow from '../../assets/svgs/left-arrow.svg'
-import RightArrow from '../../assets/svgs/right-arrow.svg'
+import LeftArrow from '../../assets/svgs/fat-arrow-left.svg'
+import RightArrow from '../../assets/svgs/fat-arrow-right.svg'
 
 interface OwnProps {
   direction: Direction
@@ -15,13 +15,13 @@ const Arrow: FunctionComponent<Props> = ({ direction }) => {
   return (
     <>
       {direction === Direction.Left && (
-        <div className="w-8">
-          <LeftArrow />
+        <div className="w-12 sm:w-20 lg:w-28 xl:w-32">
+          <LeftArrow className="svg-hero-arrow" />
         </div>
       )}
       {direction === Direction.Right && (
-        <div className="w-8">
-          <RightArrow />
+        <div className="w-12 sm:w-20 lg:w-28 xl:w-32">
+          <RightArrow className="svg-hero-arrow" />
         </div>
       )}
     </>
