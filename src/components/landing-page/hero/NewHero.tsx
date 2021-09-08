@@ -1,85 +1,37 @@
-import React, {
-  FunctionComponent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { FunctionComponent } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import DesktopSpinner from '@components/landing-page/hero/DesktopSpinner'
+import HeroMarquee from '@components/landing-page/hero/HeroMarquee'
 import HeroTitle from '@components/landing-page/hero/HeroTitle'
-import SpinningStar from '@components/landing-page/hero/SpinningStar'
-import { remToPixels } from '@lib/remToPixels'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectHero } from '@redux/heroSlice'
-
-import NewLogo from '../../../assets/svgs/new-logo.svg'
 
 const NewHero: FunctionComponent = () => {
   const { heroSlides } = useSelector(selectHero())
   const { locale } = useSelector(selectGlobal())
   const [firstSlide] = heroSlides
 
-  const [isSticky, setIsSticky] = useState<boolean>(false)
-  const logoRef = useRef<HTMLDivElement | null>(null)
-
-  const handleHeight = useCallback(() => {
-    if (window && logoRef?.current) {
-      const distanceToTop = logoRef.current.getBoundingClientRect().top
-      const pixels = remToPixels(2)
-      // console.log('distance to top', distanceToTop, pixels)
-
-      if (distanceToTop <= pixels && !isSticky) {
-        setIsSticky(true)
-      }
-
-      if (distanceToTop > pixels && isSticky) {
-        setIsSticky(false)
-      }
-    }
-  }, [isSticky])
-
-  useEffect(() => {
-    if (window) {
-      // handleHeight()
-      window.addEventListener('scroll', handleHeight)
-    }
-
-    return () => {
-      window.removeEventListener('scroll', handleHeight)
-    }
-  }, [handleHeight])
-
   return (
-    <section className="">
-      <div className="p-16 h-screen relative flex">
+    <section className="relative">
+      <div className="py-16 h-screen relative flex body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
         <img
           className="block w-full my-0 mx-auto object-cover"
           src={firstSlide?.image?.file[locale].url}
           alt="label"
         />
-        <div className="absolute top-10 left-10 right-0">
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-y-1/2
+        -translate-x-1/2 lg:top-10 lg:left-10 lg:right-0 lg:translate-y-0 lg:translate-x-0"
+        >
           <HeroTitle />
         </div>
-        <div ref={logoRef} className="absolute left-16 bottom-24">
-          <div className={`${isSticky ? 'fixed top-8' : 'relative'} z-10`}>
-            <div
-              className={`${
-                isSticky ? 'w-36' : 'w-44'
-              } absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-              transition-all`}
-            >
-              <SpinningStar />
-            </div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <NewLogo
-                className={`${isSticky ? 'w-20' : 'w-24'} transition-all`}
-              />
-            </div>
-          </div>
+        <div className="block lg:hidden absolute left-10 bottom-20 transform translate-y-2 -translate-x-2">
+          <HeroMarquee />
         </div>
       </div>
+      <DesktopSpinner />
     </section>
   )
 }

@@ -1,7 +1,14 @@
-import React, { FunctionComponent, useCallback, useEffect, useRef } from 'react'
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import gsap from 'gsap'
 import { useInView } from 'react-intersection-observer'
+import { useMediaQuery } from 'react-responsive'
 import { v4 as uuid } from 'uuid'
 
 interface Props {
@@ -13,15 +20,16 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   text,
   direction = '+=',
 }) => {
+  const isDesktopXl = useMediaQuery({ query: '(min-width: 1280px)' })
   const { ref, inView } = useInView({
     threshold: 0,
   })
+  const [textArr, setTextArr] = useState<string[][] | null>(null)
 
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLUListElement>(null)
   const textRefs = useRef<(HTMLSpanElement | null)[]>([])
   const animation = useRef<gsap.core.Timeline | null>(null)
   const count = 8
-  const textArr = Array(count).fill(text)
 
   const initAnimation = useCallback(() => {
     const [textElement] = textRefs.current
@@ -32,13 +40,13 @@ const OutlineMarquee: FunctionComponent<Props> = ({
 
     const { width, height } = dimensions
 
+    gsap.set(textRefs.current, {
+      x: (i) => i * width,
+    })
+
     gsap.set(containerRef.current, {
       x: -width,
       height,
-    })
-
-    gsap.set(textRefs.current, {
-      x: (i) => i * width,
     })
 
     const totalWidth = width * count
@@ -59,24 +67,32 @@ const OutlineMarquee: FunctionComponent<Props> = ({
 
   const updateAnimation = useCallback(() => {
     if (animation.current) {
-      animation.current.pause()
+      animation.current.pause(0)
+      animation.current.kill()
       initAnimation()
     }
   }, [initAnimation])
 
   useEffect(() => {
-    if (window && textRefs.current.length > 0) {
-      initAnimation()
-      window.addEventListener('resize', updateAnimation)
+    if (!textArr) {
+      const filledArr = Array(count)
+        .fill(null)
+        .map(() => [uuid(), text])
+      setTextArr(filledArr)
     }
-
-    return () => {
-      window.removeEventListener('resize', updateAnimation)
-    }
-  })
+  }, [text, textArr])
 
   useEffect(() => {
-    // console.log('marquee in view', inView)
+    if (window && textArr && textRefs.current.length > 0) {
+      initAnimation()
+    }
+  }, [initAnimation, textArr])
+
+  useEffect(() => {
+    updateAnimation()
+  }, [isDesktopXl, updateAnimation])
+
+  useEffect(() => {
     if (!inView && animation.current) {
       animation.current.pause()
     }
@@ -87,23 +103,24 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   }, [inView])
 
   return (
-    <div ref={ref} className="pointer-events-none">
-      <div ref={containerRef} className="relative h-40 w-full">
-        {textArr.map((ele, index) => {
-          return (
-            <div
-              key={uuid()}
-              className="uppercase text-7xl xl:text-8xl italic absolute px-2 font-bold
+    <div ref={ref} className="">
+      <ul ref={containerRef} className="relative h-40 w-full">
+        {textArr &&
+          textArr.map(([key, ele], index) => {
+            return (
+              <li
+                key={key}
+                className="uppercase text-7xl xl:text-8xl italic absolute px-2 font-bold
               text-transparent text-stroke-blue whitespace-nowrap"
-              ref={(el) => {
-                textRefs.current[index] = el
-              }}
-            >
-              {ele}
-            </div>
-          )
-        })}
-      </div>
+                ref={(el) => {
+                  textRefs.current[index] = el
+                }}
+              >
+                {ele}
+              </li>
+            )
+          })}
+      </ul>
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
-import { v4 as uuid } from 'uuid'
 
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import ShadowButton from '@components/common/ShadowButton'
@@ -17,7 +16,6 @@ import {
   setPages,
 } from '@redux/globalSlice'
 import { setAllTags, setCategories } from '@redux/productsSlice'
-import { setIgImages } from '@redux/socialSlice'
 import { wrapper } from '@redux/store'
 
 const Faq: FunctionComponent = () => {
@@ -53,7 +51,7 @@ const Faq: FunctionComponent = () => {
               const { question, answer, anchor } = item
               return (
                 <li
-                  key={uuid()}
+                  key={anchor[locale]}
                   id={anchor[locale]}
                   className="py-6 border-b-4 border-lime last:border-b-0"
                 >
@@ -81,7 +79,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     products,
     locale,
     pageAssets,
-    igImages,
+    // igImages,
     categoryAssets,
     categories,
     footerAssets,
@@ -96,7 +94,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories({ categories, categoryAssets, locale }))
-  store.dispatch(setIgImages(igImages))
+  // store.dispatch(setIgImages(igImages))
   store.dispatch(setFooter(footerAssets))
   store.dispatch(setNav(navAssets))
 

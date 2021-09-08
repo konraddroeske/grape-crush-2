@@ -17,14 +17,10 @@ import { Direction } from '@models/hero'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectHero } from '@redux/heroSlice'
 
-// export type CircleDirection = 'clockwise' | 'counter'
-
 const FeaturesSlideshow: FunctionComponent = () => {
-  // const dispatch = useDispatch()
   const { heroSlides: slides } = useSelector(selectHero())
   const { locale } = useSelector(selectGlobal())
   const [circleDirection, setCircleDirection] = useState<Direction>(-1)
-  // const { background: bgColor, title: titleColor, duration } = currentTheme
 
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
@@ -91,34 +87,8 @@ const FeaturesSlideshow: FunctionComponent = () => {
   }, [])
 
   const snapX = (x: number) => {
-    // console.log('snap position', x)
     return Math.round(x / itemWidth.current) * itemWidth.current
   }
-
-  // const setSlide = useCallback(
-  //   (snap: number) => {
-  //     const totalSlides = snap / itemWidth.current
-  //
-  //     const getCurrentSlide = (numSlides: number): number => {
-  //       if (numSlides === 0 || numSlides % slides.length === 0) {
-  //         return 0
-  //       }
-  //       if (numSlides < 0) {
-  //         return Math.abs(numSlides) % slides.length
-  //       }
-  //       return slides.length - (numSlides % slides.length)
-  //     }
-  //
-  //     const setSlideState = (newSlide: number) => {
-  //       dispatch(setCurrentTheme(newSlide))
-  //     }
-  //
-  //     const slide = getCurrentSlide(totalSlides)
-  //
-  //     setSlideState(slide)
-  //   },
-  //   [dispatch, slides.length]
-  // )
 
   const animateSlides = useCallback(
     (direction: Direction) => {
@@ -136,8 +106,6 @@ const FeaturesSlideshow: FunctionComponent = () => {
         Number(gsap.getProperty(proxy.current, 'x')) +
           direction * itemWidth.current
       )
-
-      // setSlide(xVal)
 
       slideAnimation.current = gsap.to(proxy.current, {
         duration: slideDuration.current,
@@ -293,7 +261,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
   }, [handleResize])
 
   const bg = useRef<HTMLDivElement>(null)
-  const headings = useRef<(HTMLHeadingElement | null)[]>([])
+  const headings = useRef<(HTMLButtonElement | null)[]>([])
 
   return (
     <>
@@ -313,27 +281,31 @@ const FeaturesSlideshow: FunctionComponent = () => {
                     className="absolute w-full sm:w-2/3 top-0 right-0 sm:right-1/6"
                   >
                     <div className="w-full">
-                      <div className="my-0 px-6 sm:px-6 md:px-8 lg:px-10 xl:px-12 mx-auto max-h-hero flex">
+                      <div
+                        className="my-0 min-h-80 body-gutter-sm lg:body-gutter-lg
+                      xl:body-gutter-xl 2xl:body-gutter-2xl mx-auto max-h-hero flex"
+                      >
                         <img
                           className="block w-full my-0 mx-auto object-cover"
-                          src={slide.image.file[locale].url}
+                          src={slide?.image?.file[locale].url}
                           alt="label"
                           onLoad={() => handleImageLoad()}
                         />
                       </div>
                       <div
                         ref={(el) => titles.current.push(el)}
-                        className="absolute left-1/2 top-full px-1/10 transform
-                        -translate-x-1/2 -translate-y-5 md:-translate-y-8 lg:px-1/8
-                        xl:-translate-y-12 w-full"
+                        className="absolute left-1/2 top-full transform flex justify-center
+                        -translate-x-1/2 -translate-y-5 md:-translate-y-8 w-full
+                        body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl"
                       >
-                        <h2
+                        <button
+                          type="button"
                           ref={(el) => headings.current.push(el)}
-                          className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-8xl text-center
+                          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl 3xl:text-9xl text-center
                           whitespace-normal uppercase font-bold text-blue-dark"
                         >
                           {slide.title[locale]}
-                        </h2>
+                        </button>
                       </div>
                     </div>
                   </li>
@@ -344,7 +316,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
                 <SpinningCircle direction={circleDirection} />
               </div>
             </div>
-            {/* <div className="flex justify-center"> */}
+            {/* <div className="flex justify-center md:hidden"> */}
             {/*  <ShadowButton text="Explore" /> */}
             {/* </div> */}
           </div>

@@ -8,7 +8,7 @@ const DesktopMenu: FunctionComponent = () => {
   // const { navOpen } = useSelector(selectGlobal())
 
   return (
-    <div className="hidden ml-auto mr-8 lg:flex">
+    <div className="hidden ml-auto mr-6 lg:flex">
       <div className="flex items-center">
         <MenuButtonDesktop>Shop</MenuButtonDesktop>
         <DesktopCategories />

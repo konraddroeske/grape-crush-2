@@ -7,14 +7,13 @@ import FeaturesSlideshow from '@components/landing-page/features/FeaturesSlidesh
 import NewHero from '@components/landing-page/hero/NewHero'
 import NewInfoBox1 from '@components/landing-page/info-boxes/info-box-1/NewInfoBox1'
 import NewInfoBox3 from '@components/landing-page/info-boxes/info-box-3/NewInfoBox3'
-import NewShopByType from '@components/landing-page/shop-by-type/NewShopByType'
+import NewShopByType from '@components/landing-page/shop-by-type/ShopByType'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchIndexData from '@lib/fetchIndexData'
 import { setFooter, setLocale, setNav, setPages } from '@redux/globalSlice'
 import { setHeroSlides } from '@redux/heroSlice'
 import { setInfoBoxes, setNewArrivals } from '@redux/indexSlice'
 import { setAllTags, setCategories } from '@redux/productsSlice'
-import { setIgImages } from '@redux/socialSlice'
 import { wrapper } from '@redux/store'
 
 const Home: FunctionComponent = () => {
@@ -34,7 +33,7 @@ const Home: FunctionComponent = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen overflow-hidden">
+      <main id="main" className="min-h-screen overflow-hidden">
         <NewHero />
         <Description />
         <NewShopByType />
@@ -53,7 +52,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     products,
     locale,
     pageAssets,
-    igImages,
+    // igImages,
     categoryAssets,
     categories,
     footerAssets,
@@ -67,7 +66,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories({ categories, categoryAssets, locale }))
-  store.dispatch(setIgImages(igImages))
+  // store.dispatch(setIgImages(igImages))
   store.dispatch(setFooter(footerAssets))
   store.dispatch(setNav(navAssets))
 

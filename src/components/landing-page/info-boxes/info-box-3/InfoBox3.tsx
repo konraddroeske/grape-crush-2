@@ -36,8 +36,8 @@ const InfoBox3: FunctionComponent = () => {
         <div className="flex sm:min-h-96">
           <img
             className="object-cover w-full"
-            src={image.file[locale].url}
-            alt={image.description ? image.description[locale] : 'wine'}
+            src={image?.file[locale].url}
+            alt={image?.description ? image.description[locale] : 'wine'}
           />
         </div>
       </div>

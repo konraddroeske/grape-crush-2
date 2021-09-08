@@ -16,19 +16,21 @@ const NewInfoBox1: FunctionComponent = () => {
 
   const { title, description, image } = infoBox1
   return (
-    <section className="sm:flex my-24 body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl">
-      <div className="flex items-center w-1/2">
-        <div className="pr-24 md:pr-18 lg:pr-16 xl:pr-16">
+    <section className="flex flex-col-reverse sm:flex-row sm:flex my-24 body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl">
+      <div className="flex items-center w-full sm:w-1/2 pt-4 sm:pt-0">
+        <div className="sm:pr-16 xl:pr-20">
           <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
           <InfoBoxText>{description[locale]}</InfoBoxText>
-          <ShadowButton text="Shop" />
+          <div className="flex justify-center sm:mt-0 sm:justify-start">
+            <ShadowButton text="Shop" />
+          </div>
         </div>
       </div>
-      <div className="w-1/2">
+      <div className="w-full sm:w-1/2 sm:flex sm:max-h-70vh">
         <img
-          className="w-full"
-          src={image.file[locale].url}
-          alt={image.description ? image.description[locale] : 'wine'}
+          className="w-full object-contain"
+          src={image?.file[locale].url}
+          alt={image?.description ? image.description[locale] : 'wine'}
         />
       </div>
     </section>

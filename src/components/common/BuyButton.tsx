@@ -5,7 +5,7 @@ import Plus from '../../assets/svgs/plus.svg'
 
 interface OwnProps {
   productId: string
-  label: string
+  // label: string
 }
 
 type Props = OwnProps

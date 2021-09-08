@@ -1,10 +1,8 @@
 import React, { FunctionComponent, useState } from 'react'
 
-import Categories from '@components/common/Categories'
-import RoundedButton from '@components/common/RoundedButton'
-
 import MenuButtonMobile from '@components/nav-bar/MenuButtonMobile'
 import MenuLink from '@components/nav-bar/MenuLink'
+import NavCategories from '@components/nav-bar/NavCategories'
 import NavSearch from '@components/nav-bar/NavSearch'
 
 const MobileMenu: FunctionComponent = () => {
@@ -15,17 +13,17 @@ const MobileMenu: FunctionComponent = () => {
   }
 
   return (
-    <div className="flex flex-col py-8 nav-gutter-sm overflow-auto lg:hidden">
+    <div className="flex flex-col py-8 lg:hidden">
       <div className="mb-2">
         <MenuButtonMobile handleOpen={handleOpen} open={open}>
           Shop
         </MenuButtonMobile>
-        {open && <Categories />}
+        {open && <NavCategories />}
         <MenuLink variant="mobile">About Us</MenuLink>
         <MenuLink variant="mobile">Visit Us</MenuLink>
         <MenuLink variant="mobile">FAQ</MenuLink>
       </div>
-      <RoundedButton variant="full">Shop All Wines</RoundedButton>
+      {/* <RoundedButton variant="full">Shop All Wines</RoundedButton> */}
       <NavSearch variant="mobile" />
     </div>
   )

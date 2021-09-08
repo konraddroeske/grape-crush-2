@@ -23,26 +23,26 @@ const NewInfoBox3: FunctionComponent = () => {
       className="relative sm:flex my-24 body-gutter-sm lg:body-gutter-lg
     xl:body-gutter-xl"
     >
-      <div className="relative w-1/2">
-        <div className="flex sm:min-h-96">
-          <img
-            className="object-cover w-full"
-            src={image.file[locale].url}
-            alt={image.description ? image.description[locale] : 'wine'}
-          />
-        </div>
+      <div className="relative w-full sm:flex sm:max-h-70vh lg:w-1/2">
+        <img
+          className="w-full object-cover"
+          src={image?.file[locale].url}
+          alt={image?.description ? image.description[locale] : 'wine'}
+        />
       </div>
-      <div className="relative z-10 flex items-center w-1/2">
-        <div className="pl-24 md:pl-18 lg:pl-16 xl:pl-16">
+      <div className="relative z-10 flex items-center w-full lg:w-1/2">
+        <div className="relative z-10 pt-4 sm:pt-0 sm:pl-16 xl:pl-20">
           <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
           <InfoBoxText>{description[locale]} </InfoBoxText>
-          <ShadowButton text="Details" />
+          <div className="flex justify-center sm:mt-0 sm:justify-start">
+            <ShadowButton text="Details" />
+          </div>
         </div>
+        <StarOutline
+          className="absolute top-0 left-1/2 w-full max-w-xs sm:max-w-none sm:top-1/2
+          sm:left-auto transform -translate-x-1/2 -translate-y-1/2"
+        />
       </div>
-      <StarOutline
-        className="absolute w-2/5 top-1/2 left-1/2 transform
-      -translate-x-1/2 -translate-y-1/2"
-      />
     </section>
   )
 }

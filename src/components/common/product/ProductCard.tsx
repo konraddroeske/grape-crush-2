@@ -64,7 +64,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
         </h5>
       </div>
       <div className="my-4">
-        <BuyButton productId={id} label={label} />
+        <BuyButton productId={id} />
       </div>
       <p className="text-sm line-clamp line-clamp-p leading-5">{description}</p>
       <div className="flex justify-between items-center my-2">

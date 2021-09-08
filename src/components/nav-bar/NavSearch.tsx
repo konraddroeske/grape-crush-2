@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from 'react'
 
-import Search from '../../assets/svgs/search.svg'
-
 interface Props {
   variant: 'mobile' | 'desktop'
 }
@@ -13,21 +11,23 @@ const NavSearch: FunctionComponent<Props> = ({ variant }) => {
   }
 
   return (
-    <div className={`flex ${variants[variant]} w-full mx-auto h-9`}>
+    <div
+      className={`flex ${variants[variant]} w-full max-w-md lg:max-w-none lg:mx-auto shadow-lime`}
+    >
       <input
         type="text"
         placeholder="Search"
-        className="border border-gray-light flex-grow min-w-0 bg-transparent
-            rounded-l-full placeholder-gray-dark text-xs pl-4 pr-2 py-2
+        className="border border-lime flex-grow min-w-0 bg-transparent
+            placeholder-gray-light text-white italic uppercase text-xs pl-4 pr-2 py-2
             border-r-transparent"
       />
       <button
         type="submit"
-        className="relative flex justify-center items-center flex-none border bg-blue
-        border-gray-light rounded-r-full w-16 text-lime uppercase font-bold text-xs
-        border-l-transparent sm:w-32"
+        className="relative form-divider flex justify-center items-center border
+        border-lime text-white uppercase font-bold text-base py-2 px-4 lg:px-6 text-base
+        border-l-transparent"
       >
-        <Search className="w-6" />
+        Search
       </button>
     </div>
   )

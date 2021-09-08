@@ -25,7 +25,7 @@ const Logo: FunctionComponent = () => {
   return (
     <div
       className={`${
-        router.pathname !== '/' ? 'opacity-1' : 'opacity-0'
+        router.pathname !== '/' ? 'block' : 'hidden'
       } font-sans w-24 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
     lg:static lg:inset-auto lg:translate-x-0 lg:translate-y-0`}
     >

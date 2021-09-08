@@ -22,8 +22,8 @@ const InfoBox2: FunctionComponent = () => {
     >
       <div className="body-gutter-sm sm:px-0 sm:w-3/5">
         <img
-          src={image.file[locale].url}
-          alt={image.description ? image.description[locale] : 'wine'}
+          src={image?.file[locale].url}
+          alt={image?.description ? image.description[locale] : 'wine'}
         />
       </div>
       <div className="relative pt-6 bg-white sm:pt-0 sm:flex sm:w-2/5 sm:items-center">

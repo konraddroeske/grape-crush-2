@@ -35,8 +35,8 @@ const InfoBox1: FunctionComponent = () => {
         <div className="flex sm:min-h-96">
           <img
             className="object-cover w-full"
-            src={image.file[locale].url}
-            alt={image.description ? image.description[locale] : 'wine'}
+            src={image?.file[locale].url}
+            alt={image?.description ? image.description[locale] : 'wine'}
           />
           <Sticker className="absolute top-1/10 right-1/20 w-1/3 sm:top-1/20" />
         </div>

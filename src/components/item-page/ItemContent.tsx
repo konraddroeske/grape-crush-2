@@ -143,7 +143,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
                 <span className="text-xl">${price}</span>{' '}
                 <span className="text-sm"> / per {label}</span>
               </div>
-              <BuyButton productId={id} label={label} />
+              <BuyButton productId={id} />
             </div>
           )}
         </div>

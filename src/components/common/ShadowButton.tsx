@@ -19,7 +19,7 @@ const ShadowButton: FunctionComponent<Props> = ({
   return (
     <button
       type="button"
-      className={`${variants[variant]} text-md font-bold uppercase py-2 px-6 border`}
+      className={`${variants[variant]} text-base font-bold uppercase py-2 px-6 border`}
     >
       {text}
     </button>

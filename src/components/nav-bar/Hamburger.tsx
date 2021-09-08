@@ -19,7 +19,7 @@ const Hamburger: FunctionComponent = () => {
   useEffect(() => {
     gsap.to([topBar.current, midBar.current, lowBar.current], {
       duration,
-      backgroundColor: navOpen ? '#414042' : nav,
+      backgroundColor: navOpen ? '#FFFFFF' : nav,
     })
   }, [nav, navOpen, duration])
 

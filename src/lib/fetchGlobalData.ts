@@ -2,7 +2,6 @@ import { addPriceRange } from '@lib/addPriceRange'
 import ambassador from '@lib/ambassador'
 import { getAssets, getEntries } from '@lib/cms'
 import { renameKeys } from '@lib/renameKeys'
-import { AmbassadorIg } from '@models/ambassador'
 
 export default async function fetchGlobalData() {
   const locale = 'en-US'
@@ -17,7 +16,7 @@ export default async function fetchGlobalData() {
       groupedEntries.map((entries) => getAssets(entries, locale))
     )
 
-  const { data: igImages }: AmbassadorIg = await ambassador.api.getSocial()
+  // const { data: igImages }: AmbassadorIg = await ambassador.api.getSocial()
 
   const { data: allShops } = await ambassador.api.allShops()
 
@@ -34,7 +33,7 @@ export default async function fetchGlobalData() {
     categoryAssets,
     footerAssets,
     categories,
-    igImages,
+    // igImages,
     navAssets,
     products: productsWithNewKeys,
   }

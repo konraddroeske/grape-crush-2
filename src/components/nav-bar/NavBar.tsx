@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useMediaQuery } from 'react-responsive'
 
 import Logo from '@components/common/Logo'
+import MobileSpinner from '@components/landing-page/hero/MobileSpinner'
 import Cart from '@components/nav-bar/Cart'
 import DesktopMenu from '@components/nav-bar/DesktopMenu'
 import Hamburger from '@components/nav-bar/Hamburger'
@@ -20,19 +21,21 @@ const NavBar: FunctionComponent = () => {
   const navRef = useRef<null | HTMLElement>(null)
 
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
+  const mobileNavOpen = navOpen && !isDesktop
 
   useEffect(() => {
     gsap.set(navRef.current, {
-      backgroundColor: navOpen && !isDesktop ? 'white' : 'transparent',
-      bottom: navOpen && !isDesktop ? 0 : 'auto',
+      backgroundColor: mobileNavOpen ? '#2C148E' : 'transparent',
+      bottom: mobileNavOpen ? 0 : 'auto',
+      overflowX: mobileNavOpen ? 'hidden' : 'auto',
     })
 
-    if (navOpen && !isDesktop && navRef.current) {
+    if (mobileNavOpen && navRef.current) {
       disableBodyScroll(navRef.current)
     } else {
       clearAllBodyScrollLocks()
     }
-  }, [navOpen, isDesktop])
+  }, [mobileNavOpen])
 
   useEffect(() => {
     if (navOpen && !isDesktop) {
@@ -44,15 +47,16 @@ const NavBar: FunctionComponent = () => {
     <nav
       ref={navRef}
       className="fixed z-30 top-0 left-0 right-0 body-gutter-sm overflow-y-auto
-      lg:body-gutter-lg xl:body-gutter-xl"
+      lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl"
     >
       <div className="relative flex h-16 justify-between items-center">
         <Hamburger />
+        <MobileSpinner />
         <Logo />
         <DesktopMenu />
         <Cart />
       </div>
-      {navOpen && !isDesktop && <MobileMenu />}
+      {mobileNavOpen && <MobileMenu />}
     </nav>
   )
 }

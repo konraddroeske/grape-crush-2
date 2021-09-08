@@ -1,7 +1,12 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
+import { useInView } from 'react-intersection-observer'
+
 const AlternatingTitle: FunctionComponent = () => {
   const [currentTitle, setCurrentTitle] = useState<string>('Natural')
+  const { ref, inView } = useInView({
+    threshold: 0,
+  })
 
   useEffect(() => {
     const titles = [
@@ -17,7 +22,9 @@ const AlternatingTitle: FunctionComponent = () => {
     let counter = 0
 
     const interval = setInterval(() => {
-      if (counter > titles.length - 1) {
+      if (!inView) {
+        clearInterval(interval)
+      } else if (counter > titles.length - 1) {
         counter = 0
         setCurrentTitle(titles[counter])
       } else {
@@ -28,9 +35,13 @@ const AlternatingTitle: FunctionComponent = () => {
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [inView])
 
-  return <span className="text-lime text-9xl leading-30">{currentTitle}</span>
+  return (
+    <span ref={ref} className="text-lime">
+      {currentTitle}
+    </span>
+  )
 }
 
 export default AlternatingTitle
