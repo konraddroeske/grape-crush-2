@@ -7,7 +7,6 @@ import ProductsMenu from '@components/products-page/products-menu/ProductsMenu'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { setFooter, setLocale, setNav, setPages } from '@redux/globalSlice'
 import { setAllTags, setCategories, setProducts } from '@redux/productsSlice'
-import { setIgImages } from '@redux/socialSlice'
 import { wrapper } from '@redux/store'
 
 const Products: FunctionComponent = () => {
@@ -38,7 +37,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     products,
     locale,
     pageAssets,
-    igImages,
+    // igImages,
     categoryAssets,
     categories,
     footerAssets,
@@ -50,7 +49,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories({ categories, categoryAssets, locale }))
-  store.dispatch(setIgImages(igImages))
+  // store.dispatch(setIgImages(igImages))
   store.dispatch(setFooter(footerAssets))
   store.dispatch(setNav(navAssets))
 
