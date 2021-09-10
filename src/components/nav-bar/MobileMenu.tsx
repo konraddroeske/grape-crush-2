@@ -13,15 +13,21 @@ const MobileMenu: FunctionComponent = () => {
   }
 
   return (
-    <div className="flex flex-col py-8 lg:hidden">
+    <div className="flex flex-col py-8 max-w-xl mx-auto lg:hidden">
       <div className="mb-2">
         <MenuButtonMobile handleOpen={handleOpen} open={open}>
           Shop
         </MenuButtonMobile>
         {open && <NavCategories />}
-        <MenuLink variant="mobile">About Us</MenuLink>
-        <MenuLink variant="mobile">Visit Us</MenuLink>
-        <MenuLink variant="mobile">FAQ</MenuLink>
+        <MenuLink variant="mobile" to="/about">
+          About Us
+        </MenuLink>
+        <MenuLink variant="mobile" to="/contact">
+          Visit Us
+        </MenuLink>
+        <MenuLink variant="mobile" to="/faq">
+          FAQ
+        </MenuLink>
       </div>
       {/* <RoundedButton variant="full">Shop All Wines</RoundedButton> */}
       <NavSearch variant="mobile" />

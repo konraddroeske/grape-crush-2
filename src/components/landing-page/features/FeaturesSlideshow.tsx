@@ -266,11 +266,11 @@ const FeaturesSlideshow: FunctionComponent = () => {
   return (
     <>
       {slides && (
-        <section>
+        <section className="section-margin">
           <div
             ref={bg}
             className="pt-20 pb-10 hero-background bg-lime overflow-hidden
-            md:pt-24 md:pb-12 xl:pt-28 xl:pb-14"
+            md:pt-24 md:pb-12 xl:pt-28 xl:pb-14 2xl:pt-36 2xl:pb-24"
           >
             <div ref={slider} className="w-full relative">
               <ul ref={list} className="absolute inset-0 m-0 p-0">
@@ -301,7 +301,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
                         <button
                           type="button"
                           ref={(el) => headings.current.push(el)}
-                          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl 3xl:text-9xl text-center
+                          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-center
                           whitespace-normal uppercase font-bold text-blue-dark"
                         >
                           {slide.title[locale]}

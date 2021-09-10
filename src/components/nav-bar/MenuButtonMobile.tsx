@@ -40,7 +40,7 @@ const MenuButtonMobile: FunctionComponent<MenuButtonProps> = ({
     <button
       ref={buttonRef}
       type="button"
-      className="flex items-center text-4xl mr-0 mb-4 font-bold uppercase xl:mr-0"
+      className="flex items-center text-4xl mr-0 mb-4 sm:mb-5 sm:text-5xl font-bold uppercase xl:mr-0"
       onClick={() => handleOpen()}
     >
       <div className="mr-2">{children}</div>

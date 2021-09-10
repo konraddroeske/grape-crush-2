@@ -11,7 +11,9 @@ const FooterTop: FunctionComponent = () => {
     <>
       <div className="relative flex justify-center items-center text-3xl my-12 pointer-events-none">
         <div className="z-10 font-bold uppercase pointer-events-auto">
-          <Link href="/">Shop</Link>
+          <Link href="/">
+            <a>Shop</a>
+          </Link>
         </div>
         <div className="absolute top-9/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-footer w-full">
           <ShopWave className="w-full" />
@@ -19,7 +21,9 @@ const FooterTop: FunctionComponent = () => {
       </div>
       <div className="z-10 relative flex justify-center items-center text-3xl my-12 pointer-events-none">
         <div className="z-10 font-bold uppercase pointer-events-auto">
-          <Link href="/">About</Link>
+          <Link href="/">
+            <a>About</a>
+          </Link>
         </div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-footer w-full">
           <AboutWave className="w-full" />
@@ -27,7 +31,9 @@ const FooterTop: FunctionComponent = () => {
       </div>
       <div className="z-20 relative flex justify-center items-center text-3xl my-12 pointer-events-none">
         <div className="z-10 font-bold uppercase text-white pointer-events-auto">
-          <Link href="/">Contact</Link>
+          <Link href="/">
+            <a>Contact</a>
+          </Link>
         </div>
         <div className="absolute top-full left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-footer w-full">
           <ContactWave className="w-full" />

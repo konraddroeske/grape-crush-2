@@ -1,5 +1,9 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
+import gsap from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+
+import { useRouter } from 'next/dist/client/router'
 import { useSelector } from 'react-redux'
 
 import OutlineMarquee from '@components/common/OutlineMarquee'
@@ -19,10 +23,21 @@ import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 const Faq: FunctionComponent = () => {
+  const router = useRouter()
   const { questions } = useSelector(selectFaq())
   const { locale } = useSelector(selectGlobal())
 
   const [sortedQuestions, setSortedQuestions] = useState<FaqAssets[]>([])
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollToPlugin)
+    const path = router.asPath
+    const anchor = path.slice(path.indexOf('#'))
+
+    if (anchor) {
+      gsap.to(window, 0.3, { scrollTo: { y: anchor, offsetY: 70 } })
+    }
+  }, [router])
 
   useEffect(() => {
     if (questions) {
@@ -63,8 +78,15 @@ const Faq: FunctionComponent = () => {
               )
             })}
         </ul>
-        <div className="flex justify-center mt-6">
-          <ShadowButton text="Ready to shop?" />
+        <div className="flex justify-center mt-6" id="shop">
+          <ShadowButton
+            text="Ready to shop?"
+            fn={() =>
+              router.push('/', '/', {
+                shallow: false,
+              })
+            }
+          />
         </div>
       </div>
     </div>
@@ -81,7 +103,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     pageAssets,
     // igImages,
     categoryAssets,
-    categories,
+    // categories,
     footerAssets,
     navAssets,
   } = await fetchGlobalData()
@@ -93,7 +115,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
-  store.dispatch(setCategories({ categories, categoryAssets, locale }))
+  store.dispatch(setCategories(categoryAssets))
   // store.dispatch(setIgImages(igImages))
   store.dispatch(setFooter(footerAssets))
   store.dispatch(setNav(navAssets))

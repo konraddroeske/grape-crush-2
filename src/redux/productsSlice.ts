@@ -3,17 +3,13 @@ import { HYDRATE } from 'next-redux-wrapper'
 
 import { CmsAssets } from '@lib/cms'
 import { sortProducts } from '@lib/sortProducts'
-import {
-  Category,
-  ProductCategories,
-  ProductLowercase,
-} from '@models/ambassador'
+import { ProductCategories, ProductLowercase } from '@models/ambassador'
 import type { AppState } from '@redux/store'
 
-interface MatchedCategory extends CmsAssets {
-  tags: string[]
-  id: string
-}
+// interface MatchedCategory extends CmsAssets {
+//   tags: string[]
+//   id: string
+// }
 
 export interface TagsByCategory {
   parentType: string[]
@@ -54,7 +50,7 @@ export type SortOption =
   | 'date, old to new'
 
 interface ProductsSlice {
-  categories: MatchedCategory[]
+  categories: CmsAssets[]
   products: ProductLowercase[]
   allTags: TagsByCount | null
   // productsByTag: ProductsByTag | null
@@ -110,37 +106,7 @@ export const productsSlice = createSlice({
       return { ...state, infoBox1, infoBox2, infoBox3 }
     },
     setCategories(state, action) {
-      const {
-        categories,
-        categoryAssets,
-        locale,
-      }: {
-        categories: Category[]
-        categoryAssets: CmsAssets[]
-        locale: string
-      } = action.payload
-
-      const merged = categoryAssets
-        .map((entry) => {
-          const { categoryName } = entry
-          const match = categories.find(
-            (category) => category.label === categoryName[locale]
-          )
-
-          if (match) {
-            const { tags, id } = match
-            return {
-              ...entry,
-              tags,
-              id,
-            }
-          }
-
-          return null
-        })
-        .filter((category): category is MatchedCategory => !!category)
-
-      return { ...state, categories: merged }
+      return { ...state, categories: action.payload }
     },
     setProducts(state, action) {
       return { ...state, products: action.payload }
@@ -347,6 +313,7 @@ export const productsSlice = createSlice({
       }
     },
     handleProductsSearch(state, action) {
+      // console.log('handling products search', action.payload)
       return { ...state, productsSearch: action.payload }
     },
     handleProductsSort(state, action) {

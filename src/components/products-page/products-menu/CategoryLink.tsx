@@ -57,7 +57,11 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
     router.push(href, href, { shallow: true })
   }
 
+  // console.log(selectedTags[category], tag)
+
   useEffect(() => {
+    // console.log(selectedTags[category])
+    // console.log(tag)
     setSelected(selectedTags[category].includes(tag))
   }, [selectedTags, category, tag])
 

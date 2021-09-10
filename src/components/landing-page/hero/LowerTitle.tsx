@@ -16,7 +16,7 @@ const LowerTitle: FunctionComponent = () => {
         <div className="">
           <HeroMarquee />
         </div>
-        <Swirl className="pointer-events-none absolute top-3 -right-40 w-188" />
+        <Swirl className="pointer-events-none absolute top-3 swirl-size" />
       </div>
     </div>
   )

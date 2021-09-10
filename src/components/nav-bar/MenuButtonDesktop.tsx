@@ -26,12 +26,12 @@ const MenuButtonDesktop: FunctionComponent<MenuButtonProps> = ({
   useEffect(() => {
     gsap.to(buttonRef.current, {
       duration,
-      color: navOpen ? '#FFFFFF' : nav,
+      color: navOpen ? '#DFFF85' : nav,
     })
 
-    gsap.to('.svg-desktop-button path', {
+    gsap.to('.svg-desktop-arrow path', {
       duration,
-      fill: navOpen ? '#FFFFFF' : nav,
+      fill: navOpen ? '#DFFF85' : nav,
     })
   }, [navOpen, nav, duration])
 
@@ -40,13 +40,16 @@ const MenuButtonDesktop: FunctionComponent<MenuButtonProps> = ({
       type="button"
       className="flex items-center h-12 text-xl mx-4 font-bold uppercase xl:mx-6"
       onClick={() => dispatch(setNavOpen(!navOpen))}
-      // onFocus={() => handleOpen(true)}
-      // onBlur={() => handleOpen(false)}
+      onMouseEnter={() => {
+        if (!navOpen) {
+          dispatch(setNavOpen(true))
+        }
+      }}
     >
       <div ref={buttonRef} className="mr-2">
         {children}
       </div>
-      <MenuArrow className="svg-desktop-button w-3" />
+      <MenuArrow className="svg-desktop-arrow w-3" />
     </button>
   )
 }

@@ -6,7 +6,7 @@ import LowerTitle from '@components/landing-page/hero/LowerTitle'
 const HeroTitle: FunctionComponent = () => {
   return (
     <div>
-      <h1 className="text-5xl sm:text-7xl lg:text-9xl lg:leading-30 uppercase font-bold flex flex-col text-center lg:text-left">
+      <h1 className="title-size uppercase font-bold flex flex-col text-center lg:text-left">
         <AlternatingTitle />
         <div className="flex flex-col lg:flex-row">
           <span className="text-white">Wines</span>

@@ -13,12 +13,14 @@ const LearnMore: FunctionComponent<Props> = ({ name }) => {
 
   return (
     <Link href={`/item/${uriName}`}>
-      <div className="flex items-center cursor-pointer">
-        <span className="mr-2 py-2 text-base leading-none font-bold uppercase">
-          Learn More
-        </span>
-        <ProductArrow className="w-8" />
-      </div>
+      <a>
+        <div className="flex items-center cursor-pointer">
+          <span className="mr-2 py-2 text-base leading-none font-bold uppercase">
+            Learn More
+          </span>
+          <ProductArrow className="w-8" />
+        </div>
+      </a>
     </Link>
   )
 }

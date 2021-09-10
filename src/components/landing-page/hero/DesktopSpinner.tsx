@@ -51,7 +51,7 @@ const DesktopSpinner: FunctionComponent = () => {
   }, [handleHeight])
 
   useEffect(() => {
-    const duration = 0.4
+    const duration = 0.3
 
     if (isSticky && !navOpen) {
       gsap.set(logoRef.current, {
@@ -101,13 +101,9 @@ const DesktopSpinner: FunctionComponent = () => {
   return (
     <div
       ref={containerRef}
-      className="z-30 hidden lg:block absolute left-14 bottom-24"
+      className="z-30 hidden lg:block absolute bottom-24 lg:left-16 xl:left-20 2xl:left-24"
     >
-      <div
-        ref={logoRef}
-        // className={`${isSticky || navOpen ? 'fixed top-8' : 'absolute'} z-10`}
-        className="absolute z-10"
-      >
+      <div ref={logoRef} className="absolute z-10">
         <div
           ref={starRef}
           className={`${
