@@ -17,7 +17,8 @@ import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 const Home: FunctionComponent = () => {
-  // const { newArrivals } = useSelector(selectIndex())
+  // const { allEntries, allAssets } = useSelector(selectGlobal())
+  // console.log(allEntries)
 
   return (
     <div>
@@ -50,28 +51,32 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     products,
     locale,
     pageAssets,
-    // igImages,
     categoryAssets,
-    // categories,
     footerAssets,
     navAssets,
+    // allEntries,
+    // allAssets,
   } = await fetchGlobalData()
 
   const { heroAssets, newArrivals, infoBoxAssets } = await fetchIndexData()
 
+  // store.dispatch(setAllEntries(allEntries))
+  // store.dispatch(setAllAssets(allAssets))
+
   // Global
-  store.dispatch(setAllTags(products))
-  store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories(categoryAssets))
-  // store.dispatch(setIgImages(igImages))
   store.dispatch(setFooter(footerAssets))
   store.dispatch(setNav(navAssets))
 
+  store.dispatch(setAllTags(products))
+  store.dispatch(setLocale(locale))
+
   // Index
   store.dispatch(setHeroSlides(heroAssets))
-  store.dispatch(setNewArrivals(newArrivals))
   store.dispatch(setInfoBoxes(infoBoxAssets))
+
+  store.dispatch(setNewArrivals(newArrivals))
 
   return {
     props: {},

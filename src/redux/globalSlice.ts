@@ -12,6 +12,8 @@ interface Global {
   footer: CmsAssets[]
   nav: CmsAssets[]
   navOpen: boolean
+  allEntries: CmsAssets[]
+  allAssets: CmsAssets[]
 }
 
 const initialState: Global = {
@@ -22,6 +24,8 @@ const initialState: Global = {
   navOpen: false,
   footer: [],
   nav: [],
+  allEntries: [],
+  allAssets: [],
 }
 
 export const globalSlice = createSlice({
@@ -51,6 +55,12 @@ export const globalSlice = createSlice({
     setNav(state, action) {
       return { ...state, nav: action.payload }
     },
+    setAllEntries(state, action) {
+      return { ...state, allEntries: action.payload }
+    },
+    setAllAssets(state, action) {
+      return { ...state, allAssets: action.payload }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -62,7 +72,14 @@ export const globalSlice = createSlice({
   },
 })
 
-export const { setLocale, setPages, setNavOpen, setFooter, setNav } =
-  globalSlice.actions
+export const {
+  setLocale,
+  setPages,
+  setNavOpen,
+  setFooter,
+  setNav,
+  setAllEntries,
+  setAllAssets,
+} = globalSlice.actions
 
 export const selectGlobal = () => (state: AppState) => state?.[globalSlice.name]

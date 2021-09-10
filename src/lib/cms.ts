@@ -4,14 +4,6 @@ import contentfulClient from '../../getContentfulEnvironment'
 
 const client = await contentfulClient()
 
-export const getEntries = async (contentType: string): Promise<Entry[]> => {
-  const { items } = await client.getEntries({
-    content_type: contentType,
-  })
-
-  return items
-}
-
 export interface CmsImage {
   title: {
     [key: string]: string
@@ -72,6 +64,26 @@ export interface CmsAssets {
     [key: string]: string
   }
   image?: CmsImage
+}
+
+export const getEntries = async (contentType: string): Promise<Entry[]> => {
+  const { items } = await client.getEntries({
+    content_type: contentType,
+  })
+
+  return items
+}
+
+export const getAllEntries = async (): Promise<Entry[]> => {
+  const { items } = await client.getEntries()
+
+  return items
+}
+
+export const getAllAssets = async () => {
+  const { items } = await client.getAssets()
+
+  return items
 }
 
 export const getAssets = async (entries: Entry[], locale = 'en-US') => {

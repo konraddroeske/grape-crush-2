@@ -7,9 +7,8 @@ import { useSelector } from 'react-redux'
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import ItemBar from '@components/item-page/item-bar/ItemBar'
 import ItemContent from '@components/item-page/ItemContent'
-import ambassador from '@lib/ambassador'
 import fetchGlobalData from '@lib/fetchGlobalData'
-import { Product, ProductLowercase } from '@models/ambassador'
+import { ProductLowercase } from '@models/ambassador'
 import { setFooter, setLocale, setNav, setPages } from '@redux/globalSlice'
 import {
   selectProducts,
@@ -55,52 +54,48 @@ const Item: FunctionComponent = () => {
   )
 }
 
-export const getStaticPaths = async () => {
-  const { data: allShops } = await ambassador.api.allShops()
+// export const getStaticPaths = async () => {
+//   const { data: allShops } = await ambassador.api.allShops()
+//
+//   const { shops } = allShops
+//   const [shop] = shops
+//   const { products } = shop
+//
+//   const paths = products.map((product: Product) => ({
+//     params: {
+//       name: product.data.name,
+//     },
+//   }))
+//
+//   return { paths, fallback: false }
+// }
 
-  const { shops } = allShops
-  const [shop] = shops
-  const { products } = shop
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async () => {
+    const {
+      products,
+      locale,
+      pageAssets,
+      categoryAssets,
+      footerAssets,
+      navAssets,
+    } = await fetchGlobalData()
 
-  const paths = products.map((product: Product) => ({
-    params: {
-      name: product.data.name,
-    },
-  }))
+    // Global
+    store.dispatch(setAllTags(products))
+    store.dispatch(setLocale(locale))
+    store.dispatch(setPages(pageAssets))
+    store.dispatch(setCategories(categoryAssets))
+    store.dispatch(setFooter(footerAssets))
+    store.dispatch(setNav(navAssets))
 
-  return { paths, fallback: false }
-}
+    // Products
+    store.dispatch(setProducts(products))
 
-export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  // const { locale: defaultLocale = 'en-US' } = ctx
-  // console.log('store', store.getState())
-
-  const {
-    products,
-    locale,
-    pageAssets,
-    // igImages,
-    categoryAssets,
-    // categories,
-    footerAssets,
-    navAssets,
-  } = await fetchGlobalData()
-
-  // Global
-  store.dispatch(setAllTags(products))
-  store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageAssets))
-  store.dispatch(setCategories(categoryAssets))
-  // store.dispatch(setIgImages(igImages))
-  store.dispatch(setFooter(footerAssets))
-  store.dispatch(setNav(navAssets))
-
-  // Products
-  store.dispatch(setProducts(products))
-
-  return {
-    props: {},
+    return {
+      props: {},
+    }
   }
-})
+)
 
 export default Item
