@@ -9,6 +9,7 @@ import React, {
 import { gsap } from 'gsap'
 import _Draggable, { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
+import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
 import OutlineMarquee from '@components/common/OutlineMarquee'
@@ -18,6 +19,7 @@ import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
 const SocialGallery: FunctionComponent = () => {
+  const router = useRouter()
   // const { igImages } = useSelector(selectSocial())
   const { locale } = useSelector(selectGlobal())
   const { categories } = useSelector(selectProducts())
@@ -181,7 +183,7 @@ const SocialGallery: FunctionComponent = () => {
         x: 0,
       })
       setWidths()
-      // setHeight()
+      setHeight()
       setPosition()
       initDraggable()
       updateAnimation()
@@ -193,7 +195,7 @@ const SocialGallery: FunctionComponent = () => {
     setPosition,
     updateAnimation,
     setWidths,
-    // setHeight,
+    setHeight,
   ])
 
   useEffect(() => {
@@ -205,7 +207,7 @@ const SocialGallery: FunctionComponent = () => {
   }, [handleResize])
 
   return (
-    <section className="my-24">
+    <section className="section-margin">
       <OutlineMarquee text="Shop by type" />
       <div className="overflow-hidden relative mt-12">
         {categories.length > 0 && (
@@ -214,7 +216,7 @@ const SocialGallery: FunctionComponent = () => {
               {categories.map((category) => {
                 return (
                   <li
-                    key={category.id}
+                    key={category.categoryName[locale]}
                     ref={(el) => items.current.push(el)}
                     className="absolute px-2 w-60 top-0 left-0 sm:px-4 sm:w-72
                   lg:px-6 lg:w-80 xl:px-8 xl:w-88"
@@ -242,7 +244,10 @@ const SocialGallery: FunctionComponent = () => {
         )}
       </div>
       <div className="flex justify-center mt-8 mb-12">
-        <ShadowButton text="Shop all wines" />
+        <ShadowButton
+          text="Shop all wines"
+          fn={() => router.push('/products', '/products', { shallow: false })}
+        />
       </div>
       <OutlineMarquee text="Shop by type" direction="-=" />
     </section>

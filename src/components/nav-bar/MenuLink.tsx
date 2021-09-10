@@ -9,10 +9,15 @@ import { selectHero } from '@redux/heroSlice'
 
 interface MenuLinkProps {
   children: React.ReactNode
+  to: string
   variant: 'mobile' | 'desktop'
 }
 
-const MenuLink: FunctionComponent<MenuLinkProps> = ({ children, variant }) => {
+const MenuLink: FunctionComponent<MenuLinkProps> = ({
+  children,
+  variant,
+  to,
+}) => {
   const { navOpen } = useSelector(selectGlobal())
   const { currentTheme } = useSelector(selectHero())
   const { nav, duration } = currentTheme
@@ -23,15 +28,10 @@ const MenuLink: FunctionComponent<MenuLinkProps> = ({ children, variant }) => {
       duration,
       color: navOpen ? '#FFFFFF' : nav,
     })
-
-    gsap.to('.svg-desktop-button path', {
-      duration,
-      fill: navOpen ? '#FFFFFF' : nav,
-    })
   }, [navOpen, nav, duration])
 
   const variants = {
-    mobile: 'text-4xl h-auto mr-0 mb-4 xl:mr-0',
+    mobile: 'text-4xl h-auto mr-0 mb-4 sm:mb-5 sm:text-5xl xl:mr-0',
     desktop: 'text-xl h-16 mx-4 xl:mx-6',
   }
   return (
@@ -39,7 +39,9 @@ const MenuLink: FunctionComponent<MenuLinkProps> = ({ children, variant }) => {
       ref={linkRef}
       className={`flex items-center ${variants[variant]} font-bold uppercase `}
     >
-      <Link href="/">{children}</Link>
+      <Link href={to}>
+        <a>{children}</a>
+      </Link>
     </div>
   )
 }

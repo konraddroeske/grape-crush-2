@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect } from 'react'
 
 import gsap from 'gsap'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
@@ -29,7 +30,11 @@ const Logo: FunctionComponent = () => {
       } font-sans w-24 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
     lg:static lg:inset-auto lg:translate-x-0 lg:translate-y-0`}
     >
-      <NewLogo className="w-full svg-logo" />
+      <Link href="/">
+        <a>
+          <NewLogo className="w-full svg-logo" />
+        </a>
+      </Link>
     </div>
   )
 }

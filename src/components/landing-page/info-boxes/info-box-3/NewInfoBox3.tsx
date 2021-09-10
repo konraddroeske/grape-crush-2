@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
+import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
 import ShadowButton from '@components/common/ShadowButton'
@@ -11,6 +12,7 @@ import { selectIndex } from '@redux/indexSlice'
 import StarOutline from '../../../../assets/svgs/star-outline.svg'
 
 const NewInfoBox3: FunctionComponent = () => {
+  const router = useRouter()
   const { infoBox3 } = useSelector(selectIndex())
   const { locale } = useSelector(selectGlobal())
 
@@ -20,7 +22,7 @@ const NewInfoBox3: FunctionComponent = () => {
 
   return (
     <section
-      className="relative sm:flex my-24 body-gutter-sm lg:body-gutter-lg
+      className="relative sm:flex section-margin body-gutter-sm lg:body-gutter-lg
     xl:body-gutter-xl"
     >
       <div className="relative w-full sm:flex sm:max-h-70vh lg:w-1/2">
@@ -35,7 +37,14 @@ const NewInfoBox3: FunctionComponent = () => {
           <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
           <InfoBoxText>{description[locale]} </InfoBoxText>
           <div className="flex justify-center sm:mt-0 sm:justify-start">
-            <ShadowButton text="Details" />
+            <ShadowButton
+              text="Details"
+              fn={() =>
+                router.push('/faq#same-day', '/faq#same-day', {
+                  shallow: false,
+                })
+              }
+            />
           </div>
         </div>
         <StarOutline

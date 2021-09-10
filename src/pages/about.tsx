@@ -26,7 +26,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     pageAssets,
     // igImages,
     categoryAssets,
-    categories,
+    // categories,
     footerAssets,
     navAssets,
   } = await fetchGlobalData()
@@ -38,7 +38,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
-  store.dispatch(setCategories({ categories, categoryAssets, locale }))
+  store.dispatch(setCategories(categoryAssets))
   // store.dispatch(setIgImages(igImages))
   store.dispatch(setFooter(footerAssets))
   store.dispatch(setNav(navAssets))

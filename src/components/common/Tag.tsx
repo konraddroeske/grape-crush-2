@@ -18,7 +18,9 @@ const Tag: FunctionComponent<Props> = ({
   const router = useRouter()
 
   const handleClick = (newCategory: string, newTag: string) => {
-    const href = `/products/?${newCategory}=${newTag}`
+    const href = `/products/?${encodeURIComponent(
+      newCategory
+    )}=${encodeURIComponent(newTag)}`
     router.push(href, href, { shallow: true })
   }
 

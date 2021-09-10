@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
+import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
 import ShadowButton from '@components/common/ShadowButton'
@@ -9,6 +10,7 @@ import { selectGlobal } from '@redux/globalSlice'
 import { selectIndex } from '@redux/indexSlice'
 
 const NewInfoBox1: FunctionComponent = () => {
+  const router = useRouter()
   const { infoBox1 } = useSelector(selectIndex())
   const { locale } = useSelector(selectGlobal())
 
@@ -16,13 +18,21 @@ const NewInfoBox1: FunctionComponent = () => {
 
   const { title, description, image } = infoBox1
   return (
-    <section className="flex flex-col-reverse sm:flex-row sm:flex my-24 body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl">
+    <section
+      className="flex flex-col-reverse sm:flex-row sm:flex section-margin
+    body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl"
+    >
       <div className="flex items-center w-full sm:w-1/2 pt-4 sm:pt-0">
         <div className="sm:pr-16 xl:pr-20">
           <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
           <InfoBoxText>{description[locale]}</InfoBoxText>
           <div className="flex justify-center sm:mt-0 sm:justify-start">
-            <ShadowButton text="Shop" />
+            <ShadowButton
+              text="Shop"
+              fn={() =>
+                router.push('/products', '/products', { shallow: false })
+              }
+            />
           </div>
         </div>
       </div>

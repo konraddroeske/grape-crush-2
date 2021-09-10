@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import FbLogo from '@assets/svgs/facebook.svg'
@@ -17,12 +18,23 @@ export const FooterTitle: FunctionComponent = ({ children }) => (
   </h4>
 )
 
-export const FooterLink: FunctionComponent = (props) => (
-  <li className="md:mr-4 lg:mr-6 lg:text-sm xl:mr-0 xl:leading-7" {...props} />
+interface FooterLinkProps {
+  to: string
+}
+
+export const FooterLink: FunctionComponent<FooterLinkProps> = ({
+  children,
+  to,
+}) => (
+  <div className="md:mr-4 lg:mr-6 lg:text-sm xl:mr-0 xl:leading-7">
+    <Link href={to}>
+      <a>{children}</a>
+    </Link>
+  </div>
 )
 
-export const LogoContainer: FunctionComponent = (props) => (
-  <div className="w-8 mr-2 md:flex md:items-center xl:mr-4" {...props} />
+export const LogoContainer: FunctionComponent = ({ children }) => (
+  <div className="w-8 mr-2 md:flex md:items-center xl:mr-4">{children}</div>
 )
 
 const FooterInfo: FunctionComponent = () => {
@@ -43,13 +55,19 @@ const FooterInfo: FunctionComponent = () => {
             className="font-normal text-xs sm:text-sm text-white text-center mt-1 leading-5
           md:flex xl:block xl:text-left"
           >
-            <FooterLink>Contact</FooterLink>
-            <FooterLink>Location & Hours</FooterLink>
+            <li>
+              <FooterLink to="/contact">Contact</FooterLink>
+            </li>
+            <li>
+              <FooterLink to="/contact">Location & Hours</FooterLink>
+            </li>
             {helpPages.map((page) => {
               return (
-                <FooterLink key={page.slug[locale]}>
-                  {page.title[locale]}
-                </FooterLink>
+                <li key={page.slug[locale]}>
+                  <FooterLink to={`/${page.slug[locale]}`}>
+                    {page.title[locale]}
+                  </FooterLink>
+                </li>
               )
             })}
           </ul>
@@ -65,9 +83,9 @@ const FooterInfo: FunctionComponent = () => {
           >
             {legalPages.map((page) => {
               return (
-                <FooterLink key={page.slug[locale]}>
-                  {page.title[locale]}
-                </FooterLink>
+                <li key={page.title[locale]}>
+                  <FooterLink to="/">{page.title[locale]}</FooterLink>
+                </li>
               )
             })}
           </ul>
@@ -77,10 +95,22 @@ const FooterInfo: FunctionComponent = () => {
           md:flex-grow-0 sm:pb-0 xl:py-0 xl:ml-1/2"
         >
           <LogoContainer>
-            <IgLogo />
+            <a
+              href="https://www.instagram.com/grapecrush.wine"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <IgLogo className="w-full" />
+            </a>
           </LogoContainer>
           <LogoContainer>
-            <FbLogo />
+            <a
+              href="https://www.facebook.com/grapecrush.wine"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FbLogo className="w-full" />
+            </a>
           </LogoContainer>
         </div>
       </div>

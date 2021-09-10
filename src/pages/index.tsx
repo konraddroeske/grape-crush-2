@@ -4,7 +4,7 @@ import Head from 'next/head'
 
 import Description from '@components/landing-page/description/Description'
 import FeaturesSlideshow from '@components/landing-page/features/FeaturesSlideshow'
-import NewHero from '@components/landing-page/hero/NewHero'
+import Hero from '@components/landing-page/hero/Hero'
 import NewInfoBox1 from '@components/landing-page/info-boxes/info-box-1/NewInfoBox1'
 import NewInfoBox3 from '@components/landing-page/info-boxes/info-box-3/NewInfoBox3'
 import NewShopByType from '@components/landing-page/shop-by-type/ShopByType'
@@ -34,7 +34,7 @@ const Home: FunctionComponent = () => {
       </Head>
 
       <main id="main" className="min-h-screen overflow-hidden">
-        <NewHero />
+        <Hero />
         <Description />
         <NewShopByType />
         <FeaturesSlideshow />
@@ -46,15 +46,13 @@ const Home: FunctionComponent = () => {
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  // const { locale: defaultLocale = 'en-US' } = ctx
-
   const {
     products,
     locale,
     pageAssets,
     // igImages,
     categoryAssets,
-    categories,
+    // categories,
     footerAssets,
     navAssets,
   } = await fetchGlobalData()
@@ -65,7 +63,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
-  store.dispatch(setCategories({ categories, categoryAssets, locale }))
+  store.dispatch(setCategories(categoryAssets))
   // store.dispatch(setIgImages(igImages))
   store.dispatch(setFooter(footerAssets))
   store.dispatch(setNav(navAssets))
