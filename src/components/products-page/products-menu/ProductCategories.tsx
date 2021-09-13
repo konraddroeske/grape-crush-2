@@ -8,7 +8,7 @@ import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
 interface Props {
-  closeMobileMenu: () => void
+  closeMobileMenu?: () => void
 }
 
 const ProductCategories: FunctionComponent<Props> = (props) => {

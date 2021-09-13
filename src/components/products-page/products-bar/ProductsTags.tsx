@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Close from '../../../assets/svgs/close-rounded.svg'
 
 interface Props {
-  closeMobileMenu: () => void
+  closeMobileMenu?: () => void
 }
 
 const ProductsTags: FunctionComponent<Props> = ({ closeMobileMenu }) => {
@@ -25,7 +25,7 @@ const ProductsTags: FunctionComponent<Props> = ({ closeMobileMenu }) => {
       <button
         type="button"
         className="flex justify-center items-center w-10 h-10 rounded-full bg-lime lg:hidden"
-        onClick={() => closeMobileMenu()}
+        onClick={() => (closeMobileMenu ? closeMobileMenu() : null)}
       >
         <Close className="w-4 svg-close-position" />
       </button>
