@@ -36,7 +36,7 @@ const ProductsSort: FunctionComponent = () => {
         className="flex items-center h-12 w-full"
         onClick={() => setExpanded(!expanded)}
       >
-        <span className="uppercase text-blue-dark text-base font-bold mr-2">
+        <span className="uppercase text-blue-dark text-sm sm:text-base font-bold mr-2">
           Sort
         </span>
         <TriangleArrow className="w-2" />

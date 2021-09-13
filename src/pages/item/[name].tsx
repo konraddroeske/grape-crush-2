@@ -7,8 +7,9 @@ import { useSelector } from 'react-redux'
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import ItemBar from '@components/item-page/item-bar/ItemBar'
 import ItemContent from '@components/item-page/ItemContent'
+import ambassador from '@lib/ambassador'
 import fetchGlobalData from '@lib/fetchGlobalData'
-import { ProductLowercase } from '@models/ambassador'
+import { Product, ProductLowercase } from '@models/ambassador'
 import { setFooter, setLocale, setNav, setPages } from '@redux/globalSlice'
 import {
   selectProducts,
@@ -54,48 +55,46 @@ const Item: FunctionComponent = () => {
   )
 }
 
-// export const getStaticPaths = async () => {
-//   const { data: allShops } = await ambassador.api.allShops()
-//
-//   const { shops } = allShops
-//   const [shop] = shops
-//   const { products } = shop
-//
-//   const paths = products.map((product: Product) => ({
-//     params: {
-//       name: product.data.name,
-//     },
-//   }))
-//
-//   return { paths, fallback: false }
-// }
+export const getStaticPaths = async () => {
+  const { data: allShops } = await ambassador.api.allShops()
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    const {
-      products,
-      locale,
-      pageAssets,
-      categoryAssets,
-      footerAssets,
-      navAssets,
-    } = await fetchGlobalData()
+  const { shops } = allShops
+  const [shop] = shops
+  const { products } = shop
 
-    // Global
-    store.dispatch(setAllTags(products))
-    store.dispatch(setLocale(locale))
-    store.dispatch(setPages(pageAssets))
-    store.dispatch(setCategories(categoryAssets))
-    store.dispatch(setFooter(footerAssets))
-    store.dispatch(setNav(navAssets))
+  const paths = products.map((product: Product) => ({
+    params: {
+      name: product.data.name,
+    },
+  }))
 
-    // Products
-    store.dispatch(setProducts(products))
+  return { paths, fallback: false }
+}
 
-    return {
-      props: {},
-    }
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  const {
+    products,
+    locale,
+    pageAssets,
+    categoryAssets,
+    footerAssets,
+    navAssets,
+  } = await fetchGlobalData()
+
+  // Global
+  store.dispatch(setAllTags(products))
+  store.dispatch(setLocale(locale))
+  store.dispatch(setPages(pageAssets))
+  store.dispatch(setCategories(categoryAssets))
+  store.dispatch(setFooter(footerAssets))
+  store.dispatch(setNav(navAssets))
+
+  // Products
+  store.dispatch(setProducts(products))
+
+  return {
+    props: {},
   }
-)
+})
 
 export default Item

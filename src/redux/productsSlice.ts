@@ -62,6 +62,7 @@ interface ProductsSlice {
   productsSearch: string
   productsSort: SortOption
   menuOpen: boolean
+  mobileMenuOpen: boolean
 }
 
 const initialState: ProductsSlice = {
@@ -85,6 +86,7 @@ const initialState: ProductsSlice = {
   productsSearch: '',
   productsSort: 'alphabetical, a - z',
   menuOpen: true,
+  mobileMenuOpen: false,
 }
 
 export const productsSlice = createSlice({
@@ -313,15 +315,21 @@ export const productsSlice = createSlice({
       }
     },
     handleProductsSearch(state, action) {
-      // console.log('handling products search', action.payload)
       return { ...state, productsSearch: action.payload }
     },
     handleProductsSort(state, action) {
       return { ...state, productsSort: action.payload }
     },
-    handleMenuOpen(state) {
+    setMenuOpen(state, action) {
+      return { ...state, menuOpen: action.payload }
+    },
+    toggleMenuOpen(state) {
       const { menuOpen } = state
       return { ...state, menuOpen: !menuOpen }
+    },
+    toggleMobileMenuOpen(state) {
+      const { mobileMenuOpen } = state
+      return { ...state, mobileMenuOpen: !mobileMenuOpen }
     },
   },
   extraReducers: {
@@ -344,7 +352,9 @@ export const {
   handlePage,
   handleProductsSearch,
   handleProductsSort,
-  handleMenuOpen,
+  toggleMenuOpen,
+  toggleMobileMenuOpen,
+  setMenuOpen,
 } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>

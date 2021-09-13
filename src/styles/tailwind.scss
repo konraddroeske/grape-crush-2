@@ -55,14 +55,32 @@
     list-style-type: none;
   }
 
+  .overflow-auto {
+    overflow: auto;
+  }
+
+  .sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
   .text-2xs {
     font-size: 0.7rem;
   }
 
   .svg-white {
     path {
-      fill: #ffffff;
+      stroke: #ffffff;
     }
+  }
+
+  .svg-close-position {
+    transform: translate(1px, 1px);
   }
 
   .svg-black {
@@ -91,7 +109,7 @@
 
   .svg-lime {
     path {
-      fill: #d9ff6c;
+      stroke: #d9ff6c;
     }
   }
 

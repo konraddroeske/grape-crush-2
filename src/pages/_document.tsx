@@ -27,6 +27,7 @@ class MyDocument extends Document {
         {/* <body className="overflow-hidden"> */}
         <body>
           <Main />
+          <div id="modal" />
           <NextScript />
         </body>
       </Html>

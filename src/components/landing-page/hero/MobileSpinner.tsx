@@ -1,6 +1,8 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
 import gsap from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
 import NewLogo from '@assets/svgs/new-logo.svg'
@@ -8,9 +10,14 @@ import SpinningStar from '@components/landing-page/hero/SpinningStar'
 import { selectGlobal } from '@redux/globalSlice'
 
 const MobileSpinner: FunctionComponent = () => {
+  const router = useRouter()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const { navOpen } = useSelector(selectGlobal())
   const starRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollToPlugin)
+  }, [])
 
   useEffect(() => {
     const duration = 0.4
@@ -26,14 +33,21 @@ const MobileSpinner: FunctionComponent = () => {
     })
   }, [navOpen])
 
+  const handleScroll = () => {
+    gsap.to(window, {
+      scrollTo: 0,
+    })
+  }
+
   return (
-    <div ref={containerRef} className="lg:hidden">
+    <div
+      ref={containerRef}
+      className={`${router.pathname === '/' ? 'block' : 'hidden'} lg:hidden`}
+    >
       <button
         type="button"
         className="fixed top-8 left-1/2 z-10"
-        // onClick={() => {
-        //   console.log('scroll to top')
-        // }}
+        onClick={() => handleScroll()}
       >
         <div
           ref={starRef}

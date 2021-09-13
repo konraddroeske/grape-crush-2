@@ -2,12 +2,16 @@ import React, { FunctionComponent } from 'react'
 
 import { useRouter } from 'next/router'
 
-import Close from '../../../assets/svgs/close-sm.svg'
+import Close from '../../../assets/svgs/close-rounded.svg'
 
-const ProductsTags: FunctionComponent = () => {
+interface Props {
+  closeMobileMenu: () => void
+}
+
+const ProductsTags: FunctionComponent<Props> = ({ closeMobileMenu }) => {
   const router = useRouter()
   return (
-    <div className="mb-6">
+    <div className="flex justify-between mb-6">
       <button
         type="button"
         className="flex justify-between items-center text-left text-blue-dark
@@ -16,7 +20,14 @@ const ProductsTags: FunctionComponent = () => {
         onClick={() => router.push('/products', '/products', { shallow: true })}
       >
         <span className="mr-4">Clear all tags</span>
-        <Close className="w-4" />
+        <Close className="w-3" />
+      </button>
+      <button
+        type="button"
+        className="flex justify-center items-center w-10 h-10 rounded-full bg-lime lg:hidden"
+        onClick={() => closeMobileMenu()}
+      >
+        <Close className="w-4 svg-close-position" />
       </button>
     </div>
   )

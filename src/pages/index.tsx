@@ -17,9 +17,6 @@ import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 const Home: FunctionComponent = () => {
-  // const { allEntries, allAssets } = useSelector(selectGlobal())
-  // console.log(allEntries)
-
   return (
     <div>
       <Head>
