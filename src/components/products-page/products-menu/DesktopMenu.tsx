@@ -6,24 +6,19 @@ import React, {
   useState,
 } from 'react'
 
-import { useRouter } from 'next/router'
-import { useDispatch, useSelector } from 'react-redux'
+import { gsap } from 'gsap'
+import { useSelector } from 'react-redux'
 
 import SimpleBarReact from 'simplebar-react'
 import 'simplebar-react/dist/simplebar.min.css'
 
 import ProductCategories from '@components/products-page/products-menu/ProductCategories'
 import { remToPixels } from '@lib/remToPixels'
-import {
-  handlePage,
-  handleTags,
-  resetTags,
-  selectProducts,
-} from '@redux/productsSlice'
+import { selectProducts } from '@redux/productsSlice'
 
 const DesktopMenu: FunctionComponent = () => {
-  const router = useRouter()
-  const dispatch = useDispatch()
+  // const router = useRouter()
+  // const dispatch = useDispatch()
 
   const { menuOpen } = useSelector(selectProducts())
 
@@ -73,22 +68,24 @@ const DesktopMenu: FunctionComponent = () => {
     }
   }, [handleHeight])
 
-  useEffect(() => {
-    if (Object.values(router.query).length > 0) {
-      const { page, ...tags } = router.query
-
-      dispatch(handlePage(page))
-      dispatch(handleTags(tags))
-    } else {
-      dispatch(resetTags())
-    }
-  }, [router, dispatch])
+  // useEffect(() => {
+  //   if (Object.values(router.query).length > 0) {
+  //     const { page, ...tags } = router.query
+  //
+  //     dispatch(handlePage(page))
+  //     dispatch(handleTags(tags))
+  //   } else {
+  //     dispatch(resetTags())
+  //   }
+  // }, [router, dispatch])
 
   const [margin, setMargin] = useState(0)
 
   const handleMargin = useCallback(() => {
-    if (containerRef?.current?.offsetWidth) {
-      setMargin(containerRef.current.offsetWidth)
+    const width = containerRef?.current?.offsetWidth || 0
+
+    if (width > 0) {
+      setMargin(width)
     }
   }, [])
 
@@ -101,13 +98,24 @@ const DesktopMenu: FunctionComponent = () => {
     return () => window.removeEventListener('resize', handleMargin)
   }, [handleMargin])
 
+  useEffect(() => {
+    if (menuOpen) {
+      gsap.to(containerRef.current, {
+        duration: 0.3,
+        marginLeft: 0,
+      })
+    } else {
+      gsap.to(containerRef.current, {
+        duration: 0.3,
+        marginLeft: `-${margin}px`,
+      })
+    }
+  }, [menuOpen, margin])
+
   return (
     <div
       ref={containerRef}
-      className="hidden lg:block lg:pl-12 xl:pl-24 2xl:pl-3 transition-all duration-300"
-      style={{
-        marginLeft: menuOpen ? 0 : `-${margin}px`,
-      }}
+      className="hidden lg:block lg:pl-12 xl:pl-24 2xl:pl-32"
     >
       <div
         ref={menuRef}

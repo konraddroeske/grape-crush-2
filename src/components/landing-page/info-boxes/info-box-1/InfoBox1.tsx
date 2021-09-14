@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import HoriWave from '@assets/svgs/info-box-1-hori.svg'
 import VertWave from '@assets/svgs/info-box-1-vert.svg'
 import Sticker from '@assets/svgs/local-sticker.svg'
+import ContentfulImage from '@components/common/ContentfulImage'
 import RoundedButton from '@components/common/RoundedButton'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
@@ -33,11 +34,7 @@ const InfoBox1: FunctionComponent = () => {
         <HoriWave className="absolute w-full top-0 left-0 sm:hidden" />
         <VertWave className="hidden sm:block sm:absolute sm:top-0 sm:left-0 sm:bottom-0 sm:h-full" />
         <div className="flex sm:min-h-96">
-          <img
-            className="object-cover w-full"
-            src={image?.file[locale].url}
-            alt={image?.description ? image.description[locale] : 'wine'}
-          />
+          {image && <ContentfulImage image={image} />}
           <Sticker className="absolute top-1/10 right-1/20 w-1/3 sm:top-1/20" />
         </div>
       </div>

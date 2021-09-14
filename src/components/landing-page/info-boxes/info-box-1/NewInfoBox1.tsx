@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
+import ContentfulImage from '@components/common/ContentfulImage'
 import ShadowButton from '@components/common/ShadowButton'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
@@ -30,18 +31,16 @@ const NewInfoBox1: FunctionComponent = () => {
             <ShadowButton
               text="Shop"
               fn={() =>
-                router.push('/products', '/products', { shallow: false })
+                router
+                  .push('/products', '/products', { shallow: false })
+                  .then(() => window.scrollTo(0, 0))
               }
             />
           </div>
         </div>
       </div>
       <div className="w-full sm:w-1/2 sm:flex sm:max-h-70vh">
-        <img
-          className="w-full object-contain"
-          src={image?.file[locale].url}
-          alt={image?.description ? image.description[locale] : 'wine'}
-        />
+        {image && <ContentfulImage image={image} />}
       </div>
     </section>
   )

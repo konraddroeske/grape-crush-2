@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 import Link from 'next/link'
 import { useInView } from 'react-intersection-observer'
 import { useMediaQuery } from 'react-responsive'

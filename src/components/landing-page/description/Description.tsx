@@ -33,7 +33,11 @@ const Description: FunctionComponent = () => {
         <div className="my-4 xl:my-6 2xl:my-8">
           <ShadowButton
             text="Learn more"
-            fn={() => router.push('/faq', '/faq', { shallow: false })}
+            fn={() =>
+              router
+                .push('/faq', '/faq', { shallow: false })
+                .then(() => window.scrollTo(0, 0))
+            }
           />
         </div>
       </div>

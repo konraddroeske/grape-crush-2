@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 import { useInView } from 'react-intersection-observer'
 import { useMediaQuery } from 'react-responsive'
 import { v4 as uuid } from 'uuid'

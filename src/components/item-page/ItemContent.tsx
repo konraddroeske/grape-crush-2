@@ -8,6 +8,7 @@ import React, {
 
 import { useMediaQuery } from 'react-responsive'
 
+import AmbassadorImage from '@components/common/AmbassadorImage'
 import BuyButton from '@components/common/BuyButton'
 import Tags from '@components/common/product/Tags'
 import FactList from '@components/item-page/FactList'
@@ -157,12 +158,8 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
           }}
         >
           {url && (
-            <div className="bg-blue-light hover:bg-lime-background py-6">
-              <img
-                className="object-contain w-full max-h-112 xl:max-h-144 mix-blend-multiply"
-                src={url}
-                alt={productName}
-              />
+            <div className="bg-blue-light hover:bg-lime-background py-6 h-122 xl:h-144">
+              <AmbassadorImage url={url} title={productName} />
             </div>
           )}
           <div ref={mobileTitleRef} className="transform -translate-y-1/2">

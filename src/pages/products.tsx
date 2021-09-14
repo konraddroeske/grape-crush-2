@@ -1,17 +1,22 @@
 import React, { FunctionComponent, useEffect } from 'react'
 
 import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
-import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
 
 import ClientOnlyPortal from '@components/common/ClientOnlyPortal'
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import ProductsBar from '@components/products-page/products-bar/ProductsBar'
+import ProductsBreadcrumbs from '@components/products-page/products-bar/ProductsBreadcrumbs'
 import ProductsList from '@components/products-page/products-list/ProductsList'
 import DesktopMenu from '@components/products-page/products-menu/DesktopMenu'
 import MobileMenu from '@components/products-page/products-menu/MobileMenu'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { setFooter, setLocale, setNav, setPages } from '@redux/globalSlice'
 import {
+  handlePage,
+  handleTags,
+  resetTags,
   selectProducts,
   setAllTags,
   setCategories,
@@ -20,7 +25,22 @@ import {
 import { wrapper } from '@redux/store'
 
 const Products: FunctionComponent = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
   const { mobileMenuOpen } = useSelector(selectProducts())
+
+  useEffect(() => {
+    if (Object.values(router.query).length > 0) {
+      const { page, ...tags } = router.query
+
+      if (page && !(page instanceof Array)) {
+        dispatch(handlePage(parseInt(page, 10)))
+      }
+      dispatch(handleTags(tags))
+    } else {
+      dispatch(resetTags())
+    }
+  }, [router, dispatch])
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -36,8 +56,11 @@ const Products: FunctionComponent = () => {
       <div className="my-4 overflow-hidden">
         <OutlineMarquee text="shop" />
       </div>
-      <div className="mb-10 border border-l-0 border-r-0 border-dark-blue">
+      <div className="lg:mb-10 border border-l-0 border-r-0 border-dark-blue">
         <ProductsBar />
+      </div>
+      <div className="mt-4 body-gutter-sm lg:hidden">
+        <ProductsBreadcrumbs />
       </div>
       <div className="flex">
         <DesktopMenu />

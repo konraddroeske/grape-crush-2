@@ -21,7 +21,7 @@ const ItemBreadcrumbs: FunctionComponent<Props> = ({ product }) => {
   const router = useRouter()
   const handleClick = (newCategory: string, newTag: string) => {
     const href = `/products/?${newCategory}=${newTag}`
-    router.push(href, href, { shallow: true })
+    router.push(href, href, { shallow: true }).then(() => window.scrollTo(0, 0))
   }
 
   return (

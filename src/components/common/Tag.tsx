@@ -21,7 +21,7 @@ const Tag: FunctionComponent<Props> = ({
     const href = `/products/?${encodeURIComponent(
       newCategory
     )}=${encodeURIComponent(newTag)}`
-    router.push(href, href, { shallow: true })
+    router.push(href, href, { shallow: true }).then(() => window.scrollTo(0, 0))
   }
 
   const variants = {

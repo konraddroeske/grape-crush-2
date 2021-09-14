@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
+import ContentfulImage from '@components/common/ContentfulImage'
 import ShadowButton from '@components/common/ShadowButton'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
@@ -26,11 +27,7 @@ const NewInfoBox3: FunctionComponent = () => {
     xl:body-gutter-xl"
     >
       <div className="relative w-full sm:flex sm:max-h-70vh lg:w-1/2">
-        <img
-          className="w-full object-cover"
-          src={image?.file[locale].url}
-          alt={image?.description ? image.description[locale] : 'wine'}
-        />
+        {image && <ContentfulImage image={image} />}{' '}
       </div>
       <div className="relative z-10 flex items-center w-full lg:w-1/2">
         <div className="relative z-10 pt-4 sm:pt-0 sm:pl-16 xl:pl-20">
@@ -40,9 +37,11 @@ const NewInfoBox3: FunctionComponent = () => {
             <ShadowButton
               text="Details"
               fn={() =>
-                router.push('/faq#same-day', '/faq#same-day', {
-                  shallow: false,
-                })
+                router
+                  .push('/faq#same-day', '/faq#same-day', {
+                    shallow: false,
+                  })
+                  .then(() => window.scrollTo(0, 0))
               }
             />
           </div>

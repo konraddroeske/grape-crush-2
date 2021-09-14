@@ -17,7 +17,11 @@ const ProductsTags: FunctionComponent<Props> = ({ closeMobileMenu }) => {
         className="flex justify-between items-center text-left text-blue-dark
         bg-lime shadow-blue-dark border-blue-dark text-base font-bold uppercase
         py-2 px-4 border"
-        onClick={() => router.push('/products', '/products', { shallow: true })}
+        onClick={() =>
+          router
+            .push('/products?page=1', '/products?page=1', { shallow: true })
+            .then(() => window.scrollTo(0, 0))
+        }
       >
         <span className="mr-4">Clear all tags</span>
         <Close className="w-3" />

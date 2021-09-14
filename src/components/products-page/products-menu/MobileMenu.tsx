@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 
 import { useDispatch } from 'react-redux'
 

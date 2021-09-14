@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
-import gsap from 'gsap'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
 
 import { useRouter } from 'next/dist/client/router'
 import { useSelector } from 'react-redux'
@@ -82,9 +82,11 @@ const Faq: FunctionComponent = () => {
           <ShadowButton
             text="Ready to shop?"
             fn={() =>
-              router.push('/', '/', {
-                shallow: false,
-              })
+              router
+                .push('/', '/', {
+                  shallow: false,
+                })
+                .then(() => window.scrollTo(0, 0))
             }
           />
         </div>

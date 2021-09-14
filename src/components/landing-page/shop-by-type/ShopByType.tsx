@@ -7,11 +7,12 @@ import React, {
 } from 'react'
 
 import { gsap } from 'gsap'
-import _Draggable, { Draggable } from 'gsap/Draggable'
-import { InertiaPlugin } from 'gsap/InertiaPlugin'
+import _Draggable, { Draggable } from 'gsap/dist/Draggable'
+import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
+import ContentfulImage from '@components/common/ContentfulImage'
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import ShadowButton from '@components/common/ShadowButton'
 import { Direction } from '@models/hero'
@@ -222,12 +223,9 @@ const SocialGallery: FunctionComponent = () => {
                   lg:px-6 lg:w-80 xl:px-8 xl:w-88"
                   >
                     <div className="relative flex shadow-blue-dark">
-                      <img
-                        className="object-cover w-full"
-                        src={category?.image?.file[locale].url}
-                        alt=""
-                        onLoad={setHeight}
-                      />
+                      {category.image && (
+                        <ContentfulImage image={category.image} />
+                      )}
                     </div>
                     <button
                       type="button"
@@ -246,7 +244,11 @@ const SocialGallery: FunctionComponent = () => {
       <div className="flex justify-center mt-8 mb-12">
         <ShadowButton
           text="Shop all wines"
-          fn={() => router.push('/products', '/products', { shallow: false })}
+          fn={() =>
+            router
+              .push('/products', '/products', { shallow: false })
+              .then(() => window.scrollTo(0, 0))
+          }
         />
       </div>
       <OutlineMarquee text="Shop by type" direction="-=" />

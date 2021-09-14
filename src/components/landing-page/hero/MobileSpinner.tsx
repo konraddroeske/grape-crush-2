@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
-import gsap from 'gsap'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 

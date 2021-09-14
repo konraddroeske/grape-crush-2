@@ -26,9 +26,11 @@ const NavSearch: FunctionComponent<Props> = ({ variant }) => {
     event.preventDefault()
     dispatch(setNavSearch(search))
     setSearch('')
-    router.push('/products', '/products', {
-      shallow: true,
-    })
+    router
+      .push('/products', '/products', {
+        shallow: true,
+      })
+      .then(() => window.scrollTo(0, 0))
   }
 
   return (

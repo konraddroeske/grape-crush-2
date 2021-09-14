@@ -74,17 +74,17 @@ export const getEntries = async (contentType: string): Promise<Entry[]> => {
   return items
 }
 
-export const getAllEntries = async (): Promise<Entry[]> => {
-  const { items } = await client.getEntries()
-
-  return items
-}
-
-export const getAllAssets = async () => {
-  const { items } = await client.getAssets()
-
-  return items
-}
+// export const getAllEntries = async (): Promise<Entry[]> => {
+//   const { items } = await client.getEntries()
+//
+//   return items
+// }
+//
+// export const getAllAssets = async () => {
+//   const { items } = await client.getAssets()
+//
+//   return items
+// }
 
 export const getAssets = async (entries: Entry[], locale = 'en-US') => {
   return Promise.all(

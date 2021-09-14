@@ -64,7 +64,9 @@ const NavCategories: FunctionComponent = () => {
     const href = `/products/?${encodeURIComponent(
       newCategory
     )}=${encodeURIComponent(newTag)}`
-    router.push(href, href, { shallow: isProductPage })
+    router
+      .push(href, href, { shallow: isProductPage })
+      .then(() => window.scrollTo(0, 0))
   }
 
   return (
@@ -142,7 +144,11 @@ const NavCategories: FunctionComponent = () => {
           <ShadowButton
             text="Shop All Wines"
             variant="nav"
-            fn={() => router.push('/products', 'products')}
+            fn={() =>
+              router
+                .push('/products', 'products')
+                .then(() => window.scrollTo(0, 0))
+            }
           />
         </div>
         <div className="w-1/2">

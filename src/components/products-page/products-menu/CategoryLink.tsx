@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 
 import Selected from '@assets/svgs/box-selected.svg'
 import Box from '@assets/svgs/box.svg'
+import { convertTagsToHref } from '@lib/convertTagsToHref'
 import { selectProducts, TagsByCategory } from '@redux/productsSlice'
 
 interface OwnProps {
@@ -43,25 +44,11 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
 
   const handleClick = (categoryName: keyof TagsByCategory, tagName: string) => {
     const updatedTags = getUpdatedTags(categoryName, tagName)
-
-    const href = Object.entries(updatedTags).reduce((acc, cur) => {
-      if (cur[1].length > 0) {
-        const encoded = cur[1].map((ele) => encodeURIComponent(ele)).join()
-        const join = acc === '/products/' ? '?' : '&'
-        return `${acc}${join}${cur[0]}=${encoded}`
-      }
-
-      return acc
-    }, '/products/')
-
-    router.push(href, href, { shallow: true })
+    const href = convertTagsToHref(updatedTags)
+    router.push(href, href, { shallow: true }).then(() => window.scrollTo(0, 0))
   }
 
-  // console.log(selectedTags[category], tag)
-
   useEffect(() => {
-    // console.log(selectedTags[category])
-    // console.log(tag)
     setSelected(selectedTags[category].includes(tag))
   }, [selectedTags, category, tag])
 

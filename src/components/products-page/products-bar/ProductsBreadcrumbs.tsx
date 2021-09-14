@@ -1,53 +1,74 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import { useSelector } from 'react-redux'
 
+import { simpleRoute } from '@lib/simpleRoute'
 import { selectProducts } from '@redux/productsSlice'
 
 const ProductsBreadcrumbs: FunctionComponent = () => {
   const router = useRouter()
-  const { totalSelected } = useSelector(selectProducts())
-  const [currentType, setCurrentType] = useState<string | null>(null)
-  const [currentCategory, setCurrentCategory] = useState<string | null>(null)
+  const { selectedTags, totalSelected } = useSelector(selectProducts())
 
-  const { query } = router
-
-  useEffect(() => {
-    const { parentType, category } = query
-    if (parentType !== currentType && typeof parentType === 'string') {
-      setCurrentType(parentType || null)
-    }
-    if (category !== currentCategory && typeof category === 'string') {
-      setCurrentCategory(category || null)
-    }
-  }, [query, currentCategory, currentType])
+  const { parentType, category } = selectedTags
 
   return (
-    <div className="flex items-center text-xs leading-none font-bold">
-      <span className="uppercase mr-2 text-base text-blue-dark">
-        All Products
-      </span>
-      {currentType && (
-        <>
-          <span className="mr-2 text-base">{'>'}</span>
-          <span className="mr-2 uppercase text-base text-blue-dark">
-            {currentType}
+    <div
+      className="h-8 lg:h-12 flex flex-wrap text-xs leading-none font-bold
+    overflow-hidden"
+    >
+      <div className="h-8 lg:h-12 flex items-center">
+        <span className="uppercase mr-2 text-sm sm:text-base text-blue-dark">
+          <Link href="/products" shallow>
+            <a className="whitespace-nowrap">All Products</a>
+          </Link>
+        </span>
+        {parentType.length === 0 && category.length === 0 && (
+          <span className="uppercase mr-2 text-sm sm:text-base text-blue-dark">
+            ({totalSelected.length})
           </span>
-        </>
-      )}
-      {currentCategory && (
-        <>
-          <span className="mr-2 text-base">{'>'}</span>
-          <span className="mr-2 uppercase text-base text-blue-dark">
-            {currentCategory}
+        )}
+      </div>
+      {parentType.length > 0 && (
+        <div className="flex items-center h-8 lg:h-12">
+          <span className="mr-2 text-sm sm:text-base">{'>'}</span>
+          <span className="relative">
+            <span
+              className={`${category.length === 0 ? 'breadcrumb-border' : ''}`}
+            >
+              <button
+                type="button"
+                className="mr-2 uppercase text-sm sm:text-base font-bold text-blue-dark"
+                onClick={() => simpleRoute(router, 'parentType', parentType[0])}
+              >
+                {parentType[0]}
+              </button>
+              {category.length === 0 && (
+                <span className="uppercase mr-2 text-sm sm:text-base text-blue-dark">
+                  ({totalSelected.length})
+                </span>
+              )}
+            </span>
           </span>
-        </>
+        </div>
       )}
-      <span className="uppercase mr-2 text-base text-blue-dark">
-        ({totalSelected.length})
-      </span>
+      {category.length > 0 && (
+        <div className="flex items-center h-8 lg:h-12 overflow-hidden">
+          <span className="mr-2 text-base">{'>'}</span>
+          <span className="relative">
+            <span className="breadcrumb-border">
+              <span className="mr-2 uppercase text-sm sm:text-base text-blue-dark">
+                {category[0]}
+              </span>
+              <span className="uppercase text-sm sm:text-base text-blue-dark">
+                ({totalSelected.length})
+              </span>
+            </span>
+          </span>
+        </div>
+      )}
     </div>
   )
 }

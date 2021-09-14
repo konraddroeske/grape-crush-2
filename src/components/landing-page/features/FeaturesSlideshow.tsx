@@ -7,10 +7,11 @@ import React, {
 } from 'react'
 
 import { gsap } from 'gsap'
-import _Draggable, { Draggable } from 'gsap/Draggable'
-import { InertiaPlugin } from 'gsap/InertiaPlugin'
+import _Draggable, { Draggable } from 'gsap/dist/Draggable'
+import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 import { useSelector } from 'react-redux'
 
+import ContentfulImage from '@components/common/ContentfulImage'
 import SlideButtons from '@components/landing-page/features/SlideButtons'
 import SpinningCircle from '@components/landing-page/features/SpinningCircle'
 import { Direction } from '@models/hero'
@@ -177,11 +178,11 @@ const FeaturesSlideshow: FunctionComponent = () => {
     slideAnimation.current.progress(1)
   }, [animateSlides, setWidths])
 
-  const handleImageLoad = () => {
-    if (list?.current?.offsetHeight === 0) {
-      handleResize()
-    }
-  }
+  // const handleImageLoad = () => {
+  //   if (list?.current?.offsetHeight === 0) {
+  //     handleResize()
+  //   }
+  // }
 
   const handleSnap = useCallback((x: number) => {
     const newPosition = gsap.utils.snap(itemWidth.current)(x)
@@ -285,12 +286,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
                         className="my-0 min-h-80 body-gutter-sm lg:body-gutter-lg
                       xl:body-gutter-xl 2xl:body-gutter-2xl mx-auto max-h-hero flex"
                       >
-                        <img
-                          className="block w-full my-0 mx-auto object-cover"
-                          src={slide?.image?.file[locale].url}
-                          alt="label"
-                          onLoad={() => handleImageLoad()}
-                        />
+                        {slide.image && <ContentfulImage image={slide.image} />}
                       </div>
                       <div
                         ref={(el) => titles.current.push(el)}

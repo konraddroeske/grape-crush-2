@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import VertWave from '@assets/svgs/info-box-3-vert.svg'
 import HoriWave from '@assets/svgs/info-box-3-wave.svg'
 import Speedy from '@assets/svgs/speedy.svg'
+import ContentfulImage from '@components/common/ContentfulImage'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectIndex } from '@redux/indexSlice'
@@ -34,11 +35,7 @@ const InfoBox3: FunctionComponent = () => {
         sm:transform sm:-translate-y-1/2 sm:w-1/3"
         />
         <div className="flex sm:min-h-96">
-          <img
-            className="object-cover w-full"
-            src={image?.file[locale].url}
-            alt={image?.description ? image.description[locale] : 'wine'}
-          />
+          {image && <ContentfulImage image={image} />}
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
+import AmbassadorImage from '@components/common/AmbassadorImage'
 import BuyButton from '@components/common/BuyButton'
 import LearnMore from '@components/common/product/LearnMore'
 import ProductSubheading from '@components/common/product/ProductSubheading'
@@ -49,12 +50,10 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
     }
   }, [data, variants, price])
 
-  // console.log('variants', variants)
-
   return (
     <div className="p-4">
-      <div className="bg-blue-light py-2 mb-6 hover:bg-lime-background">
-        {url && <img src={url} alt="" className="mix-blend-multiply" />}
+      <div className="h-60 relative bg-blue-light py-2 mb-6 hover:bg-lime-background">
+        {url && <AmbassadorImage url={url} title={name} />}
       </div>
       <ProductTitle name={name} fontSize="text-xl" />
       <ProductSubheading region={region} vintage={vintage} />

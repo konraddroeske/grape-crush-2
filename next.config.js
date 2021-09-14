@@ -1,27 +1,35 @@
-const withTM = require('next-transpile-modules')(['gsap'])
-
-module.exports = withTM({
-  future: {
-    webpack5: true,
-  },
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            ref: true,
-          },
-        },
+module.exports = (phase, { defaultConfig }) => {
+  /**
+   * @type {import('next').NextConfig}
+   */
+  const nextConfig = {
+    /* config options here */
+    images: {
+      domains: [
+        'ambassador-media-library-assets.s3.amazonaws.com',
+        'images.ctfassets.net',
       ],
-    })
+    },
+    webpack: (config) => {
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              ref: true,
+            },
+          },
+        ],
+      })
 
-    return {
-      ...config,
-      experiments: {
-        topLevelAwait: true,
-      },
-    }
-  },
-})
+      return {
+        ...config,
+        experiments: {
+          topLevelAwait: true,
+        },
+      }
+    },
+  }
+  return nextConfig
+}
