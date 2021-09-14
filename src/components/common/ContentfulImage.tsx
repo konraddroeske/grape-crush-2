@@ -16,7 +16,7 @@ const ContentfulImage: FunctionComponent<Props> = ({ image }) => {
   const { locale } = useSelector(selectGlobal())
   const { file, description } = image
 
-  const src = `https://${file[locale].url}`
+  const src = `https:${file[locale].url}`
   const alt = description?.[locale] || ''
   const { width, height } = file?.[locale]?.details?.image
 
