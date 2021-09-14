@@ -23,10 +23,12 @@ export type Facts = { [key: string]: string | string[] }[]
 const ItemContent: FunctionComponent<Props> = ({ product }) => {
   const [label, setLabel] = useState<string | null>(null)
   const [price, setPrice] = useState<number | null>(null)
-  const [desktopTitleHeight, setDesktopTitleHeight] =
-    useState<number | null>(null)
-  const [mobileTitleHeight, setMobileTitleHeight] =
-    useState<number | null>(null)
+  const [desktopTitleHeight, setDesktopTitleHeight] = useState<number | null>(
+    null
+  )
+  const [mobileTitleHeight, setMobileTitleHeight] = useState<number | null>(
+    null
+  )
 
   const mobileTitleRef = useRef<null | HTMLDivElement>(null)
   const desktopTitleRef = useRef<null | HTMLDivElement>(null)

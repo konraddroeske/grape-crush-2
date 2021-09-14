@@ -14,8 +14,9 @@ const NavCategories: FunctionComponent = () => {
   const { locale, nav } = useSelector(selectGlobal())
   const router = useRouter()
 
-  const [categoryImage, setCategoryImage] =
-    useState<string | undefined>(undefined)
+  const [categoryImage, setCategoryImage] = useState<string | undefined>(
+    undefined
+  )
   const [svgMask, setSvgMask] = useState<CmsImage | null>(null)
   const [topStyles, setTopStyles] = useState<string[]>([])
 

@@ -14,8 +14,9 @@ type Props = OwnProps
 const Suggested: FunctionComponent<Props> = ({ product }) => {
   const { products } = useSelector(selectProducts())
 
-  const [suggestedProducts, setSuggestedProducts] =
-    useState<ProductLowercase[] | null>(null)
+  const [suggestedProducts, setSuggestedProducts] = useState<
+    ProductLowercase[] | null
+  >(null)
 
   const { data, type } = product
   const { category } = data
