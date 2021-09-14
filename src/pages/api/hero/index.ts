@@ -7,6 +7,7 @@ export default async function handler(
   try {
     res.status(200).json({ data: 'hero data' })
   } catch (err) {
-    res.status(500).json({ statusCode: 500, message: err.message })
+    const error = err as Error
+    res.status(500).json({ statusCode: 500, message: error.message })
   }
 }
