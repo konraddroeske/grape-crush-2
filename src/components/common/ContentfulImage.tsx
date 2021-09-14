@@ -8,11 +8,15 @@ import { selectGlobal } from '@redux/globalSlice'
 
 interface OwnProps {
   image: CmsImage
+  objectFit?: 'object-contain' | 'object-cover'
 }
 
 type Props = OwnProps
 
-const ContentfulImage: FunctionComponent<Props> = ({ image }) => {
+const ContentfulImage: FunctionComponent<Props> = ({
+  image,
+  objectFit = 'object-cover',
+}) => {
   const { locale } = useSelector(selectGlobal())
   const { file, description } = image
 
@@ -27,7 +31,7 @@ const ContentfulImage: FunctionComponent<Props> = ({ image }) => {
         alt={alt}
         width={width}
         height={height}
-        className="object-cover"
+        className={objectFit}
         layout="responsive"
       />
     </div>
