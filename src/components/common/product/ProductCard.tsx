@@ -51,18 +51,22 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
   }, [data, variants, price])
 
   return (
-    <div className="p-4">
-      <div className="h-60 relative bg-blue-light py-2 mb-6 hover:bg-lime-background">
+    <div className="">
+      <div className="h-60 sm:h-64 lg:h-72 xl:h-80 2xl:h-96 relative bg-blue-light py-1 sm:py-2 xl:py-3 2xl:py-4 mb-6 hover:bg-lime-background">
         {url && <AmbassadorImage url={url} title={name} />}
       </div>
       <ProductTitle name={name} fontSize="text-xl" />
-      <ProductSubheading region={region} vintage={vintage} />
-      <div>
-        <h5 className="text-xl text-center font-bold my-2">
-          ${price} / {label}
-        </h5>
-      </div>
-      <div className="my-4">
+      {(region || vintage) && (
+        <ProductSubheading region={region} vintage={vintage} />
+      )}
+      {price && label && (
+        <div>
+          <h5 className="text-xl text-center font-bold my-2">
+            ${price} / {label}
+          </h5>
+        </div>
+      )}
+      <div className="flex justify-center my-4">
         <BuyButton productId={id} />
       </div>
       <p className="text-sm line-clamp line-clamp-p leading-5">{description}</p>

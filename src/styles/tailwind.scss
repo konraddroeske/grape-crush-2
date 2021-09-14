@@ -312,13 +312,13 @@
   }
 
   .breadcrumb-border::after {
-    content: "";
+    content: '';
     position: absolute;
     height: 0.3rem;
     left: 0;
     right: 0;
     bottom: -0.2rem;
-    background-color: #DFFF85;
+    background-color: #dfff85;
   }
 
   .-translate-x-1\/20 {

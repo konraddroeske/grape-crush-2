@@ -2,6 +2,8 @@ import React, { FunctionComponent } from 'react'
 
 import { useRouter } from 'next/router'
 
+import { simpleRoute } from '@lib/simpleRoute'
+
 interface OwnProps {
   category: string
   tag: string
@@ -17,12 +19,12 @@ const Tag: FunctionComponent<Props> = ({
 }) => {
   const router = useRouter()
 
-  const handleClick = (newCategory: string, newTag: string) => {
-    const href = `/products/?${encodeURIComponent(
-      newCategory
-    )}=${encodeURIComponent(newTag)}`
-    router.push(href, href, { shallow: true }).then(() => window.scrollTo(0, 0))
-  }
+  // const handleClick = (newCategory: string, newTag: string) => {
+  //   const href = `/products/?${encodeURIComponent(
+  //     newCategory
+  //   )}=${encodeURIComponent(newTag)}`
+  //   router.push(href, href, { shallow: true }).then(() => window.scrollTo(0, 0))
+  // }
 
   const variants = {
     primary:
@@ -35,7 +37,7 @@ const Tag: FunctionComponent<Props> = ({
     <button
       type="button"
       className={variants[variant]}
-      onClick={() => handleClick(category, tag)}
+      onClick={() => simpleRoute(router, category, tag)}
     >
       {tag}
     </button>
