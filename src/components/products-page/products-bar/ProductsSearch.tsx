@@ -13,7 +13,6 @@ const ProductsSearch: FunctionComponent = () => {
 
   useEffect(() => {
     if (navSearch.length > 0) {
-      // console.log(navSearch)
       dispatch(handleProductsSearch(navSearch))
     }
     dispatch(setNavSearch(''))

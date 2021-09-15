@@ -180,7 +180,6 @@
   }
 
   .mask-nav {
-    //flex-grow: 1;
     height: 100%;
     max-height: 100%;
 
@@ -278,6 +277,10 @@
 
   .min-w-footer {
     min-width: 1440px;
+  }
+
+  .max-w-2\/3 {
+    max-width: calc(100% * 2 / 3);
   }
 
   .border-transparent {

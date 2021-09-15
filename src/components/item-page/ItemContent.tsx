@@ -97,15 +97,10 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
 
   const [url] = imageUrl
 
-  // console.log('description', description)
-
   return (
     <div>
-      <div
-        ref={desktopTitleRef}
-        className="hidden lg:block relative z-10 pointer-events-none"
-      >
-        <h1 className="font-bold text-7xl uppercase text-blue-dark">
+      <div ref={desktopTitleRef} className="hidden lg:block relative z-10">
+        <h1 className="font-bold text-7xl uppercase text-blue-dark lg:max-w-2/3">
           {productName}
         </h1>
       </div>
@@ -119,7 +114,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
         >
           {winery && (
             <div className="flex justify-center lg:justify-start">
-              <span className="inline-block text-base lg:text-xl border-b-4 border-lime">
+              <span className="inline-block text-base lg:text-xl">
                 <h2 className="inline uppercase font-bold">{winery}</h2>
                 {vintage && (
                   <>

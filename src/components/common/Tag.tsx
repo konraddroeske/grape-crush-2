@@ -1,8 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
-import { useRouter } from 'next/router'
-
-import { simpleRoute } from '@lib/simpleRoute'
+import Link from 'next/link'
 
 interface OwnProps {
   category: string
@@ -17,15 +15,6 @@ const Tag: FunctionComponent<Props> = ({
   tag,
   variant = 'primary',
 }) => {
-  const router = useRouter()
-
-  // const handleClick = (newCategory: string, newTag: string) => {
-  //   const href = `/products/?${encodeURIComponent(
-  //     newCategory
-  //   )}=${encodeURIComponent(newTag)}`
-  //   router.push(href, href, { shallow: true }).then(() => window.scrollTo(0, 0))
-  // }
-
   const variants = {
     primary:
       'font-sans text-2xs font-light text-blue-dark py-1 px-3 uppercase bg-transparent border border-blue-dark hover:bg-lime',
@@ -34,13 +23,15 @@ const Tag: FunctionComponent<Props> = ({
   }
 
   return (
-    <button
-      type="button"
-      className={variants[variant]}
-      onClick={() => simpleRoute(router, category, tag)}
+    <Link
+      href={`/products?${encodeURIComponent(category)}=${encodeURIComponent(
+        tag
+      )}`}
     >
-      {tag}
-    </button>
+      <a>
+        <div className={variants[variant]}>{tag}</div>
+      </a>
+    </Link>
   )
 }
 

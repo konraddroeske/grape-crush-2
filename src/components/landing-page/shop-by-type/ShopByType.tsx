@@ -9,6 +9,7 @@ import React, {
 import { gsap } from 'gsap'
 import _Draggable, { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
@@ -232,7 +233,13 @@ const SocialGallery: FunctionComponent = () => {
                       className="block mt-3 mx-auto text-lg xl:text-xl text-center text-blue-dark
                      font-bold uppercase lg:text-lg xl:text-xl"
                     >
-                      {category.title[locale]}
+                      <Link
+                        href={`/products?parentType=${encodeURIComponent(
+                          category.categoryName[locale]
+                        )}`}
+                      >
+                        <a>{category.title[locale]}</a>
+                      </Link>
                     </button>
                   </li>
                 )
