@@ -16,7 +16,7 @@
     "lint": "eslint src --fix",
     "test": "jest",
     "test-all": "yarn lint && yarn type-check && yarn test",
-    "generate-types": "contentful-typescript-codegen --output ./src/types/generated/contentful.d.ts"
+    "generate-types": "contentful-typescript-codegen --output ./src/models/generated/contentful.d.ts"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -25,6 +25,7 @@
     ]
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.3.6",
     "@contentful/rich-text-types": "^14.1.2",
     "@reduxjs/toolkit": "^1.5.1",
     "@svgr/webpack": "^5.5.0",

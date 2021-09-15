@@ -1,17 +1,78 @@
 import React, { FunctionComponent } from 'react'
 
+import { useSelector } from 'react-redux'
+
+import TeamMembers from '@components/about/TeamMembers'
+import ContentfulImage from '@components/common/ContentfulImage'
+import ContentfulRichText from '@components/common/ContentfulRichText'
+import OutlineMarquee from '@components/common/OutlineMarquee'
+import fetchAboutData from '@lib/fetchAboutData'
 import fetchGlobalData from '@lib/fetchGlobalData'
-import { setFooter, setLocale, setNav, setPages } from '@redux/globalSlice'
+import { selectAbout, setFields, setTeamMembers } from '@redux/aboutSlice'
+import {
+  selectGlobal,
+  setFooter,
+  setLocale,
+  setNav,
+  setPages,
+} from '@redux/globalSlice'
 import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
+import AboutWaveMobile from '../assets/svgs/about-wave-mobile.svg'
+
 import Star from '../assets/svgs/star.svg'
 
-const about: FunctionComponent = () => {
+const About: FunctionComponent = () => {
+  const { locale } = useSelector(selectGlobal())
+  const { fields } = useSelector(selectAbout())
+
+  if (!fields)
+    return (
+      <div>
+        <h1>Not loaded.</h1>
+      </div>
+    )
+
+  const { headline, image1, image2, paragraph1, paragraph2 } = fields
+
   return (
-    <div>
-      {/* <h1></h1> */}
-      <Star />
+    <div className="min-h-screen pt-24">
+      {headline && (
+        <section className="relative body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+          <h1 className="relative z-10 uppercase text-4xl text-blue-dark font-bold mb-36">
+            {headline[locale]}
+          </h1>
+          <Star className="w-60 absolute bottom-0 right-0 transform translate-y-1/2" />
+        </section>
+      )}
+      <section className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+        <div className="my-4">
+          <ContentfulImage image={image1} />
+        </div>
+        {paragraph1 && (
+          <div className="my-4">
+            <ContentfulRichText richText={paragraph1[locale]} />
+          </div>
+        )}
+      </section>
+      <div className="my-10 overflow-hidden">
+        <OutlineMarquee text="Wines within reach" />
+      </div>
+      <section className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+        <div className="my-4">
+          <ContentfulImage image={image2} />
+        </div>
+        {paragraph2 && (
+          <div className="my-4">
+            <ContentfulRichText richText={paragraph2[locale]} />
+          </div>
+        )}
+      </section>
+      <section className="relative mt-20 pb-10 bg-lime">
+        <AboutWaveMobile className="absolute bottom-full left-0 right-0 w-full transform translate-y-px" />
+        <TeamMembers />
+      </section>
     </div>
   )
 }
@@ -26,13 +87,11 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     pageAssets,
     // igImages,
     categoryAssets,
-    // categories,
     footerAssets,
     navAssets,
   } = await fetchGlobalData()
 
-  // const { faqAssets } = await fetchFaqData()
-  // console.log(faqAssets)
+  const { aboutAssets, teamMemberAssets } = await fetchAboutData()
 
   // Global
   store.dispatch(setAllTags(products))
@@ -44,11 +103,12 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setNav(navAssets))
 
   // About
-  // store.dispatch(setQuestions(faqAssets))
+  store.dispatch(setFields(aboutAssets))
+  store.dispatch(setTeamMembers(teamMemberAssets))
 
   return {
     props: {},
   }
 })
 
-export default about
+export default About

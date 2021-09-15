@@ -1,19 +1,20 @@
 import { getAssets, getEntries } from '@lib/cms'
 
-export default async function fetchFaqData() {
+export default async function fetchAboutData() {
   const locale = 'en-US'
-  const contentIds = ['faq']
+  const contentIds = ['about', 'teamMembers']
 
   // Contentful
   const groupedEntries = await Promise.all(
     contentIds.map((id) => getEntries(id))
   )
 
-  const [faqAssets] = await Promise.all(
+  const [aboutAssets, teamMemberAssets] = await Promise.all(
     groupedEntries.map((entries) => getAssets(entries, locale))
   )
 
   return {
-    faqAssets,
+    aboutAssets,
+    teamMemberAssets,
   }
 }

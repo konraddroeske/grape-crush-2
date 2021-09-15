@@ -1,3 +1,4 @@
+import { Document } from '@contentful/rich-text-types'
 import { Asset, Entry } from 'contentful-management/types'
 
 import contentfulClient from '../../getContentfulEnvironment'
@@ -38,6 +39,20 @@ export interface FaqAssets {
   }
 }
 
+export interface AboutAssets {
+  headline: {
+    [key: string]: string
+  }
+  paragraph1: {
+    [key: string]: Document
+  }
+  paragraph2: {
+    [key: string]: Document
+  }
+  image1: CmsImage
+  image2: CmsImage
+}
+
 export interface CmsAssets {
   title: {
     [key: string]: string
@@ -63,47 +78,54 @@ export interface CmsAssets {
   slug: {
     [key: string]: string
   }
+  name: {
+    [key: string]: string
+  }
   image?: CmsImage
 }
 
 export const getEntries = async (contentType: string): Promise<Entry[]> => {
   const { items } = await client.getEntries({
     content_type: contentType,
+    locale: 'en-US',
   })
+
+  // console.log(items)
 
   return items
 }
-
-// export const getAllEntries = async (): Promise<Entry[]> => {
-//   const { items } = await client.getEntries()
-//
-//   return items
-// }
-//
-// export const getAllAssets = async () => {
-//   const { items } = await client.getAssets()
-//
-//   return items
-// }
 
 export const getAssets = async (entries: Entry[], locale = 'en-US') => {
   return Promise.all(
     entries.map(async (entry) => {
       const { fields } = entry
 
-      if (fields.image) {
-        const { id } = fields.image[locale].sys
-        const { fields: imageFields } = await getImage(id)
+      const imageFields = Object.entries(fields).filter(([field, _]) => {
+        return field.toLowerCase().includes('image')
+      })
+
+      if (imageFields.length > 0) {
+        const updatedImageFields = await Promise.all(
+          imageFields.map(async ([name, data]) => {
+            const { id } = data[locale].sys
+            const { fields: imageField } = await getImage(id)
+
+            return { [name]: imageField }
+          })
+        )
+
+        const flattenedImages = updatedImageFields.reduce(
+          (acc, cur) => Object.assign(acc, cur),
+          {}
+        )
 
         return {
           ...fields,
-          image: imageFields,
+          ...flattenedImages,
         }
       }
 
-      return {
-        ...fields,
-      }
+      return fields
     })
   )
 }
