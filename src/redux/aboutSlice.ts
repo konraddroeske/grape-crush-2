@@ -2,12 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
 // import { AboutAssets } from '@lib/cms'
-import { AboutAssets, CmsAssets } from '@lib/cms'
+import { IAboutFields, ITeamMembersFields } from '@models/contentful'
 import type { AppState } from '@redux/store'
 
 interface About {
-  fields: AboutAssets | undefined
-  teamMembers: CmsAssets[]
+  // fields: AboutAssets | undefined
+  fields: IAboutFields | undefined
+  teamMembers: ITeamMembersFields[]
 }
 
 const initialState: About = {
@@ -20,7 +21,7 @@ export const aboutSlice = createSlice({
   initialState,
   reducers: {
     setFields(state, action) {
-      const [fields]: [AboutAssets] = action.payload
+      const [fields]: [IAboutFields] = action.payload
       return { ...state, fields }
     },
     setTeamMembers(state, action) {

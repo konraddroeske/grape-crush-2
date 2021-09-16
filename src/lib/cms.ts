@@ -53,9 +53,11 @@ export interface AboutAssets {
   image2: CmsImage
 }
 
+export type Locales = 'en-US'
+
 export interface CmsAssets {
   title: {
-    [key: string]: string
+    [K in Locales]: string
   }
   order: {
     [key: string]: number

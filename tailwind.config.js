@@ -20,7 +20,7 @@ module.exports = {
       sm: ['.875rem', '1.25rem'],
       tiny: ['.875rem', '1.25rem'],
       base: ['1rem', '1.5rem'],
-      lg: ['1.125rem', '1.75rem'],
+      lg: ['1.125rem', '1.65rem'],
       xl: ['1.25rem', '1.75rem'],
       '2xl': ['1.5rem', '2rem'],
       '3xl': ['1.875rem', '2.25rem'],
@@ -100,20 +100,12 @@ module.exports = {
       },
     },
     screens: {
+      xs: '475px',
       sm: '640px',
-      // => @media (min-width: 640px) { ... }
-
       md: '768px',
-      // => @media (min-width: 768px) { ... }
-
       lg: '1024px',
-      // => @media (min-width: 1024px) { ... }
-
       xl: '1280px',
-      // => @media (min-width: 1280px) { ... }
-
       '2xl': '1536px',
-      // => @media (min-width: 1536px) { ... }
     },
   },
   variants: {

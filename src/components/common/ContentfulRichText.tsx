@@ -16,11 +16,16 @@ type Props = OwnProps
 const ContentfulRichText: FunctionComponent<Props> = ({ richText }) => {
   const options: Options = {
     renderMark: {
-      [MARKS.BOLD]: (text) => <span className="bg-lime">{text}</span>,
+      [MARKS.BOLD]: (text) => (
+        <span className="inline-block bg-lime">{text}</span>
+      ),
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className="font-headline font-medium text-base text-blue-dark">
+        <p
+          className="font-headline font-medium text-base text-blue-dark
+        xs:text-base sm:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl"
+        >
           {children}
         </p>
       ),

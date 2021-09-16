@@ -239,6 +239,10 @@
     bottom: calc(100% * 5 / 6);
   }
 
+  .bottom-7\/12 {
+    bottom: calc(100% * 7 / 12);
+  }
+
   .min-h-80 {
     min-height: 20rem;
   }
@@ -448,116 +452,138 @@
     //    padding-bottom: 8rem;
     //  }
     //}
-    .section-margin {
-      margin-top: 6rem;
-      margin-bottom: 6rem;
+  }
 
-      // Xl
-      @media (min-width: 1280px) {
-        margin-top: 7rem;
-        margin-bottom: 7rem;
-      }
+  .section-margin {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
 
-      // 2xl
-      @media (min-width: 1536px) {
-        margin-top: 9rem;
-        margin-bottom: 9rem;
-      }
+    // Xl
+    @media (min-width: 1280px) {
+      margin-top: 7rem;
+      margin-bottom: 7rem;
     }
 
-    .swirl-size {
-      width: 47rem;
-      right: -10rem;
-
-      // Xl
-      @media (min-width: 1280px) {
-        width: 47rem;
-        right: -10rem;
-      }
-
-      //// Xl
-      //@media (min-width: 1280px) and (min-height: 1000px) {
-      //  width: 57rem;
-      //  right: -12rem;
-      //}
-
-      // 2xl
-      @media (min-width: 1536px) {
-        width: 57rem;
-        right: -12rem;
-      }
-    }
-
-    .marquee-size {
-      width: 12rem;
-
-      // L
-      @media (min-width: 1024px) {
-        width: 11.1rem;
-      }
-
-      // Xl
-      //@media (min-width: 1280px) {
-      //  width: 11.1rem;
-      //}
-
-      // 2xl
-      @media (min-width: 1536px) {
-        width: 16.2rem;
-      }
-    }
-
-    .title-size {
-      font-size: 3rem;
-      line-height: 0.9;
-
-      // Sm
-      @media (min-width: 640px) {
-        font-size: 5rem;
-        line-height: 0.9;
-      }
-
-      // L
-      @media (min-width: 1024px) {
-        font-size: 9rem;
-        line-height: 0.85;
-      }
-
-      // Xl
-      @media (min-width: 1280px) {
-        font-size: 9rem;
-      }
-
-      // 2xl
-      @media (min-width: 1536px) {
-        font-size: 13rem;
-      }
-    }
-
-    .title-position {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      // Large
-      @media (min-width: 1024px) {
-        transform: translate(0, 0);
-        top: 2.75rem;
-        left: 1.5rem;
-        right: 0;
-      }
-
-      // Xl
-      @media (min-width: 1280px) {
-        left: 4rem;
-      }
-
-      // 2xl
-      @media (min-width: 1536px) {
-        left: 6rem;
-      }
+    // 2xl
+    @media (min-width: 1536px) {
+      margin-top: 9rem;
+      margin-bottom: 9rem;
     }
   }
+
+  .swirl-size {
+    width: 47rem;
+    right: -10rem;
+
+    // Xl
+    @media (min-width: 1280px) {
+      width: 47rem;
+      right: -10rem;
+    }
+
+    //// Xl
+    //@media (min-width: 1280px) and (min-height: 1000px) {
+    //  width: 57rem;
+    //  right: -12rem;
+    //}
+
+    // 2xl
+    @media (min-width: 1536px) {
+      width: 57rem;
+      right: -12rem;
+    }
+  }
+
+  .marquee-size {
+    width: 12rem;
+
+    // L
+    @media (min-width: 1024px) {
+      width: 11.1rem;
+    }
+
+    // Xl
+    //@media (min-width: 1280px) {
+    //  width: 11.1rem;
+    //}
+
+    // 2xl
+    @media (min-width: 1536px) {
+      width: 16.2rem;
+    }
+  }
+
+  .title-size {
+    font-size: 3rem;
+    line-height: 0.9;
+
+    // Sm
+    @media (min-width: 640px) {
+      font-size: 5rem;
+      line-height: 0.9;
+    }
+
+    // L
+    @media (min-width: 1024px) {
+      font-size: 9rem;
+      line-height: 0.85;
+    }
+
+    // Xl
+    @media (min-width: 1280px) {
+      font-size: 9rem;
+    }
+
+    // 2xl
+    @media (min-width: 1536px) {
+      font-size: 13rem;
+    }
+  }
+
+  .title-position {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    // Large
+    @media (min-width: 1024px) {
+      transform: translate(0, 0);
+      top: 2.75rem;
+      left: 1.5rem;
+      right: 0;
+    }
+
+    // Xl
+    @media (min-width: 1280px) {
+      left: 4rem;
+    }
+
+    // 2xl
+    @media (min-width: 1536px) {
+      left: 6rem;
+    }
+  }
+
+  .grid-row-1 {
+    grid-row: 1;
+  }
+
+  .grid-col-1 {
+    grid-column: 1;
+  }
+
+  .grid-col-2 {
+    grid-column: 2;
+  }
+
+  .team-members-bg {
+    background: linear-gradient(to top, #DFFF85 calc(100% * 7 / 12 + 1rem), white calc(100% * 3 / 12 + 1rem));
+  }
+
+  .translate-y-10\/12 {
+    transform: translateY(calc(100% * 10 / 12));
+  }
+
 }
 
 /* purgecss start ignore */

@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { CmsAssets } from '@lib/cms'
+import { CmsAssets, Locales } from '@lib/cms'
 import type { AppState } from '@redux/store'
 
 interface Global {
-  locale: string
-  locales: string[]
+  locale: Locales
+  locales: Locales[]
   helpPages: CmsAssets[]
   legalPages: CmsAssets[]
   footer: CmsAssets[]
