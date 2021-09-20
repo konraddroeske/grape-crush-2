@@ -51,14 +51,9 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     categoryAssets,
     footerAssets,
     navAssets,
-    // allEntries,
-    // allAssets,
   } = await fetchGlobalData()
 
   const { heroAssets, newArrivals, infoBoxAssets } = await fetchIndexData()
-
-  // store.dispatch(setAllEntries(allEntries))
-  // store.dispatch(setAllAssets(allAssets))
 
   // Global
   store.dispatch(setPages(pageAssets))

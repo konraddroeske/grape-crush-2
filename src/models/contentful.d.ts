@@ -49,7 +49,7 @@ export interface IAboutFields {
   teamMembers: Entry<{ [fieldId: string]: unknown }>[]
 }
 
-/** Content for about page. */
+/** Content for about-page page. */
 
 export interface IAbout extends Entry<IAboutFields> {
   sys: {
@@ -96,6 +96,31 @@ export interface ICategory extends Entry<ICategoryFields> {
       }
     }
   }
+}
+
+export interface IContactFields {
+  /** Slug */
+  slug: {
+    [K in LOCALE_CODE]: string
+  }
+
+  /** Address */
+  address: {
+    [K in LOCALE_CODE]: Document
+  }
+
+  /** Hours */
+  hours: {
+    [K in LOCALE_CODE]: Document
+  }
+
+  /** Contact */
+  contact: {
+    [K in LOCALE_CODE]: Document
+  }
+
+  /** Image */
+  image: CmsImage
 }
 
 export interface IFaqFields {

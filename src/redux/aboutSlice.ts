@@ -1,18 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-// import { AboutAssets } from '@lib/cms'
 import { IAboutFields, ITeamMembersFields } from '@models/contentful'
 import type { AppState } from '@redux/store'
 
 interface About {
-  // fields: AboutAssets | undefined
-  fields: IAboutFields | undefined
+  fields: IAboutFields | null
   teamMembers: ITeamMembersFields[]
 }
 
 const initialState: About = {
-  fields: undefined,
+  fields: null,
   teamMembers: [],
 }
 

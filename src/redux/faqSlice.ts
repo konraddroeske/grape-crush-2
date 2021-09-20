@@ -17,7 +17,6 @@ export const faqSlice = createSlice({
   initialState,
   reducers: {
     setQuestions(state, action) {
-      // console.log('faq', action.payload)
       return { ...state, questions: action.payload }
     },
   },

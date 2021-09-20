@@ -1,8 +1,10 @@
 import React, { FunctionComponent } from 'react'
 
+import { Options } from '@contentful/rich-text-react-renderer'
+import { BLOCKS, MARKS } from '@contentful/rich-text-types'
 import { useSelector } from 'react-redux'
 
-import TeamMembers from '@components/about/TeamMembers'
+import TeamMembers from '@components/about-page/TeamMembers'
 import ContentfulImage from '@components/common/ContentfulImage'
 import ContentfulRichText from '@components/common/ContentfulRichText'
 import OutlineMarquee from '@components/common/OutlineMarquee'
@@ -38,6 +40,24 @@ const About: FunctionComponent = () => {
 
   const { headline, image1, image2, paragraph1, paragraph2 } = fields
 
+  const options: Options = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => (
+        <span className="inline-block bg-lime">{text}</span>
+      ),
+    },
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => (
+        <p
+          className="font-headline font-medium text-base text-blue-dark
+        xs:text-base sm:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl"
+        >
+          {children}
+        </p>
+      ),
+    },
+  }
+
   return (
     <div className="min-h-screen pt-24">
       {headline && (
@@ -65,7 +85,10 @@ const About: FunctionComponent = () => {
         </div>
         {paragraph1 && (
           <div className="my-4 flex items-center sm:my-0">
-            <ContentfulRichText richText={paragraph1[locale]} />
+            <ContentfulRichText
+              options={options}
+              richText={paragraph1[locale]}
+            />
           </div>
         )}
       </section>
@@ -84,7 +107,10 @@ const About: FunctionComponent = () => {
         {paragraph2 && (
           <div className="my-4 flex items-center sm:my-0 sm:grid-col-1 sm:grid-row-1">
             <div className="relative">
-              <ContentfulRichText richText={paragraph2[locale]} />
+              <ContentfulRichText
+                options={options}
+                richText={paragraph2[locale]}
+              />
               <AboutSwirl
                 className="absolute bottom-0 transform translate-y-3/4
               left-1/2 w-1/2"

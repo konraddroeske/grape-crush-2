@@ -4,6 +4,9 @@ import { Document } from '@contentful/rich-text-types'
 import { Asset, Entry } from 'contentful'
 
 export interface IAboutFields {
+  /** Slug */
+  slug: string
+
   /** Headline */
   headline: string
 
@@ -23,7 +26,7 @@ export interface IAboutFields {
   teamMembers: Entry<{ [fieldId: string]: unknown }>[]
 }
 
-/** Content for about page. */
+/** Content for about-page page. */
 
 export interface IAbout extends Entry<IAboutFields> {
   sys: {
@@ -65,6 +68,40 @@ export interface ICategory extends Entry<ICategoryFields> {
     contentType: {
       sys: {
         id: 'category'
+        linkType: 'ContentType'
+        type: 'Link'
+      }
+    }
+  }
+}
+
+export interface IContactFields {
+  /** Slug */
+  slug: string
+
+  /** Address */
+  address: Document
+
+  /** Hours */
+  hours: Document
+
+  /** Contact */
+  contact: Document
+
+  /** Image */
+  image: Asset
+}
+
+export interface IContact extends Entry<IContactFields> {
+  sys: {
+    id: string
+    type: string
+    createdAt: string
+    updatedAt: string
+    locale: string
+    contentType: {
+      sys: {
+        id: 'contact'
         linkType: 'ContentType'
         type: 'Link'
       }
@@ -340,6 +377,7 @@ export interface ITeamMembers extends Entry<ITeamMembersFields> {
 export type CONTENT_TYPE =
   | 'about'
   | 'category'
+  | 'contact'
   | 'faq'
   | 'footer'
   | 'heroSlide'

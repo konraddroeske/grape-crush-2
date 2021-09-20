@@ -16,13 +16,6 @@ export default async function fetchGlobalData() {
       groupedEntries.map((entries) => getAssets(entries, locale))
     )
 
-  // const [allEntries, allAssets] = await Promise.all([
-  //   getAllEntries(),
-  //   getAllAssets(),
-  // ])
-
-  // const { data: igImages }: AmbassadorIg = await ambassador.api.getSocial()
-
   const { data: allShops } = await ambassador.api.allShops()
 
   const { shops } = allShops
@@ -37,10 +30,6 @@ export default async function fetchGlobalData() {
     pageAssets,
     categoryAssets,
     footerAssets,
-    // allEntries,
-    // allAssets,
-    // categories,
-    // igImages,
     navAssets,
     products: productsWithNewKeys,
   }

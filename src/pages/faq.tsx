@@ -96,29 +96,22 @@ const Faq: FunctionComponent = () => {
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  // const { locale: defaultLocale = 'en-US' } = ctx
-  // console.log('store', store.getState())
-
   const {
     products,
     locale,
     pageAssets,
-    // igImages,
     categoryAssets,
-    // categories,
     footerAssets,
     navAssets,
   } = await fetchGlobalData()
 
   const { faqAssets } = await fetchFaqData()
-  // console.log(faqAssets)
 
   // Global
   store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories(categoryAssets))
-  // store.dispatch(setIgImages(igImages))
   store.dispatch(setFooter(footerAssets))
   store.dispatch(setNav(navAssets))
 
