@@ -36,6 +36,7 @@ const Products: FunctionComponent = () => {
       if (page && !(page instanceof Array)) {
         dispatch(handlePage(parseInt(page, 10)))
       }
+      // console.log('handling tags', tags)
       dispatch(handleTags(tags))
     } else {
       dispatch(resetTags())

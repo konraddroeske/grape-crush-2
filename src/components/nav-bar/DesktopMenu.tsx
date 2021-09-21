@@ -23,7 +23,7 @@ const DesktopMenu: FunctionComponent = () => {
       <MenuLink variant="desktop" to="/about">
         About Us
       </MenuLink>
-      <MenuLink variant="desktop" to="/faq">
+      <MenuLink variant="desktop" to="/contact">
         Visit Us
       </MenuLink>
       <MenuLink variant="desktop" to="/faq">

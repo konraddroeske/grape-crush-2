@@ -10,18 +10,7 @@ interface OwnProps {
 
 type Props = OwnProps
 
-const Tag: FunctionComponent<Props> = ({
-  category,
-  tag,
-  variant = 'primary',
-}) => {
-  const variants = {
-    primary:
-      'font-sans text-2xs font-light text-blue-dark py-1 px-3 uppercase bg-transparent border border-blue-dark hover:bg-lime',
-    secondary:
-      'font-sans text-2xs font-light py-2 px-4 rounded-3xl uppercase bg-transparent border border-lime',
-  }
-
+const Tag: FunctionComponent<Props> = ({ category, tag }) => {
   return (
     <Link
       href={`/products?${encodeURIComponent(category)}=${encodeURIComponent(
@@ -29,7 +18,9 @@ const Tag: FunctionComponent<Props> = ({
       )}`}
     >
       <a>
-        <div className={variants[variant]}>{tag}</div>
+        <div className="font-sans text-2xs font-light text-blue-dark py-1 px-3 uppercase bg-transparent border border-blue-dark hover:bg-lime">
+          {tag}
+        </div>
       </a>
     </Link>
   )

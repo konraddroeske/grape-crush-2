@@ -4,7 +4,10 @@ import ShadowButton from '@components/common/ShadowButton'
 
 const ContactForm: FunctionComponent = () => {
   return (
-    <section className="relative bg-lime py-12 xl:py-16 2xl:py-20">
+    <section
+      id="contact-form"
+      className="relative bg-lime py-12 xl:py-16 2xl:py-20"
+    >
       <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
         <h2 className="uppercase text-blue-dark text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 lg:mb-6 xl:mb-8 2xl:mb-10">
           Or just say hello!

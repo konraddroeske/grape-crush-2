@@ -12,7 +12,10 @@ const ProductsList: FunctionComponent = () => {
   const { selectedProducts, page, selectedTags, productsSearch, productsSort } =
     useSelector(selectProducts())
 
+  // console.log('selected products', selectedProducts)
+
   useEffect(() => {
+    // console.log('handling products')
     dispatch(handleProducts({ selectedTags, productsSearch, productsSort }))
   }, [selectedTags, productsSearch, productsSort, page, dispatch])
 

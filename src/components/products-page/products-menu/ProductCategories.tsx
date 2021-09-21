@@ -66,6 +66,7 @@ const ProductCategories: FunctionComponent<Props> = (props) => {
       setPriceRangeOptions(sortedPriceRange)
     }
   }, [allTags, locale])
+
   return (
     <div>
       <ProductsTags {...props} />

@@ -7,7 +7,8 @@ import type { AppState } from '@redux/store'
 interface Global {
   locale: Locales
   locales: Locales[]
-  helpPages: CmsAssets[]
+  allPages: CmsAssets[]
+  // helpPages: CmsAssets[]
   legalPages: CmsAssets[]
   footer: CmsAssets[]
   nav: CmsAssets[]
@@ -19,7 +20,8 @@ interface Global {
 const initialState: Global = {
   locale: 'en-US',
   locales: ['en-US'],
-  helpPages: [],
+  allPages: [],
+  // helpPages: [],
   legalPages: [],
   navOpen: false,
   footer: [],
@@ -40,11 +42,13 @@ export const globalSlice = createSlice({
         (page: CmsAssets) => page.category[state.locale] === 'Legal Stuff'
       )
 
-      const helpPages = action.payload.filter(
-        (page: CmsAssets) => page.category[state.locale] === 'Help'
-      )
+      // const helpPages = action.payload.filter(
+      //   (page: CmsAssets) => page.category[state.locale] === 'Help'
+      // )
 
-      return { ...state, legalPages, helpPages }
+      // console.log('help pages', helpPages)
+
+      return { ...state, allPages: action.payload, legalPages }
     },
     setNavOpen(state, action) {
       return { ...state, navOpen: action.payload }

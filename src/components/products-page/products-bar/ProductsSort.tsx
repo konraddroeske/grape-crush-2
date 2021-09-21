@@ -75,7 +75,8 @@ const ProductsSort: FunctionComponent = () => {
                 type="button"
                 className={`${
                   option === productsSort ? 'bg-lime' : 'bg-white'
-                } h-full w-full pl-4 uppercase text-left text-xs font-medium text-blue-dark`}
+                } h-full w-full pl-4 uppercase text-left text-xs font-medium 
+                text-blue-dark hover:bg-lime`}
                 onClick={() => {
                   setExpanded(!expanded)
                   handleSelect(option)

@@ -21,28 +21,28 @@ const ItemBreadcrumbs: FunctionComponent<Props> = ({ product }) => {
     >
       <ItemBreadcrumbLink
         hasBorder={
-          parentType.length === 0 &&
-          category.length === 0 &&
-          primaryVarietal.length === 0
+          parentType?.length === 0 &&
+          category?.length === 0 &&
+          primaryVarietal?.length === 0
         }
         category=""
         tag=""
       />
-      {parentType.length > 0 && (
+      {parentType?.length > 0 && (
         <ItemBreadcrumbLink
-          hasBorder={category.length === 0 && primaryVarietal.length === 0}
+          hasBorder={category?.length === 0 && primaryVarietal?.length === 0}
           category="parentType"
           tag={parentType}
         />
       )}
-      {category.length > 0 && (
+      {category?.length > 0 && (
         <ItemBreadcrumbLink
-          hasBorder={primaryVarietal.length === 0}
+          hasBorder={primaryVarietal?.length === 0}
           category="category"
           tag={category}
         />
       )}
-      {primaryVarietal.length > 0 && (
+      {primaryVarietal?.length > 0 && (
         <ItemBreadcrumbLink
           hasBorder
           category="varietal"

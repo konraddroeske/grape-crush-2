@@ -43,7 +43,10 @@ const ContactEmail: FunctionComponent = () => {
     },
   }
   return (
-    <section className="relative pt-8 pb-24 lg:pb-28 xl:pt-12 xl:pb-32 2xl:pt-16 2xl:pb-36 overflow-hidden">
+    <section
+      id="contact-email"
+      className="relative pt-8 pb-24 lg:pb-28 xl:pt-12 xl:pb-32 2xl:pt-16 2xl:pb-36 overflow-hidden"
+    >
       <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl sm:flex">
         <div className="relative z-10 sm:w-1/2 sm:flex sm:items-center">
           <ContentfulRichText

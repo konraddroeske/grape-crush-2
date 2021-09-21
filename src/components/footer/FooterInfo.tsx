@@ -38,7 +38,7 @@ export const LogoContainer: FunctionComponent = ({ children }) => (
 )
 
 const FooterInfo: FunctionComponent = () => {
-  const { helpPages, legalPages, locale } = useSelector(selectGlobal())
+  const { legalPages, locale } = useSelector(selectGlobal())
   return (
     <div className="relative z-30 bg-blue-dark xl:flex xl:overflow-hidden">
       <FooterLogo />
@@ -56,20 +56,25 @@ const FooterInfo: FunctionComponent = () => {
           md:flex xl:block xl:text-left"
           >
             <li>
-              <FooterLink to="/contact">Contact</FooterLink>
+              <FooterLink to="/contact#contact-email">Contact</FooterLink>
             </li>
             <li>
-              <FooterLink to="/contact">Location & Hours</FooterLink>
+              <FooterLink to="/contact#contact-location">
+                Location & Hours
+              </FooterLink>
             </li>
-            {helpPages.map((page) => {
-              return (
-                <li key={page.slug[locale]}>
-                  <FooterLink to={`/${page.slug[locale]}`}>
-                    {page.title[locale]}
-                  </FooterLink>
-                </li>
-              )
-            })}
+            <li>
+              <FooterLink to="/faq">Faq</FooterLink>
+            </li>
+            {/* {helpPages.map((page) => { */}
+            {/*  return ( */}
+            {/*    <li key={page.slug[locale]}> */}
+            {/*      <FooterLink to={`/${page.slug[locale]}`}> */}
+            {/*        {page.title[locale]} */}
+            {/*      </FooterLink> */}
+            {/*    </li> */}
+            {/*  ) */}
+            {/* })} */}
           </ul>
         </div>
         <div
@@ -84,7 +89,9 @@ const FooterInfo: FunctionComponent = () => {
             {legalPages.map((page) => {
               return (
                 <li key={page.title[locale]}>
-                  <FooterLink to="/">{page.title[locale]}</FooterLink>
+                  <FooterLink to={`/legal/${page.slug[locale]}`}>
+                    {page.title[locale]}
+                  </FooterLink>
                 </li>
               )
             })}

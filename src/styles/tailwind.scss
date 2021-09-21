@@ -275,6 +275,10 @@
     max-height: 60vh;
   }
 
+  .min-w-3 {
+    min-width: 0.75rem;
+  }
+
   .min-w-64 {
     min-width: 16rem;
   }
@@ -364,7 +368,6 @@
 
   .contact-swirl-position {
     display: none;
-
 
     @media (min-width: 1024px) {
       display: block;
@@ -473,9 +476,9 @@
 
   .team-members-bg {
     background: linear-gradient(
-                    to top,
-                    #dfff85 calc(100% * 7 / 12 + 1rem),
-                    white calc(100% * 3 / 12 + 1rem)
+      to top,
+      #dfff85 calc(100% * 7 / 12 + 1rem),
+      white calc(100% * 3 / 12 + 1rem)
     );
   }
 
@@ -603,7 +606,6 @@
     }
   }
 
-
   @variants responsive {
     .vert-space-s {
       margin-top: 2rem;
@@ -657,8 +659,6 @@
     //  }
     //}
   }
-
-
 }
 
 /* purgecss start ignore */

@@ -294,6 +294,8 @@ export const productsSlice = createSlice({
         return { ...acc, [cur[0]]: [] }
       }, {} as TagsByCategory)
 
+      // console.log('sorted tags', sortedTags)
+
       return { ...state, selectedTags: sortedTags }
     },
     handlePage(state, action) {

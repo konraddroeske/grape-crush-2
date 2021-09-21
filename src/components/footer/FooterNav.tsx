@@ -18,13 +18,13 @@ const FooterNav: FunctionComponent = () => {
            -translate-y-1/2 -translate-x-1/2"
         />
       </FooterPageLink>
-      <FooterPageLink text="Contact" to="/">
+      <FooterPageLink text="Contact" to="/contact">
         <RectangleOutline
           className="absolute w-36 lg:w-44 xl:w-52 top-1/2 left-1/2 transform
           -translate-y-1/2 -translate-x-1/2"
         />
       </FooterPageLink>
-      <FooterPageLink text="About" to="/">
+      <FooterPageLink text="About" to="/about">
         <RippleOutline
           className="absolute w-36 lg:w-44 xl:w-52 top-1/2 left-1/2 transform
         -translate-y-1/2 -translate-x-1/2"

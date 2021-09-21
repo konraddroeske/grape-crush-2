@@ -52,7 +52,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
 
   return (
     <div className="">
-      <div className="h-60 sm:h-64 lg:h-72 xl:h-80 2xl:h-96 relative bg-blue-light py-1 sm:py-2 xl:py-3 2xl:py-4 mb-6 hover:bg-lime-background">
+      <div className="relative h-60 sm:h-64 lg:h-72 xl:h-80 2xl:h-96 relative bg-blue-light py-1 sm:py-2 xl:py-3 2xl:py-4 mb-6 hover:bg-lime-background">
         {url && <AmbassadorImage url={url} title={name} />}
       </div>
       <ProductTitle name={name} fontSize="text-xl" />
@@ -73,7 +73,12 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
       <div className="flex justify-between items-center my-2">
         <LearnMore name={name} />
       </div>
-      <Tags country={country} varietal={varietal} style={style} />
+      <Tags
+        country={country}
+        varietal={varietal}
+        style={style}
+        variant="card"
+      />
     </div>
   )
 }
