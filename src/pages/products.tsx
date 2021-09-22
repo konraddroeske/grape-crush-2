@@ -6,13 +6,21 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import ClientOnlyPortal from '@components/common/ClientOnlyPortal'
 import OutlineMarquee from '@components/common/OutlineMarquee'
+import Seo from '@components/common/Seo'
 import ProductsBar from '@components/products-page/products-bar/ProductsBar'
 import ProductsBreadcrumbs from '@components/products-page/products-bar/ProductsBreadcrumbs'
 import ProductsList from '@components/products-page/products-list/ProductsList'
 import DesktopMenu from '@components/products-page/products-menu/DesktopMenu'
 import MobileMenu from '@components/products-page/products-menu/MobileMenu'
 import fetchGlobalData from '@lib/fetchGlobalData'
-import { setFooter, setLocale, setNav, setPages } from '@redux/globalSlice'
+import {
+  setFooter,
+  setHeroSlides,
+  setLocale,
+  setNav,
+  setPages,
+} from '@redux/globalSlice'
+
 import {
   handlePage,
   handleTags,
@@ -36,7 +44,7 @@ const Products: FunctionComponent = () => {
       if (page && !(page instanceof Array)) {
         dispatch(handlePage(parseInt(page, 10)))
       }
-      // console.log('handling tags', tags)
+
       dispatch(handleTags(tags))
     } else {
       dispatch(resetTags())
@@ -53,28 +61,31 @@ const Products: FunctionComponent = () => {
   }, [mobileMenuOpen])
 
   return (
-    <div className="min-h-screen py-12 pb-28">
-      <div className="my-4 overflow-hidden">
-        <OutlineMarquee text="shop" />
-      </div>
-      <div className="lg:mb-10 border border-l-0 border-r-0 border-dark-blue">
-        <ProductsBar />
-      </div>
-      <div className="my-4 body-gutter-sm lg:hidden">
-        <ProductsBreadcrumbs />
-      </div>
-      <div className="flex">
-        <DesktopMenu />
-        <div className="flex-grow body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
-          <ProductsList />
+    <>
+      <Seo title="Shop" />
+      <div className="min-h-screen py-12 pb-28">
+        <div className="my-4 overflow-hidden">
+          <OutlineMarquee text="shop" />
         </div>
+        <div className="lg:mb-10 border border-l-0 border-r-0 border-dark-blue">
+          <ProductsBar />
+        </div>
+        <div className="my-4 body-gutter-sm lg:hidden">
+          <ProductsBreadcrumbs />
+        </div>
+        <div className="flex">
+          <DesktopMenu />
+          <div className="flex-grow body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+            <ProductsList />
+          </div>
+        </div>
+        {mobileMenuOpen && (
+          <ClientOnlyPortal selector="#modal">
+            <MobileMenu />
+          </ClientOnlyPortal>
+        )}
       </div>
-      {mobileMenuOpen && (
-        <ClientOnlyPortal selector="#modal">
-          <MobileMenu />
-        </ClientOnlyPortal>
-      )}
-    </div>
+    </>
   )
 }
 
@@ -86,10 +97,9 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const {
     products,
     locale,
+    heroAssets,
     pageAssets,
-    // igImages,
     categoryAssets,
-    // categories,
     footerAssets,
     navAssets,
   } = await fetchGlobalData()
@@ -99,9 +109,9 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories(categoryAssets))
-  // store.dispatch(setIgImages(igImages))
   store.dispatch(setFooter(footerAssets))
   store.dispatch(setNav(navAssets))
+  store.dispatch(setHeroSlides(heroAssets))
 
   // Products
   store.dispatch(setProducts(products))

@@ -21,31 +21,17 @@ export interface CmsImage {
 }
 
 export interface IAboutFields {
-  /** Headline */
   headline: {
     [K in LOCALE_CODE]: string
   }
-
-  /** Paragraph 1 */
   paragraph1: {
     [K in LOCALE_CODE]: Document
   }
-
-  /** Image 1 */
-  // image1: {
-  //   [K in LOCALE_CODE]: Asset
-  // }
   image1: CmsImage
-
-  /** Paragraph 2 */
   paragraph2: {
     [K in LOCALE_CODE]: Document
   }
-
-  /** Image 2 */
   image2: CmsImage
-
-  /** Team Members */
   teamMembers: Entry<{ [fieldId: string]: unknown }>[]
 }
 
@@ -70,13 +56,17 @@ export interface IAbout extends Entry<IAboutFields> {
 
 export interface ICategoryFields {
   /** Title */
-  title: string
+  title: {
+    [K in LOCALE_CODE]: string
+  }
 
   /** Image */
-  image: Asset
+  image: CmsImage
 
   /** Category Name */
-  categoryName: string
+  categoryName: {
+    [K in LOCALE_CODE]: string
+  }
 }
 
 /** Category media for website. */
@@ -125,16 +115,24 @@ export interface IContactFields {
 
 export interface IFaqFields {
   /** anchor */
-  anchor: string
+  anchor: {
+    [K in LOCALE_CODE]: string
+  }
 
   /** Question */
-  question: string
+  question: {
+    [K in LOCALE_CODE]: string
+  }
 
   /** Answer */
-  answer: string
+  answer: {
+    [K in LOCALE_CODE]: string
+  }
 
   /** Published */
-  published: string
+  published: {
+    [K in LOCALE_CODE]: string
+  }
 }
 
 export interface IFaq extends Entry<IFaqFields> {
@@ -156,7 +154,7 @@ export interface IFaq extends Entry<IFaqFields> {
 
 export interface IFooterFields {
   /** Image */
-  image: Asset
+  image: CmsImage
 }
 
 export interface IFooter extends Entry<IFooterFields> {
@@ -178,13 +176,15 @@ export interface IFooter extends Entry<IFooterFields> {
 
 export interface IHeroSlideFields {
   /** Title */
-  title: string
+  title: {
+    [K in LOCALE_CODE]: string
+  }
 
   /** Image */
-  image: Asset
+  image: CmsImage
 
   /** Link */
-  link?: string | undefined
+  link?: { [K in LOCALE_CODE]: string | undefined }
 }
 
 /** Grape Crush 2.0 Hero Slideshow */
@@ -208,19 +208,25 @@ export interface IHeroSlide extends Entry<IHeroSlideFields> {
 
 export interface IInfoBox1Fields {
   /** Title */
-  title: string
+  title: {
+    [K in LOCALE_CODE]: string
+  }
 
   /** Order */
-  order: number
+  order: {
+    [K in LOCALE_CODE]: number
+  }
 
   /** Description */
-  description: string
+  description: {
+    [K in LOCALE_CODE]: string
+  }
 
   /** Image */
-  image: Asset
+  image: CmsImage
 
   /** Tag */
-  tag?: string | undefined
+  tag?: { [K in LOCALE_CODE]: string | undefined }
 }
 
 /** Info boxes on the landing page. Remember to set the order. */
@@ -269,7 +275,7 @@ export interface IMoreInfo extends Entry<IMoreInfoFields> {
 
 export interface INavFields {
   /** Image */
-  image: Asset
+  image: CmsImage
 }
 
 export interface INav extends Entry<INavFields> {
@@ -291,16 +297,20 @@ export interface INav extends Entry<INavFields> {
 
 export interface IPageFields {
   /** Title */
-  title: string
+  title: {
+    [K in LOCALE_CODE]: string
+  }
 
   /** Slug */
-  slug: string
+  slug: {
+    [K in LOCALE_CODE]: string
+  }
 
   /** Category */
-  category: 'Help' | 'Legal Stuff'
+  category: { [K in LOCALE_CODE]: 'Help' | 'Legal Stuff' }
 
   /** Content */
-  content?: Document | undefined
+  content?: { [K in LOCALE_CODE]: Document | undefined }
 }
 
 /** Generated pages */

@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 
 import Arrow from '@components/common/Arrow'
+
 import { Direction } from '@models/hero'
 
 interface OwnProps {

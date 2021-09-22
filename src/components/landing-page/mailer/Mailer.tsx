@@ -15,7 +15,7 @@ const Mailer: FunctionComponent = () => {
             type="email"
             placeholder="Email address"
             className="flex-grow border border-0 border-b border-blue-dark uppercase
-            placeholder-blue-dark max-w-md p-0 mr-4"
+            placeholder-blue-dark max-w-md p-0 mr-4 min-w-0"
           />
           <button
             type="submit"

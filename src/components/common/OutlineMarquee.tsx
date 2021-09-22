@@ -67,20 +67,18 @@ const OutlineMarquee: FunctionComponent<Props> = ({
 
   const updateAnimation = useCallback(() => {
     if (animation.current) {
-      animation.current.pause(0)
+      animation.current.pause()
       animation.current.kill()
       initAnimation()
     }
   }, [initAnimation])
 
   useEffect(() => {
-    if (!textArr) {
-      const filledArr = Array(count)
-        .fill(null)
-        .map(() => [uuid(), text])
-      setTextArr(filledArr)
-    }
-  }, [text, textArr])
+    const filledArr = Array(count)
+      .fill(null)
+      .map(() => [uuid(), text])
+    setTextArr(filledArr)
+  }, [text])
 
   useEffect(() => {
     if (window && textArr && textRefs.current.length > 0) {
@@ -98,7 +96,7 @@ const OutlineMarquee: FunctionComponent<Props> = ({
     }
 
     if (inView && animation.current) {
-      animation.current.play()
+      animation.current.resume()
     }
   }, [inView])
 

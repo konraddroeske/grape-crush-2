@@ -26,7 +26,7 @@ export interface IAboutFields {
   teamMembers: Entry<{ [fieldId: string]: unknown }>[]
 }
 
-/** Content for about-page page. */
+/** Content for about page. */
 
 export interface IAbout extends Entry<IAboutFields> {
   sys: {

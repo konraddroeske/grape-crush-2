@@ -6,10 +6,10 @@ import ContentfulImage from '@components/common/ContentfulImage'
 import DesktopSpinner from '@components/landing-page/hero/DesktopSpinner'
 import HeroMarquee from '@components/landing-page/hero/HeroMarquee'
 import HeroTitle from '@components/landing-page/hero/HeroTitle'
-import { selectHero } from '@redux/heroSlice'
+import { selectGlobal } from '@redux/globalSlice'
 
 const Hero: FunctionComponent = () => {
-  const { heroSlides } = useSelector(selectHero())
+  const { heroSlides } = useSelector(selectGlobal())
   const [firstSlide] = heroSlides
   const { image } = firstSlide
 

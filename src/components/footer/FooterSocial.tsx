@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import ContentfulImage from '@components/common/ContentfulImage'
 import Mailer from '@components/landing-page/mailer/Mailer'
-import { CmsImage } from '@lib/cms'
+import { CmsImage } from '@models/contentful'
 import { selectGlobal } from '@redux/globalSlice'
 
 const FooterSocial: FunctionComponent = () => {

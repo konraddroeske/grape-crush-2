@@ -1,19 +1,20 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import { Options } from '@contentful/rich-text-react-renderer'
-import { BLOCKS } from '@contentful/rich-text-types'
+import { BLOCKS, Document } from '@contentful/rich-text-types'
 import { useRouter } from 'next/router'
 
 import { useSelector } from 'react-redux'
 
 import ContentfulRichText from '@components/common/ContentfulRichText'
 import OutlineMarquee from '@components/common/OutlineMarquee'
-import { CmsAssets } from '@lib/cms'
+import Seo from '@components/common/Seo'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchPageData from '@lib/fetchPageData'
 import {
   selectGlobal,
   setFooter,
+  setHeroSlides,
   setLocale,
   setNav,
   setPages,
@@ -26,14 +27,14 @@ const LegalPage: FunctionComponent = () => {
   const { allPages, locale } = useSelector(selectGlobal())
   const { name } = router.query
 
-  const [pageData, setPageData] = useState<CmsAssets | null>(null)
+  const [title, setTitle] = useState<string | null>(null)
+  const [document, setDocument] = useState<Document | null>(null)
 
   useEffect(() => {
     const currentPage = allPages.find((ele) => ele.slug[locale] === name)
 
-    if (currentPage) {
-      setPageData(currentPage)
-    }
+    setDocument(currentPage?.content?.[locale] || null)
+    setTitle(currentPage?.title?.[locale] || null)
   }, [name, allPages, locale])
 
   const options: Options = {
@@ -50,21 +51,21 @@ const LegalPage: FunctionComponent = () => {
   }
 
   return (
-    <div className="min-h-screen py-12">
-      {pageData?.title[locale] && (
-        <div className="my-4 overflow-hidden">
-          <OutlineMarquee text={pageData.title[locale] || 'Legal Page'} />
-        </div>
-      )}
-      <div className="py-6 body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
-        {pageData?.content[locale] && (
-          <ContentfulRichText
-            options={options}
-            richText={pageData.content[locale]}
-          />
+    <>
+      <Seo title={title || 'Wines Within Reach'} />
+      <div className="min-h-screen py-12">
+        {title && (
+          <div className="my-4 overflow-hidden">
+            <OutlineMarquee text={title || 'Legal Page'} />
+          </div>
         )}
+        <div className="py-6 body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+          {document && (
+            <ContentfulRichText options={options} richText={document} />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
@@ -86,6 +87,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     products,
     locale,
     pageAssets,
+    heroAssets,
     categoryAssets,
     footerAssets,
     navAssets,
@@ -98,6 +100,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setCategories(categoryAssets))
   store.dispatch(setFooter(footerAssets))
   store.dispatch(setNav(navAssets))
+  store.dispatch(setHeroSlides(heroAssets))
 
   return {
     props: {},

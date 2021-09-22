@@ -33,11 +33,11 @@ const SpinningStar: FunctionComponent = () => {
 
   useEffect(() => {
     if (animation?.current?.isActive()) {
-      animation.current.pause(0)
+      animation.current.pause()
     }
 
     if (animation.current && inView) {
-      animation.current.play()
+      animation.current.resume()
     }
   }, [inView])
 

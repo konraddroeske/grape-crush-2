@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { FaqAssets } from '@lib/cms'
+import { IFaqFields } from '@models/contentful'
 import type { AppState } from '@redux/store'
 
 interface Faq {
-  questions: FaqAssets[]
+  questions: IFaqFields[]
 }
 
 const initialState: Faq = {

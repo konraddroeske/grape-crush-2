@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 
 import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
 import { useSelector } from 'react-redux'
 import { useMediaQuery } from 'react-responsive'
 
@@ -20,7 +21,7 @@ const DesktopSpinner: FunctionComponent = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
   const [isSticky, setIsSticky] = useState<boolean>(false)
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const logoRef = useRef<HTMLDivElement | null>(null)
+  const logoRef = useRef<HTMLButtonElement | null>(null)
   const starRef = useRef<HTMLDivElement | null>(null)
   const textRef = useRef<HTMLDivElement | null>(null)
 
@@ -40,6 +41,8 @@ const DesktopSpinner: FunctionComponent = () => {
   }, [isDesktop, isSticky])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollToPlugin)
+
     if (window) {
       handleHeight()
       window.addEventListener('scroll', handleHeight)
@@ -98,12 +101,21 @@ const DesktopSpinner: FunctionComponent = () => {
     }
   }, [navOpen, isSticky])
 
+  const handleClick = () => {
+    gsap.to(window, 0.3, { scrollTo: 0 })
+  }
+
   return (
     <div
       ref={containerRef}
       className="z-30 hidden lg:block absolute bottom-24 lg:left-16 xl:left-20 2xl:left-24"
     >
-      <div ref={logoRef} className="absolute z-10">
+      <button
+        type="button"
+        ref={logoRef}
+        className="absolute z-10"
+        onClick={() => handleClick()}
+      >
         <div
           ref={starRef}
           className={`${
@@ -123,7 +135,7 @@ const DesktopSpinner: FunctionComponent = () => {
             } transition-all`}
           />
         </div>
-      </div>
+      </button>
     </div>
   )
 }

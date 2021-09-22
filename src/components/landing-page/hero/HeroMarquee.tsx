@@ -83,7 +83,7 @@ const HeroMarquee: FunctionComponent = () => {
     }
 
     if (inView && animation.current) {
-      animation.current.play()
+      animation.current.resume()
     }
   }, [inView])
 

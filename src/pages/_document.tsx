@@ -24,7 +24,6 @@ class MyDocument extends Document {
           />
           <link rel="stylesheet" href="https://use.typekit.net/jpe6etz.css" />
         </Head>
-        {/* <body className="overflow-hidden"> */}
         <body>
           <Main />
           <div id="modal" />

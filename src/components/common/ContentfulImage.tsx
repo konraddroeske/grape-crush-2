@@ -27,7 +27,9 @@ const ContentfulImage: FunctionComponent<Props> = ({
   const { width, height } = file?.[locale]?.details?.image
 
   return (
-    <div className={`relative image-container ${containerStyles}`}>
+    <div
+      className={`relative image-container overflow-hidden ${containerStyles}`}
+    >
       <Image
         src={src}
         alt={alt}

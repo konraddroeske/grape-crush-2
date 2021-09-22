@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { CmsAssets } from '@lib/cms'
+import { CmsImage, IHeroSlideFields } from '@models/contentful'
 import type { AppState } from '@redux/store'
 
 // export const handleHeroSlides = (heroSlides: HeroSlides[]): AppThunk => {
@@ -13,6 +13,7 @@ import type { AppState } from '@redux/store'
 //     )
 //   }
 // }
+
 interface Theme {
   nav: string
   title: string
@@ -24,51 +25,53 @@ interface Theme {
 }
 
 interface HeroSlice {
-  heroSlides: CmsAssets[]
-  themes: Theme[]
+  heroSlides: IHeroSlideFields[]
+  SeoImage: CmsImage | null
+  // themes: Theme[]
   currentTheme: Theme
 }
 
 const initialState = {
   heroSlides: [],
-  themes: [
-    {
-      nav: '#414042',
-      title: '#d9ff6c',
-      buttonBorder: '#d9ff6c',
-      buttonText: 'white',
-      background: '#c297ef',
-      duration: 0.7,
-      arrows: '#d9ff6c',
-    },
-    {
-      nav: 'white',
-      title: '#FF8657',
-      buttonBorder: '#FF8657',
-      buttonText: 'white',
-      background: '#4348e3',
-      duration: 0.7,
-      arrows: '#d9ff6c',
-    },
-    {
-      nav: '#414042',
-      title: 'white',
-      buttonBorder: '#d9ff6c',
-      buttonText: 'white',
-      background: '#FF8657',
-      duration: 0.7,
-      arrows: 'white',
-    },
-    {
-      nav: '#414042',
-      title: '#FF8657',
-      buttonBorder: '#FF8657',
-      buttonText: '#414042',
-      background: '#f1f2f2',
-      duration: 0.7,
-      arrows: '#414042',
-    },
-  ],
+  SeoImage: null,
+  // themes: [
+  //   {
+  //     nav: '#414042',
+  //     title: '#d9ff6c',
+  //     buttonBorder: '#d9ff6c',
+  //     buttonText: 'white',
+  //     background: '#c297ef',
+  //     duration: 0.7,
+  //     arrows: '#d9ff6c',
+  //   },
+  //   {
+  //     nav: 'white',
+  //     title: '#FF8657',
+  //     buttonBorder: '#FF8657',
+  //     buttonText: 'white',
+  //     background: '#4348e3',
+  //     duration: 0.7,
+  //     arrows: '#d9ff6c',
+  //   },
+  //   {
+  //     nav: '#414042',
+  //     title: 'white',
+  //     buttonBorder: '#d9ff6c',
+  //     buttonText: 'white',
+  //     background: '#FF8657',
+  //     duration: 0.7,
+  //     arrows: 'white',
+  //   },
+  //   {
+  //     nav: '#414042',
+  //     title: '#FF8657',
+  //     buttonBorder: '#FF8657',
+  //     buttonText: '#414042',
+  //     background: '#f1f2f2',
+  //     duration: 0.7,
+  //     arrows: '#414042',
+  //   },
+  // ],
   currentTheme: {
     nav: '#2C148E',
     title: '#d9ff6c',
@@ -87,16 +90,16 @@ export const heroSlice = createSlice({
     setHeroSlides(state, action) {
       return { ...state, heroSlides: action.payload }
     },
-    setCurrentTheme(state, action) {
-      const { themes } = state
-
-      const currentTheme =
-        action.payload <= themes.length - 1
-          ? themes[action.payload]
-          : themes[action.payload % (themes.length - 1)]
-
-      return { ...state, currentTheme }
-    },
+    // setCurrentTheme(state, action) {
+    //   const { themes } = state
+    //
+    //   const currentTheme =
+    //     action.payload <= themes.length - 1
+    //       ? themes[action.payload]
+    //       : themes[action.payload % (themes.length - 1)]
+    //
+    //   return { ...state, currentTheme }
+    // },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -108,6 +111,6 @@ export const heroSlice = createSlice({
   },
 })
 
-export const { setHeroSlides, setCurrentTheme } = heroSlice.actions
+// export const { setHeroSlides } = heroSlice.actions
 
 export const selectHero = () => (state: AppState) => state?.[heroSlice.name]

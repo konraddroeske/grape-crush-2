@@ -5,13 +5,13 @@ import { getAssets, getEntries } from '@lib/cms'
 
 export default async function fetchGlobalData() {
   const locale = 'en-US'
-  const contentIds = ['category', 'page', 'footer', 'nav']
+  const contentIds = ['heroSlide', 'category', 'page', 'footer', 'nav']
 
   const groupedEntries = await Promise.all(
     contentIds.map((id) => getEntries(id))
   )
 
-  const [categoryAssets, pageAssets, footerAssets, navAssets] =
+  const [heroAssets, categoryAssets, pageAssets, footerAssets, navAssets] =
     await Promise.all(
       groupedEntries.map((entries) => getAssets(entries, locale))
     )
@@ -27,6 +27,7 @@ export default async function fetchGlobalData() {
 
   return {
     locale,
+    heroAssets,
     pageAssets,
     categoryAssets,
     footerAssets,

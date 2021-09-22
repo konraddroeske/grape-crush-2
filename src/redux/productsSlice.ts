@@ -1,15 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { CmsAssets } from '@lib/cms'
 import { sortProducts } from '@lib/sortProducts'
 import { ProductCategories, ProductLowercase } from '@models/ambassador'
+import { ICategoryFields } from '@models/contentful'
 import type { AppState } from '@redux/store'
-
-// interface MatchedCategory extends CmsAssets {
-//   tags: string[]
-//   id: string
-// }
 
 export interface TagsByCategory {
   parentType: string[]
@@ -50,7 +45,7 @@ export type SortOption =
   | 'date, old to new'
 
 interface ProductsSlice {
-  categories: CmsAssets[]
+  categories: ICategoryFields[]
   products: ProductLowercase[]
   allTags: TagsByCount | null
   // productsByTag: ProductsByTag | null
@@ -96,17 +91,6 @@ export const productsSlice = createSlice({
     setNewArrivals(state, action) {
       return { ...state, newArrivals: action.payload }
     },
-    setInfoBoxes(state, action) {
-      const locale = 'en-US'
-
-      const [infoBox1, infoBox2, infoBox3] = action.payload.sort(
-        (a: CmsAssets, b: CmsAssets) => {
-          return a.order[locale] - b.order[locale]
-        }
-      )
-
-      return { ...state, infoBox1, infoBox2, infoBox3 }
-    },
     setCategories(state, action) {
       return { ...state, categories: action.payload }
     },
@@ -137,12 +121,13 @@ export const productsSlice = createSlice({
               const productTags = Object.entries(data)
                 .reduce((acc, cur) => {
                   if (selectedTagsCategories.includes(cur[0])) {
-                    const tags = cur[1] as string[]
-                    if (Array.isArray(tags)) {
+                    const tags = cur[1] as string | string[]
+
+                    if (tags instanceof Array) {
                       return [...acc, ...tags]
                     }
 
-                    return [...acc, tags]
+                    return [...acc, ...tags]
                   }
 
                   return acc
@@ -214,7 +199,7 @@ export const productsSlice = createSlice({
         const tagCategory = category.toLowerCase() as keyof TagsByCategory
 
         if (cur.data?.[category]) {
-          if (Array.isArray(cur.data[category])) {
+          if (cur.data[category] instanceof Array) {
             const mergedCategories = acc[tagCategory]
               ? acc[tagCategory].concat(cur.data[category])
               : cur.data[category]
@@ -222,9 +207,10 @@ export const productsSlice = createSlice({
             return { ...acc, [category.toLowerCase()]: mergedCategories }
           }
 
-          const mergedCategories = Array.isArray(acc?.[tagCategory])
-            ? [...acc[tagCategory], cur.data[category]]
-            : [cur.data[category]]
+          const mergedCategories =
+            acc?.[tagCategory] instanceof Array
+              ? [...acc[tagCategory], cur.data[category]]
+              : [cur.data[category]]
 
           return { ...acc, [category.toLowerCase()]: mergedCategories }
         }

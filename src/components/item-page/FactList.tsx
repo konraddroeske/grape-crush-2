@@ -18,7 +18,7 @@ const FactList: FunctionComponent<Props> = ({ facts }) => {
           index === facts.length - 1 ? 'border-b-2 border-t-2' : 'border-t-2'
         const [category, value] = pair
 
-        if (Array.isArray(value)) {
+        if (value instanceof Array) {
           const [ele] = value
           return (
             <li className={`${borderStyle} border-lime`} key={category}>

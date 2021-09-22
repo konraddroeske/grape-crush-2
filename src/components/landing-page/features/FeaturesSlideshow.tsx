@@ -16,11 +16,9 @@ import SlideButtons from '@components/landing-page/features/SlideButtons'
 import SpinningCircle from '@components/landing-page/features/SpinningCircle'
 import { Direction } from '@models/hero'
 import { selectGlobal } from '@redux/globalSlice'
-import { selectHero } from '@redux/heroSlice'
 
 const FeaturesSlideshow: FunctionComponent = () => {
-  const { heroSlides: slides } = useSelector(selectHero())
-  const { locale } = useSelector(selectGlobal())
+  const { locale, heroSlides: slides } = useSelector(selectGlobal())
   const [circleDirection, setCircleDirection] = useState<Direction>(-1)
 
   const useTimer = false
