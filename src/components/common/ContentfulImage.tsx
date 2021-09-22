@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { useSelector } from 'react-redux'
 
-import { CmsImage } from '@lib/cms'
+import { CmsImage } from '@models/contentful'
 import { selectGlobal } from '@redux/globalSlice'
 
 interface OwnProps {

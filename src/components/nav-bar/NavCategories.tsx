@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 import ShadowButton from '@components/common/ShadowButton'
 import NavSearch from '@components/nav-bar/NavSearch'
-import { CmsImage } from '@lib/cms'
+import { CmsImage } from '@models/contentful'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
