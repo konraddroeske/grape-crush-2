@@ -12,7 +12,7 @@ import _Draggable, { Draggable } from 'gsap/Draggable'
 import { useSelector } from 'react-redux'
 
 import RoundedButton from '@components/common/RoundedButton'
-import { Direction } from '@models/hero'
+import { Direction } from '@models/misc'
 import { selectSocial } from '@redux/socialSlice'
 
 import SocialWave from '../../../assets/svgs/social-wave.svg'

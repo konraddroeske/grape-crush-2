@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 
 import FooterPageLink from '@components/footer/FooterPageLink'
 
-import { Direction } from '@models/hero'
+import { Direction } from '@models/misc'
 
 import OvalOutline from '../../assets/svgs/oval-outline.svg'
 import RectangleOutline from '../../assets/svgs/rectangle-outline.svg'

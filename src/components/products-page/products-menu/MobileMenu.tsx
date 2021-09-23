@@ -20,7 +20,7 @@ const MobileMenu: FunctionComponent = () => {
 
   useEffect(() => {
     gsap.to(menuRef.current, {
-      duration: 0.3,
+      duration: 0.2,
       marginTop: 0,
     })
   }, [])
@@ -34,7 +34,7 @@ const MobileMenu: FunctionComponent = () => {
       })
 
       tl.to(menuRef.current, {
-        duration: 0.3,
+        duration: 0.2,
         marginTop: window.innerHeight,
       })
     }

@@ -1,5 +1,5 @@
 import { CmsImage, CONTENTFUL_DEFAULT_LOCALE_CODE } from '@models/contentful'
-import { ImageData } from '@models/hero'
+import { ImageData } from '@models/misc'
 
 // eslint-disable-next-line import/prefer-default-export
 export const getImageData = (

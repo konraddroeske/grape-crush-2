@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo'
 import { useSelector } from 'react-redux'
 
 import { getImageData } from '@lib/getImageData'
-import { ImageData } from '@models/hero'
+import { ImageData } from '@models/misc'
 import { selectGlobal } from '@redux/globalSlice'
 
 interface OwnProps {

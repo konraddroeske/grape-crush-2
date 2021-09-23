@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import Link from 'next/link'
 
-import { Direction } from '@models/hero'
+import { Direction } from '@models/misc'
 
 interface OwnProps {
   children: React.ReactNode

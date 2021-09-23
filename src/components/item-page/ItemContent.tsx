@@ -113,7 +113,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
           }}
         >
           {winery && (
-            <div className="flex mb-8 justify-center lg:justify-start">
+            <div className="flex mb-4 justify-center lg:justify-start">
               <span className="inline-block text-base lg:text-xl">
                 <h2 className="inline uppercase font-bold">{winery}</h2>
                 {vintage && (

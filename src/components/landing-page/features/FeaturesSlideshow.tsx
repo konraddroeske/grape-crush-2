@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux'
 import ContentfulImage from '@components/common/ContentfulImage'
 import SlideButtons from '@components/landing-page/features/SlideButtons'
 import SpinningCircle from '@components/landing-page/features/SpinningCircle'
-import { Direction } from '@models/hero'
+import { Direction } from '@models/misc'
 import { selectGlobal } from '@redux/globalSlice'
 
 const FeaturesSlideshow: FunctionComponent = () => {

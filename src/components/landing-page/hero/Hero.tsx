@@ -14,7 +14,7 @@ const Hero: FunctionComponent = () => {
   const { image } = firstSlide
 
   return (
-    <section className="relative">
+    <section id="hero-section" className="relative">
       <div
         className="py-16 h-screen relative flex body-gutter-sm lg:body-gutter-lg
       xl:body-gutter-xl 2xl:body-gutter-2xl"

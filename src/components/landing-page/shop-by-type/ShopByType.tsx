@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux'
 import ContentfulImage from '@components/common/ContentfulImage'
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import ShadowButton from '@components/common/ShadowButton'
-import { Direction } from '@models/hero'
+import { Direction } from '@models/misc'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
@@ -211,7 +211,7 @@ const SocialGallery: FunctionComponent = () => {
   return (
     <section className="section-margin">
       <OutlineMarquee text="Shop by type" />
-      <div className="overflow-hidden relative mt-12">
+      <div className="overflow-hidden relative mt-12 lg:mt-20">
         {categories.length > 0 && (
           <div ref={slider} className="w-full relative">
             <ul ref={list} className="absolute inset-0 m-0 p-0">
@@ -248,7 +248,7 @@ const SocialGallery: FunctionComponent = () => {
           </div>
         )}
       </div>
-      <div className="flex justify-center mt-8 mb-12">
+      <div className="flex justify-center mt-8 mb-12 lg:mb-20">
         <ShadowButton
           text="Shop all wines"
           fn={() =>

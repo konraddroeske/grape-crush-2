@@ -56,7 +56,7 @@ const ProductsTags: FunctionComponent<Props> = ({ closeMobileMenu }) => {
         {categoryTagTuples?.length > 0 &&
           categoryTagTuples.map(([category, tag]) => {
             return (
-              <li key={tag} className="mr-2 mb-2">
+              <li key={`${category}-${tag}`} className="mr-2 mb-2">
                 <CategoryTag url={getHref(category, tag)} variant="link">
                   {tag}
                 </CategoryTag>

@@ -47,8 +47,8 @@ const NewInfoBox3: FunctionComponent = () => {
           </div>
         </div>
         <StarOutline
-          className="absolute top-0 left-1/2 w-full max-w-xs sm:max-w-none sm:top-1/2
-          sm:left-auto transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute top-0 left-1/2 w-full max-w-xs max-h-4/5 sm:max-w-none
+          sm:top-1/2 sm:left-auto transform -translate-x-1/2 -translate-y-1/2"
         />
       </div>
     </section>

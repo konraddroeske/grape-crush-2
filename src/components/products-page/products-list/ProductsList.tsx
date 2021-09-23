@@ -1,12 +1,18 @@
 import React, { FunctionComponent, useEffect } from 'react'
 
+import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 
 import ProductCard from '@components/common/product/ProductCard'
 
-import NoItems from '@components/products-page/products-list/NoItems'
+import Warning from '@components/common/Warning'
 import PageNav from '@components/products-page/products-list/PageNav'
-import { handleProducts, selectProducts } from '@redux/productsSlice'
+import { setNavSearch } from '@redux/clientSlice'
+import {
+  handleProducts,
+  handleProductsSearch,
+  selectProducts,
+} from '@redux/productsSlice'
 
 const ProductsList: FunctionComponent = () => {
   const dispatch = useDispatch()
@@ -16,6 +22,11 @@ const ProductsList: FunctionComponent = () => {
   useEffect(() => {
     dispatch(handleProducts({ selectedTags, productsSearch, productsSort }))
   }, [selectedTags, productsSearch, productsSort, page, dispatch])
+
+  const resetSearch = () => {
+    dispatch(setNavSearch(''))
+    dispatch(handleProductsSearch(''))
+  }
 
   return (
     <div className="flex flex-col h-full">
@@ -31,7 +42,36 @@ const ProductsList: FunctionComponent = () => {
           })}
         </ul>
       ) : (
-        <NoItems />
+        // <NoItems />
+        <div className="h-full flex justify-center items-center">
+          <Warning text="Oops!">
+            <p className="font-headline relative z-10 my-4">
+              <span className="block">
+                We can't find what you were looking&nbsp;for.
+              </span>
+              <span className="block">
+                Try removing{' '}
+                <span className="underline">
+                  <Link href="/products?page=1" shallow>
+                    <a>some filters</a>
+                  </Link>
+                </span>{' '}
+                or{' '}
+                <span className="underline">
+                  <button
+                    type="button"
+                    className="underline"
+                    onClick={() => resetSearch()}
+                  >
+                    <a>resetting search</a>
+                  </button>
+                </span>{' '}
+                <br />
+                and maybe you'll find it there.
+              </span>
+            </p>
+          </Warning>
+        </div>
       )}
       <div className="mt-auto">
         <PageNav />

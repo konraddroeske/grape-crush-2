@@ -259,6 +259,10 @@
     height: 36rem;
   }
 
+  .max-h-4\/5 {
+    max-height: 80%;
+  }
+
   .max-h-112 {
     max-height: 28rem;
   }
@@ -293,6 +297,10 @@
 
   .max-w-2\/3 {
     max-width: calc(100% * 2 / 3);
+  }
+
+  .max-w-2xs {
+    max-width: 12rem;
   }
 
   .border-transparent {
@@ -334,6 +342,10 @@
     right: 0;
     bottom: -0.2rem;
     background-color: #dfff85;
+  }
+
+  .translate-warning {
+    transform: translate(-50%, calc(-100% * 5 / 12));
   }
 
   .-translate-x-1\/20 {
@@ -476,9 +488,9 @@
 
   .team-members-bg {
     background: linear-gradient(
-      to top,
-      #dfff85 calc(100% * 7 / 12 + 1rem),
-      white calc(100% * 3 / 12 + 1rem)
+                    to top,
+                    #dfff85 calc(100% * 7 / 12 + 1rem),
+                    white calc(100% * 3 / 12 + 1rem)
     );
   }
 
@@ -519,7 +531,6 @@
   //    margin-bottom: 4rem;
   //  }
   //}
-
   .contact-padding {
     padding-top: 2rem;
     padding-bottom: 2rem;
