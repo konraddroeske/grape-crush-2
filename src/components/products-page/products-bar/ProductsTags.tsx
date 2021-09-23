@@ -37,7 +37,7 @@ const ProductsTags: FunctionComponent<Props> = ({ closeMobileMenu }) => {
   }
 
   return (
-    <div className="mb-6">
+    <div className="pb-6">
       <div className="flex justify-end mb-3 lg:mb-0">
         <button
           type="button"
@@ -50,7 +50,7 @@ const ProductsTags: FunctionComponent<Props> = ({ closeMobileMenu }) => {
       <ul className="flex flex-wrap">
         <li className="mr-2 mb-2">
           <CategoryTag variant="clear" url="/products?page=1">
-            Clear all tags
+            Clear filters
           </CategoryTag>
         </li>
         {categoryTagTuples?.length > 0 &&

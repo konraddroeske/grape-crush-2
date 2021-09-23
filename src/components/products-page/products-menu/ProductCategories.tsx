@@ -68,7 +68,7 @@ const ProductCategories: FunctionComponent<Props> = (props) => {
   }, [allTags, locale])
 
   return (
-    <div>
+    <div id="product-categories">
       <ProductsTags {...props} />
       <Category title="Type" category="parentType" tags={parentTypeOptions} />
       <Category title="Category" category="category" tags={categoryOptions} />

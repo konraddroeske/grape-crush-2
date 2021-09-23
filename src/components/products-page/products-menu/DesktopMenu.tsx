@@ -17,9 +17,6 @@ import { remToPixels } from '@lib/remToPixels'
 import { selectProducts } from '@redux/productsSlice'
 
 const DesktopMenu: FunctionComponent = () => {
-  // const router = useRouter()
-  // const dispatch = useDispatch()
-
   const { menuOpen } = useSelector(selectProducts())
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -27,10 +24,12 @@ const DesktopMenu: FunctionComponent = () => {
 
   const [isSticky, setIsSticky] = useState<boolean>(false)
   const [maxHeight, setMaxHeight] = useState<number>(0)
+  const [categoriesHeight, setCategoriesHeight] = useState<number>(0)
 
   const handleHeight = useCallback(() => {
     if (window && menuRef?.current && containerRef?.current) {
       const windowHeight = window.innerHeight
+
       const menuDistanceToTop = menuRef.current.getBoundingClientRect().top
       const containerDistanceTopTo =
         containerRef.current.getBoundingClientRect().top
@@ -42,7 +41,9 @@ const DesktopMenu: FunctionComponent = () => {
       const containerBottomDistance =
         containerDistanceTopTo + containerRef.current.offsetHeight
 
-      if (containerBottomDistance <= menuBottomDistance) {
+      if (categoriesHeight < windowHeight || categoriesHeight < menuHeight) {
+        setMaxHeight(categoriesHeight)
+      } else if (containerBottomDistance <= menuBottomDistance) {
         setMaxHeight(windowHeight)
       } else {
         setMaxHeight(menuHeight)
@@ -56,7 +57,7 @@ const DesktopMenu: FunctionComponent = () => {
         setIsSticky(false)
       }
     }
-  }, [isSticky])
+  }, [categoriesHeight, isSticky])
 
   useEffect(() => {
     if (window) {
@@ -90,12 +91,26 @@ const DesktopMenu: FunctionComponent = () => {
   }, [])
 
   useEffect(() => {
+    const resizeObserver = new ResizeObserver((entries) => {
+      const height = entries[0].borderBoxSize[0].blockSize
+      setCategoriesHeight(height)
+    })
+
     if (window) {
       handleMargin()
       window.addEventListener('resize', handleMargin)
+
+      const categories = document.getElementById('product-categories')
+
+      if (categories) {
+        resizeObserver.observe(categories)
+      }
     }
 
-    return () => window.removeEventListener('resize', handleMargin)
+    return () => {
+      window.removeEventListener('resize', handleMargin)
+      resizeObserver.disconnect()
+    }
   }, [handleMargin])
 
   useEffect(() => {
@@ -120,7 +135,7 @@ const DesktopMenu: FunctionComponent = () => {
       <div
         ref={menuRef}
         className={`fixed
-        max-w-full max-h-screen pb-20 z-40 inset-0 right-0 bg-white lg:block 
+        max-w-full max-h-screen z-40 inset-0 right-0 bg-white lg:block 
         ${isSticky ? 'lg:sticky lg:top-20' : 'lg:static'} lg:px-0 lg:z-20`}
       >
         <SimpleBarReact

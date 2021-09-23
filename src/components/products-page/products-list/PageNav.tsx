@@ -21,7 +21,11 @@ const PageNav: FunctionComponent = () => {
   const [middlePages, setMiddlePages] = useState<number[]>([1])
 
   useEffect(() => {
-    const pageCount = Math.ceil(totalSelected.length / productsPerPage)
+    const pageCount =
+      totalSelected.length === 0
+        ? 1
+        : Math.ceil(totalSelected.length / productsPerPage)
+
     const filtered = [currentPage - 1, currentPage, currentPage + 1].filter(
       (ele) => ele > 1 && ele < pageCount
     )

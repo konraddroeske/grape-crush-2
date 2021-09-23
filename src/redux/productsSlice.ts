@@ -58,6 +58,7 @@ interface ProductsSlice {
   productsSort: SortOption
   menuOpen: boolean
   mobileMenuOpen: boolean
+  categoriesHeight: number
 }
 
 const initialState: ProductsSlice = {
@@ -82,6 +83,7 @@ const initialState: ProductsSlice = {
   productsSort: 'alphabetical, a - z',
   menuOpen: true,
   mobileMenuOpen: false,
+  categoriesHeight: 0,
 }
 
 export const productsSlice = createSlice({
@@ -96,6 +98,9 @@ export const productsSlice = createSlice({
     },
     setProducts(state, action) {
       return { ...state, products: action.payload }
+    },
+    setCategoriesHeight(state, action) {
+      return { ...state, categoriesHeight: action.payload }
     },
     handleProducts(state, action) {
       const { products } = state
@@ -343,6 +348,7 @@ export const {
   toggleMenuOpen,
   toggleMobileMenuOpen,
   setMenuOpen,
+  setCategoriesHeight,
 } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>
