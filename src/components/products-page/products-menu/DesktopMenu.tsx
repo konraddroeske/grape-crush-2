@@ -41,7 +41,7 @@ const DesktopMenu: FunctionComponent = () => {
       const containerBottomDistance =
         containerDistanceTopTo + containerRef.current.offsetHeight
 
-      if (categoriesHeight < windowHeight || categoriesHeight < menuHeight) {
+      if (categoriesHeight < windowHeight) {
         setMaxHeight(categoriesHeight)
       } else if (containerBottomDistance <= menuBottomDistance) {
         setMaxHeight(windowHeight)

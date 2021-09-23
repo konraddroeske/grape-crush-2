@@ -114,7 +114,10 @@ export const productsSlice = createSlice({
         productsSort: SortOption
       } = action.payload
 
-      const selectedTagsCategories = Object.keys(selectedTagsObj)
+      const selectedTagsCategories = Object.entries(selectedTagsObj)
+        .filter(([_, value]) => value.length > 0)
+        .map(([key, _]) => key)
+
       const selectedTags = Object.values(selectedTagsObj).flat()
 
       const selectedProducts =
@@ -132,7 +135,7 @@ export const productsSlice = createSlice({
                       return [...acc, ...tags]
                     }
 
-                    return [...acc, ...tags]
+                    return [...acc, tags]
                   }
 
                   return acc
