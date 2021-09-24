@@ -64,6 +64,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   return {
     props: {},
+    revalidate: 60,
   }
 })
 

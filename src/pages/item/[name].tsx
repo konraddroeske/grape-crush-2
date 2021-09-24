@@ -114,7 +114,7 @@ export const getStaticPaths = async () => {
     },
   }))
 
-  return { paths, fallback: false }
+  return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
@@ -142,6 +142,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   return {
     props: {},
+    revalidate: 60,
   }
 })
 
