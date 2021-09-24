@@ -17,7 +17,7 @@ import {
 const ProductsList: FunctionComponent = () => {
   const dispatch = useDispatch()
   const {
-    products,
+    // products,
     selectedProducts,
     page,
     selectedTags,
@@ -33,7 +33,7 @@ const ProductsList: FunctionComponent = () => {
         productsSort,
       })
     )
-  }, [products, selectedTags, productsSearch, productsSort, page, dispatch])
+  }, [selectedTags, productsSearch, productsSort, page, dispatch])
 
   const resetSearch = () => {
     dispatch(setNavSearch(''))

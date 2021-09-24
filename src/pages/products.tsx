@@ -1,11 +1,8 @@
 import React, { FunctionComponent, useEffect } from 'react'
 
-import axios from 'axios'
 import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
-
-import useSwr from 'swr'
 
 import ClientOnlyPortal from '@components/common/ClientOnlyPortal'
 import OutlineMarquee from '@components/common/OutlineMarquee'
@@ -15,8 +12,6 @@ import ProductsBreadcrumbs from '@components/products-page/products-bar/Products
 import ProductsList from '@components/products-page/products-list/ProductsList'
 import DesktopMenu from '@components/products-page/products-menu/DesktopMenu'
 import MobileMenu from '@components/products-page/products-menu/MobileMenu'
-import { addPriceRange } from '@lib/addPriceRange'
-import { cleanData } from '@lib/cleanData'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import {
   setFooter,
@@ -42,29 +37,29 @@ const Products: FunctionComponent = () => {
   const router = useRouter()
   const { mobileMenuOpen } = useSelector(selectProducts())
 
-  axios.defaults.baseURL = 'https://dashboard.ambassador.ai/data/v1/'
-  axios.defaults.headers.common.Authorization =
-    process.env.NEXT_PUBLIC_BEARER_TOKEN
-
-  // console.log(process.env.NEXT_PUBLIC_BEARER_TOKEN)
-  const fetcher = (url: string) => axios.get(url).then((res) => res)
-  const { data: productsData } = useSwr('/shops', fetcher)
+  // axios.defaults.baseURL = 'https://dashboard.ambassador.ai/data/v1/'
+  // axios.defaults.headers.common.Authorization =
+  //   process.env.NEXT_PUBLIC_BEARER_TOKEN
   //
-
-  useEffect(() => {
-    if (productsData) {
-      // console.log(productsData.data)
-      const [shop] = productsData.data.data.shops
-      const { products } = shop
-
-      const productsWithPriceRange = addPriceRange(products)
-      const productsWithNewKeys = cleanData(productsWithPriceRange)
-      // console.log(productsWithNewKeys)
-
-      dispatch(setAllTags(productsWithNewKeys))
-      dispatch(setProducts(productsWithNewKeys))
-    }
-  }, [dispatch, productsData])
+  // // console.log(process.env.NEXT_PUBLIC_BEARER_TOKEN)
+  // const fetcher = (url: string) => axios.get(url).then((res) => res)
+  // const { data: productsData } = useSwr('/shops', fetcher)
+  // //
+  //
+  // useEffect(() => {
+  //   if (productsData) {
+  //     // console.log(productsData.data)
+  //     const [shop] = productsData.data.data.shops
+  //     const { products } = shop
+  //
+  //     const productsWithPriceRange = addPriceRange(products)
+  //     const productsWithNewKeys = cleanData(productsWithPriceRange)
+  //     // console.log(productsWithNewKeys)
+  //
+  //     dispatch(setAllTags(productsWithNewKeys))
+  //     dispatch(setProducts(productsWithNewKeys))
+  //   }
+  // }, [dispatch, productsData])
 
   useEffect(() => {
     if (Object.values(router.query).length > 0) {
@@ -95,30 +90,30 @@ const Products: FunctionComponent = () => {
   return (
     <>
       <Seo title="Shop" />
-      {productsData && (
-        <div className="py-12 pb-12">
-          <div className="my-4 overflow-hidden">
-            <OutlineMarquee text="shop" />
-          </div>
-          <div className="lg:mb-10 border border-l-0 border-r-0 border-dark-blue">
-            <ProductsBar />
-          </div>
-          <div className="my-4 body-gutter-sm lg:hidden">
-            <ProductsBreadcrumbs />
-          </div>
-          <div className="flex">
-            <DesktopMenu />
-            <div className="flex-grow body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
-              <ProductsList />
-            </div>
-          </div>
-          {mobileMenuOpen && (
-            <ClientOnlyPortal selector="#modal">
-              <MobileMenu />
-            </ClientOnlyPortal>
-          )}
+      {/* {productsData && ( */}
+      <div className="py-12 pb-12">
+        <div className="my-4 overflow-hidden">
+          <OutlineMarquee text="shop" />
         </div>
-      )}{' '}
+        <div className="lg:mb-10 border border-l-0 border-r-0 border-dark-blue">
+          <ProductsBar />
+        </div>
+        <div className="my-4 body-gutter-sm lg:hidden">
+          <ProductsBreadcrumbs />
+        </div>
+        <div className="flex">
+          <DesktopMenu />
+          <div className="flex-grow body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+            <ProductsList />
+          </div>
+        </div>
+        {mobileMenuOpen && (
+          <ClientOnlyPortal selector="#modal">
+            <MobileMenu />
+          </ClientOnlyPortal>
+        )}
+      </div>
+      {/* )} */}
     </>
   )
 }
@@ -129,7 +124,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   // const { products: currentProducts } = store.getState()
 
   const {
-    // products,
+    products,
     locale,
     heroAssets,
     pageAssets,
@@ -139,7 +134,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   } = await fetchGlobalData()
 
   // Global
-  // store.dispatch(setAllTags(products))
+  store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories(categoryAssets))
@@ -148,10 +143,11 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setHeroSlides(heroAssets))
 
   // Products
-  // store.dispatch(setProducts(products))
+  store.dispatch(setProducts(products))
 
   return {
     props: {},
+    revalidate: 10,
   }
 })
 
