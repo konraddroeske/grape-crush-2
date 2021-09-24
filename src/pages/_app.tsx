@@ -16,9 +16,10 @@ const App: FC<AppProps> = ({ Component, pageProps }) => (
       src="https://grapecrush.ambassador.ai/widget/ambassador-chat.js"
       strategy="lazyOnload"
       onLoad={() => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        window.AmbassadorChat.init({ domain: 'grapecrush.ambassador.ai' })
+        window.AmbassadorChat.init({
+          domain: 'chat.ambassador.ai',
+          pageId: '-vsyv9_4MKus',
+        })
       }}
     />
     <DefaultSeo

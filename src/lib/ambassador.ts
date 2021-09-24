@@ -4,7 +4,6 @@ import { AmbassadorIg, AmbassadorShops } from '@models/ambassador'
 // import { Activity } from '../models/activity'
 
 axios.defaults.baseURL = 'https://dashboard.ambassador.ai/data/v1/'
-// axios.defaults.baseURL = 'https://dash-staging.ambassador.ai/data/v1/'
 axios.defaults.headers.common.Authorization = process.env.BEARER_TOKEN
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data

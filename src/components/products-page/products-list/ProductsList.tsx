@@ -20,7 +20,13 @@ const ProductsList: FunctionComponent = () => {
     useSelector(selectProducts())
 
   useEffect(() => {
-    dispatch(handleProducts({ selectedTags, productsSearch, productsSort }))
+    dispatch(
+      handleProducts({
+        selectedTags,
+        productsSearch: productsSearch.toLowerCase(),
+        productsSort,
+      })
+    )
   }, [selectedTags, productsSearch, productsSort, page, dispatch])
 
   const resetSearch = () => {

@@ -1,9 +1,10 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
-import ShadowButton from '@components/common/ShadowButton'
+import ShadowLink from '@components/common/ShadowLink'
 import NavSearch from '@components/nav-bar/NavSearch'
 import { CmsImage } from '@models/contentful'
 import { selectGlobal } from '@redux/globalSlice'
@@ -141,16 +142,12 @@ const NavCategories: FunctionComponent = () => {
         </ul>
       </div>
       <div className="hidden w-full lg:flex justify-between mt-8 mb-4">
-        <div className="w-2/5">
-          <ShadowButton
-            text="Shop All Wines"
-            variant="nav"
-            fn={() =>
-              router
-                .push('/products', 'products')
-                .then(() => window.scrollTo(0, 0))
-            }
-          />
+        <div className="flex w-2/5">
+          <Link href="/products">
+            <a>
+              <ShadowLink variant="nav">Show All Wines</ShadowLink>
+            </a>
+          </Link>
         </div>
         <div className="w-1/2">
           <NavSearch variant="desktop" />

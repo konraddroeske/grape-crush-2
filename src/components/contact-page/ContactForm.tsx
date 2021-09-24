@@ -45,7 +45,12 @@ const ContactForm: FunctionComponent = () => {
             className="uppercase border border-blue-dark"
           />
           <div className="flex justify-center">
-            <ShadowButton text="Send" variant="contact" fn={() => null} />
+            <ShadowButton
+              text="Send"
+              variant="contact"
+              type="submit"
+              fn={() => null}
+            />
           </div>
         </form>
       </div>

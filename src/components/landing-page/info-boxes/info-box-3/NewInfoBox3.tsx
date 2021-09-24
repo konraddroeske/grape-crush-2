@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react'
 
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import ContentfulImage from '@components/common/ContentfulImage'
-import ShadowButton from '@components/common/ShadowButton'
+import ShadowLink from '@components/common/ShadowLink'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
 import { selectGlobal } from '@redux/globalSlice'
@@ -13,7 +13,6 @@ import { selectIndex } from '@redux/indexSlice'
 import StarOutline from '../../../../assets/svgs/star-outline.svg'
 
 const NewInfoBox3: FunctionComponent = () => {
-  const router = useRouter()
   const { infoBox3 } = useSelector(selectIndex())
   const { locale } = useSelector(selectGlobal())
 
@@ -34,16 +33,11 @@ const NewInfoBox3: FunctionComponent = () => {
           <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
           <InfoBoxText>{description[locale]} </InfoBoxText>
           <div className="flex justify-center sm:mt-0 sm:justify-start">
-            <ShadowButton
-              text="Details"
-              fn={() =>
-                router
-                  .push('/faq#same-day', '/faq#same-day', {
-                    shallow: false,
-                  })
-                  .then(() => window.scrollTo(0, 0))
-              }
-            />
+            <Link href="/faq#same-day">
+              <a>
+                <ShadowLink>Details</ShadowLink>
+              </a>
+            </Link>
           </div>
         </div>
         <StarOutline

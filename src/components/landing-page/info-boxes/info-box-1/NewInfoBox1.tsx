@@ -1,17 +1,16 @@
 import React, { FunctionComponent } from 'react'
 
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import ContentfulImage from '@components/common/ContentfulImage'
-import ShadowButton from '@components/common/ShadowButton'
+import ShadowLink from '@components/common/ShadowLink'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectIndex } from '@redux/indexSlice'
 
 const NewInfoBox1: FunctionComponent = () => {
-  const router = useRouter()
   const { infoBox1 } = useSelector(selectIndex())
   const { locale } = useSelector(selectGlobal())
 
@@ -28,14 +27,11 @@ const NewInfoBox1: FunctionComponent = () => {
           <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
           <InfoBoxText>{description[locale]}</InfoBoxText>
           <div className="flex justify-center sm:mt-0 sm:justify-start">
-            <ShadowButton
-              text="Shop"
-              fn={() =>
-                router
-                  .push('/products', '/products', { shallow: false })
-                  .then(() => window.scrollTo(0, 0))
-              }
-            />
+            <Link href="/products">
+              <a>
+                <ShadowLink>Shop</ShadowLink>
+              </a>
+            </Link>
           </div>
         </div>
       </div>

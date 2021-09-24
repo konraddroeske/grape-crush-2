@@ -10,19 +10,16 @@ import { gsap } from 'gsap'
 import _Draggable, { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
 import ContentfulImage from '@components/common/ContentfulImage'
 import OutlineMarquee from '@components/common/OutlineMarquee'
-import ShadowButton from '@components/common/ShadowButton'
+import ShadowLink from '@components/common/ShadowLink'
 import { Direction } from '@models/misc'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
 const SocialGallery: FunctionComponent = () => {
-  const router = useRouter()
-  // const { igImages } = useSelector(selectSocial())
   const { locale } = useSelector(selectGlobal())
   const { categories } = useSelector(selectProducts())
 
@@ -249,14 +246,11 @@ const SocialGallery: FunctionComponent = () => {
         )}
       </div>
       <div className="flex justify-center mt-8 mb-12 lg:mb-20">
-        <ShadowButton
-          text="Shop all wines"
-          fn={() =>
-            router
-              .push('/products', '/products', { shallow: false })
-              .then(() => window.scrollTo(0, 0))
-          }
-        />
+        <Link href="/products">
+          <a>
+            <ShadowLink>Shop all wines</ShadowLink>
+          </a>
+        </Link>
       </div>
       <OutlineMarquee text="Shop by type" direction="-=" />
     </section>

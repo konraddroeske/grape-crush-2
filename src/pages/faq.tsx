@@ -4,11 +4,12 @@ import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
 
 import { useRouter } from 'next/dist/client/router'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import Seo from '@components/common/Seo'
-import ShadowButton from '@components/common/ShadowButton'
+import ShadowLink from '@components/common/ShadowLink'
 import fetchFaqData from '@lib/fetchFaqData'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { IFaqFields } from '@models/contentful'
@@ -83,16 +84,11 @@ const Faq: FunctionComponent = () => {
               })}
           </ul>
           <div className="flex justify-center mt-6" id="shop">
-            <ShadowButton
-              text="Ready to shop?"
-              fn={() =>
-                router
-                  .push('/', '/', {
-                    shallow: false,
-                  })
-                  .then(() => window.scrollTo(0, 0))
-              }
-            />
+            <Link href="/products">
+              <a>
+                <ShadowLink>Ready to shop?</ShadowLink>
+              </a>
+            </Link>
           </div>
         </div>
       </div>

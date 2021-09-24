@@ -5,14 +5,13 @@ import React, {
   useState,
 } from 'react'
 
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import { useMediaQuery } from 'react-responsive'
 
-import ShadowButton from '@components/common/ShadowButton'
+import ShadowLink from '@components/common/ShadowLink'
 
 const Description: FunctionComponent = () => {
-  const router = useRouter()
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
   const [desktopDistance, setDesktopDistance] = useState<number>(0)
   const [mobileDistance, setMobileDistance] = useState<number>(0)
@@ -104,15 +103,12 @@ const Description: FunctionComponent = () => {
           <span className="bg-lime">wine enthusiasts</span> to bring you a
           curated selection of natural, biodynamic and classic wines.
         </p>
-        <div className="my-4 xl:my-6 2xl:my-8">
-          <ShadowButton
-            text="Learn more"
-            fn={() =>
-              router
-                .push('/about', '/about', { shallow: false })
-                .then(() => window.scrollTo(0, 0))
-            }
-          />
+        <div className="my-4 xl:my-6 2xl:my-8 flex">
+          <Link href="/about">
+            <a>
+              <ShadowLink>Learn more</ShadowLink>
+            </a>
+          </Link>
         </div>
       </div>
     </section>

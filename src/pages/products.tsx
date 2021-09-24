@@ -37,6 +37,8 @@ const Products: FunctionComponent = () => {
   const router = useRouter()
   const { mobileMenuOpen } = useSelector(selectProducts())
 
+  // console.log('all tags', allTags)
+
   useEffect(() => {
     if (Object.values(router.query).length > 0) {
       const { page, ...tags } = router.query

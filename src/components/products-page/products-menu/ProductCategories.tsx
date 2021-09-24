@@ -30,12 +30,14 @@ const ProductCategories: FunctionComponent<Props> = (props) => {
       })
       .map((tag) => tag[0])
 
-    const mostPopular =
-      sortedByQuantity.length > 14
-        ? sortedByQuantity.slice(0, 14)
-        : sortedByQuantity
+    // const mostPopular =
+    //   sortedByQuantity.length > 14
+    //     ? sortedByQuantity.slice(0, 14)
+    //     : sortedByQuantity
 
-    return mostPopular.sort()
+    // return mostPopular.sort()
+
+    return sortedByQuantity.sort()
   }
 
   const sortPriceRange = (tags: Record<string, number>) => {
