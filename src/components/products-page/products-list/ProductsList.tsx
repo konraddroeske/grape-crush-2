@@ -16,8 +16,14 @@ import {
 
 const ProductsList: FunctionComponent = () => {
   const dispatch = useDispatch()
-  const { selectedProducts, page, selectedTags, productsSearch, productsSort } =
-    useSelector(selectProducts())
+  const {
+    products,
+    selectedProducts,
+    page,
+    selectedTags,
+    productsSearch,
+    productsSort,
+  } = useSelector(selectProducts())
 
   useEffect(() => {
     dispatch(
@@ -27,7 +33,7 @@ const ProductsList: FunctionComponent = () => {
         productsSort,
       })
     )
-  }, [selectedTags, productsSearch, productsSort, page, dispatch])
+  }, [products, selectedTags, productsSearch, productsSort, page, dispatch])
 
   const resetSearch = () => {
     dispatch(setNavSearch(''))
