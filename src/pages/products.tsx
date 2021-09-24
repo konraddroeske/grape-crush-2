@@ -13,6 +13,7 @@ import ProductsList from '@components/products-page/products-list/ProductsList'
 import DesktopMenu from '@components/products-page/products-menu/DesktopMenu'
 import MobileMenu from '@components/products-page/products-menu/MobileMenu'
 import fetchGlobalData from '@lib/fetchGlobalData'
+import { ProductLowercase } from '@models/ambassador'
 import {
   setFooter,
   setHeroSlides,
@@ -32,34 +33,20 @@ import {
 } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
-const Products: FunctionComponent = () => {
+interface Props {
+  products: ProductLowercase[]
+}
+
+const Products: FunctionComponent<Props> = ({ products }) => {
   const dispatch = useDispatch()
   const router = useRouter()
   const { mobileMenuOpen } = useSelector(selectProducts())
 
-  // axios.defaults.baseURL = 'https://dashboard.ambassador.ai/data/v1/'
-  // axios.defaults.headers.common.Authorization =
-  //   process.env.NEXT_PUBLIC_BEARER_TOKEN
-  //
-  // // console.log(process.env.NEXT_PUBLIC_BEARER_TOKEN)
-  // const fetcher = (url: string) => axios.get(url).then((res) => res)
-  // const { data: productsData } = useSwr('/shops', fetcher)
-  // //
-  //
-  // useEffect(() => {
-  //   if (productsData) {
-  //     // console.log(productsData.data)
-  //     const [shop] = productsData.data.data.shops
-  //     const { products } = shop
-  //
-  //     const productsWithPriceRange = addPriceRange(products)
-  //     const productsWithNewKeys = cleanData(productsWithPriceRange)
-  //     // console.log(productsWithNewKeys)
-  //
-  //     dispatch(setAllTags(productsWithNewKeys))
-  //     dispatch(setProducts(productsWithNewKeys))
-  //   }
-  // }, [dispatch, productsData])
+  useEffect(() => {
+    // console.log(products)
+    dispatch(setAllTags(products))
+    dispatch(setProducts(products))
+  }, [dispatch, products])
 
   useEffect(() => {
     if (Object.values(router.query).length > 0) {
@@ -134,7 +121,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   } = await fetchGlobalData()
 
   // Global
-  store.dispatch(setAllTags(products))
+  // store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageAssets))
   store.dispatch(setCategories(categoryAssets))
@@ -143,10 +130,10 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setHeroSlides(heroAssets))
 
   // Products
-  store.dispatch(setProducts(products))
+  // store.dispatch(setProducts(products))
 
   return {
-    props: {},
+    props: { products },
     revalidate: 10,
   }
 })

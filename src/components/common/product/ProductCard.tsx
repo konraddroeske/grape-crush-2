@@ -1,5 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
+import Link from 'next/link'
+
 import AmbassadorImage from '@components/common/AmbassadorImage'
 import BuyButton from '@components/common/BuyButton'
 import LearnMore from '@components/common/product/LearnMore'
@@ -52,9 +54,13 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
 
   return (
     <div className="">
-      <div className="relative h-60 sm:h-64 lg:h-72 xl:h-80 2xl:h-96 relative bg-blue-light py-1 sm:py-2 xl:py-3 2xl:py-4 mb-6 hover:bg-lime-background">
-        {url && <AmbassadorImage url={url} title={name} />}
-      </div>
+      <Link href={`/item/${encodeURIComponent(name)}`}>
+        <a>
+          <div className="relative h-60 sm:h-64 lg:h-72 xl:h-80 2xl:h-96 relative bg-blue-light py-1 sm:py-2 xl:py-3 2xl:py-4 mb-6 hover:bg-lime-background">
+            {url && <AmbassadorImage url={url} title={name} />}
+          </div>
+        </a>
+      </Link>
       <ProductTitle name={name} fontSize="text-xl" />
       {(region || vintage) && (
         <ProductSubheading region={region} vintage={vintage} />
