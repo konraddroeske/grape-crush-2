@@ -73,8 +73,9 @@ const Item: FunctionComponent = () => {
         image={
           productData && dimensions
             ? {
+                title: productData.data.name,
                 url: productData?.data.imageUrl[0],
-                alt: productData?.data.description,
+                description: productData?.data.description,
                 width: dimensions.width,
                 height: dimensions.height,
               }

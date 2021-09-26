@@ -9,12 +9,10 @@ import ContentfulImage from '@components/common/ContentfulImage'
 import RoundedButton from '@components/common/RoundedButton'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
-import { selectGlobal } from '@redux/globalSlice'
 import { selectIndex } from '@redux/indexSlice'
 
 const InfoBox1: FunctionComponent = () => {
   const { infoBox1 } = useSelector(selectIndex())
-  const { locale } = useSelector(selectGlobal())
 
   if (!infoBox1) return <></>
 
@@ -23,8 +21,8 @@ const InfoBox1: FunctionComponent = () => {
     <section className="sm:flex">
       <div className="relative pt-6 bg-purple-light sm:w-2/5 sm:pt-0 sm:flex sm:items-center">
         <div className="flex flex-col items-center body-gutter-sm sm:items-start lg:body-gutter-lg xl:body-gutter-xl">
-          <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
-          <InfoBoxText>{description[locale]}</InfoBoxText>
+          <InfoBoxTitle>{title}</InfoBoxTitle>
+          <InfoBoxText>{description}</InfoBoxText>
           <RoundedButton variant="sm" marginX="mx-0">
             Explore
           </RoundedButton>
