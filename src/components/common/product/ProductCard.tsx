@@ -23,15 +23,13 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
   const [price, setPrice] = useState<number | null>(null)
   const [label, setLabel] = useState<string>('')
   const [url, setUrl] = useState<string | null>(null)
-  // console.log(data)
+
   const {
-    // imageUrl,
     name,
     country,
     style,
     varietal,
     vintage,
-    // tags,
     variants,
     description,
     region,

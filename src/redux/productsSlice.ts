@@ -49,7 +49,7 @@ interface ProductsSlice {
   products: ProductLowercase[]
   allTags: TagsByCount | null
   // productsByTag: ProductsByTag | null
-  selectedProducts: ProductLowercase[]
+  selectedProducts: ProductLowercase[] | null
   totalSelected: ProductLowercase[]
   selectedTags: TagsByCategory
   page: number
