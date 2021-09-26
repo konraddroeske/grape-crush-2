@@ -2,14 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import {
-  CmsImage,
+  Asset,
   CONTENTFUL_DEFAULT_LOCALE_CODE,
   IFooterFields,
   IHeroSlideFields,
   INavFields,
   IPageFields,
   LOCALE_CODE,
-} from '@models/contentful'
+} from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
 
 interface Theme {
@@ -32,7 +32,8 @@ interface Global {
   nav: INavFields[]
   navOpen: boolean
   heroSlides: IHeroSlideFields[]
-  seoImage: CmsImage | null
+  // seoImage: CmsImage | null
+  seoImage: Asset | null
   currentTheme: Theme
 }
 
@@ -66,8 +67,10 @@ export const globalSlice = createSlice({
       return { ...state, locale: action.payload }
     },
     setPages(state, action) {
-      const legalPages = action.payload.filter(
-        (page: IPageFields) => page.category[state.locale] === 'Legal Stuff'
+      const { items } = action.payload
+
+      const legalPages = items.filter(
+        (page: IPageFields) => page.category === 'Legal Stuff'
       )
 
       // const helpPages = action.payload.filter(
@@ -76,22 +79,25 @@ export const globalSlice = createSlice({
 
       // console.log('help pages', helpPages)
 
-      return { ...state, allPages: action.payload, legalPages }
+      return { ...state, allPages: items, legalPages }
     },
     setNavOpen(state, action) {
       return { ...state, navOpen: action.payload }
     },
     setFooter(state, action) {
-      return { ...state, footer: action.payload }
+      const { items } = action.payload
+      return { ...state, footer: items }
     },
     setNav(state, action) {
-      return { ...state, nav: action.payload }
+      const { items } = action.payload
+      return { ...state, nav: items }
     },
     setHeroSlides(state, action) {
-      const [firstSlide] = action.payload
+      const { items } = action.payload
+      const [firstSlide] = items
       const { image } = firstSlide
 
-      return { ...state, seoImage: image, heroSlides: action.payload }
+      return { ...state, seoImage: image, heroSlides: items }
     },
   },
   extraReducers: {

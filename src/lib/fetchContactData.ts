@@ -1,24 +1,18 @@
 import { Client } from '@googlemaps/google-maps-services-js'
 
-import { getAssets, getEntries } from '@lib/cms'
+import apolloClient from '@lib/apolloClient'
+import { contactQuery } from '@models/schema'
 
 export default async function fetchAboutData() {
-  const locale = 'en-US'
-  const contentIds = ['contact']
-
-  // Contentful
-  const groupedEntries = await Promise.all(
-    contentIds.map((id) => getEntries(id))
-  )
-
-  const [contactAssets] = await Promise.all(
-    groupedEntries.map((entries) => getAssets(entries, locale))
-  )
+  const { data: contactData } = await apolloClient.query({
+    query: contactQuery,
+  })
+  const { contactCollection } = contactData
 
   // Google Maps
-  const client = new Client({})
+  const googleClient = new Client({})
 
-  const { data: locationData } = await client.placeDetails({
+  const { data: locationData } = await googleClient.placeDetails({
     params: {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY!,
@@ -30,7 +24,7 @@ export default async function fetchAboutData() {
   })
 
   return {
-    contactAssets,
+    contactCollection,
     locationData,
   }
 }

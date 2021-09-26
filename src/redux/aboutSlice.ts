@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { IAboutFields, ITeamMembersFields } from '@models/contentful'
+// import { IAboutFields, ITeamMembersFields } from '@models/contentful'
+import { IAboutFields, ITeamMembersFields } from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
 
 interface About {
@@ -19,11 +20,13 @@ export const aboutSlice = createSlice({
   initialState,
   reducers: {
     setFields(state, action) {
-      const [fields]: [IAboutFields] = action.payload
+      const { items } = action.payload
+      const [fields]: [IAboutFields] = items
       return { ...state, fields }
     },
     setTeamMembers(state, action) {
-      return { ...state, teamMembers: action.payload }
+      const { items } = action.payload
+      return { ...state, teamMembers: items }
     },
   },
   extraReducers: {

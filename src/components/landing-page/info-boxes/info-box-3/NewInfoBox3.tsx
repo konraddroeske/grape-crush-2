@@ -7,14 +7,12 @@ import ContentfulImage from '@components/common/ContentfulImage'
 import ShadowLink from '@components/common/ShadowLink'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
-import { selectGlobal } from '@redux/globalSlice'
 import { selectIndex } from '@redux/indexSlice'
 
 import StarOutline from '../../../../assets/svgs/star-outline.svg'
 
 const NewInfoBox3: FunctionComponent = () => {
   const { infoBox3 } = useSelector(selectIndex())
-  const { locale } = useSelector(selectGlobal())
 
   if (!infoBox3) return <></>
 
@@ -26,12 +24,12 @@ const NewInfoBox3: FunctionComponent = () => {
     xl:body-gutter-xl"
     >
       <div className="relative w-full sm:flex sm:max-h-70vh lg:w-1/2">
-        {image && <ContentfulImage image={image} />}{' '}
+        {image && <ContentfulImage image={image} />}
       </div>
       <div className="relative z-10 flex items-center w-full lg:w-1/2">
         <div className="relative z-10 pt-4 sm:pt-0 sm:pl-16 xl:pl-20">
-          <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
-          <InfoBoxText>{description[locale]} </InfoBoxText>
+          <InfoBoxTitle>{title}</InfoBoxTitle>
+          <InfoBoxText>{description} </InfoBoxText>
           <div className="flex justify-center sm:mt-0 sm:justify-start">
             <Link href="/faq#same-day">
               <a>

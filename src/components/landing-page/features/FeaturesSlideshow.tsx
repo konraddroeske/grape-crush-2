@@ -18,7 +18,7 @@ import { Direction } from '@models/misc'
 import { selectGlobal } from '@redux/globalSlice'
 
 const FeaturesSlideshow: FunctionComponent = () => {
-  const { locale, heroSlides: slides } = useSelector(selectGlobal())
+  const { heroSlides: slides } = useSelector(selectGlobal())
   const [circleDirection, setCircleDirection] = useState<Direction>(-1)
 
   const useTimer = false
@@ -275,7 +275,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
               <ul ref={list} className="absolute inset-0 m-0 p-0">
                 {reorderedSlides.map((slide) => (
                   <li
-                    key={slide.title[locale]}
+                    key={slide.title}
                     ref={(el) => items.current.push(el)}
                     className="absolute w-full sm:w-2/3 top-0 right-0 sm:right-1/6"
                   >
@@ -298,7 +298,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
                           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-center
                           whitespace-normal uppercase font-bold text-blue-dark"
                         >
-                          {slide.title[locale]}
+                          {slide.title}
                         </button>
                       </div>
                     </div>

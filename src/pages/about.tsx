@@ -13,7 +13,6 @@ import fetchAboutData from '@lib/fetchAboutData'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { selectAbout, setFields, setTeamMembers } from '@redux/aboutSlice'
 import {
-  selectGlobal,
   setFooter,
   setHeroSlides,
   setLocale,
@@ -30,7 +29,7 @@ import AboutWaveMobile from '../assets/svgs/about-wave-mobile.svg'
 import Star from '../assets/svgs/star.svg'
 
 const About: FunctionComponent = () => {
-  const { locale } = useSelector(selectGlobal())
+  // const { locale } = useSelector(selectGlobal())
   const { fields } = useSelector(selectAbout())
 
   if (!fields)
@@ -70,7 +69,7 @@ const About: FunctionComponent = () => {
               className="relative z-10 uppercase text-4xl text-blue-dark font-bold mb-36
           xs:text-5xl sm:text-6xl lg:text-7xl lg:w-9/12 lg:pt-28 xl:text-8xl 2xl:text-9xl"
             >
-              {headline[locale]}
+              {headline}
             </h1>
             <Star
               className="w-60 absolute bottom-0 right-0 transform translate-y-1/2
@@ -91,7 +90,7 @@ const About: FunctionComponent = () => {
             <div className="my-4 flex items-center sm:my-0">
               <ContentfulRichText
                 options={options}
-                richText={paragraph1[locale]}
+                richText={paragraph1.json}
               />
             </div>
           )}
@@ -113,7 +112,7 @@ const About: FunctionComponent = () => {
               <div className="relative">
                 <ContentfulRichText
                   options={options}
-                  richText={paragraph2[locale]}
+                  richText={paragraph2.json}
                 />
                 <AboutSwirl
                   className="absolute bottom-0 transform translate-y-3/4
@@ -143,27 +142,27 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const {
     products,
     locale,
-    heroAssets,
-    pageAssets,
-    categoryAssets,
-    footerAssets,
-    navAssets,
+    heroSlideCollection,
+    pageCollection,
+    footerCollection,
+    navCollection,
+    categoryCollection,
   } = await fetchGlobalData()
-
-  const { aboutAssets, teamMemberAssets } = await fetchAboutData()
 
   // Global
   store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageAssets))
-  store.dispatch(setCategories(categoryAssets))
-  store.dispatch(setFooter(footerAssets))
-  store.dispatch(setNav(navAssets))
-  store.dispatch(setHeroSlides(heroAssets))
+  store.dispatch(setPages(pageCollection))
+  store.dispatch(setCategories(categoryCollection))
+  store.dispatch(setFooter(footerCollection))
+  store.dispatch(setNav(navCollection))
+  store.dispatch(setHeroSlides(heroSlideCollection))
+
+  const { aboutCollection, teamMembersCollection } = await fetchAboutData()
 
   // About
-  store.dispatch(setFields(aboutAssets))
-  store.dispatch(setTeamMembers(teamMemberAssets))
+  store.dispatch(setFields(aboutCollection))
+  store.dispatch(setTeamMembers(teamMembersCollection))
 
   return {
     props: {},

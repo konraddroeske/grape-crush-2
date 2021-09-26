@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import { ProductLowercase } from '@models/ambassador'
-import { IInfoBox1Fields } from '@models/contentful'
+import { IInfoBox1Fields } from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
 
 // export const setNewArrivals = (newArrivals: any[]): AppThunk => {
@@ -38,21 +38,26 @@ export const indexSlice = createSlice({
   name: 'index',
   initialState,
   reducers: {
-    setNewArrivals(state, action) {
-      return { ...state, newArrivals: action.payload }
-    },
+    // setNewArrivals(state, action) {
+    //   return { ...state, newArrivals: action.payload }
+    // },
     setInfoBoxes(state, action) {
-      const locale = 'en-US'
+      // const locale = 'en-US'
+      const { items } = action.payload
+      const infoBoxes = items as IInfoBox1Fields[]
 
-      const infoBoxes = action.payload as IInfoBox1Fields[]
-
-      const [infoBox1, infoBox2, infoBox3] = infoBoxes.sort(
+      const [infoBox1, infoBox2, infoBox3] = [...infoBoxes].sort(
         (a: IInfoBox1Fields, b: IInfoBox1Fields) => {
-          return a.order[locale] - b.order[locale]
+          return a.order - b.order
         }
       )
 
-      return { ...state, infoBox1, infoBox2, infoBox3 }
+      return {
+        ...state,
+        infoBox1,
+        infoBox2,
+        infoBox3,
+      }
     },
   },
   extraReducers: {
@@ -65,6 +70,6 @@ export const indexSlice = createSlice({
   },
 })
 
-export const { setNewArrivals, setInfoBoxes } = indexSlice.actions
+export const { setInfoBoxes } = indexSlice.actions
 
 export const selectIndex = () => (state: AppState) => state?.[indexSlice.name]

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { CmsImage, IHeroSlideFields } from '@models/contentful'
+// import { CmsImage, IHeroSlideFields } from '@models/contentful'
 import type { AppState } from '@redux/store'
 
 // export const handleHeroSlides = (heroSlides: HeroSlides[]): AppThunk => {
@@ -25,15 +25,11 @@ interface Theme {
 }
 
 interface HeroSlice {
-  heroSlides: IHeroSlideFields[]
-  SeoImage: CmsImage | null
   // themes: Theme[]
   currentTheme: Theme
 }
 
 const initialState = {
-  heroSlides: [],
-  SeoImage: null,
   // themes: [
   //   {
   //     nav: '#414042',
@@ -87,9 +83,6 @@ export const heroSlice = createSlice({
   name: 'hero',
   initialState,
   reducers: {
-    setHeroSlides(state, action) {
-      return { ...state, heroSlides: action.payload }
-    },
     // setCurrentTheme(state, action) {
     //   const { themes } = state
     //

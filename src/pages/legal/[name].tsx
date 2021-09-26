@@ -11,6 +11,7 @@ import OutlineMarquee from '@components/common/OutlineMarquee'
 import Seo from '@components/common/Seo'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchPageData from '@lib/fetchPageData'
+import { IPageFields } from '@models/contentful-graph'
 import {
   selectGlobal,
   setFooter,
@@ -24,18 +25,20 @@ import { wrapper } from '@redux/store'
 
 const LegalPage: FunctionComponent = () => {
   const router = useRouter()
-  const { allPages, locale } = useSelector(selectGlobal())
+  const { allPages } = useSelector(selectGlobal())
   const { name } = router.query
+
+  // console.log('all pages', allPages)
 
   const [title, setTitle] = useState<string | null>(null)
   const [document, setDocument] = useState<Document | null>(null)
 
   useEffect(() => {
-    const currentPage = allPages.find((ele) => ele.slug[locale] === name)
+    const currentPage = allPages.find((ele) => ele.slug === name)
 
-    setDocument(currentPage?.content?.[locale] || null)
-    setTitle(currentPage?.title?.[locale] || null)
-  }, [name, allPages, locale])
+    setDocument(currentPage?.content?.json || null)
+    setTitle(currentPage?.title || null)
+  }, [name, allPages])
 
   const options: Options = {
     // renderMark: {
@@ -70,12 +73,13 @@ const LegalPage: FunctionComponent = () => {
 }
 
 export const getStaticPaths = async () => {
-  const { pageAssets, locale } = await fetchPageData()
+  const { pageCollection } = await fetchPageData()
+  const { items }: { items: IPageFields[] } = pageCollection
 
-  const paths = pageAssets.map((page) => {
+  const paths = items.map((page) => {
     return {
       params: {
-        name: page.slug[locale],
+        name: page.slug,
       },
     }
   })
@@ -86,21 +90,21 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const {
     products,
     locale,
-    pageAssets,
-    heroAssets,
-    categoryAssets,
-    footerAssets,
-    navAssets,
+    heroSlideCollection,
+    pageCollection,
+    footerCollection,
+    navCollection,
+    categoryCollection,
   } = await fetchGlobalData()
 
   // Global
   store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageAssets))
-  store.dispatch(setCategories(categoryAssets))
-  store.dispatch(setFooter(footerAssets))
-  store.dispatch(setNav(navAssets))
-  store.dispatch(setHeroSlides(heroAssets))
+  store.dispatch(setPages(pageCollection))
+  store.dispatch(setCategories(categoryCollection))
+  store.dispatch(setFooter(footerCollection))
+  store.dispatch(setNav(navCollection))
+  store.dispatch(setHeroSlides(heroSlideCollection))
 
   return {
     props: {},

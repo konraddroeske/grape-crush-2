@@ -1,20 +1,14 @@
-import { getAssets, getEntries } from '@lib/cms'
+import apolloClient from '@lib/apolloClient'
+import { aboutQuery } from '@models/schema'
 
 export default async function fetchAboutData() {
-  const locale = 'en-US'
-  const contentIds = ['about', 'teamMembers']
-
-  // Contentful
-  const groupedEntries = await Promise.all(
-    contentIds.map((id) => getEntries(id))
-  )
-
-  const [aboutAssets, teamMemberAssets] = await Promise.all(
-    groupedEntries.map((entries) => getAssets(entries, locale))
-  )
+  const { data: aboutData } = await apolloClient.query({
+    query: aboutQuery,
+  })
+  const { aboutCollection, teamMembersCollection } = aboutData
 
   return {
-    aboutAssets,
-    teamMemberAssets,
+    aboutCollection,
+    teamMembersCollection,
   }
 }

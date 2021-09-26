@@ -8,12 +8,10 @@ import ContentfulImage from '@components/common/ContentfulImage'
 import ContentfulRichText from '@components/common/ContentfulRichText'
 
 import { selectContact } from '@redux/contactSlice'
-import { selectGlobal } from '@redux/globalSlice'
 
 import ContactWave from '../../assets/svgs/contact-wave-lime.svg'
 
 const ContactEmail: FunctionComponent = () => {
-  const { locale } = useSelector(selectGlobal())
   const { fields } = useSelector(selectContact())
 
   if (!fields)
@@ -50,7 +48,7 @@ const ContactEmail: FunctionComponent = () => {
       <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl sm:flex">
         <div className="relative z-10 sm:w-1/2 sm:flex sm:items-center">
           <ContentfulRichText
-            richText={contact[locale]}
+            richText={contact.json}
             options={contactOptions}
           />
         </div>

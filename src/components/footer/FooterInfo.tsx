@@ -38,7 +38,7 @@ export const LogoContainer: FunctionComponent = ({ children }) => (
 )
 
 const FooterInfo: FunctionComponent = () => {
-  const { legalPages, locale } = useSelector(selectGlobal())
+  const { legalPages } = useSelector(selectGlobal())
   return (
     <div className="relative z-30 bg-blue-dark xl:flex xl:overflow-hidden">
       <FooterLogo />
@@ -88,9 +88,9 @@ const FooterInfo: FunctionComponent = () => {
           >
             {legalPages.map((page) => {
               return (
-                <li key={page.title[locale]}>
-                  <FooterLink to={`/legal/${page.slug[locale]}`}>
-                    {page.title[locale]}
+                <li key={page.title}>
+                  <FooterLink to={`/legal/${page.slug}`}>
+                    {page.title}
                   </FooterLink>
                 </li>
               )

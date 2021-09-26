@@ -1,20 +1,14 @@
-import { getAssets, getEntries } from '@lib/cms'
+import client from '@lib/apolloClient'
+import { pageQuery } from '@models/schema'
 
 export default async function fetchPageData() {
-  const locale = 'en-US'
-  const contentIds = ['page']
+  const { data: pageData } = await client.query({
+    query: pageQuery,
+  })
 
-  // Contentful
-  const groupedEntries = await Promise.all(
-    contentIds.map((id) => getEntries(id))
-  )
-
-  const [pageAssets] = await Promise.all(
-    groupedEntries.map((entries) => getAssets(entries, locale))
-  )
+  const { pageCollection } = pageData
 
   return {
-    locale,
-    pageAssets,
+    pageCollection,
   }
 }

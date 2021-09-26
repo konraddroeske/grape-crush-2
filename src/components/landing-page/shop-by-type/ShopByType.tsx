@@ -16,11 +16,10 @@ import ContentfulImage from '@components/common/ContentfulImage'
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import ShadowLink from '@components/common/ShadowLink'
 import { Direction } from '@models/misc'
-import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
 const SocialGallery: FunctionComponent = () => {
-  const { locale } = useSelector(selectGlobal())
+  // const { locale } = useSelector(selectGlobal())
   const { categories } = useSelector(selectProducts())
 
   const slider = useRef<HTMLDivElement>(null)
@@ -215,7 +214,7 @@ const SocialGallery: FunctionComponent = () => {
               {categories.map((category) => {
                 return (
                   <li
-                    key={category.categoryName[locale]}
+                    key={category.categoryName}
                     ref={(el) => items.current.push(el)}
                     className="absolute px-2 w-60 top-0 left-0 sm:px-4 sm:w-72
                   lg:px-6 lg:w-80 xl:px-8 xl:w-88"
@@ -232,10 +231,10 @@ const SocialGallery: FunctionComponent = () => {
                     >
                       <Link
                         href={`/products?parentType=${encodeURIComponent(
-                          category.categoryName[locale]
+                          category.categoryName
                         )}`}
                       >
-                        <a>{category.title[locale]}</a>
+                        <a>{category.title}</a>
                       </Link>
                     </button>
                   </li>

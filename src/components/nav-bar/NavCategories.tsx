@@ -6,19 +6,19 @@ import { useSelector } from 'react-redux'
 
 import ShadowLink from '@components/common/ShadowLink'
 import NavSearch from '@components/nav-bar/NavSearch'
-import { CmsImage } from '@models/contentful'
+import { Asset } from '@models/contentful-graph'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
 const NavCategories: FunctionComponent = () => {
   const { categories, allTags } = useSelector(selectProducts())
-  const { locale, nav } = useSelector(selectGlobal())
+  const { nav } = useSelector(selectGlobal())
   const router = useRouter()
 
   const [categoryImage, setCategoryImage] = useState<string | undefined>(
     undefined
   )
-  const [svgMask, setSvgMask] = useState<CmsImage | null>(null)
+  const [svgMask, setSvgMask] = useState<Asset | null>(null)
   const [topStyles, setTopStyles] = useState<string[]>([])
 
   const handleHover = (url: string | undefined) => {
@@ -31,9 +31,9 @@ const NavCategories: FunctionComponent = () => {
     const [defaultCategory] = categories
 
     if (defaultCategory) {
-      setCategoryImage(defaultCategory?.image?.file?.[locale]?.url)
+      setCategoryImage(defaultCategory.image.url)
     }
-  }, [categories, locale])
+  }, [categories])
 
   useEffect(() => {
     if (allTags) {
@@ -88,19 +88,17 @@ const NavCategories: FunctionComponent = () => {
             {categories.map((category) => {
               return (
                 <li
-                  key={category.categoryName[locale]}
-                  onMouseEnter={() =>
-                    handleHover(category?.image?.file?.[locale]?.url)
-                  }
+                  key={category.categoryName}
+                  onMouseEnter={() => handleHover(category?.image?.url)}
                 >
                   <button
                     type="button"
                     className="leading-5 py-1 sm:py-2 text-left text-base text-white font-medium uppercase"
                     onClick={() =>
-                      handleClick('parentType', category.categoryName[locale])
+                      handleClick('parentType', category.categoryName)
                     }
                   >
-                    {category.title[locale]}
+                    {category.title}
                   </button>
                 </li>
               )
@@ -113,8 +111,8 @@ const NavCategories: FunctionComponent = () => {
               className="mask-nav absolute left-0 top-0 w-full min-w-64"
               style={{
                 backgroundImage: `url(${categoryImage})`,
-                maskImage: `url(https:${svgMask.file[locale].url})`,
-                WebkitMaskImage: `url(https:${svgMask.file[locale].url})`,
+                maskImage: `url(${svgMask.url})`,
+                WebkitMaskImage: `url(${svgMask.url})`,
               }}
             />
           )}

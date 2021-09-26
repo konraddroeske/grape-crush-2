@@ -7,12 +7,10 @@ import ContentfulImage from '@components/common/ContentfulImage'
 import ShadowLink from '@components/common/ShadowLink'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
-import { selectGlobal } from '@redux/globalSlice'
 import { selectIndex } from '@redux/indexSlice'
 
 const NewInfoBox1: FunctionComponent = () => {
   const { infoBox1 } = useSelector(selectIndex())
-  const { locale } = useSelector(selectGlobal())
 
   if (!infoBox1) return <></>
 
@@ -24,8 +22,8 @@ const NewInfoBox1: FunctionComponent = () => {
     >
       <div className="flex items-center w-full sm:w-1/2 pt-4 sm:pt-0">
         <div className="sm:pr-16 xl:pr-20">
-          <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
-          <InfoBoxText>{description[locale]}</InfoBoxText>
+          <InfoBoxTitle>{title}</InfoBoxTitle>
+          <InfoBoxText>{description}</InfoBoxText>
           <div className="flex justify-center sm:mt-0 sm:justify-start">
             <Link href="/products">
               <a>

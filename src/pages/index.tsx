@@ -16,7 +16,7 @@ import {
   setNav,
   setPages,
 } from '@redux/globalSlice'
-import { setInfoBoxes, setNewArrivals } from '@redux/indexSlice'
+import { setInfoBoxes } from '@redux/indexSlice'
 import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
@@ -40,27 +40,26 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const {
     products,
     locale,
-    heroAssets,
-    pageAssets,
-    categoryAssets,
-    footerAssets,
-    navAssets,
+    heroSlideCollection,
+    pageCollection,
+    footerCollection,
+    navCollection,
+    categoryCollection,
   } = await fetchGlobalData()
 
-  const { newArrivals, infoBoxAssets } = await fetchIndexData()
+  const { infoBox1Collection } = await fetchIndexData()
 
   // Global
-  store.dispatch(setPages(pageAssets))
-  store.dispatch(setCategories(categoryAssets))
-  store.dispatch(setFooter(footerAssets))
-  store.dispatch(setNav(navAssets))
   store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
-  store.dispatch(setHeroSlides(heroAssets))
+  store.dispatch(setPages(pageCollection))
+  store.dispatch(setCategories(categoryCollection))
+  store.dispatch(setFooter(footerCollection))
+  store.dispatch(setNav(navCollection))
+  store.dispatch(setHeroSlides(heroSlideCollection))
 
   // Index
-  store.dispatch(setInfoBoxes(infoBoxAssets))
-  store.dispatch(setNewArrivals(newArrivals))
+  store.dispatch(setInfoBoxes(infoBox1Collection))
 
   return {
     props: {},

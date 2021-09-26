@@ -3,27 +3,24 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import { NextSeo } from 'next-seo'
 import { useSelector } from 'react-redux'
 
-import { getImageData } from '@lib/getImageData'
-import { ImageData } from '@models/misc'
+import { Asset } from '@models/contentful-graph'
 import { selectGlobal } from '@redux/globalSlice'
 
 interface OwnProps {
   title: string
   description?: string | undefined
-  image?: ImageData | undefined
+  image?: Asset | undefined
 }
 
 type Props = OwnProps
 
 const Seo: FunctionComponent<Props> = ({ title, description, image }) => {
   const { locale, seoImage: defaultImage } = useSelector(selectGlobal())
-  const [imageData, setImageData] = useState<ImageData | null>(null)
+  const [imageData, setImageData] = useState<Asset | null>(null)
 
   useEffect(() => {
     if (defaultImage) {
-      const data = image || getImageData(defaultImage, locale)
-
-      setImageData(data)
+      setImageData(defaultImage)
     }
   }, [image, defaultImage, locale])
 
@@ -40,10 +37,10 @@ const Seo: FunctionComponent<Props> = ({ title, description, image }) => {
           ? {
               images: [
                 {
-                  url: `https:${imageData.url}`,
+                  url: `${imageData.url}`,
                   width: imageData.width,
                   height: imageData.height,
-                  alt: imageData.alt,
+                  alt: imageData.description,
                   type: 'image/jpeg',
                 },
               ],

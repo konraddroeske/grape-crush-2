@@ -4,10 +4,9 @@ import { useSelector } from 'react-redux'
 
 import ContentfulImage from '@components/common/ContentfulImage'
 import { selectAbout } from '@redux/aboutSlice'
-import { selectGlobal } from '@redux/globalSlice'
 
 const TeamMembers: FunctionComponent = () => {
-  const { locale } = useSelector(selectGlobal())
+  // const { locale } = useSelector(selectGlobal())
   const { teamMembers } = useSelector(selectAbout())
 
   return (
@@ -21,7 +20,7 @@ const TeamMembers: FunctionComponent = () => {
           .reverse()
           .map((teamMember) => {
             return (
-              <li key={teamMember.name[locale]} className="py-6">
+              <li key={teamMember.name} className="py-6">
                 {teamMember.image && (
                   <div className="w-10/12 mx-auto mb-6 lg:w-8/12">
                     <ContentfulImage image={teamMember.image} />
@@ -31,10 +30,10 @@ const TeamMembers: FunctionComponent = () => {
                   className="text-center text-2xl text-blue-dark font-medium my-2
                 lg:text-3xl 2xl:my-3"
                 >
-                  {teamMember?.name[locale]}
+                  {teamMember?.name}
                 </h2>
                 <p className="text-base 2xl:text-lg">
-                  {teamMember.description[locale]}
+                  {teamMember.description}
                 </p>
               </li>
             )

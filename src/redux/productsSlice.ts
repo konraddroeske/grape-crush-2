@@ -3,7 +3,7 @@ import { HYDRATE } from 'next-redux-wrapper'
 
 import { sortProducts } from '@lib/sortProducts'
 import { ProductCategories, ProductLowercase } from '@models/ambassador'
-import { ICategoryFields } from '@models/contentful'
+import { ICategoryFields } from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
 
 export interface TagsByCategory {
@@ -88,11 +88,9 @@ export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    setNewArrivals(state, action) {
-      return { ...state, newArrivals: action.payload }
-    },
     setCategories(state, action) {
-      return { ...state, categories: action.payload }
+      const { items } = action.payload
+      return { ...state, categories: items }
     },
     setProducts(state, action) {
       return { ...state, products: action.payload }

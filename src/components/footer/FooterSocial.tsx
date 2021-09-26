@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux'
 
 import ContentfulImage from '@components/common/ContentfulImage'
 import Mailer from '@components/landing-page/mailer/Mailer'
-import { CmsImage } from '@models/contentful'
+import { Asset } from '@models/contentful-graph'
 import { selectGlobal } from '@redux/globalSlice'
 
 const FooterSocial: FunctionComponent = () => {
   const { footer } = useSelector(selectGlobal())
-  const [image, setImage] = useState<CmsImage | null>(null)
+  const [image, setImage] = useState<Asset | null>(null)
 
   useEffect(() => {
     if (footer) {

@@ -121,21 +121,21 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const {
     products,
     locale,
-    heroAssets,
-    pageAssets,
-    categoryAssets,
-    footerAssets,
-    navAssets,
+    heroSlideCollection,
+    pageCollection,
+    footerCollection,
+    navCollection,
+    categoryCollection,
   } = await fetchGlobalData()
 
   // Global
   store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageAssets))
-  store.dispatch(setCategories(categoryAssets))
-  store.dispatch(setFooter(footerAssets))
-  store.dispatch(setNav(navAssets))
-  store.dispatch(setHeroSlides(heroAssets))
+  store.dispatch(setPages(pageCollection))
+  store.dispatch(setCategories(categoryCollection))
+  store.dispatch(setFooter(footerCollection))
+  store.dispatch(setNav(navCollection))
+  store.dispatch(setHeroSlides(heroSlideCollection))
 
   // Products
   store.dispatch(setProducts(products))

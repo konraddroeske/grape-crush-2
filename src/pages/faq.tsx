@@ -12,10 +12,9 @@ import Seo from '@components/common/Seo'
 import ShadowLink from '@components/common/ShadowLink'
 import fetchFaqData from '@lib/fetchFaqData'
 import fetchGlobalData from '@lib/fetchGlobalData'
-import { IFaqFields } from '@models/contentful'
+import { IFaqFields } from '@models/contentful-graph'
 import { selectFaq, setQuestions } from '@redux/faqSlice'
 import {
-  selectGlobal,
   setFooter,
   setHeroSlides,
   setLocale,
@@ -26,7 +25,6 @@ import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 const Faq: FunctionComponent = () => {
-  const { locale } = useSelector(selectGlobal())
   const router = useRouter()
   const { questions } = useSelector(selectFaq())
 
@@ -46,8 +44,8 @@ const Faq: FunctionComponent = () => {
     if (questions) {
       const sorted = [...questions]
         .sort((a, b) => {
-          const dateA = new Date(a.published[locale])
-          const dateB = new Date(b.published[locale])
+          const dateA = new Date(a.published)
+          const dateB = new Date(b.published)
 
           return dateB.getTime() - dateA.getTime()
         })
@@ -55,7 +53,7 @@ const Faq: FunctionComponent = () => {
 
       setSortedQuestions(sorted)
     }
-  }, [questions, locale])
+  }, [questions])
 
   return (
     <>
@@ -71,14 +69,14 @@ const Faq: FunctionComponent = () => {
                 const { question, answer, anchor } = item
                 return (
                   <li
-                    key={anchor[locale]}
-                    id={anchor[locale]}
+                    key={anchor}
+                    id={anchor}
                     className="py-6 border-b-4 border-lime last:border-b-0"
                   >
                     <h3 className="text-2xl text-blue-dark font-medium mb-2">
-                      {question[locale]}
+                      {question}
                     </h3>
-                    <p>{answer[locale]}</p>
+                    <p>{answer}</p>
                   </li>
                 )
               })}
@@ -100,26 +98,26 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const {
     products,
     locale,
-    heroAssets,
-    pageAssets,
-    categoryAssets,
-    footerAssets,
-    navAssets,
+    heroSlideCollection,
+    pageCollection,
+    footerCollection,
+    navCollection,
+    categoryCollection,
   } = await fetchGlobalData()
-
-  const { faqAssets } = await fetchFaqData()
 
   // Global
   store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageAssets))
-  store.dispatch(setCategories(categoryAssets))
-  store.dispatch(setFooter(footerAssets))
-  store.dispatch(setNav(navAssets))
-  store.dispatch(setHeroSlides(heroAssets))
+  store.dispatch(setPages(pageCollection))
+  store.dispatch(setCategories(categoryCollection))
+  store.dispatch(setFooter(footerCollection))
+  store.dispatch(setNav(navCollection))
+  store.dispatch(setHeroSlides(heroSlideCollection))
+
+  const { faqCollection } = await fetchFaqData()
 
   // Products
-  store.dispatch(setQuestions(faqAssets))
+  store.dispatch(setQuestions(faqCollection))
 
   return {
     props: {},

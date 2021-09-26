@@ -12,10 +12,8 @@ import ContactTitle from '@components/contact-page/ContactTitle'
 import SimpleMap from '@components/contact-page/SimpleMap'
 
 import { selectContact } from '@redux/contactSlice'
-import { selectGlobal } from '@redux/globalSlice'
 
 const ContactInfo: FunctionComponent = () => {
-  const { locale } = useSelector(selectGlobal())
   const { fields } = useSelector(selectContact())
 
   if (!fields)
@@ -48,7 +46,7 @@ const ContactInfo: FunctionComponent = () => {
           <ContactTitle>Visit Us</ContactTitle>
           <div className="relative">
             <ContentfulRichText
-              richText={address[locale]}
+              richText={address.json}
               options={locationOptions}
             />
             <ContactSwirl className="contact-swirl-position" />
@@ -61,10 +59,7 @@ const ContactInfo: FunctionComponent = () => {
         </div>
         <div className="text-center my-4 sm:grid-col-2 sm:grid-row-1 sm:my-0">
           <ContactTitle>Retail Hours</ContactTitle>
-          <ContentfulRichText
-            richText={hours[locale]}
-            options={locationOptions}
-          />
+          <ContentfulRichText richText={hours.json} options={locationOptions} />
         </div>
         <div className="text-center my-4 sm:grid-col-3 sm:grid-row-1 sm:my-0">
           <ContactTitle>Lurk Online</ContactTitle>

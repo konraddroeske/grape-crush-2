@@ -2,8 +2,7 @@ import { PlaceDetailsResponseData } from '@googlemaps/google-maps-services-js/di
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-// import { IContactFields } from '@models/contentful'
-import { IContactFields } from '@models/contentful'
+import { IContactFields } from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
 
 interface Contact {
@@ -22,7 +21,8 @@ export const contactSlice = createSlice({
   initialState,
   reducers: {
     setContact(state, action) {
-      const [fields]: [IContactFields] = action.payload
+      const { items } = action.payload
+      const [fields]: [IContactFields] = items
       return { ...state, fields }
     },
     setLocation(state, action) {

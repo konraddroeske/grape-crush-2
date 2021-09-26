@@ -1,13 +1,11 @@
 import React, { FunctionComponent } from 'react'
 
 import Image from 'next/image'
-import { useSelector } from 'react-redux'
 
-import { CmsImage } from '@models/contentful'
-import { selectGlobal } from '@redux/globalSlice'
+import { Asset } from '@models/contentful-graph'
 
 interface OwnProps {
-  image: CmsImage
+  image: Asset
   objectFit?: 'object-contain' | 'object-cover'
   containerStyles?: string
 }
@@ -19,20 +17,15 @@ const ContentfulImage: FunctionComponent<Props> = ({
   objectFit = 'object-cover',
   containerStyles = '',
 }) => {
-  const { locale } = useSelector(selectGlobal())
-  const { file, description } = image
-
-  const src = `https:${file[locale].url}`
-  const alt = description?.[locale] || ''
-  const { width, height } = file?.[locale]?.details?.image
+  const { url, description, width, height } = image
 
   return (
     <div
       className={`relative image-container overflow-hidden ${containerStyles}`}
     >
       <Image
-        src={src}
-        alt={alt}
+        src={url}
+        alt={description || ''}
         width={width}
         height={height}
         className={objectFit}
