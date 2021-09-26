@@ -8,6 +8,7 @@ import React, {
 
 import { useMediaQuery } from 'react-responsive'
 
+import AmbassadorImage from '@components/common/AmbassadorImage'
 import BuyButton from '@components/common/BuyButton'
 import Tags from '@components/common/product/Tags'
 import FactList from '@components/item-page/FactList'
@@ -22,10 +23,12 @@ export type Facts = { [key: string]: string | string[] }[]
 const ItemContent: FunctionComponent<Props> = ({ product }) => {
   const [label, setLabel] = useState<string | null>(null)
   const [price, setPrice] = useState<number | null>(null)
-  const [desktopTitleHeight, setDesktopTitleHeight] =
-    useState<number | null>(null)
-  const [mobileTitleHeight, setMobileTitleHeight] =
-    useState<number | null>(null)
+  const [desktopTitleHeight, setDesktopTitleHeight] = useState<number | null>(
+    null
+  )
+  const [mobileTitleHeight, setMobileTitleHeight] = useState<number | null>(
+    null
+  )
 
   const mobileTitleRef = useRef<null | HTMLDivElement>(null)
   const desktopTitleRef = useRef<null | HTMLDivElement>(null)
@@ -94,15 +97,10 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
 
   const [url] = imageUrl
 
-  // console.log('description', description)
-
   return (
     <div>
-      <div
-        ref={desktopTitleRef}
-        className="hidden lg:block relative z-10 pointer-events-none"
-      >
-        <h1 className="font-bold text-7xl uppercase text-blue-dark">
+      <div ref={desktopTitleRef} className="hidden lg:block relative z-10">
+        <h1 className="font-bold text-7xl uppercase text-blue-dark lg:max-w-2/3">
           {productName}
         </h1>
       </div>
@@ -115,8 +113,8 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
           }}
         >
           {winery && (
-            <div className="flex justify-center lg:justify-start">
-              <span className="inline-block text-base lg:text-xl border-b-4 border-lime">
+            <div className="flex mb-4 justify-center lg:justify-start">
+              <span className="inline-block text-base lg:text-xl">
                 <h2 className="inline uppercase font-bold">{winery}</h2>
                 {vintage && (
                   <>
@@ -129,16 +127,16 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
               </span>
             </div>
           )}
-          <div className="mt-8 mb-6 lg:mt-6 lg:mb-4">
+          <div className="mb-6 lg:mb-4">
             <Tags
               country={country}
               style={style}
               varietal={varietal}
-              variant="primary"
+              variant="item"
             />
           </div>
           {id && label && (
-            <div className="mt-auto">
+            <div className="mt-auto flex flex-col items-center lg:items-start">
               <div className="mb-2 text-blue-dark font-medium">
                 <span className="text-xl">${price}</span>{' '}
                 <span className="text-sm"> / per {label}</span>
@@ -148,7 +146,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
           )}
         </div>
         <div
-          className="w-full lg:w-7/12"
+          className="w-full lg:w-7/12 pointer-events-none"
           style={{
             marginTop:
               isDesktop && desktopTitleHeight
@@ -157,16 +155,12 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
           }}
         >
           {url && (
-            <div className="bg-blue-light hover:bg-lime-background py-6">
-              <img
-                className="object-contain w-full max-h-112 xl:max-h-144 mix-blend-multiply"
-                src={url}
-                alt={productName}
-              />
+            <div className="bg-blue-light pointer-events-auto hover:bg-lime-background py-6 h-122 xl:h-144">
+              <AmbassadorImage url={url} title={productName} />
             </div>
           )}
           <div ref={mobileTitleRef} className="transform -translate-y-1/2">
-            <h1 className="font-bold text-3xl text-center uppercase text-blue-dark lg:hidden">
+            <h1 className="font-bold pointer-events-auto text-3xl text-center uppercase text-blue-dark lg:hidden">
               {productName}
             </h1>
           </div>

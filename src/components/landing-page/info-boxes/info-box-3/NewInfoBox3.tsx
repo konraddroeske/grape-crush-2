@@ -1,20 +1,18 @@
 import React, { FunctionComponent } from 'react'
 
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
-import ShadowButton from '@components/common/ShadowButton'
+import ContentfulImage from '@components/common/ContentfulImage'
+import ShadowLink from '@components/common/ShadowLink'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
-import { selectGlobal } from '@redux/globalSlice'
 import { selectIndex } from '@redux/indexSlice'
 
 import StarOutline from '../../../../assets/svgs/star-outline.svg'
 
 const NewInfoBox3: FunctionComponent = () => {
-  const router = useRouter()
   const { infoBox3 } = useSelector(selectIndex())
-  const { locale } = useSelector(selectGlobal())
 
   if (!infoBox3) return <></>
 
@@ -26,30 +24,23 @@ const NewInfoBox3: FunctionComponent = () => {
     xl:body-gutter-xl"
     >
       <div className="relative w-full sm:flex sm:max-h-70vh lg:w-1/2">
-        <img
-          className="w-full object-cover"
-          src={image?.file[locale].url}
-          alt={image?.description ? image.description[locale] : 'wine'}
-        />
+        {image && <ContentfulImage image={image} />}
       </div>
       <div className="relative z-10 flex items-center w-full lg:w-1/2">
         <div className="relative z-10 pt-4 sm:pt-0 sm:pl-16 xl:pl-20">
-          <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
-          <InfoBoxText>{description[locale]} </InfoBoxText>
+          <InfoBoxTitle>{title}</InfoBoxTitle>
+          <InfoBoxText>{description} </InfoBoxText>
           <div className="flex justify-center sm:mt-0 sm:justify-start">
-            <ShadowButton
-              text="Details"
-              fn={() =>
-                router.push('/faq#same-day', '/faq#same-day', {
-                  shallow: false,
-                })
-              }
-            />
+            <Link href="/faq#same-day">
+              <a>
+                <ShadowLink>Details</ShadowLink>
+              </a>
+            </Link>
           </div>
         </div>
         <StarOutline
-          className="absolute top-0 left-1/2 w-full max-w-xs sm:max-w-none sm:top-1/2
-          sm:left-auto transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute top-0 left-1/2 w-full max-w-xs max-h-4/5 sm:max-w-none
+          sm:top-1/2 sm:left-auto transform -translate-x-1/2 -translate-y-1/2"
         />
       </div>
     </section>

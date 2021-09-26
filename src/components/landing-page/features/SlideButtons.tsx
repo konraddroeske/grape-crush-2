@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react'
 
 import Arrow from '@components/common/Arrow'
-import { Direction } from '@models/hero'
+
+import { Direction } from '@models/misc'
 
 interface OwnProps {
   handleSlide: (direction: number) => void

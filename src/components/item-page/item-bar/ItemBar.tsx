@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 
+import ItemSearch from '@components/item-page/item-bar/ItemSearch'
 import ItemBreadcrumbs from '@components/item-page/ItemBreadcrumbs'
-import ProductsSearch from '@components/products-page/products-bar/ProductsSearch'
 import { ProductLowercase } from '@models/ambassador'
 
 interface Props {
@@ -15,7 +15,8 @@ const ProductsBar: FunctionComponent<Props> = ({ product }) => {
         <ItemBreadcrumbs product={product} />
       </div>
       <div className="hidden items-center lg:flex">
-        <ProductsSearch />
+        {/* <ProductsSearch /> */}
+        <ItemSearch />
       </div>
     </div>
   )

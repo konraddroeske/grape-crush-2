@@ -5,15 +5,14 @@ import { useSelector } from 'react-redux'
 import VertWave from '@assets/svgs/info-box-3-vert.svg'
 import HoriWave from '@assets/svgs/info-box-3-wave.svg'
 import Speedy from '@assets/svgs/speedy.svg'
+import ContentfulImage from '@components/common/ContentfulImage'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
-import { selectGlobal } from '@redux/globalSlice'
 import { selectIndex } from '@redux/indexSlice'
 
 import InfoBoxTitle from '../InfoBoxTitle'
 
 const InfoBox3: FunctionComponent = () => {
   const { infoBox3 } = useSelector(selectIndex())
-  const { locale } = useSelector(selectGlobal())
 
   if (!infoBox3) return <></>
 
@@ -22,8 +21,8 @@ const InfoBox3: FunctionComponent = () => {
     <section className="sm:flex">
       <div className="relative pt-6 bg-gray-lightest sm:w-2/5 sm:pt-0 sm:flex sm:items-center">
         <div className="flex flex-col items-center body-gutter-sm sm:items-start lg:body-gutter-lg xl:body-gutter-xl">
-          <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
-          <InfoBoxText>{description[locale]} </InfoBoxText>
+          <InfoBoxTitle>{title}</InfoBoxTitle>
+          <InfoBoxText>{description} </InfoBoxText>
         </div>
       </div>
       <div className="relative sm:w-3/5">
@@ -34,11 +33,7 @@ const InfoBox3: FunctionComponent = () => {
         sm:transform sm:-translate-y-1/2 sm:w-1/3"
         />
         <div className="flex sm:min-h-96">
-          <img
-            className="object-cover w-full"
-            src={image?.file[locale].url}
-            alt={image?.description ? image.description[locale] : 'wine'}
-          />
+          {image && <ContentfulImage image={image} />}
         </div>
       </div>
     </section>

@@ -1,18 +1,16 @@
 import React, { FunctionComponent } from 'react'
 
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
-import ShadowButton from '@components/common/ShadowButton'
+import ContentfulImage from '@components/common/ContentfulImage'
+import ShadowLink from '@components/common/ShadowLink'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
-import { selectGlobal } from '@redux/globalSlice'
 import { selectIndex } from '@redux/indexSlice'
 
 const NewInfoBox1: FunctionComponent = () => {
-  const router = useRouter()
   const { infoBox1 } = useSelector(selectIndex())
-  const { locale } = useSelector(selectGlobal())
 
   if (!infoBox1) return <></>
 
@@ -24,24 +22,19 @@ const NewInfoBox1: FunctionComponent = () => {
     >
       <div className="flex items-center w-full sm:w-1/2 pt-4 sm:pt-0">
         <div className="sm:pr-16 xl:pr-20">
-          <InfoBoxTitle>{title[locale]}</InfoBoxTitle>
-          <InfoBoxText>{description[locale]}</InfoBoxText>
+          <InfoBoxTitle>{title}</InfoBoxTitle>
+          <InfoBoxText>{description}</InfoBoxText>
           <div className="flex justify-center sm:mt-0 sm:justify-start">
-            <ShadowButton
-              text="Shop"
-              fn={() =>
-                router.push('/products', '/products', { shallow: false })
-              }
-            />
+            <Link href="/products">
+              <a>
+                <ShadowLink>Shop</ShadowLink>
+              </a>
+            </Link>
           </div>
         </div>
       </div>
       <div className="w-full sm:w-1/2 sm:flex sm:max-h-70vh">
-        <img
-          className="w-full object-contain"
-          src={image?.file[locale].url}
-          alt={image?.description ? image.description[locale] : 'wine'}
-        />
+        {image && <ContentfulImage image={image} objectFit="object-contain" />}
       </div>
     </section>
   )

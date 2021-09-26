@@ -3,7 +3,7 @@ import React, { FunctionComponent, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 
-import { handleProductsSearch } from '@redux/productsSlice'
+import { setNavSearch } from '@redux/clientSlice'
 
 interface Props {
   variant: 'mobile' | 'desktop'
@@ -22,19 +22,27 @@ const NavSearch: FunctionComponent<Props> = ({ variant }) => {
     setSearch(event.currentTarget.value)
   }
 
-  const handleSearch = (newSearch: string) => {
-    // console.log('handle search')
-    dispatch(handleProductsSearch(newSearch))
-    router.push('/products', '/products', {
-      shallow: true,
-    })
+  const handleSearch = (event: React.SyntheticEvent) => {
+    event.preventDefault()
+    dispatch(setNavSearch(search))
+    setSearch('')
+    router
+      .push('/products', '/products', {
+        shallow: true,
+      })
+      .then(() => window.scrollTo(0, 0))
   }
 
   return (
-    <div
+    <form
       className={`flex ${variants[variant]} w-full max-w-xl lg:max-w-none lg:mx-auto shadow-lime`}
+      onSubmit={(event) => handleSearch(event)}
     >
+      <label htmlFor="searchField" className="sr-only">
+        Search
+      </label>
       <input
+        id="searchField"
         type="text"
         placeholder="Search"
         className="border border-lime flex-grow min-w-0 bg-transparent
@@ -43,16 +51,19 @@ const NavSearch: FunctionComponent<Props> = ({ variant }) => {
         value={search}
         onChange={handleChange}
       />
+      <label htmlFor="searchSubmit" className="sr-only">
+        Submit
+      </label>
       <button
+        id="searchSubmit"
         type="submit"
         className="relative form-divider flex justify-center items-center border
         border-lime text-white uppercase font-bold text-base py-2 px-4 lg:px-6 text-base
         border-l-transparent"
-        onClick={() => handleSearch(search)}
       >
         Search
       </button>
-    </div>
+    </form>
   )
 }
 

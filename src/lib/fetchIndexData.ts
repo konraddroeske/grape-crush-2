@@ -1,36 +1,16 @@
-import { addPriceRange } from '@lib/addPriceRange'
-import ambassador from '@lib/ambassador'
-import { cleanData } from '@lib/cleanData'
-import { getAssets, getEntries } from '@lib/cms'
-import { AmbassadorShops } from '@models/ambassador'
+import apolloClient from '@lib/apolloClient'
+import { indexQuery } from '@models/schema'
 
 export default async function fetchIndexData() {
-  const locale = 'en-US'
-  const contentIds = ['heroSlide', 'infoBox1']
+  const { data: indexData } = await apolloClient.query({
+    query: indexQuery,
+  })
+  const { infoBox1Collection } = indexData
 
-  // Contentful
-  const groupedEntries = await Promise.all(
-    contentIds.map((id) => getEntries(id))
-  )
-
-  const [heroAssets, infoBoxAssets] = await Promise.all(
-    groupedEntries.map((entries) => getAssets(entries, locale))
-  )
-
-  // Ambassador
-  const { data: newArrivals }: AmbassadorShops =
-    await ambassador.api.filterByKey('Type', 'new!')
-
-  const { shops } = newArrivals
-  const [shop] = shops
-  const { products } = shop
-
-  const productsWithPriceRange = addPriceRange(products)
-  const productsWithNewKeys = cleanData(productsWithPriceRange)
+  // console.log('info box', infoBox1Collection)
 
   return {
-    heroAssets,
-    newArrivals: productsWithNewKeys,
-    infoBoxAssets,
+    // newArrivals: productsWithNewKeys,
+    infoBox1Collection,
   }
 }

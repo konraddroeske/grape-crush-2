@@ -1,19 +1,13 @@
-import { getAssets, getEntries } from '@lib/cms'
+import apolloClient from '@lib/apolloClient'
+import { faqQuery } from '@models/schema'
 
-export default async function fetchIndexData() {
-  const locale = 'en-US'
-  const contentIds = ['faq']
-
-  // Contentful
-  const groupedEntries = await Promise.all(
-    contentIds.map((id) => getEntries(id))
-  )
-
-  const [faqAssets] = await Promise.all(
-    groupedEntries.map((entries) => getAssets(entries, locale))
-  )
+export default async function fetchFaqData() {
+  const { data: faqData } = await apolloClient.query({
+    query: faqQuery,
+  })
+  const { faqCollection } = faqData
 
   return {
-    faqAssets,
+    faqCollection,
   }
 }

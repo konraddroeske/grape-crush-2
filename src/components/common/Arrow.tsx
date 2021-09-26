@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
-import { Direction } from '@models/hero'
+import { Direction } from '@models/misc'
 
 import LeftArrow from '../../assets/svgs/fat-arrow-left.svg'
 import RightArrow from '../../assets/svgs/fat-arrow-right.svg'

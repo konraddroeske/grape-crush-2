@@ -1,20 +1,22 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
-import gsap from 'gsap'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
 
 import { useRouter } from 'next/dist/client/router'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import OutlineMarquee from '@components/common/OutlineMarquee'
-import ShadowButton from '@components/common/ShadowButton'
-import { FaqAssets } from '@lib/cms'
+import Seo from '@components/common/Seo'
+import ShadowLink from '@components/common/ShadowLink'
 import fetchFaqData from '@lib/fetchFaqData'
 import fetchGlobalData from '@lib/fetchGlobalData'
+import { IFaqFields } from '@models/contentful-graph'
 import { selectFaq, setQuestions } from '@redux/faqSlice'
 import {
-  selectGlobal,
   setFooter,
+  setHeroSlides,
   setLocale,
   setNav,
   setPages,
@@ -25,9 +27,8 @@ import { wrapper } from '@redux/store'
 const Faq: FunctionComponent = () => {
   const router = useRouter()
   const { questions } = useSelector(selectFaq())
-  const { locale } = useSelector(selectGlobal())
 
-  const [sortedQuestions, setSortedQuestions] = useState<FaqAssets[]>([])
+  const [sortedQuestions, setSortedQuestions] = useState<IFaqFields[]>([])
 
   useEffect(() => {
     gsap.registerPlugin(ScrollToPlugin)
@@ -43,8 +44,8 @@ const Faq: FunctionComponent = () => {
     if (questions) {
       const sorted = [...questions]
         .sort((a, b) => {
-          const dateA = new Date(a.published[locale])
-          const dateB = new Date(b.published[locale])
+          const dateA = new Date(a.published)
+          const dateB = new Date(b.published)
 
           return dateB.getTime() - dateA.getTime()
         })
@@ -52,79 +53,75 @@ const Faq: FunctionComponent = () => {
 
       setSortedQuestions(sorted)
     }
-  }, [questions, locale])
+  }, [questions])
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="my-4 overflow-hidden">
-        <OutlineMarquee text="Frequently asked questions" />
-      </div>
-      <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
-        <ul className="">
-          {sortedQuestions.length > 0 &&
-            sortedQuestions.map((item) => {
-              const { question, answer, anchor } = item
-              return (
-                <li
-                  key={anchor[locale]}
-                  id={anchor[locale]}
-                  className="py-6 border-b-4 border-lime last:border-b-0"
-                >
-                  <h3 className="text-2xl text-blue-dark font-medium mb-2">
-                    {question[locale]}
-                  </h3>
-                  <p>{answer[locale]}</p>
-                </li>
-              )
-            })}
-        </ul>
-        <div className="flex justify-center mt-6" id="shop">
-          <ShadowButton
-            text="Ready to shop?"
-            fn={() =>
-              router.push('/', '/', {
-                shallow: false,
-              })
-            }
-          />
+    <>
+      <Seo title="FAQ" />
+      <div className="min-h-screen py-12">
+        <div className="my-4 overflow-hidden">
+          <OutlineMarquee text="Frequently asked questions" />
+        </div>
+        <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+          <ul className="">
+            {sortedQuestions.length > 0 &&
+              sortedQuestions.map((item) => {
+                const { question, answer, anchor } = item
+                return (
+                  <li
+                    key={anchor}
+                    id={anchor}
+                    className="py-6 border-b-4 border-lime last:border-b-0"
+                  >
+                    <h3 className="text-2xl text-blue-dark font-medium mb-2">
+                      {question}
+                    </h3>
+                    <p>{answer}</p>
+                  </li>
+                )
+              })}
+          </ul>
+          <div className="flex justify-center mt-6" id="shop">
+            <Link href="/products">
+              <a>
+                <ShadowLink>Ready to shop?</ShadowLink>
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  // const { locale: defaultLocale = 'en-US' } = ctx
-  // console.log('store', store.getState())
-
   const {
     products,
     locale,
-    pageAssets,
-    // igImages,
-    categoryAssets,
-    // categories,
-    footerAssets,
-    navAssets,
+    heroSlideCollection,
+    pageCollection,
+    footerCollection,
+    navCollection,
+    categoryCollection,
   } = await fetchGlobalData()
-
-  const { faqAssets } = await fetchFaqData()
-  // console.log(faqAssets)
 
   // Global
   store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageAssets))
-  store.dispatch(setCategories(categoryAssets))
-  // store.dispatch(setIgImages(igImages))
-  store.dispatch(setFooter(footerAssets))
-  store.dispatch(setNav(navAssets))
+  store.dispatch(setPages(pageCollection))
+  store.dispatch(setCategories(categoryCollection))
+  store.dispatch(setFooter(footerCollection))
+  store.dispatch(setNav(navCollection))
+  store.dispatch(setHeroSlides(heroSlideCollection))
+
+  const { faqCollection } = await fetchFaqData()
 
   // Products
-  store.dispatch(setQuestions(faqAssets))
+  store.dispatch(setQuestions(faqCollection))
 
   return {
     props: {},
+    revalidate: 60,
   }
 })
 

@@ -1,42 +1,119 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
 
-import { handlePage, selectProducts } from '@redux/productsSlice'
+import PageLink from '@components/products-page/products-list/PageLink'
+import { convertTagsToHref } from '@lib/convertTagsToHref'
+import { selectProducts } from '@redux/productsSlice'
+
+import ProductArrow from '../../../assets/svgs/product-arrow.svg'
 
 const PageNav: FunctionComponent = () => {
-  const dispatch = useDispatch()
-  const { totalSelected, productsPerPage, page } = useSelector(selectProducts())
-  const [pages, setPages] = useState(1)
+  const router = useRouter()
+  const {
+    totalSelected,
+    productsPerPage,
+    page: currentPage,
+    selectedTags,
+  } = useSelector(selectProducts())
+  const [totalPages, setTotalPages] = useState(1)
+  const [middlePages, setMiddlePages] = useState<number[]>([1])
 
   useEffect(() => {
-    const numberOfPages = Math.ceil(totalSelected.length / productsPerPage)
-    setPages(numberOfPages)
-  }, [totalSelected, productsPerPage])
+    const pageCount =
+      totalSelected.length === 0
+        ? 1
+        : Math.ceil(totalSelected.length / productsPerPage)
+
+    const filtered = [currentPage - 1, currentPage, currentPage + 1].filter(
+      (ele) => ele > 1 && ele < pageCount
+    )
+    setMiddlePages(filtered)
+    setTotalPages(pageCount)
+  }, [currentPage, totalSelected, productsPerPage])
 
   const handleClick = (newPage: number) => {
-    dispatch(handlePage(newPage))
+    const href = convertTagsToHref(selectedTags, newPage)
+    router
+      .push(href, href, {
+        shallow: true,
+        scroll: true,
+      })
+      .then(() => window.scrollTo(0, 0))
   }
 
   return (
-    <nav className="mt-8">
-      <ul className="flex flex-wrap justify-center">
-        {Array.from(Array(pages).keys()).map((ele) => {
+    <nav className="flex justify-center items-center mt-8">
+      <button
+        type="button"
+        className={`flex items-center ${
+          currentPage === 1 ? 'opacity-50' : 'opacity'
+        }`}
+        onClick={() => handleClick(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
+        <span>
+          <ProductArrow className="w-6 svg-blue-dark transform rotate-180" />
+        </span>
+        <span className="ml-2 uppercase font-bold text-blue-dark">Back</span>
+      </button>
+      <div className="uppercase font-bold text-xl text-blue-dark mx-4 sm:hidden">
+        {currentPage} / {totalPages}
+      </div>
+      <div className="hidden sm:flex flex-wrap justify-center mx-4">
+        <PageLink
+          pageNumber={1}
+          currentPage={currentPage}
+          handleClick={handleClick}
+        />
+        <div
+          className={`font-bold mx-1 ${
+            middlePages[0] - 1 > 1 ? 'flex items-center' : 'hidden'
+          }`}
+        >
+          <div>. . .</div>
+        </div>
+        {middlePages.map((pageNumber) => {
           return (
-            <li key={ele}>
-              <button
-                type="button"
-                className={`w-8 h-8 mx-2 mb-2 rounded-full ${
-                  ele + 1 === page ? 'bg-gray-light' : 'bg-gray-lightest'
-                }`}
-                onClick={() => handleClick(ele + 1)}
-              >
-                {ele + 1}
-              </button>
-            </li>
+            <PageLink
+              key={pageNumber}
+              pageNumber={pageNumber}
+              currentPage={currentPage}
+              handleClick={handleClick}
+            />
           )
         })}
-      </ul>
+        <div
+          className={`font-bold mx-1 ${
+            totalPages - middlePages[middlePages.length - 1] > 1
+              ? 'flex items-center'
+              : 'hidden'
+          }`}
+        >
+          <div>. . .</div>
+        </div>
+        {totalPages !== 1 && (
+          <PageLink
+            pageNumber={totalPages}
+            currentPage={currentPage}
+            handleClick={handleClick}
+          />
+        )}
+      </div>
+      <button
+        type="button"
+        className={`flex items-center ${
+          currentPage === totalPages ? 'opacity-50' : 'opacity'
+        }`}
+        onClick={() => handleClick(currentPage + 1)}
+        disabled={currentPage === totalPages}
+      >
+        <span className="mr-2 uppercase font-bold text-blue-dark">Next</span>
+        <span>
+          <ProductArrow className="w-6 svg-blue-dark" />
+        </span>
+      </button>
     </nav>
   )
 }

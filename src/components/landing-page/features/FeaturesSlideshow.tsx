@@ -7,19 +7,18 @@ import React, {
 } from 'react'
 
 import { gsap } from 'gsap'
-import _Draggable, { Draggable } from 'gsap/Draggable'
-import { InertiaPlugin } from 'gsap/InertiaPlugin'
+import _Draggable, { Draggable } from 'gsap/dist/Draggable'
+import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 import { useSelector } from 'react-redux'
 
+import ContentfulImage from '@components/common/ContentfulImage'
 import SlideButtons from '@components/landing-page/features/SlideButtons'
 import SpinningCircle from '@components/landing-page/features/SpinningCircle'
-import { Direction } from '@models/hero'
+import { Direction } from '@models/misc'
 import { selectGlobal } from '@redux/globalSlice'
-import { selectHero } from '@redux/heroSlice'
 
 const FeaturesSlideshow: FunctionComponent = () => {
-  const { heroSlides: slides } = useSelector(selectHero())
-  const { locale } = useSelector(selectGlobal())
+  const { heroSlides: slides } = useSelector(selectGlobal())
   const [circleDirection, setCircleDirection] = useState<Direction>(-1)
 
   const useTimer = false
@@ -177,11 +176,11 @@ const FeaturesSlideshow: FunctionComponent = () => {
     slideAnimation.current.progress(1)
   }, [animateSlides, setWidths])
 
-  const handleImageLoad = () => {
-    if (list?.current?.offsetHeight === 0) {
-      handleResize()
-    }
-  }
+  // const handleImageLoad = () => {
+  //   if (list?.current?.offsetHeight === 0) {
+  //     handleResize()
+  //   }
+  // }
 
   const handleSnap = useCallback((x: number) => {
     const newPosition = gsap.utils.snap(itemWidth.current)(x)
@@ -276,7 +275,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
               <ul ref={list} className="absolute inset-0 m-0 p-0">
                 {reorderedSlides.map((slide) => (
                   <li
-                    key={slide.title[locale]}
+                    key={slide.title}
                     ref={(el) => items.current.push(el)}
                     className="absolute w-full sm:w-2/3 top-0 right-0 sm:right-1/6"
                   >
@@ -285,12 +284,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
                         className="my-0 min-h-80 body-gutter-sm lg:body-gutter-lg
                       xl:body-gutter-xl 2xl:body-gutter-2xl mx-auto max-h-hero flex"
                       >
-                        <img
-                          className="block w-full my-0 mx-auto object-cover"
-                          src={slide?.image?.file[locale].url}
-                          alt="label"
-                          onLoad={() => handleImageLoad()}
-                        />
+                        {slide.image && <ContentfulImage image={slide.image} />}
                       </div>
                       <div
                         ref={(el) => titles.current.push(el)}
@@ -304,7 +298,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
                           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-center
                           whitespace-normal uppercase font-bold text-blue-dark"
                         >
-                          {slide.title[locale]}
+                          {slide.title}
                         </button>
                       </div>
                     </div>

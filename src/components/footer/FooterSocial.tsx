@@ -2,13 +2,14 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import ContentfulImage from '@components/common/ContentfulImage'
 import Mailer from '@components/landing-page/mailer/Mailer'
-import { CmsImage } from '@lib/cms'
+import { Asset } from '@models/contentful-graph'
 import { selectGlobal } from '@redux/globalSlice'
 
 const FooterSocial: FunctionComponent = () => {
-  const { footer, locale } = useSelector(selectGlobal())
-  const [image, setImage] = useState<CmsImage | null>(null)
+  const { footer } = useSelector(selectGlobal())
+  const [image, setImage] = useState<Asset | null>(null)
 
   useEffect(() => {
     if (footer) {
@@ -28,18 +29,12 @@ const FooterSocial: FunctionComponent = () => {
       </div>
       <div className="relative w-full flex h-60 sm:h-96 lg:w-1/2 lg:h-auto lg:max-h-70vh">
         <div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2
+          className="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2
         -translate-y-1/2 font-bold text-3xl text-lime xl:text-4xl 2xl:text-5xl"
         >
           <a href="https://instagram.com/grapecrush.wine">@grapecrush.wine</a>
         </div>
-        {image && (
-          <img
-            src={image.file[locale].url}
-            alt={image?.description?.[locale] || 'Wine racks'}
-            className="object-cover"
-          />
-        )}
+        {image && <ContentfulImage image={image} />}
       </div>
     </div>
   )

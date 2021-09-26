@@ -16,7 +16,7 @@
     "lint": "eslint src --fix",
     "test": "jest",
     "test-all": "yarn lint && yarn type-check && yarn test",
-    "generate-types": "contentful-typescript-codegen --output ./src/types/generated/contentful.d.ts"
+    "generate-types": "contentful-typescript-codegen --output ./src/models/generated/contentful.d.ts"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -25,7 +25,11 @@
     ]
   },
   "dependencies": {
+    "@apollo/client": "^3.4.13",
+    "@contentful/rich-text-react-renderer": "^15.3.6",
     "@contentful/rich-text-types": "^14.1.2",
+    "@googlemaps/google-maps-services-js": "^3.1.16",
+    "@googlemaps/js-api-loader": "^1.12.3",
     "@reduxjs/toolkit": "^1.5.1",
     "@svgr/webpack": "^5.5.0",
     "@tailwindcss/forms": "^0.3.2",
@@ -37,10 +41,12 @@
     "contentful": "^8.3.6",
     "contentful-management": "^7.22.2",
     "dotenv": "^10.0.0",
+    "graphql": "^15.6.0",
     "gsap": "./gsap-bonus.tgz",
     "lodash.debounce": "^4.0.8",
-    "next": "10.2.0",
+    "next": "^11.1.2",
     "next-redux-wrapper": "^7.0.0",
+    "next-seo": "^4.28.1",
     "next-transpile-modules": "^7.2.0",
     "postcss": "^8.2.14",
     "react": "^17.0.2",
@@ -52,17 +58,22 @@
     "redux": "^4.1.0",
     "sass": "^1.32.12",
     "simplebar-react": "^2.3.5",
+    "swr": "^1.0.1",
     "tailwindcss": "^2.1.2",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "webpack": "^5.0.0-beta.30"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.14.5",
+    "@next/eslint-plugin-next": "^11.1.2",
     "@testing-library/react": "^11.2.6",
     "@types/body-scroll-lock": "^3.1.0",
+    "@types/google-map-react": "^2.1.3",
     "@types/jest": "^26.0.23",
     "@types/lodash.debounce": "^4.0.6",
     "@types/node": "^15.0.2",
     "@types/react": "^17.0.5",
+    "@types/react-dom": "^17.0.0",
     "@types/react-redux": "^7.1.16",
     "@types/react-responsive": "^8.0.2",
     "@types/uuid": "^8.3.1",

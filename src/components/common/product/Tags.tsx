@@ -6,7 +6,7 @@ interface OwnProps {
   country: string[]
   style: string[]
   varietal: string[]
-  variant?: 'primary' | 'secondary'
+  variant?: 'card' | 'item'
 }
 
 type Props = OwnProps
@@ -15,7 +15,7 @@ const Tags: FunctionComponent<Props> = ({
   country,
   style,
   varietal,
-  variant = 'primary',
+  variant = 'card',
 }) => {
   const [pairs, setPairs] = useState<string[][]>([])
 
@@ -38,13 +38,24 @@ const Tags: FunctionComponent<Props> = ({
     setPairs(mergedPairs)
   }, [country, style, varietal])
 
+  const ulVariant = {
+    card: 'flex flex-wrap justify-start',
+    item: 'flex flex-wrap justify-center lg:justify-start',
+  }
+
+  const liVariant = {
+    card: 'mr-2 mb-2',
+    item: 'mx-1 lg:mx-0 lg:mr-2 mb-2',
+  }
+
   return (
-    <ul className="flex flex-wrap">
+    <ul className={ulVariant[variant]}>
       {pairs.map((pair) => {
         const [category, tag] = pair
         return (
-          <li key={tag} className="mr-2 mb-2">
-            <Tag category={category} tag={tag} variant={variant} />
+          <li key={tag} className={liVariant[variant]}>
+            {/* <Tag category={category} tag={tag} variant={variant} /> */}
+            <Tag category={category} tag={tag} />
           </li>
         )
       })}

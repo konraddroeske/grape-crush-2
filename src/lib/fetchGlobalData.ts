@@ -1,22 +1,15 @@
 import { addPriceRange } from '@lib/addPriceRange'
 import ambassador from '@lib/ambassador'
+import client from '@lib/apolloClient'
 import { cleanData } from '@lib/cleanData'
-import { getAssets, getEntries } from '@lib/cms'
+import { globalQuery } from '@models/schema'
 
 export default async function fetchGlobalData() {
   const locale = 'en-US'
-  const contentIds = ['category', 'page', 'footer', 'nav']
 
-  const groupedEntries = await Promise.all(
-    contentIds.map((id) => getEntries(id))
-  )
-
-  const [categoryAssets, pageAssets, footerAssets, navAssets] =
-    await Promise.all(
-      groupedEntries.map((entries) => getAssets(entries, locale))
-    )
-
-  // const { data: igImages }: AmbassadorIg = await ambassador.api.getSocial()
+  const { data: graphData } = await client.query({
+    query: globalQuery,
+  })
 
   const { data: allShops } = await ambassador.api.allShops()
 
@@ -28,13 +21,8 @@ export default async function fetchGlobalData() {
   const productsWithNewKeys = cleanData(productsWithPriceRange)
 
   return {
+    ...graphData,
     locale,
-    pageAssets,
-    categoryAssets,
-    footerAssets,
-    // categories,
-    // igImages,
-    navAssets,
     products: productsWithNewKeys,
   }
 }

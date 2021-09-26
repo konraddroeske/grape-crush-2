@@ -1,53 +1,39 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
-
-import { useRouter } from 'next/router'
+import React, { FunctionComponent } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import ProductsBreadcrumbLink from '@components/products-page/products-bar/ProductsBreadcrumbLink'
 import { selectProducts } from '@redux/productsSlice'
 
 const ProductsBreadcrumbs: FunctionComponent = () => {
-  const router = useRouter()
-  const { totalSelected } = useSelector(selectProducts())
-  const [currentType, setCurrentType] = useState<string | null>(null)
-  const [currentCategory, setCurrentCategory] = useState<string | null>(null)
+  const { selectedTags } = useSelector(selectProducts())
 
-  const { query } = router
-
-  useEffect(() => {
-    const { parentType, category } = query
-    if (parentType !== currentType && typeof parentType === 'string') {
-      setCurrentType(parentType || null)
-    }
-    if (category !== currentCategory && typeof category === 'string') {
-      setCurrentCategory(category || null)
-    }
-  }, [query, currentCategory, currentType])
+  const { parentType, category } = selectedTags
 
   return (
-    <div className="flex items-center text-xs leading-none font-bold">
-      <span className="uppercase mr-2 text-base text-blue-dark">
-        All Products
-      </span>
-      {currentType && (
-        <>
-          <span className="mr-2 text-base">{'>'}</span>
-          <span className="mr-2 uppercase text-base text-blue-dark">
-            {currentType}
-          </span>
-        </>
+    <div
+      className="h-8 lg:h-12 flex flex-wrap text-xs leading-none font-bold
+    overflow-hidden"
+    >
+      <ProductsBreadcrumbLink
+        hasBorder={parentType.length === 0 && category.length === 0}
+        category=""
+        tag=""
+      />
+      {parentType.length > 0 && (
+        <ProductsBreadcrumbLink
+          hasBorder={category.length === 0}
+          category="parentType"
+          tag={parentType[0]}
+        />
       )}
-      {currentCategory && (
-        <>
-          <span className="mr-2 text-base">{'>'}</span>
-          <span className="mr-2 uppercase text-base text-blue-dark">
-            {currentCategory}
-          </span>
-        </>
+      {category.length > 0 && (
+        <ProductsBreadcrumbLink
+          hasBorder
+          category="category"
+          tag={category[0]}
+        />
       )}
-      <span className="uppercase mr-2 text-base text-blue-dark">
-        ({totalSelected.length})
-      </span>
     </div>
   )
 }

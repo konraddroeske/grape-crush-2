@@ -1,15 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { CmsAssets } from '@lib/cms'
 import { sortProducts } from '@lib/sortProducts'
 import { ProductCategories, ProductLowercase } from '@models/ambassador'
+import { ICategoryFields } from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
-
-// interface MatchedCategory extends CmsAssets {
-//   tags: string[]
-//   id: string
-// }
 
 export interface TagsByCategory {
   parentType: string[]
@@ -50,11 +45,11 @@ export type SortOption =
   | 'date, old to new'
 
 interface ProductsSlice {
-  categories: CmsAssets[]
+  categories: ICategoryFields[]
   products: ProductLowercase[]
   allTags: TagsByCount | null
   // productsByTag: ProductsByTag | null
-  selectedProducts: ProductLowercase[]
+  selectedProducts: ProductLowercase[] | null
   totalSelected: ProductLowercase[]
   selectedTags: TagsByCategory
   page: number
@@ -62,6 +57,7 @@ interface ProductsSlice {
   productsSearch: string
   productsSort: SortOption
   menuOpen: boolean
+  mobileMenuOpen: boolean
 }
 
 const initialState: ProductsSlice = {
@@ -85,28 +81,16 @@ const initialState: ProductsSlice = {
   productsSearch: '',
   productsSort: 'alphabetical, a - z',
   menuOpen: true,
+  mobileMenuOpen: false,
 }
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    setNewArrivals(state, action) {
-      return { ...state, newArrivals: action.payload }
-    },
-    setInfoBoxes(state, action) {
-      const locale = 'en-US'
-
-      const [infoBox1, infoBox2, infoBox3] = action.payload.sort(
-        (a: CmsAssets, b: CmsAssets) => {
-          return a.order[locale] - b.order[locale]
-        }
-      )
-
-      return { ...state, infoBox1, infoBox2, infoBox3 }
-    },
     setCategories(state, action) {
-      return { ...state, categories: action.payload }
+      const { items } = action.payload
+      return { ...state, categories: items }
     },
     setProducts(state, action) {
       return { ...state, products: action.payload }
@@ -123,7 +107,10 @@ export const productsSlice = createSlice({
         productsSort: SortOption
       } = action.payload
 
-      const selectedTagsCategories = Object.keys(selectedTagsObj)
+      const selectedTagsCategories = Object.entries(selectedTagsObj)
+        .filter(([_, value]) => value.length > 0)
+        .map(([key, _]) => key)
+
       const selectedTags = Object.values(selectedTagsObj).flat()
 
       const selectedProducts =
@@ -135,8 +122,9 @@ export const productsSlice = createSlice({
               const productTags = Object.entries(data)
                 .reduce((acc, cur) => {
                   if (selectedTagsCategories.includes(cur[0])) {
-                    const tags = cur[1] as string[]
-                    if (Array.isArray(tags)) {
+                    const tags = cur[1] as string | string[]
+
+                    if (tags instanceof Array) {
                       return [...acc, ...tags]
                     }
 
@@ -212,7 +200,7 @@ export const productsSlice = createSlice({
         const tagCategory = category.toLowerCase() as keyof TagsByCategory
 
         if (cur.data?.[category]) {
-          if (Array.isArray(cur.data[category])) {
+          if (cur.data[category] instanceof Array) {
             const mergedCategories = acc[tagCategory]
               ? acc[tagCategory].concat(cur.data[category])
               : cur.data[category]
@@ -220,9 +208,10 @@ export const productsSlice = createSlice({
             return { ...acc, [category.toLowerCase()]: mergedCategories }
           }
 
-          const mergedCategories = Array.isArray(acc?.[tagCategory])
-            ? [...acc[tagCategory], cur.data[category]]
-            : [cur.data[category]]
+          const mergedCategories =
+            acc?.[tagCategory] instanceof Array
+              ? [...acc[tagCategory], cur.data[category]]
+              : [cur.data[category]]
 
           return { ...acc, [category.toLowerCase()]: mergedCategories }
         }
@@ -313,15 +302,21 @@ export const productsSlice = createSlice({
       }
     },
     handleProductsSearch(state, action) {
-      // console.log('handling products search', action.payload)
       return { ...state, productsSearch: action.payload }
     },
     handleProductsSort(state, action) {
       return { ...state, productsSort: action.payload }
     },
-    handleMenuOpen(state) {
+    setMenuOpen(state, action) {
+      return { ...state, menuOpen: action.payload }
+    },
+    toggleMenuOpen(state) {
       const { menuOpen } = state
       return { ...state, menuOpen: !menuOpen }
+    },
+    toggleMobileMenuOpen(state) {
+      const { mobileMenuOpen } = state
+      return { ...state, mobileMenuOpen: !mobileMenuOpen }
     },
   },
   extraReducers: {
@@ -344,7 +339,9 @@ export const {
   handlePage,
   handleProductsSearch,
   handleProductsSort,
-  handleMenuOpen,
+  toggleMenuOpen,
+  toggleMobileMenuOpen,
+  setMenuOpen,
 } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>

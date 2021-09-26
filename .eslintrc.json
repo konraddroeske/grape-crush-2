@@ -10,7 +10,8 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:@next/next/recommended"
   ],
   "env": {
     "es6": true,

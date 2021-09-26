@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react'
 
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'

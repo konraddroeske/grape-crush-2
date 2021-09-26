@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { FaqAssets } from '@lib/cms'
+import { IFaqFields } from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
 
 interface Faq {
-  questions: FaqAssets[]
+  questions: IFaqFields[]
 }
 
 const initialState: Faq = {
@@ -17,8 +17,8 @@ export const faqSlice = createSlice({
   initialState,
   reducers: {
     setQuestions(state, action) {
-      // console.log('faq', action.payload)
-      return { ...state, questions: action.payload }
+      const { items } = action.payload
+      return { ...state, questions: items }
     },
   },
   extraReducers: {

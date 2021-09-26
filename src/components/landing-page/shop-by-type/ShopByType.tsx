@@ -7,21 +7,19 @@ import React, {
 } from 'react'
 
 import { gsap } from 'gsap'
-import _Draggable, { Draggable } from 'gsap/Draggable'
-import { InertiaPlugin } from 'gsap/InertiaPlugin'
-import { useRouter } from 'next/router'
+import _Draggable, { Draggable } from 'gsap/dist/Draggable'
+import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
+import ContentfulImage from '@components/common/ContentfulImage'
 import OutlineMarquee from '@components/common/OutlineMarquee'
-import ShadowButton from '@components/common/ShadowButton'
-import { Direction } from '@models/hero'
-import { selectGlobal } from '@redux/globalSlice'
+import ShadowLink from '@components/common/ShadowLink'
+import { Direction } from '@models/misc'
 import { selectProducts } from '@redux/productsSlice'
 
 const SocialGallery: FunctionComponent = () => {
-  const router = useRouter()
-  // const { igImages } = useSelector(selectSocial())
-  const { locale } = useSelector(selectGlobal())
+  // const { locale } = useSelector(selectGlobal())
   const { categories } = useSelector(selectProducts())
 
   const slider = useRef<HTMLDivElement>(null)
@@ -209,32 +207,35 @@ const SocialGallery: FunctionComponent = () => {
   return (
     <section className="section-margin">
       <OutlineMarquee text="Shop by type" />
-      <div className="overflow-hidden relative mt-12">
+      <div className="overflow-hidden relative mt-12 lg:mt-20">
         {categories.length > 0 && (
           <div ref={slider} className="w-full relative">
             <ul ref={list} className="absolute inset-0 m-0 p-0">
               {categories.map((category) => {
                 return (
                   <li
-                    key={category.categoryName[locale]}
+                    key={category.categoryName}
                     ref={(el) => items.current.push(el)}
                     className="absolute px-2 w-60 top-0 left-0 sm:px-4 sm:w-72
                   lg:px-6 lg:w-80 xl:px-8 xl:w-88"
                   >
                     <div className="relative flex shadow-blue-dark">
-                      <img
-                        className="object-cover w-full"
-                        src={category?.image?.file[locale].url}
-                        alt=""
-                        onLoad={setHeight}
-                      />
+                      {category.image && (
+                        <ContentfulImage image={category.image} />
+                      )}
                     </div>
                     <button
                       type="button"
                       className="block mt-3 mx-auto text-lg xl:text-xl text-center text-blue-dark
                      font-bold uppercase lg:text-lg xl:text-xl"
                     >
-                      {category.title[locale]}
+                      <Link
+                        href={`/products?parentType=${encodeURIComponent(
+                          category.categoryName
+                        )}`}
+                      >
+                        <a>{category.title}</a>
+                      </Link>
                     </button>
                   </li>
                 )
@@ -243,11 +244,12 @@ const SocialGallery: FunctionComponent = () => {
           </div>
         )}
       </div>
-      <div className="flex justify-center mt-8 mb-12">
-        <ShadowButton
-          text="Shop all wines"
-          fn={() => router.push('/products', '/products', { shallow: false })}
-        />
+      <div className="flex justify-center mt-8 mb-12 lg:mb-20">
+        <Link href="/products">
+          <a>
+            <ShadowLink>Shop all wines</ShadowLink>
+          </a>
+        </Link>
       </div>
       <OutlineMarquee text="Shop by type" direction="-=" />
     </section>

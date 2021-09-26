@@ -1,14 +1,22 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import Search from '@assets/svgs/search.svg'
+import { selectClient, setNavSearch } from '@redux/clientSlice'
 import { handleProductsSearch, selectProducts } from '@redux/productsSlice'
 
 const ProductsSearch: FunctionComponent = () => {
   const dispatch = useDispatch()
+  const { navSearch } = useSelector(selectClient())
   const { productsSearch } = useSelector(selectProducts())
-  // console.log('products search', productsSearch)
+
+  useEffect(() => {
+    if (navSearch.length > 0) {
+      dispatch(handleProductsSearch(navSearch))
+    }
+    dispatch(setNavSearch(''))
+  }, [dispatch, navSearch])
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     dispatch(handleProductsSearch(event.currentTarget.value))
@@ -19,7 +27,7 @@ const ProductsSearch: FunctionComponent = () => {
       <input
         type="text"
         placeholder="Search"
-        className="border-none bg-transparent font-bold placeholder-transparent py-0 pr-8"
+        className="w-full border-none bg-transparent font-bold placeholder-transparent py-0 pr-8"
         value={productsSearch}
         onChange={handleChange}
       />

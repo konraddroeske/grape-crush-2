@@ -26,20 +26,20 @@ export interface ProductData {
   Varietal: string[]
   range: string[]
   // eslint-disable-next-line camelcase
-  Varietal_Text: string
+  Varietal_Text?: string
   addons: Addons
-  bottleSize: string
+  bottleSize?: string
   category: string
   description: string
   imageUrl: string[]
   name: string
-  region: string
-  subtype: string
+  region?: string
+  subtype?: string
   tags: string[]
   taxable: boolean
   variants: Variants[]
-  vintage: string
-  winery: string
+  vintage?: string
+  winery?: string
 }
 
 export interface ProductDataLowercase {
@@ -49,20 +49,20 @@ export interface ProductDataLowercase {
   varietal: string[]
   range: string[]
   // eslint-disable-next-line camelcase
-  Varietal_Text: string
+  Varietal_Text?: string
   addons: Addons
-  bottleSize: string
+  bottleSize?: string
   category: string
   description: string
   imageUrl: string[]
   name: string
-  region: string
-  subtype: string
+  region?: string
+  subtype?: string
   tags: string[]
   taxable: boolean
   variants: Variants[]
-  vintage: string
-  winery: string
+  vintage?: string
+  winery?: string
 }
 
 export interface Product {

@@ -1,27 +1,62 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { CmsAssets } from '@lib/cms'
+import {
+  Asset,
+  CONTENTFUL_DEFAULT_LOCALE_CODE,
+  IFooterFields,
+  IHeroSlideFields,
+  INavFields,
+  IPageFields,
+  LOCALE_CODE,
+} from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
 
+interface Theme {
+  nav: string
+  title: string
+  buttonBorder: string
+  buttonText: string
+  background: string
+  duration: number
+  arrows: string
+}
+
 interface Global {
-  locale: string
-  locales: string[]
-  helpPages: CmsAssets[]
-  legalPages: CmsAssets[]
-  footer: CmsAssets[]
-  nav: CmsAssets[]
+  locale: CONTENTFUL_DEFAULT_LOCALE_CODE
+  locales: LOCALE_CODE[]
+  allPages: IPageFields[]
+  // helpPages: CmsAssets[]
+  legalPages: IPageFields[]
+  footer: IFooterFields[]
+  nav: INavFields[]
   navOpen: boolean
+  heroSlides: IHeroSlideFields[]
+  // seoImage: CmsImage | null
+  seoImage: Asset | null
+  currentTheme: Theme
 }
 
 const initialState: Global = {
   locale: 'en-US',
   locales: ['en-US'],
-  helpPages: [],
+  allPages: [],
+  // helpPages: [],
   legalPages: [],
   navOpen: false,
   footer: [],
   nav: [],
+  heroSlides: [],
+  seoImage: null,
+  currentTheme: {
+    nav: '#2C148E',
+    title: '#d9ff6c',
+    buttonBorder: '#d9ff6c',
+    buttonText: 'white',
+    background: '#c297ef',
+    duration: 0.7,
+    arrows: '#d9ff6c',
+  },
 }
 
 export const globalSlice = createSlice({
@@ -32,28 +67,42 @@ export const globalSlice = createSlice({
       return { ...state, locale: action.payload }
     },
     setPages(state, action) {
-      const legalPages = action.payload.filter(
-        (page: CmsAssets) => page.category[state.locale] === 'Legal Stuff'
+      const { items } = action.payload
+
+      const legalPages = items.filter(
+        (page: IPageFields) => page.category === 'Legal Stuff'
       )
 
-      const helpPages = action.payload.filter(
-        (page: CmsAssets) => page.category[state.locale] === 'Help'
-      )
+      // const helpPages = action.payload.filter(
+      //   (page: CmsAssets) => page.category[state.locale] === 'Help'
+      // )
 
-      return { ...state, legalPages, helpPages }
+      // console.log('help pages', helpPages)
+
+      return { ...state, allPages: items, legalPages }
     },
     setNavOpen(state, action) {
       return { ...state, navOpen: action.payload }
     },
     setFooter(state, action) {
-      return { ...state, footer: action.payload }
+      const { items } = action.payload
+      return { ...state, footer: items }
     },
     setNav(state, action) {
-      return { ...state, nav: action.payload }
+      const { items } = action.payload
+      return { ...state, nav: items }
+    },
+    setHeroSlides(state, action) {
+      const { items } = action.payload
+      const [firstSlide] = items
+      const { image } = firstSlide
+
+      return { ...state, seoImage: image, heroSlides: items }
     },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
+      // console.log('global slice', state)
       return {
         ...state,
         ...action.payload.global,
@@ -62,7 +111,13 @@ export const globalSlice = createSlice({
   },
 })
 
-export const { setLocale, setPages, setNavOpen, setFooter, setNav } =
-  globalSlice.actions
+export const {
+  setLocale,
+  setPages,
+  setNavOpen,
+  setFooter,
+  setNav,
+  setHeroSlides,
+} = globalSlice.actions
 
 export const selectGlobal = () => (state: AppState) => state?.[globalSlice.name]

@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 
 import CircleText from '@assets/svgs/circle-text.svg'
-import { Direction } from '@models/hero'
+import { Direction } from '@models/misc'
 
 interface Props {
   direction?: Direction

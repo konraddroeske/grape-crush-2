@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
 import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 
 import { useDispatch, useSelector } from 'react-redux'
 

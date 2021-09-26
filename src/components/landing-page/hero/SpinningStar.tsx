@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 
 import { useInView } from 'react-intersection-observer'
 
@@ -33,11 +33,11 @@ const SpinningStar: FunctionComponent = () => {
 
   useEffect(() => {
     if (animation?.current?.isActive()) {
-      animation.current.pause(0)
+      animation.current.pause()
     }
 
     if (animation.current && inView) {
-      animation.current.play()
+      animation.current.resume()
     }
   }, [inView])
 

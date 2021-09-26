@@ -2,28 +2,24 @@ import React, { FunctionComponent } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import ContentfulImage from '@components/common/ContentfulImage'
 import DesktopSpinner from '@components/landing-page/hero/DesktopSpinner'
 import HeroMarquee from '@components/landing-page/hero/HeroMarquee'
 import HeroTitle from '@components/landing-page/hero/HeroTitle'
 import { selectGlobal } from '@redux/globalSlice'
-import { selectHero } from '@redux/heroSlice'
 
 const Hero: FunctionComponent = () => {
-  const { heroSlides } = useSelector(selectHero())
-  const { locale } = useSelector(selectGlobal())
+  const { heroSlides } = useSelector(selectGlobal())
   const [firstSlide] = heroSlides
+  const { image } = firstSlide
 
   return (
-    <section className="relative">
+    <section id="hero-section" className="relative">
       <div
         className="py-16 h-screen relative flex body-gutter-sm lg:body-gutter-lg
       xl:body-gutter-xl 2xl:body-gutter-2xl"
       >
-        <img
-          className="block w-full my-0 mx-auto object-cover"
-          src={firstSlide?.image?.file[locale].url}
-          alt="label"
-        />
+        {image && <ContentfulImage image={image} />}
         <div className="absolute title-position">
           <HeroTitle />
         </div>
