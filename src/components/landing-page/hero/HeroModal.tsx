@@ -1,20 +1,34 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import ShadowButton from '@components/common/ShadowButton'
 
 const HeroModal: FunctionComponent = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true)
+  const [scrollDistance, setScrollDistance] = useState<number>(0)
 
   const handleClose = () => {
     setIsOpen(false)
   }
 
+  const handleScroll = () => {
+    setScrollDistance(window.scrollY)
+  }
+
+  useEffect(() => {
+    if (window) {
+      document.addEventListener('scroll', handleScroll)
+    }
+
+    return () => document.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <>
       {isOpen && (
         <div
-          className="fixed z-50 bottom-0 left-0 right-0 w-full bg-lime p-6
-          sm:absolute sm:bottom-6 sm:right-6 sm:left-auto sm:shadow-blue-dark-lg sm:w-96"
+          className={`${
+            scrollDistance <= 200 ? 'hero-modal-position' : 'hero-modal-center'
+          } w-full bg-lime p-6 sm:shadow-blue-dark-lg sm:w-96 transition-all ease-out duration-200`}
         >
           <h3
             className="text-center font-bold uppercase text-5xl text-transparent

@@ -296,7 +296,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
                           type="button"
                           ref={(el) => headings.current.push(el)}
                           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-center
-                          whitespace-normal uppercase font-bold text-blue-dark"
+                          whitespace-normal uppercase font-bold text-transparent text-stroke-blue hover:text-blue-dark"
                         >
                           {slide.title}
                         </button>
