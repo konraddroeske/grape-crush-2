@@ -127,10 +127,10 @@ const ContactForm: FunctionComponent = () => {
               id="email"
               type="email"
               name="_replyto"
-              required
               placeholder="Email"
               value={inputs.email}
               onChange={handleOnChange}
+              required
               className="uppercase border border-blue-dark"
             />
           </div>
