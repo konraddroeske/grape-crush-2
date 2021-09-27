@@ -245,6 +245,20 @@ const indexQuery = gql`
   }
   ${infoBoxFragment}
 `
+
+export const missingImageQuery = gql`
+  query Query($assetCollectionWhere: AssetFilter) {
+    assetCollection(where: $assetCollectionWhere) {
+      items {
+        title
+        description
+        url
+        width
+        height
+      }
+    }
+  }
+`
 // eslint-disable-next-line import/prefer-default-export
 export {
   globalQuery,

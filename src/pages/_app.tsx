@@ -27,7 +27,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => (
       additionalLinkTags={[
         {
           rel: 'icon',
-          href: '/favicon.ico',
+          href: '/favicon.png',
         },
       ]}
       openGraph={{

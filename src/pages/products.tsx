@@ -12,8 +12,10 @@ import ProductsBreadcrumbs from '@components/products-page/products-bar/Products
 import ProductsList from '@components/products-page/products-list/ProductsList'
 import DesktopMenu from '@components/products-page/products-menu/DesktopMenu'
 import MobileMenu from '@components/products-page/products-menu/MobileMenu'
+import client from '@lib/apolloClient'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { ProductLowercase } from '@models/ambassador'
+import { missingImageQuery } from '@models/schema'
 import {
   setFooter,
   setHeroSlides,
@@ -29,6 +31,7 @@ import {
   selectProducts,
   setAllTags,
   setCategories,
+  setMissingImage,
   setProducts,
 } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
@@ -114,6 +117,17 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     categoryCollection,
   } = await fetchGlobalData()
 
+  const { data: missingImageData } = await client.query({
+    query: missingImageQuery,
+    variables: {
+      assetCollectionWhere: {
+        title_contains: 'missing',
+      },
+    },
+  })
+
+  const { assetCollection } = missingImageData
+
   // Global
   // store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
@@ -122,6 +136,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setFooter(footerCollection))
   store.dispatch(setNav(navCollection))
   store.dispatch(setHeroSlides(heroSlideCollection))
+  store.dispatch(setMissingImage(assetCollection))
 
   // Products
   // store.dispatch(setProducts(products))

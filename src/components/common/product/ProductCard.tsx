@@ -2,6 +2,8 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
+import { useSelector } from 'react-redux'
+
 import AmbassadorImage from '@components/common/AmbassadorImage'
 import BuyButton from '@components/common/BuyButton'
 import LearnMore from '@components/common/product/LearnMore'
@@ -9,6 +11,8 @@ import ProductSubheading from '@components/common/product/ProductSubheading'
 import Tags from '@components/common/product/Tags'
 
 import { ProductDataLowercase } from '@models/ambassador'
+
+import { selectProducts } from '@redux/productsSlice'
 
 import ProductTitle from './ProductTitle'
 
@@ -20,6 +24,7 @@ interface OwnProps {
 type Props = OwnProps
 
 const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
+  const { missingImage } = useSelector(selectProducts())
   const [price, setPrice] = useState<number | null>(null)
   const [label, setLabel] = useState<string>('')
   const [url, setUrl] = useState<string | null>(null)
@@ -54,8 +59,23 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
     <div className="">
       <Link href={`/item/${encodeURIComponent(name)}`}>
         <a>
-          <div className="relative h-60 sm:h-64 lg:h-72 xl:h-80 2xl:h-96 relative bg-blue-light py-1 sm:py-2 xl:py-3 2xl:py-4 mb-6 hover:bg-lime-background">
-            {url && <AmbassadorImage url={url} title={name} />}
+          <div
+            className={`relative h-60 sm:h-64 lg:h-72 xl:h-80 2xl:h-96 relative bg-blue-light mb-6 hover:bg-lime-background ${
+              url ? 'py-1 sm:py-2 xl:py-3 2xl:py-4' : ''
+            }`}
+          >
+            {url ? (
+              <AmbassadorImage url={url} title={name} />
+            ) : (
+              <AmbassadorImage
+                url={
+                  missingImage?.url ||
+                  'https://images.ctfassets.net/q0vbuozzojij/7lYYm9hx5eDUs2a0bbeB7L/513dc8bf19515816374ad5d28d864165/1.png'
+                }
+                title={missingImage?.title || 'Missing item.'}
+                imageStyle="object-cover"
+              />
+            )}
           </div>
         </a>
       </Link>

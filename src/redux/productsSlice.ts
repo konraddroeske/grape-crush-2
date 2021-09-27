@@ -3,7 +3,7 @@ import { HYDRATE } from 'next-redux-wrapper'
 
 import { sortProducts } from '@lib/sortProducts'
 import { ProductCategories, ProductLowercase } from '@models/ambassador'
-import { ICategoryFields } from '@models/contentful-graph'
+import { Asset, ICategoryFields } from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
 
 export interface TagsByCategory {
@@ -58,6 +58,7 @@ interface ProductsSlice {
   productsSort: SortOption
   menuOpen: boolean
   mobileMenuOpen: boolean
+  missingImage: Asset | null
 }
 
 const initialState: ProductsSlice = {
@@ -82,6 +83,7 @@ const initialState: ProductsSlice = {
   productsSort: 'alphabetical, a - z',
   menuOpen: true,
   mobileMenuOpen: false,
+  missingImage: null,
 }
 
 export const productsSlice = createSlice({
@@ -138,6 +140,20 @@ export const productsSlice = createSlice({
               return selectedTags.every((ele) => productTags.includes(ele))
             })
 
+      const compareString = (str: string, searchTerms: string[]) => {
+        return searchTerms.every((val) => str.includes(val))
+      }
+
+      const compareArr = (arr: string[], searchTerms: string[]) => {
+        // console.log('tags', arr)
+        // console.log('search terms', searchTerms)
+        return searchTerms.every((val) => arr.indexOf(val) !== -1)
+      }
+
+      const searchTerms = productsSearch
+        .split(' ')
+        .map((term) => term.toLowerCase())
+
       const searchedProducts =
         productsSearch.length === 0
           ? selectedProducts
@@ -145,18 +161,29 @@ export const productsSlice = createSlice({
               const { data } = product
               const { name, description, country, tags } = data
 
-              const compareString = (parent: string, child: string) =>
-                parent ? parent.toLowerCase().includes(child) : false
-
-              const compareArr = (arr: string[], child: string) =>
-                arr.length > 0
-                  ? arr.some((ele) => compareString(ele, child))
+              const inCountry =
+                country.length > 0
+                  ? compareArr(
+                      country.map((val) => val.toLowerCase()),
+                      searchTerms
+                    )
                   : false
 
-              const inCountry = compareArr(country, productsSearch)
-              const inTags = compareArr(tags, productsSearch)
-              const inName = compareString(name, productsSearch)
-              const inDescription = compareString(description, productsSearch)
+              const inTags =
+                tags.length > 0
+                  ? compareArr(
+                      tags.map((val) => val.toLowerCase()),
+                      searchTerms
+                    )
+                  : false
+
+              const inName = name
+                ? compareString(name.toLowerCase(), searchTerms)
+                : false
+
+              const inDescription = description
+                ? compareString(description.toLowerCase(), searchTerms)
+                : false
 
               return inCountry || inTags || inName || inDescription
             })
@@ -318,6 +345,16 @@ export const productsSlice = createSlice({
       const { mobileMenuOpen } = state
       return { ...state, mobileMenuOpen: !mobileMenuOpen }
     },
+    setMissingImage(state, action) {
+      const { items } = action.payload
+      const lightImage = items.find((image: Asset) =>
+        image.title.toLowerCase().includes('light')
+      )
+      return {
+        ...state,
+        missingImage: lightImage,
+      }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -342,6 +379,7 @@ export const {
   toggleMenuOpen,
   toggleMobileMenuOpen,
   setMenuOpen,
+  setMissingImage,
 } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>

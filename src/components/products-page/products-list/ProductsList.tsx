@@ -85,7 +85,7 @@ const ProductsList: FunctionComponent = () => {
                 </p>
               </Warning>
             </div>
-          )}{' '}
+          )}
         </>
       )}
       <div className="mt-auto">
