@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import ContentfulImage from '@components/common/ContentfulImage'
 import DesktopSpinner from '@components/landing-page/hero/DesktopSpinner'
 import HeroMarquee from '@components/landing-page/hero/HeroMarquee'
+import HeroModal from '@components/landing-page/hero/HeroModal'
 import HeroTitle from '@components/landing-page/hero/HeroTitle'
 import { selectGlobal } from '@redux/globalSlice'
 
@@ -19,7 +20,12 @@ const Hero: FunctionComponent = () => {
         className="py-16 h-screen relative flex body-gutter-sm lg:body-gutter-lg
       xl:body-gutter-xl 2xl:body-gutter-2xl"
       >
-        {image && <ContentfulImage image={image} />}
+        {image && (
+          <div className="relative flex w-full">
+            <ContentfulImage image={image} />
+            <HeroModal />
+          </div>
+        )}
         <div className="absolute title-position">
           <HeroTitle />
         </div>
