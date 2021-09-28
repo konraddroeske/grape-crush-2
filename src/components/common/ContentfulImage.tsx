@@ -30,6 +30,7 @@ const ContentfulImage: FunctionComponent<Props> = ({
         height={height}
         className={objectFit}
         layout="responsive"
+        lazyBoundary="500px"
       />
     </div>
   )
