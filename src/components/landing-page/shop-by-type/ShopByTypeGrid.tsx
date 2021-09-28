@@ -24,7 +24,10 @@ const ShopByTypeGrid: FunctionComponent = () => {
                 <a>
                   <div className="relative flex shadow-blue-dark lg:shadow-blue-dark-lg">
                     {category.image && (
-                      <ContentfulImage image={category.image} />
+                      <ContentfulImage
+                        image={category.image}
+                        imageStyle="object-cover transform hover:scale-110 duration-300"
+                      />
                     )}
                   </div>
                   <div

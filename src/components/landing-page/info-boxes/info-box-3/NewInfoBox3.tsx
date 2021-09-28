@@ -1,6 +1,8 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useRef } from 'react'
 
+import gsap from 'gsap'
 import Link from 'next/link'
+import { useInView } from 'react-intersection-observer'
 import { useSelector } from 'react-redux'
 
 import ContentfulImage from '@components/common/ContentfulImage'
@@ -13,6 +15,35 @@ import StarOutline from '../../../../assets/svgs/star-outline.svg'
 
 const NewInfoBox3: FunctionComponent = () => {
   const { infoBox3 } = useSelector(selectIndex())
+  const animation = useRef<gsap.core.Timeline | null>(null)
+  const shape = useRef<HTMLDivElement>(null)
+  const { ref, inView } = useInView({
+    threshold: 0,
+  })
+
+  useEffect(() => {
+    const tl = gsap.timeline()
+
+    animation.current = tl.to(shape.current, {
+      duration: 25,
+      rotation: '360',
+      transformOrigin: 'center center',
+      ease: 'none',
+      paused: false,
+      repeat: -1,
+    })
+    animation.current.pause()
+  }, [])
+
+  useEffect(() => {
+    if (!inView && animation.current) {
+      animation.current.pause()
+    }
+
+    if (inView && animation.current) {
+      animation.current.resume()
+    }
+  }, [inView])
 
   if (!infoBox3) return <></>
 
@@ -20,6 +51,7 @@ const NewInfoBox3: FunctionComponent = () => {
 
   return (
     <section
+      ref={ref}
       className="relative sm:flex section-margin body-gutter-sm lg:body-gutter-lg
     xl:body-gutter-xl"
     >
@@ -38,10 +70,12 @@ const NewInfoBox3: FunctionComponent = () => {
             </Link>
           </div>
         </div>
-        <StarOutline
-          className="absolute top-0 left-1/2 w-full max-w-xs max-h-4/5 sm:max-w-none
-          sm:top-1/2 sm:left-auto transform -translate-x-1/2 -translate-y-1/2"
-        />
+        <div
+          ref={shape}
+          className="flex absolute top-0 left-1/2 w-full max-w-xs sm:max-h-4/5 sm:max-w-none sm:top-1/2 sm:left-auto transform -translate-x-1/2 -translate-y-1/2"
+        >
+          <StarOutline className="object-fit" />
+        </div>
       </div>
     </section>
   )

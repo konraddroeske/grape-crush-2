@@ -7,6 +7,8 @@ import React, {
 
 import axios from 'axios'
 
+import ShadowButton from '@components/common/ShadowButton'
+
 interface MailerStatus {
   submitted: boolean
   submitting: boolean
@@ -100,11 +102,10 @@ const Mailer: FunctionComponent = () => {
             className="flex-grow border border-0 border-b border-blue-dark uppercase
             placeholder-blue-dark max-w-md p-0 mr-4 min-w-0"
           />
-          <button
+          <ShadowButton
             type="submit"
             disabled={status.submitting}
-            className="text-md text-blue-dark font-bold uppercase bg-lime py-2 px-6
-      shadow-blue-dark border border-blue-dark"
+            fn={() => null}
           >
             {/* eslint-disable-next-line no-nested-ternary */}
             {!status.submitting
@@ -112,7 +113,7 @@ const Mailer: FunctionComponent = () => {
                 ? 'Send'
                 : 'Sent'
               : 'Sending...'}
-          </button>
+          </ShadowButton>
         </div>
       </form>
       {status.info.error && (

@@ -148,11 +148,13 @@ const ContactForm: FunctionComponent = () => {
           />
           <div className="flex justify-center">
             <ShadowButton
-              text={buttonText}
               variant="contact"
               type="submit"
               fn={() => null}
-            />
+              disabled={status.submitting}
+            >
+              {buttonText}
+            </ShadowButton>
           </div>
         </form>
         {status.info.error && (

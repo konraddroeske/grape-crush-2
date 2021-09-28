@@ -87,8 +87,21 @@ const HeroMarquee: FunctionComponent = () => {
     }
   }, [inView])
 
+  const handleMouseEnter = () => {
+    animation?.current?.pause()
+  }
+
+  const handleMouseLeave = () => {
+    animation?.current?.resume()
+  }
+
   return (
-    <div ref={ref} className="flex">
+    <div
+      ref={ref}
+      className="flex"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <Link href="/products">
         <a
           ref={buttonRef}

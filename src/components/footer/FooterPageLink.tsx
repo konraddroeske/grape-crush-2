@@ -30,7 +30,7 @@ const FooterPageLink: FunctionComponent<Props> = ({
 
     animation.current = tl.to(shape.current, {
       duration: 30,
-      rotation: `${direction}360`,
+      rotation: `${direction * 360}`,
       transformOrigin: 'center center',
       ease: 'none',
       paused: false,

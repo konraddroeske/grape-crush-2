@@ -34,7 +34,7 @@ const NewInfoBox1: FunctionComponent = () => {
         </div>
       </div>
       <div className="w-full sm:w-1/2 sm:flex sm:max-h-70vh">
-        {image && <ContentfulImage image={image} objectFit="object-contain" />}
+        {image && <ContentfulImage image={image} imageStyle="object-contain" />}
       </div>
     </section>
   )

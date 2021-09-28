@@ -93,7 +93,10 @@ const NavCategories: FunctionComponent = () => {
                 >
                   <Link href={category.link}>
                     <a>
-                      <div className="leading-5 py-1 sm:py-2 text-left text-base text-white font-medium uppercase">
+                      <div
+                        className="leading-5 py-1 sm:py-2 text-left text-base
+                      text-white hover:text-lime font-medium uppercase"
+                      >
                         {category.title}
                       </div>
                     </a>
@@ -127,7 +130,8 @@ const NavCategories: FunctionComponent = () => {
                 <li key={style} className="">
                   <button
                     type="button"
-                    className="leading-5 py-1 sm:py-2 text-white text-left text-base font-medium uppercase"
+                    className="leading-5 py-1 sm:py-2 text-white hover:text-lime
+                    text-left text-base font-medium uppercase"
                     onClick={() => handleClick('style', style)}
                   >
                     {style}

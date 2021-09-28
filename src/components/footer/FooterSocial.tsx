@@ -27,15 +27,28 @@ const FooterSocial: FunctionComponent = () => {
       <div className="flex w-full h-72 sm:h-96 lg:w-1/2 lg:h-auto">
         <Mailer />
       </div>
-      <div className="relative w-full flex h-72 sm:h-96 lg:w-1/2 lg:h-auto lg:max-h-70vh">
-        <div
-          className="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2
-        -translate-y-1/2 font-bold text-3xl text-lime xl:text-4xl 2xl:text-5xl"
+      <div className="w-full flex h-72 sm:h-96 lg:w-1/2 lg:h-auto lg:max-h-70vh overflow-hidden">
+        <a
+          href="https://www.instagram.com/grapecrush.wine"
+          className="cursor-pointer relative w-full flex
+        transform hover:scale-110 duration-300"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <a href="https://instagram.com/grapecrush.wine">@grapecrush.wine</a>
-        </div>
-        {image && <ContentfulImage image={image} />}
-      </div>
+          <div
+            className="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2
+        -translate-y-1/2 font-bold text-3xl text-lime xl:text-4xl 2xl:text-5xl"
+          >
+            <span>@grapecrush.wine</span>
+          </div>
+          {image && (
+            <ContentfulImage
+              image={image}
+              // imageStyle="transform hover:scale-110 duration-300"
+            />
+          )}
+        </a>
+      </div>{' '}
     </div>
   )
 }

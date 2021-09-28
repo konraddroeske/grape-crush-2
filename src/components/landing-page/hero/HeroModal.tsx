@@ -38,7 +38,7 @@ const HeroModal: FunctionComponent = () => {
         buy and consume alcohol.
       </p>
       <div className="flex justify-center">
-        <ShadowButton text="Okay!" fn={() => dispatch(closeModal())} />
+        <ShadowButton fn={() => dispatch(closeModal())}>Okay!</ShadowButton>
       </div>
     </div>
   )
