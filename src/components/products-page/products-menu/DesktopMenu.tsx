@@ -130,7 +130,7 @@ const DesktopMenu: FunctionComponent = () => {
   return (
     <div
       ref={containerRef}
-      className="hidden lg:block lg:pl-12 xl:pl-24 2xl:pl-32"
+      className="hidden lg:block lg:pl-12 xl:pl-16 2xl:pl-16"
     >
       <div
         ref={menuRef}

@@ -6,7 +6,7 @@ import FeaturesSlideshow from '@components/landing-page/features/FeaturesSlidesh
 import Hero from '@components/landing-page/hero/Hero'
 import NewInfoBox1 from '@components/landing-page/info-boxes/info-box-1/NewInfoBox1'
 import NewInfoBox3 from '@components/landing-page/info-boxes/info-box-3/NewInfoBox3'
-import NewShopByType from '@components/landing-page/shop-by-type/ShopByType'
+import ShopByTypeGrid from '@components/landing-page/shop-by-type/ShopByTypeGrid'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchIndexData from '@lib/fetchIndexData'
 import {
@@ -27,7 +27,8 @@ const Home: FunctionComponent = () => {
       <main id="main" className="min-h-screen overflow-hidden">
         <Hero />
         <Description />
-        <NewShopByType />
+        {/* <NewShopByType /> */}
+        <ShopByTypeGrid />
         <FeaturesSlideshow />
         <NewInfoBox3 />
         <NewInfoBox1 />
