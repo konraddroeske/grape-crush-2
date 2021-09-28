@@ -9,6 +9,7 @@ import React, {
 import { gsap } from 'gsap'
 import _Draggable, { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import ContentfulImage from '@components/common/ContentfulImage'
@@ -20,6 +21,8 @@ import { selectGlobal } from '@redux/globalSlice'
 const FeaturesSlideshow: FunctionComponent = () => {
   const { heroSlides: slides } = useSelector(selectGlobal())
   const [circleDirection, setCircleDirection] = useState<Direction>(-1)
+
+  // console.log(slides)
 
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
@@ -260,7 +263,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
   }, [handleResize])
 
   const bg = useRef<HTMLDivElement>(null)
-  const headings = useRef<(HTMLButtonElement | null)[]>([])
+  const headings = useRef<(HTMLDivElement | null)[]>([])
 
   return (
     <>
@@ -292,14 +295,17 @@ const FeaturesSlideshow: FunctionComponent = () => {
                         -translate-x-1/2 -translate-y-5 md:-translate-y-8 w-full
                         body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl"
                       >
-                        <button
-                          type="button"
-                          ref={(el) => headings.current.push(el)}
-                          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-center
-                          whitespace-normal uppercase font-bold text-transparent text-stroke-blue hover:text-blue-dark"
-                        >
-                          {slide.title}
-                        </button>
+                        <Link href={slide.link || '/products'}>
+                          <a>
+                            <div
+                              ref={(el) => headings.current.push(el)}
+                              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-center
+                          whitespace-normal uppercase font-bold text-blue-dark"
+                            >
+                              {slide.title}
+                            </div>
+                          </a>
+                        </Link>
                       </div>
                     </div>
                   </li>

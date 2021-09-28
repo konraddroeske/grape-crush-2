@@ -4,12 +4,14 @@ const heroFragment = gql`
   fragment HeroFragment on HeroSlide {
     title
     image {
-      title
       description
+      title
       url
       width
       height
     }
+    mainImage
+    link
   }
 `
 

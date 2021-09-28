@@ -83,6 +83,7 @@ export interface IHeroSlideFields {
   title: string
   image: Asset
   link?: string | undefined
+  mainImage: boolean
 }
 
 export type LOCALE_CODE = 'en-US'

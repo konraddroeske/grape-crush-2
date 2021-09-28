@@ -488,9 +488,9 @@
 
   .team-members-bg {
     background: linear-gradient(
-      to top,
-      #dfff85 calc(100% * 7 / 12 + 1rem),
-      white calc(100% * 3 / 12 + 1rem)
+                    to top,
+                    #dfff85 calc(100% * 7 / 12 + 1rem),
+                    white calc(100% * 3 / 12 + 1rem)
     );
   }
 
@@ -622,6 +622,10 @@
     }
   }
 
+  //.feature-hover:hover div div  {
+  //  color: #2c148e;
+  //}
+
   .hero-modal-center {
     position: fixed;
     z-index: 50;
@@ -647,20 +651,25 @@
 
     @media (min-width: 640px) {
       left: auto;
-      right: 3rem;
-      bottom: 5.5rem;
+      //right: 3rem;
+      right: 1.5rem;
+      //bottom: 5.5rem;
+      bottom: 4rem;
     }
 
     @media (min-width: 1024px) {
-      right: 4.5rem;
+      //right: 4.5rem;
+      right: 3rem;
     }
 
     @media (min-width: 1280px) {
-      right: 7.5rem;
+      //right: 7.5rem;
+      right: 6rem;
     }
 
     @media (min-width: 1536px) {
-      right: 9.5rem;
+      //right: 9.5rem;
+      right: 7rem;
     }
   }
 

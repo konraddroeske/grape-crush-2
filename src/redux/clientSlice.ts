@@ -4,10 +4,12 @@ import type { AppState } from '@redux/store'
 
 interface Client {
   navSearch: string
+  modalOpen: boolean
 }
 
 const initialState: Client = {
   navSearch: '',
+  modalOpen: true,
 }
 
 export const clientSlice = createSlice({
@@ -17,9 +19,12 @@ export const clientSlice = createSlice({
     setNavSearch(state, action) {
       return { ...state, navSearch: action.payload }
     },
+    closeModal(state) {
+      return { ...state, modalOpen: false }
+    },
   },
 })
 
-export const { setNavSearch } = clientSlice.actions
+export const { setNavSearch, closeModal } = clientSlice.actions
 
 export const selectClient = () => (state: AppState) => state?.[clientSlice.name]
