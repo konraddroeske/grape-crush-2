@@ -91,15 +91,13 @@ const NavCategories: FunctionComponent = () => {
                   key={category.categoryName}
                   onMouseEnter={() => handleHover(category?.image?.url)}
                 >
-                  <button
-                    type="button"
-                    className="leading-5 py-1 sm:py-2 text-left text-base text-white font-medium uppercase"
-                    onClick={() =>
-                      handleClick('parentType', category.categoryName)
-                    }
-                  >
-                    {category.title}
-                  </button>
+                  <Link href={category.link}>
+                    <a>
+                      <div className="leading-5 py-1 sm:py-2 text-left text-base text-white font-medium uppercase">
+                        {category.title}
+                      </div>
+                    </a>
+                  </Link>
                 </li>
               )
             })}

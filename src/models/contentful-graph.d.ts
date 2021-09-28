@@ -29,6 +29,7 @@ export interface ICategoryFields {
   title: string
   image: Asset
   categoryName: string
+  link: string
 }
 
 export interface IContactFields {

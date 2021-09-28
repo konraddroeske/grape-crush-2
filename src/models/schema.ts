@@ -37,6 +37,7 @@ const categoryFragment = gql`
       description
     }
     categoryName
+    link
   }
 `
 

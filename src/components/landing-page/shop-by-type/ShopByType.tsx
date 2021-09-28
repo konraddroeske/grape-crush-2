@@ -229,11 +229,7 @@ const SocialGallery: FunctionComponent = () => {
                       className="block mt-3 mx-auto text-lg xl:text-xl text-center text-blue-dark
                      font-bold uppercase lg:text-lg xl:text-xl"
                     >
-                      <Link
-                        href={`/products?parentType=${encodeURIComponent(
-                          category.categoryName
-                        )}`}
-                      >
+                      <Link href={category.link}>
                         <a>{category.title}</a>
                       </Link>
                     </button>
