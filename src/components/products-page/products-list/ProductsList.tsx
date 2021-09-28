@@ -55,7 +55,7 @@ const ProductsList: FunctionComponent = () => {
         </ul>
       ) : (
         <>
-          {selectedProducts && (
+          {products && selectedProducts && (
             <div className="h-full flex justify-center items-center">
               <Warning text="Oops!">
                 <p className="font-headline relative z-10 my-4">
