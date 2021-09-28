@@ -105,14 +105,12 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
           </div>
         )}
       </div>
-      <div className="mt-2">
-        <Tags
-          country={country}
-          varietal={varietal}
-          style={style}
-          variant="card"
-        />
-      </div>
+      <Tags
+        country={country}
+        varietal={varietal}
+        style={style}
+        variant="card"
+      />
       {/* <div className="flex justify-center my-4"> */}
       {/*  <BuyButton productId={id} /> */}
       {/* </div> */}
