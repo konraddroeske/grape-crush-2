@@ -9,9 +9,7 @@ import HeroTitle from '@components/landing-page/hero/HeroTitle'
 import { selectGlobal } from '@redux/globalSlice'
 
 const Hero: FunctionComponent = () => {
-  const { heroSlides } = useSelector(selectGlobal())
-  const [firstSlide] = heroSlides
-  const { image } = firstSlide
+  const { seoImage } = useSelector(selectGlobal())
 
   return (
     <section id="hero-section" className="relative">
@@ -19,7 +17,11 @@ const Hero: FunctionComponent = () => {
         className="py-16 h-screen relative flex body-gutter-sm lg:body-gutter-lg
       xl:body-gutter-xl 2xl:body-gutter-2xl"
       >
-        {image && <ContentfulImage image={image} />}
+        {seoImage && (
+          <div className="relative flex w-full">
+            <ContentfulImage image={seoImage} />
+          </div>
+        )}
         <div className="absolute title-position">
           <HeroTitle />
         </div>

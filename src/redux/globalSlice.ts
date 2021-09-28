@@ -94,10 +94,11 @@ export const globalSlice = createSlice({
     },
     setHeroSlides(state, action) {
       const { items } = action.payload
-      const [firstSlide] = items
-      const { image } = firstSlide
 
-      return { ...state, seoImage: image, heroSlides: items }
+      const seoSlide = items.find((item: IHeroSlideFields) => item.mainImage)
+      const { image: seoImage } = seoSlide
+
+      return { ...state, seoImage, heroSlides: items }
     },
   },
   extraReducers: {

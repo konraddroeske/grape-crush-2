@@ -20,7 +20,9 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   text,
   direction = '+=',
 }) => {
+  const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
   const isDesktopXl = useMediaQuery({ query: '(min-width: 1280px)' })
+  const isDesktop2Xl = useMediaQuery({ query: '(min-width: 1536px)' })
   const { ref, inView } = useInView({
     threshold: 0,
   })
@@ -88,7 +90,7 @@ const OutlineMarquee: FunctionComponent<Props> = ({
 
   useEffect(() => {
     updateAnimation()
-  }, [isDesktopXl, updateAnimation])
+  }, [isDesktop, isDesktopXl, isDesktop2Xl, updateAnimation])
 
   useEffect(() => {
     if (!inView && animation.current) {
@@ -108,8 +110,8 @@ const OutlineMarquee: FunctionComponent<Props> = ({
             return (
               <li
                 key={key}
-                className="uppercase text-7xl xl:text-8xl italic absolute px-2 font-bold
-              text-transparent text-stroke-blue whitespace-nowrap"
+                className="uppercase text-7xl lg:text-8xl xl:text-9xl 2xl:text-10xl italic absolute px-2 font-bold
+              text-transparent text-stroke-blue whitespace-nowrap hover:text-blue-dark cursor-pointer"
                 ref={(el) => {
                   textRefs.current[index] = el
                 }}

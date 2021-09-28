@@ -12,7 +12,7 @@ module.exports = {
       fontFamily: {
         sans: ['Roboto', ...defaultTheme.fontFamily.sans],
         // headline: ['Stolzl', 'Arial'],
-        headline: ['Gopher', 'Serif'],
+        headline: ['Gopher', ...defaultTheme.fontFamily.sans],
       },
     },
     fontSize: {

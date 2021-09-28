@@ -39,7 +39,7 @@ const Tags: FunctionComponent<Props> = ({
   }, [country, style, varietal])
 
   const ulVariant = {
-    card: 'flex flex-wrap justify-start',
+    card: 'flex flex-wrap justify-start mt-2',
     item: 'flex flex-wrap justify-center lg:justify-start',
   }
 
@@ -49,17 +49,21 @@ const Tags: FunctionComponent<Props> = ({
   }
 
   return (
-    <ul className={ulVariant[variant]}>
-      {pairs.map((pair) => {
-        const [category, tag] = pair
-        return (
-          <li key={tag} className={liVariant[variant]}>
-            {/* <Tag category={category} tag={tag} variant={variant} /> */}
-            <Tag category={category} tag={tag} />
-          </li>
-        )
-      })}
-    </ul>
+    <>
+      {pairs.length > 0 && (
+        <ul className={ulVariant[variant]}>
+          {pairs.map((pair) => {
+            const [category, tag] = pair
+            return (
+              <li key={tag} className={liVariant[variant]}>
+                {/* <Tag category={category} tag={tag} variant={variant} /> */}
+                <Tag category={category} tag={tag} />
+              </li>
+            )
+          })}
+        </ul>
+      )}
+    </>
   )
 }
 

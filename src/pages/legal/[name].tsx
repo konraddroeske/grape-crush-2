@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import { Options } from '@contentful/rich-text-react-renderer'
-import { BLOCKS, Document } from '@contentful/rich-text-types'
+import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types'
 import { useRouter } from 'next/router'
 
 import { useSelector } from 'react-redux'
@@ -41,14 +41,40 @@ const LegalPage: FunctionComponent = () => {
   }, [name, allPages])
 
   const options: Options = {
-    // renderMark: {
-    //   [MARKS.BOLD]: (text) => (
-    //     <span className="inline-block bg-lime">{text}</span>
-    //   ),
-    // },
+    renderMark: {
+      [MARKS.BOLD]: (text) => <span className="font-bold">{text}</span>,
+    },
     renderNode: {
+      [BLOCKS.HEADING_1]: (node, children) => (
+        <h1 className="text-2xl mb-4 text-blue-dark font-bold">{children}</h1>
+      ),
+      [BLOCKS.HEADING_2]: (node, children) => (
+        <h2 className="text-xl mb-4 text-blue-dark font-bold">{children}</h2>
+      ),
+      [BLOCKS.HEADING_3]: (node, children) => (
+        <h3 className="text-lg mb-4 text-blue-dark font-bold">{children}</h3>
+      ),
+      [BLOCKS.HEADING_4]: (node, children) => (
+        <h4 className="text-base mb-4 text-blue-dark font-bold">{children}</h4>
+      ),
       [BLOCKS.PARAGRAPH]: (node, children) => (
         <p className="text-base mb-4">{children}</p>
+      ),
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <ul className="text-base mb-4">{children}</ul>
+      ),
+      [BLOCKS.LIST_ITEM]: (node, children) => (
+        <li className="list-disc list-outside text-base ml-8">{children}</li>
+      ),
+      [INLINES.HYPERLINK]: (node, children) => (
+        <a
+          className="font-bold"
+          href={`${children}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
       ),
     },
   }

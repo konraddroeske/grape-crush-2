@@ -24,10 +24,10 @@ const FooterSocial: FunctionComponent = () => {
 
   return (
     <div className="flex flex-col lg:flex-row lg:border-t lg:border-b lg:border-blue-dark">
-      <div className="flex w-full h-60 sm:h-96 lg:w-1/2 lg:h-auto">
+      <div className="flex w-full h-72 sm:h-96 lg:w-1/2 lg:h-auto">
         <Mailer />
       </div>
-      <div className="relative w-full flex h-60 sm:h-96 lg:w-1/2 lg:h-auto lg:max-h-70vh">
+      <div className="relative w-full flex h-72 sm:h-96 lg:w-1/2 lg:h-auto lg:max-h-70vh">
         <div
           className="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2
         -translate-y-1/2 font-bold text-3xl text-lime xl:text-4xl 2xl:text-5xl"

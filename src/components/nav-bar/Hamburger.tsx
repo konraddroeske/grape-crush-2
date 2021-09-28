@@ -28,6 +28,7 @@ const Hamburger: FunctionComponent = () => {
       type="button"
       className="flex flex-col justify-between h-3.5 lg:hidden"
       onClick={() => dispatch(setNavOpen(!navOpen))}
+      aria-label="open menu"
     >
       <div ref={topBar} className="w-5 h-0.5" />
       <div ref={midBar} className="w-5 h-0.5" />

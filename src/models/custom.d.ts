@@ -1,6 +1,9 @@
 export declare global {
+  import Gtag = Gtag.Gtag
+
   interface Window {
     AmbassadorChat: any
+    gtag: Gtag
   }
 }
 

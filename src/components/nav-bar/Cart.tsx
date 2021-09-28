@@ -11,7 +11,12 @@ const Cart: FunctionComponent = () => {
     })
   }
   return (
-    <button type="button" className="flex" onClick={() => handleClick()}>
+    <button
+      type="button"
+      aria-label="open cart"
+      className="flex"
+      onClick={() => handleClick()}
+    >
       <GreenCart className="w-8" />
     </button>
   )

@@ -108,6 +108,7 @@ const FooterInfo: FunctionComponent = () => {
               rel="noopener noreferrer"
             >
               <IgLogo className="w-full" />
+              <span className="sr-only">Instagram</span>
             </a>
           </LogoContainer>
           <LogoContainer>
@@ -117,6 +118,7 @@ const FooterInfo: FunctionComponent = () => {
               rel="noopener noreferrer"
             >
               <FbLogo className="w-full" />
+              <span className="sr-only">Facebook</span>
             </a>
           </LogoContainer>
         </div>

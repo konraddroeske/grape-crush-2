@@ -4,12 +4,14 @@ const heroFragment = gql`
   fragment HeroFragment on HeroSlide {
     title
     image {
-      title
       description
+      title
       url
       width
       height
     }
+    mainImage
+    link
   }
 `
 
@@ -244,6 +246,20 @@ const indexQuery = gql`
     }
   }
   ${infoBoxFragment}
+`
+
+export const missingImageQuery = gql`
+  query Query($assetCollectionWhere: AssetFilter) {
+    assetCollection(where: $assetCollectionWhere) {
+      items {
+        title
+        description
+        url
+        width
+        height
+      }
+    }
+  }
 `
 // eslint-disable-next-line import/prefer-default-export
 export {

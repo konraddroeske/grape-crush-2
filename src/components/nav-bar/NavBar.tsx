@@ -26,6 +26,7 @@ const NavBar: FunctionComponent = () => {
   useEffect(() => {
     gsap.set(navRef.current, {
       backgroundColor: mobileNavOpen ? '#2C148E' : 'transparent',
+      // backgroundColor: mobileNavOpen ? '#FFFFFF' : 'transparent',
       bottom: mobileNavOpen ? 0 : 'auto',
       overflowX: mobileNavOpen ? 'hidden' : 'auto',
     })

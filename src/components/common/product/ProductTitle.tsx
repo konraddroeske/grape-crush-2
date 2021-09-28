@@ -14,7 +14,7 @@ const ProductTitle: FunctionComponent<Props> = ({
   return (
     <h4
       // className={`${fontSize} text-center leading-4 font-bold uppercase line-clamp`}
-      className={`${fontSize} text-center leading-6 font-bold uppercase`}
+      className={`${fontSize} text-left leading-5 font-bold uppercase`}
     >
       {name}
     </h4>
