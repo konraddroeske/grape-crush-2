@@ -114,6 +114,7 @@ const DesktopSpinner: FunctionComponent = () => {
         type="button"
         ref={logoRef}
         className="absolute z-10"
+        aria-label="scroll to top"
         onClick={() => handleClick()}
       >
         <div
