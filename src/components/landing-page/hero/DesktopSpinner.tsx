@@ -54,7 +54,7 @@ const DesktopSpinner: FunctionComponent = () => {
   }, [handleHeight])
 
   useEffect(() => {
-    const duration = 0.3
+    const duration = 0.25
 
     if (isSticky && !navOpen) {
       gsap.set(logoRef.current, {

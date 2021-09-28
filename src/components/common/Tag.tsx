@@ -18,7 +18,10 @@ const Tag: FunctionComponent<Props> = ({ category, tag }) => {
       )}`}
     >
       <a>
-        <div className="font-sans text-2xs font-light text-blue-dark py-1 px-3 uppercase bg-transparent border border-blue-dark hover:bg-lime">
+        <div
+          className="font-sans text-2xs font-light text-blue-dark py-1 px-3
+        uppercase bg-transparent border border-blue-dark hover:bg-lime"
+        >
           {tag}
         </div>
       </a>

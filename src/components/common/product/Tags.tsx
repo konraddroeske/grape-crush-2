@@ -44,7 +44,8 @@ const Tags: FunctionComponent<Props> = ({
   }
 
   const liVariant = {
-    card: 'mr-2 mb-2',
+    // card: 'mr-2 mb-2',
+    card: 'mr-2 my-1',
     item: 'mx-1 lg:mx-0 lg:mr-2 mb-2',
   }
 
