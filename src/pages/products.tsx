@@ -14,7 +14,6 @@ import DesktopMenu from '@components/products-page/products-menu/DesktopMenu'
 import MobileMenu from '@components/products-page/products-menu/MobileMenu'
 import client from '@lib/apolloClient'
 import fetchGlobalData from '@lib/fetchGlobalData'
-import { ProductLowercase } from '@models/ambassador'
 import { missingImageQuery } from '@models/schema'
 import {
   setFooter,
@@ -36,19 +35,19 @@ import {
 } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
-interface Props {
-  products: ProductLowercase[]
-}
+// interface Props {
+// products: ProductLowercase[]
+// }
 
-const Products: FunctionComponent<Props> = ({ products }) => {
+const Products: FunctionComponent = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const { mobileMenuOpen } = useSelector(selectProducts())
 
-  useEffect(() => {
-    dispatch(setAllTags(products))
-    dispatch(setProducts(products))
-  }, [dispatch, products])
+  // useEffect(() => {
+  //   dispatch(setAllTags(products))
+  //   dispatch(setProducts(products))
+  // }, [dispatch, products])
 
   useEffect(() => {
     if (Object.values(router.query).length > 0) {
@@ -129,7 +128,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const { assetCollection } = missingImageData
 
   // Global
-  // store.dispatch(setAllTags(products))
+  store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageCollection))
   store.dispatch(setCategories(categoryCollection))
@@ -139,10 +138,10 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setMissingImage(assetCollection))
 
   // Products
-  // store.dispatch(setProducts(products))
+  store.dispatch(setProducts(products))
 
   return {
-    props: { products },
+    // props: { products },
     revalidate: 10,
   }
 })
