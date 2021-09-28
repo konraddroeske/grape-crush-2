@@ -39,13 +39,12 @@ const Tags: FunctionComponent<Props> = ({
   }, [country, style, varietal])
 
   const ulVariant = {
-    card: 'flex flex-wrap justify-start mt-3',
+    card: 'flex flex-wrap justify-start mt-2',
     item: 'flex flex-wrap justify-center lg:justify-start',
   }
 
   const liVariant = {
-    // card: 'mr-2 mb-2',
-    card: 'mr-2 mb-1',
+    card: 'mr-2 mb-2',
     item: 'mx-1 lg:mx-0 lg:mr-2 mb-2',
   }
 
@@ -63,7 +62,7 @@ const Tags: FunctionComponent<Props> = ({
             )
           })}
         </ul>
-      )}{' '}
+      )}
     </>
   )
 }

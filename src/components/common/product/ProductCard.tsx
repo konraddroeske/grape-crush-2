@@ -90,7 +90,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
           </div>
         )}
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between mb-1">
         <div className="flex-grow-1">
           <ProductTitle name={name} fontSize="text-base" />
           {(region || vintage) && (
@@ -114,7 +114,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
       {/* <div className="flex justify-center my-4"> */}
       {/*  <BuyButton productId={id} /> */}
       {/* </div> */}
-      <p className="text-sm line-clamp line-clamp-p leading-5 mt-2 mb-3">
+      <p className="text-sm line-clamp line-clamp-p leading-5 mb-3">
         {description}
       </p>
       <div className="flex justify-start items-center">
