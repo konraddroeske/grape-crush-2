@@ -20,11 +20,11 @@ const Hero: FunctionComponent = () => {
         {seoImage && (
           <div className="relative flex w-full">
             <ContentfulImage image={seoImage} />
+            <div className="absolute title-position">
+              <HeroTitle />
+            </div>
           </div>
         )}
-        <div className="absolute title-position">
-          <HeroTitle />
-        </div>
         <div className="block lg:hidden absolute left-10 bottom-20 transform translate-y-2 -translate-x-2">
           <HeroMarquee />
         </div>

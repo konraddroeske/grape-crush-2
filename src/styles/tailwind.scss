@@ -459,20 +459,18 @@
     // Large
     @media (min-width: 1024px) {
       transform: translate(0, 0);
-      top: 2.75rem;
-      left: 1.5rem;
+      top: -1.5rem;
+      left: -1.5rem;
       right: 0;
     }
 
     // Xl
-    @media (min-width: 1280px) {
-      left: 4rem;
-    }
+    //@media (min-width: 1280px) {
+    //}
 
     // 2xl
-    @media (min-width: 1536px) {
-      left: 6rem;
-    }
+    //@media (min-width: 1536px) {
+    //}
   }
 
   .grid-row-1 {
