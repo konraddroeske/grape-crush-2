@@ -142,6 +142,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   return {
     // props: { products },
+    props: {},
     revalidate: 10,
   }
 })
