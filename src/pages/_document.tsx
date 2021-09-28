@@ -21,8 +21,8 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
             rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
           />
           <link rel="stylesheet" href="https://use.typekit.net/jpe6etz.css" />
           <noscript>
