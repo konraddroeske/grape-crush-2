@@ -50,7 +50,7 @@ const ProductsList: FunctionComponent = () => {
   return (
     <div className="flex flex-col h-full">
       {selectedProducts && selectedProducts?.length > 0 && (
-        <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 xl:gap-10">
+        <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-8 xl:gap-10">
           {selectedProducts?.map((product) => {
             const { data } = product
             return (

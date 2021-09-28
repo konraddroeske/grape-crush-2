@@ -85,7 +85,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
           </a>
         </Link>
         {buyVisible && (
-          <div className="absolute bottom-3 left-3 right-3">
+          <div className="hidden sm:block absolute bottom-3 left-3 right-3">
             <QuickBuy productId={id} />
           </div>
         )}
@@ -117,7 +117,10 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
       <p className="text-sm line-clamp line-clamp-p leading-5 mb-3">
         {description}
       </p>
-      <div className="flex justify-start items-center">
+      <div className="sm:hidden">
+        <QuickBuy productId={id} />
+      </div>
+      <div className="hidden sm:flex sm:justify-start sm:items-center">
         <LearnMore name={name} />
       </div>
     </div>
