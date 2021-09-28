@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,6 +16,8 @@ import {
 
 const ProductsList: FunctionComponent = () => {
   const dispatch = useDispatch()
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+
   const {
     products,
     selectedProducts,
@@ -26,6 +28,7 @@ const ProductsList: FunctionComponent = () => {
   } = useSelector(selectProducts())
 
   useEffect(() => {
+    setIsLoading(true)
     dispatch(
       handleProducts({
         selectedTags,
@@ -35,6 +38,10 @@ const ProductsList: FunctionComponent = () => {
     )
   }, [products, selectedTags, productsSearch, productsSort, page, dispatch])
 
+  useEffect(() => {
+    setIsLoading(false)
+  }, [selectedProducts])
+
   const resetSearch = () => {
     dispatch(setNavSearch(''))
     dispatch(handleProductsSearch(''))
@@ -42,7 +49,7 @@ const ProductsList: FunctionComponent = () => {
 
   return (
     <div className="flex flex-col h-full">
-      {selectedProducts && selectedProducts?.length > 0 ? (
+      {selectedProducts && selectedProducts?.length > 0 && (
         <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 xl:gap-10">
           {selectedProducts?.map((product) => {
             const { data } = product
@@ -53,40 +60,37 @@ const ProductsList: FunctionComponent = () => {
             )
           })}
         </ul>
-      ) : (
-        <>
-          {products && selectedProducts && (
-            <div className="h-full flex justify-center items-center">
-              <Warning text="Oops!">
-                <p className="font-headline relative z-10 my-4">
-                  <span className="block">
-                    We can't find what you were looking&nbsp;for.
-                  </span>
-                  <span className="block">
-                    Try removing{' '}
-                    <span className="underline">
-                      <Link href="/products?page=1" shallow>
-                        <a>some filters</a>
-                      </Link>
-                    </span>{' '}
-                    or{' '}
-                    <span className="underline">
-                      <button
-                        type="button"
-                        className="underline"
-                        onClick={() => resetSearch()}
-                      >
-                        <a>resetting search</a>
-                      </button>
-                    </span>{' '}
-                    <br />
-                    and maybe you'll find it there.
-                  </span>
-                </p>
-              </Warning>
-            </div>
-          )}
-        </>
+      )}
+      {!isLoading && selectedProducts?.length === 0 && (
+        <div className="h-full flex justify-center items-center py-24">
+          <Warning text="Oops!">
+            <p className="font-headline relative z-10 my-4">
+              <span className="block">
+                We can't find what you were looking&nbsp;for.
+              </span>
+              <span className="block">
+                Try removing{' '}
+                <span className="underline">
+                  <Link href="/products?page=1" shallow>
+                    <a>some filters</a>
+                  </Link>
+                </span>{' '}
+                or{' '}
+                <span className="underline">
+                  <button
+                    type="button"
+                    className="underline"
+                    onClick={() => resetSearch()}
+                  >
+                    <a>resetting search</a>
+                  </button>
+                </span>{' '}
+                <br />
+                and maybe you'll find it there.
+              </span>
+            </p>
+          </Warning>
+        </div>
       )}
       <div className="mt-auto">
         <PageNav />
