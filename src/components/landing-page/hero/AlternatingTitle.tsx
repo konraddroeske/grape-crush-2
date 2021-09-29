@@ -6,7 +6,7 @@ import AnimatedHeadline from '@components/common/AnimatedHeadline'
 import useInterval from '@hooks/useInterval'
 
 const AlternatingTitle: FunctionComponent = () => {
-  const [currentTitle, setCurrentTitle] = useState<string | null>(null)
+  const [currentTitle, setCurrentTitle] = useState<string>('Natural')
   const [count, setCount] = useState<number>(0)
   const { ref, inView } = useInView({
     threshold: 0,
@@ -43,14 +43,12 @@ const AlternatingTitle: FunctionComponent = () => {
 
   return (
     <span ref={ref} className="text-lime">
-      {currentTitle && (
-        <AnimatedHeadline
-          text={currentTitle}
-          textStyle="text-lime"
-          yoyo
-          repeat={1}
-        />
-      )}
+      <AnimatedHeadline
+        text={currentTitle}
+        textStyle="text-lime"
+        yoyo
+        repeat={1}
+      />
     </span>
   )
 }

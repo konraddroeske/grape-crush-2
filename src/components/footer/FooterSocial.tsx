@@ -31,7 +31,7 @@ const FooterSocial: FunctionComponent = () => {
         <a
           href="https://www.instagram.com/grapecrush.wine"
           className="cursor-pointer relative w-full flex
-        transform hover:scale-110 duration-300"
+        transform hover:scale-105 duration-300"
           target="_blank"
           rel="noopener noreferrer"
         >

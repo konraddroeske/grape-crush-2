@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 
-import { gsap } from 'gsap'
+import gsap from 'gsap'
 import _Draggable, { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 import Link from 'next/link'
@@ -21,8 +21,6 @@ import { selectGlobal } from '@redux/globalSlice'
 const FeaturesSlideshow: FunctionComponent = () => {
   const { heroSlides: slides } = useSelector(selectGlobal())
   const [circleDirection, setCircleDirection] = useState<Direction>(-1)
-
-  // console.log(slides)
 
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
@@ -262,16 +260,12 @@ const FeaturesSlideshow: FunctionComponent = () => {
     }
   }, [handleResize])
 
-  const bg = useRef<HTMLDivElement>(null)
-  const headings = useRef<(HTMLDivElement | null)[]>([])
-
   return (
     <>
       {slides && (
         <section className="section-margin">
           <div
-            ref={bg}
-            className="pt-20 pb-10 hero-background bg-lime overflow-hidden
+            className="pt-20 pb-10 hero-background overflow-hidden
             md:pt-24 md:pb-12 xl:pt-28 xl:pb-14 2xl:pt-36 2xl:pb-24"
           >
             <div ref={slider} className="w-full relative">
@@ -298,7 +292,6 @@ const FeaturesSlideshow: FunctionComponent = () => {
                         <Link href={slide.link || '/products'}>
                           <a>
                             <div
-                              ref={(el) => headings.current.push(el)}
                               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-center
                           whitespace-normal uppercase font-bold text-blue-dark"
                             >
