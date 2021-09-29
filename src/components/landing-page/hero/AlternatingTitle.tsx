@@ -1,45 +1,56 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useMemo, useState } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 
+import AnimatedHeadline from '@components/common/AnimatedHeadline'
+import useInterval from '@hooks/useInterval'
+
 const AlternatingTitle: FunctionComponent = () => {
-  const [currentTitle, setCurrentTitle] = useState<string>('Natural')
+  const [currentTitle, setCurrentTitle] = useState<string | null>(null)
+  const [count, setCount] = useState<number>(0)
   const { ref, inView } = useInView({
     threshold: 0,
   })
 
-  useEffect(() => {
-    const titles = [
+  // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
+
+  const titles = useMemo(
+    () => [
       'Natural',
-      'Organics',
+      'Organic',
       'Tasty',
       'Groovy',
       'Local',
       'Wild',
       'Crushable',
-    ]
+    ],
+    []
+  )
 
-    let counter = 0
+  useEffect(() => {
+    if (inView) {
+      setCurrentTitle(titles[count])
+    }
+  }, [inView, titles, count])
 
-    const interval = setInterval(() => {
-      if (!inView) {
-        clearInterval(interval)
-      } else if (counter > titles.length - 1) {
-        counter = 0
-        setCurrentTitle(titles[counter])
-      } else {
-        setCurrentTitle(titles[counter])
-      }
-
-      counter += 1
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [inView])
+  useInterval(() => {
+    if (count >= titles.length - 1) {
+      setCount(0)
+    } else {
+      setCount(count + 1)
+    }
+  }, 5000)
 
   return (
     <span ref={ref} className="text-lime">
-      {currentTitle}
+      {currentTitle && (
+        <AnimatedHeadline
+          text={currentTitle}
+          textStyle="text-lime"
+          yoyo
+          repeat={1}
+        />
+      )}
     </span>
   )
 }

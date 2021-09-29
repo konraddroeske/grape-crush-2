@@ -30,17 +30,17 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <>
-      <Script
-        async
-        src="https://grapecrush.ambassador.ai/widget/ambassador-chat.js"
-        strategy="lazyOnload"
-        onLoad={() => {
-          window.AmbassadorChat.init({
-            domain: 'chat.ambassador.ai',
-            pageId: '-vsyv9_4MKus',
-          })
-        }}
-      />
+      {/* <Script */}
+      {/*  async */}
+      {/*  src="https://grapecrush.ambassador.ai/widget/ambassador-chat.js" */}
+      {/*  strategy="lazyOnload" */}
+      {/*  onLoad={() => { */}
+      {/*    window.AmbassadorChat.init({ */}
+      {/*      domain: 'chat.ambassador.ai', */}
+      {/*      pageId: '-vsyv9_4MKus', */}
+      {/*    }) */}
+      {/*  }} */}
+      {/* /> */}
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}

@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
+import AnimatedHeadline from '@components/common/AnimatedHeadline'
 import AlternatingTitle from '@components/landing-page/hero/AlternatingTitle'
 import LowerTitle from '@components/landing-page/hero/LowerTitle'
 
@@ -9,9 +10,9 @@ const HeroTitle: FunctionComponent = () => {
       <h1 className="title-size uppercase font-bold flex flex-col text-center lg:text-left">
         <AlternatingTitle />
         <div className="flex flex-col lg:flex-row">
-          <span className="text-white">Wines</span>
+          <AnimatedHeadline text="Wines" textStyle="text-white" />
           <span className="hidden lg:block">&nbsp;</span>
-          <span className="text-white">For</span>
+          <AnimatedHeadline text="For" textStyle="text-white" />
         </div>
         <div className="">
           <LowerTitle />

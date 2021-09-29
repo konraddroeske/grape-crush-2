@@ -1,12 +1,14 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import { useDispatch } from 'react-redux'
 
 import ShadowButton from '@components/common/ShadowButton'
+import { slideUp } from '@lib/animations'
 import { closeModal } from '@redux/clientSlice'
 
 const HeroModal: FunctionComponent = () => {
   const dispatch = useDispatch()
+  const ref = useRef<HTMLDivElement | null>(null)
   const [scrollDistance, setScrollDistance] = useState<number>(0)
 
   const handleScroll = () => {
@@ -14,6 +16,10 @@ const HeroModal: FunctionComponent = () => {
   }
 
   useEffect(() => {
+    if (ref.current) {
+      slideUp(ref.current)
+    }
+
     if (window) {
       document.addEventListener('scroll', handleScroll)
     }
@@ -23,9 +29,10 @@ const HeroModal: FunctionComponent = () => {
 
   return (
     <div
+      ref={ref}
       className={`${
         scrollDistance <= 200 ? 'hero-modal-position' : 'hero-modal-center'
-      } w-full bg-lime p-6 sm:shadow-blue-dark-lg sm:w-96 transition-all ease-out duration-200`}
+      } w-full bg-lime p-6 sm:shadow-blue-dark-lg sm:w-96 transition-all ease-out duration-300`}
     >
       <h3
         className="text-center font-bold uppercase text-5xl text-transparent
