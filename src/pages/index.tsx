@@ -28,7 +28,7 @@ const Home: FunctionComponent = () => {
   const mainRef = useRef<HTMLElement>(null)
 
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.25,
   })
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Home: FunctionComponent = () => {
       <main
         id="main"
         ref={mainRef}
-        className="min-h-screen overflow-hidden bg-white"
+        className="bg-white min-h-screen overflow-hidden"
       >
         <Hero />
         <Description />

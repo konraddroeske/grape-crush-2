@@ -52,7 +52,7 @@ const NewInfoBox3: FunctionComponent = () => {
   return (
     <section
       ref={ref}
-      className="relative sm:flex section-margin body-gutter-sm lg:body-gutter-lg
+      className="relative sm:flex body-gutter-sm lg:body-gutter-lg
     xl:body-gutter-xl"
     >
       <div className="relative w-full sm:flex sm:max-h-70vh lg:w-1/2">

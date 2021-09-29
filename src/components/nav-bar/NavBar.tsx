@@ -26,7 +26,6 @@ const NavBar: FunctionComponent = () => {
   useEffect(() => {
     gsap.set(navRef.current, {
       backgroundColor: mobileNavOpen ? '#2C148E' : 'transparent',
-      // backgroundColor: mobileNavOpen ? '#FFFFFF' : 'transparent',
       bottom: mobileNavOpen ? 0 : 'auto',
       overflowX: mobileNavOpen ? 'hidden' : 'auto',
     })
@@ -49,6 +48,7 @@ const NavBar: FunctionComponent = () => {
       ref={navRef}
       className="fixed z-30 top-0 left-0 right-0 body-gutter-sm overflow-y-auto
       lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl"
+      // onMouseLeave={() => dispatch(setNavOpen(false))}
     >
       <div className="relative flex h-16 justify-between items-center">
         <Hamburger />

@@ -11,7 +11,7 @@ import { selectProducts } from '@redux/productsSlice'
 const ShopByTypeGrid: FunctionComponent = () => {
   const { categories } = useSelector(selectProducts())
   return (
-    <section className="section-margin">
+    <section className="section-margin-top">
       <OutlineMarquee text="Shop by type" />
       <ul
         className="mt-12 lg:mt-20 grid grid-cols-2 sm:grid-cols-4 2xl:grid-cols-4 gap-6 sm:gap-8 2xl:gap-12

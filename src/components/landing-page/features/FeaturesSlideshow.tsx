@@ -263,7 +263,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
   return (
     <>
       {slides && (
-        <section className="section-margin">
+        <section className="">
           <div
             className="pt-20 pb-10 hero-background overflow-hidden
             md:pt-24 md:pb-12 xl:pt-28 xl:pb-14 2xl:pt-36 2xl:pb-24"

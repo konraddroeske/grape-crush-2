@@ -36,8 +36,13 @@ const DesktopCategories: FunctionComponent = () => {
         marginTop: navOpen ? 0 : initialMargin,
       }}
     >
-      <NavCategories />
-      <div ref={waveRef} className="left-0 top-full w-full">
+      <div className="pb-2 bg-blue-dark">
+        <NavCategories />
+      </div>
+      <div
+        ref={waveRef}
+        className="left-0 top-full w-full scale-y-75 origin-top"
+      >
         <NavWave className="w-full" />
       </div>
     </div>

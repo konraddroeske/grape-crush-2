@@ -59,7 +59,6 @@
   //  min-height: 48px;
   //  min-width: 48px;
   //}
-
   .overflow-auto {
     overflow: auto;
   }
@@ -199,7 +198,7 @@
     mask-position: center;
 
     @media (min-width: 640px) {
-      background-size: 20rem;
+      //background-size: 20rem;
       //background-size: cover;
     }
   }
@@ -491,14 +490,32 @@
 
   .team-members-bg {
     background: linear-gradient(
-      to top,
-      #dfff85 calc(100% * 7 / 12 + 1rem),
-      white calc(100% * 3 / 12 + 1rem)
+                    to top,
+                    #dfff85 calc(100% * 7 / 12 + 1rem),
+                    white calc(100% * 3 / 12 + 1rem)
     );
   }
 
   .translate-y-10\/12 {
     transform: translateY(calc(100% * 10 / 12));
+  }
+
+  .section-margin-top {
+    margin-top: 4rem;
+
+    @media (min-width: 1024px) {
+      margin-top: 6rem;
+    }
+
+    // Xl
+    @media (min-width: 1280px) {
+      margin-top: 7rem;
+    }
+
+    // 2xl
+    @media (min-width: 1536px) {
+      margin-top: 9rem;
+    }
   }
 
   .section-margin {
@@ -629,7 +646,6 @@
   //.feature-hover:hover div div  {
   //  color: #2c148e;
   //}
-
   .hero-modal-center {
     position: fixed;
     z-index: 50;
