@@ -66,7 +66,7 @@ const Products: FunctionComponent = () => {
   return (
     <>
       <Seo title="Shop" />
-      <div className="py-12 pb-12">
+      <div className="py-12 pb-12 min-h-screen">
         <div className="my-4 overflow-hidden">
           <OutlineMarquee text="shop" />
         </div>

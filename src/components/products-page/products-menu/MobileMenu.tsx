@@ -2,52 +2,43 @@ import React, { FunctionComponent, useEffect, useRef } from 'react'
 
 import { gsap } from 'gsap'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import ProductCategories from '@components/products-page/products-menu/ProductCategories'
-import { toggleMobileMenuOpen } from '@redux/productsSlice'
+import { selectProducts, toggleMobileMenuOpen } from '@redux/productsSlice'
 
 const MobileMenu: FunctionComponent = () => {
-  // const { mobileMenuOpen } = useSelector(selectProducts())
   const menuRef = useRef<HTMLDivElement | null>(null)
+  const { mobileMenuOpen } = useSelector(selectProducts())
   const dispatch = useDispatch()
-  // const [marginHeight, setMarginHeight] = useState<number>(0)
-
-  // useEffect(() => {
-  //   const height = menuRef?.current?.offsetHeight || 0
-  //   setMarginHeight(height)
-  // }, [])
 
   useEffect(() => {
-    gsap.to(menuRef.current, {
-      duration: 0.2,
-      marginTop: 0,
-    })
-  }, [])
-
-  const closeMobileMenu = () => {
-    if (window) {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          dispatch(toggleMobileMenuOpen())
-        },
-      })
-
-      tl.to(menuRef.current, {
+    if (mobileMenuOpen) {
+      gsap.to(menuRef.current, {
         duration: 0.2,
-        marginTop: window.innerHeight,
+        marginTop: 0,
       })
     }
+  }, [mobileMenuOpen])
+
+  const closeMobileMenu = () => {
+    const tl = gsap.timeline({
+      onComplete: () => {
+        dispatch(toggleMobileMenuOpen())
+      },
+    })
+
+    tl.to(menuRef.current, {
+      duration: 0.2,
+      marginTop: '100vh',
+    })
   }
 
   return (
     <div
       ref={menuRef}
-      className="fixed z-40 inset-0 bg-white pt-6 body-gutter-sm overflow-auto
+      className="fixed z-40 inset-0 bg-white pt-6 body-gutter-sm overflow-auto mt-full
       lg:hidden"
-      style={{
-        marginTop: window ? window.innerHeight : 0,
-      }}
     >
       <ProductCategories closeMobileMenu={closeMobileMenu} />
     </div>
