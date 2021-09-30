@@ -36,7 +36,7 @@ const DesktopCategories: FunctionComponent = () => {
         marginTop: navOpen ? 0 : initialMargin,
       }}
     >
-      <div className="pb-4 bg-blue-dark">
+      <div className="relative z-10 bg-blue-dark">
         <NavCategories />
       </div>
       <div

@@ -3,6 +3,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
+import ShadowLink from '@components/common/ShadowLink'
 import { Asset } from '@models/contentful-graph'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
@@ -63,7 +64,7 @@ const NavCategories: FunctionComponent = () => {
     >
       <div className="flex w-full flex-wrap max-w-screen-2xl mx-auto">
         <div
-          className="flex w-full lg:w-1/2 justify-between pb-4 mb-4 border-b
+          className="flex w-full lg:w-1/2 justify-between pb-4 pr-4 mb-4 border-b
       border-lime lg:pb-0 lg:mb-0 lg:border-b-0"
         >
           <div className="mr-8">
@@ -79,10 +80,7 @@ const NavCategories: FunctionComponent = () => {
                   >
                     <Link href={category.link}>
                       <a>
-                        <div
-                          className="leading-5 text-left text-base
-                      text-white hover:text-lime font-medium uppercase"
-                        >
+                        <div className="leading-5 text-left text-base text-white hover:text-lime font-medium uppercase">
                           {category.title}
                         </div>
                       </a>
@@ -91,6 +89,16 @@ const NavCategories: FunctionComponent = () => {
                 )
               })}
             </ul>
+            {/* <Link href="/products"> */}
+            {/*  <a> */}
+            {/*    <div */}
+            {/*      className="my-5 uppercase leading-5 text-left text-xl text-lime */}
+            {/*    hover:text-lime font-bold" */}
+            {/*    > */}
+            {/*      Shop All */}
+            {/*    </div> */}
+            {/*  </a> */}
+            {/* </Link> */}
           </div>
           <div className="flex-grow relative pointer-events-none">
             {svgMask && (
@@ -128,6 +136,13 @@ const NavCategories: FunctionComponent = () => {
                 )
               })}
           </ul>
+          <div className="flex mt-5 ml-1/2">
+            <Link href="/products">
+              <a>
+                <ShadowLink variant="nav">Show All Wines</ShadowLink>
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
       {/* <div className="hidden w-full lg:flex justify-between mt-8 mb-4"> */}

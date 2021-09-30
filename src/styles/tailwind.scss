@@ -202,19 +202,16 @@
     height: 100%;
     max-height: 100%;
 
-    //background-size: cover;
     background-size: 18rem;
     background-position: center;
     background-repeat: no-repeat;
 
     mask-size: contain;
-    //mask-size: 16rem;
     mask-repeat: no-repeat;
     mask-position: center;
 
-    @media (min-width: 640px) {
-      //background-size: 20rem;
-      //background-size: cover;
+    @media (min-width: 470px) {
+      background-size: 20rem;
     }
   }
 

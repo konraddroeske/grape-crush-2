@@ -48,7 +48,7 @@ const NavBar: FunctionComponent = () => {
       ref={navRef}
       className="fixed z-30 top-0 left-0 right-0 body-gutter-sm overflow-y-auto
       lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl"
-      onMouseLeave={() => dispatch(setNavOpen(false))}
+      // onMouseLeave={() => dispatch(setNavOpen(false))}
     >
       <div className="relative flex h-16 justify-between items-center">
         <Hamburger />
