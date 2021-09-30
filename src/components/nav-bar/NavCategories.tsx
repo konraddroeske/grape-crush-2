@@ -67,8 +67,8 @@ const NavCategories: FunctionComponent = () => {
           className="flex w-full lg:w-1/2 justify-between pb-4 pr-4 mb-4 border-b
       border-lime lg:pb-0 lg:mb-0 lg:border-b-0"
         >
-          <div className="mr-8">
-            <h3 className="text-left text-xl sm:text-2xl sm:pb-1 text-lime font-bold uppercase">
+          <div className="">
+            <h3 className="text-left text-xl sm:text-2xl pb-1 text-lime font-bold uppercase">
               By Type
             </h3>
             <ul className="grid grid-col-1 gap-3">
@@ -89,6 +89,13 @@ const NavCategories: FunctionComponent = () => {
                 )
               })}
             </ul>
+            <div className="flex justify-start w-full mt-5 mb-2 lg:hidden">
+              <Link href="/products">
+                <a>
+                  <ShadowLink variant="nav">Shop All Wines</ShadowLink>
+                </a>
+              </Link>
+            </div>
             {/* <Link href="/products"> */}
             {/*  <a> */}
             {/*    <div */}
@@ -114,7 +121,7 @@ const NavCategories: FunctionComponent = () => {
           </div>
         </div>
         <div className="flex-grow border-b border-lime pb-4 lg:border-b-0 lg:pb-0">
-          <h3 className="text-left text-xl sm:text-2xl sm:pb-1 text-lime font-bold uppercase">
+          <h3 className="text-left text-xl sm:text-2xl pb-1 text-lime font-bold uppercase">
             By Style
           </h3>
           <ul className="grid grid-cols-2 gap-3">
@@ -136,10 +143,13 @@ const NavCategories: FunctionComponent = () => {
                 )
               })}
           </ul>
-          <div className="flex mt-5 ml-1/2">
+          <div
+            className="hidden lg:mt-5 lg:flex lg:ml-1/2 lg:w-1/2
+          lg:justify-start lg:transform lg:translate-x-1.5"
+          >
             <Link href="/products">
               <a>
-                <ShadowLink variant="nav">Show All Wines</ShadowLink>
+                <ShadowLink variant="nav">Shop All Wines</ShadowLink>
               </a>
             </Link>
           </div>
