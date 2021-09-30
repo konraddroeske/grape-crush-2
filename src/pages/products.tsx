@@ -16,10 +16,12 @@ import client from '@lib/apolloClient'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { missingImageQuery } from '@models/schema'
 import {
+  selectGlobal,
   setFooter,
   setHeroSlides,
   setLocale,
   setNav,
+  setNavOpen,
   setPages,
 } from '@redux/globalSlice'
 
@@ -42,12 +44,14 @@ import { wrapper } from '@redux/store'
 const Products: FunctionComponent = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+  const { navOpen } = useSelector(selectGlobal())
   const { mobileMenuOpen } = useSelector(selectProducts())
 
-  // useEffect(() => {
-  //   dispatch(setAllTags(products))
-  //   dispatch(setProducts(products))
-  // }, [dispatch, products])
+  useEffect(() => {
+    if (navOpen) {
+      dispatch(setNavOpen(false))
+    }
+  }, [navOpen, router, dispatch])
 
   useEffect(() => {
     if (Object.values(router.query).length > 0) {

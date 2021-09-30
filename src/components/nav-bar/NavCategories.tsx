@@ -96,16 +96,6 @@ const NavCategories: FunctionComponent = () => {
                 </a>
               </Link>
             </div>
-            {/* <Link href="/products"> */}
-            {/*  <a> */}
-            {/*    <div */}
-            {/*      className="my-5 uppercase leading-5 text-left text-xl text-lime */}
-            {/*    hover:text-lime font-bold" */}
-            {/*    > */}
-            {/*      Shop All */}
-            {/*    </div> */}
-            {/*  </a> */}
-            {/* </Link> */}
           </div>
           <div className="flex-grow relative pointer-events-none">
             {svgMask && (
@@ -155,18 +145,6 @@ const NavCategories: FunctionComponent = () => {
           </div>
         </div>
       </div>
-      {/* <div className="hidden w-full lg:flex justify-between mt-8 mb-4"> */}
-      {/*  <div className="flex w-2/5"> */}
-      {/*    <Link href="/products"> */}
-      {/*      <a> */}
-      {/*        <ShadowLink variant="nav">Show All Wines</ShadowLink> */}
-      {/*      </a> */}
-      {/*    </Link> */}
-      {/*  </div> */}
-      {/*  <div className="w-1/2"> */}
-      {/*    <NavSearch variant="desktop" /> */}
-      {/*  </div> */}
-      {/* </div> */}
     </div>
   )
 }
