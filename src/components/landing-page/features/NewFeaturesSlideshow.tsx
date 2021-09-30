@@ -9,6 +9,7 @@ import React, {
 import gsap from 'gsap'
 import { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
+import { useInView } from 'react-intersection-observer'
 import { useSelector } from 'react-redux'
 
 import ContentfulImage from '@components/common/ContentfulImage'
@@ -20,10 +21,13 @@ import { Direction } from '@models/misc'
 import { selectGlobal } from '@redux/globalSlice'
 
 const NewFeaturesSlideshow: FunctionComponent = () => {
+  const { ref, inView } = useInView({
+    threshold: 0.25,
+  })
+
   const { heroSlides: slides } = useSelector(selectGlobal())
   const [circleDirection, setCircleDirection] = useState<Direction>(-1)
   const [upcomingSlide, setUpcomingSlide] = useState<number>(0)
-  // const upcomingSlide = useRef<number>(0)
 
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
@@ -304,14 +308,16 @@ const NewFeaturesSlideshow: FunctionComponent = () => {
   return (
     <>
       {slides && (
-        <section className="section-margin">
+        <section ref={ref} className="section-margin">
           <OutlineMarquee text="Shop by Featured" direction="-=" />
           <div className="hero-background overflow-hidden features-slideshow-padding">
             <div ref={slider} className="w-full relative">
-              <FeaturesText
-                slides={reorderedSlides}
-                upcomingSlide={upcomingSlide}
-              />
+              {inView && (
+                <FeaturesText
+                  slides={reorderedSlides}
+                  upcomingSlide={upcomingSlide}
+                />
+              )}
               <ul ref={list} className="absolute inset-0 m-0 p-0">
                 {reorderedSlides.map((slide, index) => (
                   <li
