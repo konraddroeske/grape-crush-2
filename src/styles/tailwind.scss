@@ -124,7 +124,9 @@
   }
 
   .svg-lime-fill {
-    fill: #d9ff6c;
+    path {
+      fill: #d9ff6c;
+    }
   }
 
   .svg-gray {

@@ -26,7 +26,7 @@ export const FooterLink: FunctionComponent<FooterLinkProps> = ({
   children,
   to,
 }) => (
-  <div className="md:mr-4 lg:mr-6 lg:text-sm xl:mr-0 xl:leading-7">
+  <div className="py-1 text-sm md:mr-4 lg:mr-6 lg:text-base xl:mr-0 xl:leading-7 hover:text-lime">
     <Link href={to}>
       <a>{children}</a>
     </Link>
@@ -43,7 +43,7 @@ const FooterInfo: FunctionComponent = () => {
     <div className="relative z-30 bg-blue-dark xl:flex xl:overflow-hidden">
       <FooterLogo />
       <div
-        className="flex flex-wrap pt-4 sm:py-6 lg:py-8 sm:body-gutter-sm
+        className="flex flex-wrap pt-4 sm:py-6 lg:py-8 body-gutter-sm
         lg:body-gutter-lg xl:w-6/12 xl:items-center xl:pl-1/8 xl:pr-0 xl:pt-16"
       >
         <div
@@ -107,7 +107,7 @@ const FooterInfo: FunctionComponent = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <IgLogo className="w-full" />
+              <IgLogo className="w-full hover:svg-lime-fill" />
               <span className="sr-only">Instagram</span>
             </a>
           </LogoContainer>
@@ -117,7 +117,7 @@ const FooterInfo: FunctionComponent = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FbLogo className="w-full" />
+              <FbLogo className="w-full hover:svg-lime-fill" />
               <span className="sr-only">Facebook</span>
             </a>
           </LogoContainer>
