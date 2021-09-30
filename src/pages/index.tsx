@@ -6,10 +6,9 @@ import { useInView } from 'react-intersection-observer'
 
 import Seo from '@components/common/Seo'
 import Description from '@components/landing-page/description/Description'
-import FeaturesSlideshow from '@components/landing-page/features/FeaturesSlideshow'
+import NewFeaturesSlideshow from '@components/landing-page/features/NewFeaturesSlideshow'
 import Hero from '@components/landing-page/hero/Hero'
 import NewInfoBox1 from '@components/landing-page/info-boxes/info-box-1/NewInfoBox1'
-import NewInfoBox3 from '@components/landing-page/info-boxes/info-box-3/NewInfoBox3'
 import ShopByTypeGrid from '@components/landing-page/shop-by-type/ShopByTypeGrid'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchIndexData from '@lib/fetchIndexData'
@@ -55,10 +54,11 @@ const Home: FunctionComponent = () => {
         <Description />
         {/* <NewShopByType /> */}
         <div ref={ref}>
+          <NewFeaturesSlideshow />
           <ShopByTypeGrid />
-          <FeaturesSlideshow />
+          {/* <FeaturesSlideshow /> */}
         </div>
-        <NewInfoBox3 />
+        {/* <NewInfoBox3 /> */}
         <NewInfoBox1 />
       </main>
     </>

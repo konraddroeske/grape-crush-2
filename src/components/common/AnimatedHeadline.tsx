@@ -3,6 +3,8 @@ import React, { FunctionComponent, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { SplitText } from 'gsap/dist/SplitText'
 
+import { getRandomInRange } from '@lib/animations'
+
 interface OwnProps {
   text: string
   textStyle: string
@@ -26,10 +28,6 @@ const AnimatedHeadline: FunctionComponent<Props> = ({
       type: 'words,chars',
       position: 'relative',
     })
-
-    const getRandomInRange = (min: number, max: number) => {
-      return Math.random() * (max - min) + min
-    }
 
     splitHeadline.chars.forEach((char) => {
       const yPos = getRandomInRange(3, 8)

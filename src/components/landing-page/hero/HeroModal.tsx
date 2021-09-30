@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import ShadowButton from '@components/common/ShadowButton'
-import { slideUp } from '@lib/animations'
+import { modalSlideUp } from '@lib/animations'
 import { closeModal } from '@redux/clientSlice'
 
 const HeroModal: FunctionComponent = () => {
@@ -17,7 +17,7 @@ const HeroModal: FunctionComponent = () => {
 
   useEffect(() => {
     if (ref.current) {
-      slideUp(ref.current)
+      modalSlideUp(ref.current)
     }
 
     if (window) {

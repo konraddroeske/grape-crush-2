@@ -62,7 +62,7 @@ const Faq: FunctionComponent = () => {
         <div className="my-4 overflow-hidden">
           <OutlineMarquee text="Frequently asked questions" />
         </div>
-        <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+        <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl max-w-screen-xl mx-auto">
           <ul className="">
             {sortedQuestions.length > 0 &&
               sortedQuestions.map((item) => {

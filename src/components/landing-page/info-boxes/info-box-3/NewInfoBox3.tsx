@@ -52,8 +52,8 @@ const NewInfoBox3: FunctionComponent = () => {
   return (
     <section
       ref={ref}
-      className="relative sm:flex body-gutter-sm lg:body-gutter-lg
-    xl:body-gutter-xl"
+      className="relative section-margin sm:flex body-gutter-sm lg:body-gutter-lg
+    xl:body-gutter-xl max-w-screen-2xl mx-auto"
     >
       <div className="relative w-full sm:flex sm:max-h-70vh lg:w-1/2">
         {image && <ContentfulImage image={image} />}

@@ -17,8 +17,8 @@ const NewInfoBox1: FunctionComponent = () => {
   const { title, description, image } = infoBox1
   return (
     <section
-      className="flex flex-col-reverse sm:flex-row sm:flex section-margin
-    body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl"
+      className="flex flex-col-reverse sm:flex-row-reverse sm:flex section-margin
+    body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl max-w-screen-2xl mx-auto"
     >
       <div className="flex items-center w-full sm:w-1/2 pt-4 sm:pt-0">
         <div className="sm:pr-16 xl:pr-20">
@@ -27,7 +27,7 @@ const NewInfoBox1: FunctionComponent = () => {
           <div className="flex justify-center sm:mt-0 sm:justify-start">
             <Link href="/products">
               <a>
-                <ShadowLink>Shop</ShadowLink>
+                <ShadowLink>Explore</ShadowLink>
               </a>
             </Link>
           </div>

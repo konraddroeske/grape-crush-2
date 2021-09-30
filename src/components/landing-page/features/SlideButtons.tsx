@@ -12,13 +12,10 @@ type Props = OwnProps
 
 const SlideButtons: FunctionComponent<Props> = ({ handleSlide }) => {
   return (
-    <div
-      className="buttonContainer absolute pointer-events-none transform -translate-y-1/2 left-0
-    right-0 sm:left-1/6 sm:right-1/6 top-1/2 flex justify-between arrow-gutter-sm sm:px-0"
-    >
+    <div className="pointer-events-none slideshow-button-position">
       <button
         type="button"
-        className="pointer-events-auto sm:transform sm:-translate-x-full xl:-translate-x-1/2"
+        className="pointer-events-auto mx-3 md:hidden"
         aria-label="slide left"
         onClick={() => handleSlide(Direction.Left)}
       >
@@ -26,7 +23,7 @@ const SlideButtons: FunctionComponent<Props> = ({ handleSlide }) => {
       </button>
       <button
         type="button"
-        className="pointer-events-auto sm:transform sm:translate-x-full xl:translate-x-1/2"
+        className="pointer-events-auto mx-3 md:mx-0 md:transform md:translate-x-2/3"
         aria-label="slide right"
         onClick={() => handleSlide(Direction.Right)}
       >
