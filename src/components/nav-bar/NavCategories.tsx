@@ -92,7 +92,7 @@ const NavCategories: FunctionComponent = () => {
               })}
             </ul>
           </div>
-          <div className="flex-grow relative">
+          <div className="flex-grow relative pointer-events-none">
             {svgMask && (
               <div
                 className="z-50 mask-nav absolute left-0 top-0 w-full min-w-64 xl:transform xl:scale-110 2xl:scale-125"
