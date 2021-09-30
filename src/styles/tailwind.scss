@@ -117,10 +117,14 @@
     }
   }
 
-  .svg-lime {
+  .svg-lime-stroke {
     path {
       stroke: #d9ff6c;
     }
+  }
+
+  .svg-lime-fill {
+    fill: #d9ff6c;
   }
 
   .svg-gray {
@@ -521,9 +525,9 @@
 
   .team-members-bg {
     background: linear-gradient(
-      to top,
-      #dfff85 calc(100% * 7 / 12 + 1rem),
-      white calc(100% * 3 / 12 + 1rem)
+                    to top,
+                    #dfff85 calc(100% * 7 / 12 + 1rem),
+                    white calc(100% * 3 / 12 + 1rem)
     );
   }
 

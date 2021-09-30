@@ -1,11 +1,9 @@
-import React, { FunctionComponent, useEffect, useRef } from 'react'
+import React, { FunctionComponent, useRef, useState } from 'react'
 
-import { gsap } from 'gsap'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import { selectGlobal } from '@redux/globalSlice'
-import { selectHero } from '@redux/heroSlice'
 
 interface MenuLinkProps {
   children: React.ReactNode
@@ -19,30 +17,60 @@ const MenuLink: FunctionComponent<MenuLinkProps> = ({
   to,
 }) => {
   const { navOpen } = useSelector(selectGlobal())
-  const { currentTheme } = useSelector(selectHero())
-  const { nav, duration } = currentTheme
+  // const { currentTheme } = useSelector(selectHero())
   const linkRef = useRef<null | HTMLDivElement>(null)
 
-  useEffect(() => {
-    gsap.to(linkRef.current, {
-      duration,
-      color: navOpen ? '#FFFFFF' : nav,
-    })
-  }, [navOpen, nav, duration])
+  const [hover, setHover] = useState<boolean>(false)
 
-  const variants = {
-    mobile: 'text-4xl h-auto mr-0 mb-4 sm:mb-5 sm:text-5xl xl:mr-0',
-    desktop: 'text-xl h-16 mx-4 xl:mx-6',
-  }
   return (
-    <div
-      ref={linkRef}
-      className={`flex items-center ${variants[variant]} font-bold uppercase `}
-    >
-      <Link href={to}>
-        <a>{children}</a>
-      </Link>
-    </div>
+    <>
+      {variant === 'desktop' ? (
+        <Link href={to}>
+          <a>
+            <div
+              className="overflow-hidden font-bold uppercase text-xl mx-4 xl:mx-6"
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+            >
+              <div
+                ref={linkRef}
+                className={`h-10 transition-all duration-300 ${
+                  hover ? 'transform -translate-y-full' : ''
+                }`}
+              >
+                <div
+                  className={`${
+                    navOpen ? 'text-white' : 'text-blue-dark'
+                  } h-10 flex items-center`}
+                >
+                  {children}
+                </div>
+                <div
+                  className={`${
+                    navOpen ? 'text-white' : 'text-blue-dark'
+                  } h-10 flex items-center`}
+                >
+                  {children}
+                </div>
+              </div>
+            </div>
+          </a>
+        </Link>
+      ) : (
+        <Link href={to}>
+          <a>
+            <div
+              className={`${
+                navOpen ? 'text-white' : 'text-dark-blue'
+              } transition-all duration-150 uppercase font-bold text-4xl h-auto 
+              mr-0 mb-4 sm:mb-5 sm:text-5xl xl:mr-0`}
+            >
+              {children}
+            </div>
+          </a>
+        </Link>
+      )}
+    </>
   )
 }
 

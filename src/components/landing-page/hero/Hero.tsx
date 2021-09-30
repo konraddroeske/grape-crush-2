@@ -6,6 +6,7 @@ import ContentfulImage from '@components/common/ContentfulImage'
 import DesktopSpinner from '@components/landing-page/hero/DesktopSpinner'
 import HeroMarquee from '@components/landing-page/hero/HeroMarquee'
 import HeroTitle from '@components/landing-page/hero/HeroTitle'
+import SkipButton from '@components/landing-page/hero/SkipButton'
 import { selectGlobal } from '@redux/globalSlice'
 
 const Hero: FunctionComponent = () => {
@@ -22,6 +23,9 @@ const Hero: FunctionComponent = () => {
             <ContentfulImage image={seoImage} />
             <div className="absolute title-position">
               <HeroTitle />
+            </div>
+            <div className="hidden lg:block lg:absolute lg:bottom-6 lg:right-6">
+              <SkipButton />
             </div>
           </div>
         )}
