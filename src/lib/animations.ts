@@ -23,19 +23,11 @@ export const buttonContract = (
 }
 
 export const modalSlideUp = (element: HTMLElement) => {
-  const tl = gsap.timeline({
-    onComplete: () => {
-      gsap.set(element, {
-        clearProps: 'all',
-      })
-    },
-  })
-
-  tl.from(element, {
-    y: '10rem',
-    opacity: 0,
+  gsap.to(element, {
+    y: 0,
+    opacity: 1,
     duration: 0.3,
-    delay: 0.2,
+    delay: 1,
     ease: 'back.out(1.5)',
   })
 }

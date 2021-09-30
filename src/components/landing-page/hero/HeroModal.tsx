@@ -25,27 +25,31 @@ const HeroModal: FunctionComponent = () => {
     }
 
     return () => document.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [scrollDistance])
 
   return (
     <div
-      ref={ref}
       className={`${
         scrollDistance <= 200 ? 'hero-modal-position' : 'hero-modal-center'
-      } w-full bg-lime p-6 sm:shadow-blue-dark-lg sm:w-96 transition-all ease-out duration-300`}
+      } w-full sm:w-96 transition-all ease-out duration-300`}
     >
-      <h3
-        className="text-center font-bold uppercase text-5xl text-transparent
-          text-stroke-blue-thin"
+      <div
+        ref={ref}
+        className="w-full p-6 opacity-0 transform translate-y-40 bg-lime sm:shadow-blue-dark-lg"
       >
-        Hold On
-      </h3>
-      <p className="text-blue-dark mt-2 mb-3">
-        By continuing you confirm you are 19+ years of age and legally able to
-        buy and consume alcohol.
-      </p>
-      <div className="flex justify-center">
-        <ShadowButton fn={() => dispatch(closeModal())}>Okay!</ShadowButton>
+        <h3
+          className="text-center font-bold uppercase text-5xl text-transparent
+          text-stroke-blue-thin"
+        >
+          Hold On
+        </h3>
+        <p className="text-blue-dark mt-2 mb-3">
+          By continuing you confirm you are 19+ years of age and legally able to
+          buy and consume alcohol.
+        </p>
+        <div className="flex justify-center">
+          <ShadowButton fn={() => dispatch(closeModal())}>Okay!</ShadowButton>
+        </div>
       </div>
     </div>
   )
