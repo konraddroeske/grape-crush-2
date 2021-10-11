@@ -249,7 +249,7 @@ const indexQuery = gql`
   ${infoBoxFragment}
 `
 
-export const missingImageQuery = gql`
+const assetCollectionQuery = gql`
   query Query($assetCollectionWhere: AssetFilter) {
     assetCollection(where: $assetCollectionWhere) {
       items {
@@ -262,6 +262,19 @@ export const missingImageQuery = gql`
     }
   }
 `
+
+const assetQuery = gql`
+  query Query($assetId: String!) {
+    asset(id: $assetId) {
+      title
+      url
+      width
+      height
+      description
+    }
+  }
+`
+
 // eslint-disable-next-line import/prefer-default-export
 export {
   globalQuery,
@@ -270,4 +283,6 @@ export {
   aboutQuery,
   indexQuery,
   pageQuery,
+  assetCollectionQuery,
+  assetQuery,
 }

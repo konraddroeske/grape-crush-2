@@ -19,7 +19,7 @@ import {
   setNav,
   setPages,
 } from '@redux/globalSlice'
-import { setInfoBoxes } from '@redux/indexSlice'
+import { setHouseWines, setInfoBoxes } from '@redux/indexSlice'
 import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
@@ -76,7 +76,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     categoryCollection,
   } = await fetchGlobalData()
 
-  const { infoBox1Collection } = await fetchIndexData()
+  const { infoBox1Collection, houseWineCollection } = await fetchIndexData()
 
   // Global
   store.dispatch(setAllTags(products))
@@ -89,6 +89,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   // Index
   store.dispatch(setInfoBoxes(infoBox1Collection))
+  store.dispatch(setHouseWines(houseWineCollection))
 
   return {
     props: {},

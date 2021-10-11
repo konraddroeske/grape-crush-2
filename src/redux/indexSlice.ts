@@ -2,29 +2,15 @@ import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import { ProductLowercase } from '@models/ambassador'
-import { IInfoBox1Fields } from '@models/contentful-graph'
+import { Asset, IInfoBox1Fields } from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
-
-// export const setNewArrivals = (newArrivals: any[]): AppThunk => {
-//   return async (dispatch) => {
-//     dispatch(
-//       productsSlice.actions.setNewArrivals({
-//         newArrivals,
-//       })
-//     )
-//   }
-// }
-// interface NewArrival {
-//   title: string
-//   url: string
-//   description: string
-// }
 
 interface IndexSlice {
   newArrivals: ProductLowercase[] | null
   infoBox1: IInfoBox1Fields | null
   infoBox2: IInfoBox1Fields | null
   infoBox3: IInfoBox1Fields | null
+  houseWines: Asset[]
 }
 
 const initialState: IndexSlice = {
@@ -32,6 +18,7 @@ const initialState: IndexSlice = {
   infoBox1: null,
   infoBox2: null,
   infoBox3: null,
+  houseWines: [],
 }
 
 export const indexSlice = createSlice({
@@ -59,6 +46,10 @@ export const indexSlice = createSlice({
         infoBox3,
       }
     },
+    setHouseWines(state, action) {
+      const { items } = action.payload
+      return { ...state, houseWines: items }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -70,6 +61,6 @@ export const indexSlice = createSlice({
   },
 })
 
-export const { setInfoBoxes } = indexSlice.actions
+export const { setInfoBoxes, setHouseWines } = indexSlice.actions
 
 export const selectIndex = () => (state: AppState) => state?.[indexSlice.name]

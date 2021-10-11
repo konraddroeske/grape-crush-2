@@ -14,7 +14,7 @@ import DesktopMenu from '@components/products-page/products-menu/DesktopMenu'
 import MobileMenu from '@components/products-page/products-menu/MobileMenu'
 import client from '@lib/apolloClient'
 import fetchGlobalData from '@lib/fetchGlobalData'
-import { missingImageQuery } from '@models/schema'
+import { assetCollectionQuery } from '@models/schema'
 import {
   setFooter,
   setHeroSlides,
@@ -108,7 +108,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   } = await fetchGlobalData()
 
   const { data: missingImageData } = await client.query({
-    query: missingImageQuery,
+    query: assetCollectionQuery,
     variables: {
       assetCollectionWhere: {
         title_contains: 'missing',

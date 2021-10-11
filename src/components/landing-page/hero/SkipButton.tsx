@@ -17,15 +17,15 @@ const SkipButton: FunctionComponent = () => {
         >
           <div
             className="h-9 overflow-hidden uppercase text-lime
-          text-xl px-2 font-bold"
+          text-xl px-3 font-bold"
           >
             <div
               className={`flex flex-col transition-all duration-300 ${
                 hover ? 'transform -translate-y-1/2' : ''
               }`}
             >
-              <div className="h-9 flex items-center">Skip To Wines</div>
-              <div className="h-9 flex items-center">Skip To Wines</div>
+              <div className="h-9 flex items-center">Skip To Shop</div>
+              <div className="h-9 flex items-center">Skip To Shop</div>
             </div>
           </div>
           <div className="w-14">

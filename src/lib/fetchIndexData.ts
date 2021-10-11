@@ -1,16 +1,26 @@
-import apolloClient from '@lib/apolloClient'
-import { indexQuery } from '@models/schema'
+import client from '@lib/apolloClient'
+import { assetCollectionQuery, indexQuery } from '@models/schema'
 
 export default async function fetchIndexData() {
-  const { data: indexData } = await apolloClient.query({
+  const { data: indexData } = await client.query({
     query: indexQuery,
   })
+
   const { infoBox1Collection } = indexData
 
-  // console.log('info box', infoBox1Collection)
+  const { data: houseWineImageData } = await client.query({
+    query: assetCollectionQuery,
+    variables: {
+      assetCollectionWhere: {
+        title_contains: 'house-wine-transparent',
+      },
+    },
+  })
+
+  const { assetCollection: houseWineCollection } = houseWineImageData
 
   return {
-    // newArrivals: productsWithNewKeys,
     infoBox1Collection,
+    houseWineCollection,
   }
 }
