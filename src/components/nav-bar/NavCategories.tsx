@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import ShadowLink from '@components/common/ShadowLink'
+import SvgPreview from '@components/nav-bar/SvgPreview'
 import { Asset } from '@models/contentful-graph'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
@@ -98,15 +99,16 @@ const NavCategories: FunctionComponent = () => {
             </div>
           </div>
           <div className="flex-grow relative pointer-events-none">
-            {svgMask && (
-              <div
-                className="z-50 mask-nav absolute left-0 top-0 w-full min-w-64 xl:transform xl:scale-110 2xl:scale-125"
-                style={{
-                  backgroundImage: `url(${categoryImage})`,
-                  maskImage: `url(${svgMask.url})`,
-                  WebkitMaskImage: `url(${svgMask.url})`,
-                }}
-              />
+            {svgMask && categoryImage && (
+              // <div
+              //   className="z-50 mask-nav absolute left-0 top-0 w-full min-w-64 xl:transform xl:scale-110 2xl:scale-125"
+              //   style={{
+              //     backgroundImage: `url(${categoryImage})`,
+              //     maskImage: `url(${svgMask.url})`,
+              //     WebkitMaskImage: `url(${svgMask.url})`,
+              //   }}
+              // />
+              <SvgPreview categoryImage={categoryImage} svgMask={svgMask} />
             )}
           </div>
         </div>
