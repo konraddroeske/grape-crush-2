@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import ContentfulImage from '@components/common/ContentfulImage'
 import { Asset } from '@models/contentful-graph'
 import { selectProducts } from '@redux/productsSlice'
 
@@ -16,20 +17,25 @@ const SvgPreview: FunctionComponent<Props> = ({ categoryImage, svgMask }) => {
   const { categories } = useSelector(selectProducts())
 
   return (
-    <ul className="z-50 absolute left-0 top-0 w-full h-full min-w-64 xl:scale-110 2xl:scale-125">
+    <ul
+      className="z-50 absolute left-0 top-0 w-full h-full min-w-64
+      xl:scale-110 2xl:scale-125"
+    >
       {categories.map((category) => {
         return (
           <li key={category.categoryName} className="h-full absolute inset-0">
             <div
-              className="w-full mask-nav transition duration-300"
+              className="relative w-full mask-nav transition duration-300"
               style={{
-                backgroundImage: `url(${category.image.url})`,
                 maskImage: `url(${svgMask.url})`,
                 WebkitMaskImage: `url(${svgMask.url})`,
                 opacity: categoryImage === category.image.url ? 1 : 0,
               }}
-            />
-            <div />
+            >
+              <div className="mask-background-nav h-full flex absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+                <ContentfulImage image={category.image} />
+              </div>
+            </div>
           </li>
         )
       })}
