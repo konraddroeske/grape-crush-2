@@ -69,8 +69,6 @@ const ProductCategories: FunctionComponent<Props> = (props) => {
     }
   }, [allTags, locale])
 
-  // console.log(parentTypeOptions)
-
   return (
     <div id="product-categories">
       <ProductsTags {...props} />

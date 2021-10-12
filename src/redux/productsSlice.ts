@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import deburr from 'lodash.deburr'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import { sortProducts } from '@lib/sortProducts'
@@ -167,7 +168,7 @@ export const productsSlice = createSlice({
 
       const searchTerms = productsSearch
         .split(' ')
-        .map((term) => term.toLowerCase())
+        .map((term) => deburr(term.toLowerCase()))
 
       const searchedProducts =
         productsSearch.length === 0
@@ -193,11 +194,11 @@ export const productsSlice = createSlice({
                   : false
 
               const inName = name
-                ? compareString(name.toLowerCase(), searchTerms)
+                ? compareString(deburr(name.toLowerCase()), searchTerms)
                 : false
 
               const inDescription = description
-                ? compareString(description.toLowerCase(), searchTerms)
+                ? compareString(deburr(description.toLowerCase()), searchTerms)
                 : false
 
               return inCountry || inTags || inName || inDescription
