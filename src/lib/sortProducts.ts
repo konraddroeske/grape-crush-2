@@ -1,7 +1,8 @@
 import { ProductLowercase } from '@models/ambassador'
 import type { SortOption } from '@redux/productsSlice'
 
-const cleanString = (str: string) => str.replace(/\W/g, '').trim().toLowerCase()
+export const cleanString = (str: string) =>
+  str.replace(/\W/g, '').trim().toLowerCase()
 
 // eslint-disable-next-line import/prefer-default-export
 export const sortProducts = (

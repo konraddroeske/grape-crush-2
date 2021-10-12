@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 import ProductsTags from '@components/products-page/products-bar/ProductsTags'
 import Category from '@components/products-page/products-menu/Category'
+import { cleanString } from '@lib/sortProducts'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
@@ -23,21 +24,20 @@ const ProductCategories: FunctionComponent<Props> = (props) => {
   const [varietalOptions, setVarietalOptions] = useState<string[]>([])
   const [priceRangeOptions, setPriceRangeOptions] = useState<string[]>([])
 
-  const sortTags = (tags: Record<string, number>) => {
-    const sortedByQuantity = Object.entries(tags)
+  const sortCount = (tags: Record<string, number>) => {
+    return Object.entries(tags)
       .sort((a, b) => {
         return b[1] - a[1]
       })
       .map((tag) => tag[0])
+  }
 
-    // const mostPopular =
-    //   sortedByQuantity.length > 14
-    //     ? sortedByQuantity.slice(0, 14)
-    //     : sortedByQuantity
-
-    // return mostPopular.sort()
-
-    return sortedByQuantity.sort()
+  const sortAlphabetically = (tags: Record<string, number>) => {
+    return Object.entries(tags)
+      .sort((a, b) => {
+        return cleanString(a[0]).localeCompare(b[0])
+      })
+      .map((tag) => tag[0])
   }
 
   const sortPriceRange = (tags: Record<string, number>) => {
@@ -51,12 +51,12 @@ const ProductCategories: FunctionComponent<Props> = (props) => {
       const { parentType, category, type, country, style, varietal, range } =
         allTags
 
-      const sortedParentType = sortTags(parentType)
-      const sortedCategory = sortTags(category)
-      const sortedType = sortTags(type)
-      const sortedCountry = sortTags(country)
-      const sortedStyle = sortTags(style)
-      const sortedVarietal = sortTags(varietal)
+      const sortedParentType = sortCount(parentType)
+      const sortedCategory = sortAlphabetically(category)
+      const sortedType = sortAlphabetically(type)
+      const sortedCountry = sortAlphabetically(country)
+      const sortedStyle = sortAlphabetically(style)
+      const sortedVarietal = sortAlphabetically(varietal)
       const sortedPriceRange = sortPriceRange(range)
 
       setParentTypeOptions(sortedParentType)
@@ -68,6 +68,8 @@ const ProductCategories: FunctionComponent<Props> = (props) => {
       setPriceRangeOptions(sortedPriceRange)
     }
   }, [allTags, locale])
+
+  // console.log(parentTypeOptions)
 
   return (
     <div id="product-categories">
