@@ -41,7 +41,9 @@ module.exports = {
       blue: {
         dark: '#2C148E',
         DEFAULT: '#4348E3',
-        light: 'rgba(44, 20, 142, 0.05)',
+        // light: 'rgba(44, 20, 142, 0.05)',
+        light: '#978bc7',
+        lightest: '#f4f3f9',
       },
       lime: {
         // DEFAULT: 'rgba(216, 255, 108, 1.0)',
@@ -78,6 +80,8 @@ module.exports = {
       blue: {
         dark: '#2C148E',
         DEFAULT: '#4348E3',
+        light: '#978bc7',
+        lightest: '#f4f3f9',
       },
       purple: {
         light: '#eee5fa',

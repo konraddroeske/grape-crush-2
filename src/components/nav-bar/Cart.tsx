@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
-import GreenCart from '../../assets/svgs/green-cart.svg'
+import CartIcon from '../../assets/svgs/cart.svg'
 
 const Cart: FunctionComponent = () => {
   const handleClick = () => {
@@ -14,10 +14,10 @@ const Cart: FunctionComponent = () => {
     <button
       type="button"
       aria-label="open cart"
-      className="flex"
+      className="flex justify-center items-center bg-lime w-8 h-8 rounded-full"
       onClick={() => handleClick()}
     >
-      <GreenCart className="w-8" />
+      <CartIcon className="w-4" />
     </button>
   )
 }

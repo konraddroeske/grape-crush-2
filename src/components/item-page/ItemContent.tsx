@@ -155,7 +155,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
           }}
         >
           {url && (
-            <div className="bg-blue-light pointer-events-auto hover:bg-lime-background py-6 h-122 xl:h-144">
+            <div className="bg-blue-lightest pointer-events-auto hover:bg-lime-background py-6 h-122 xl:h-144">
               <AmbassadorImage url={url} title={productName} />
             </div>
           )}

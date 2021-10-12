@@ -66,7 +66,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
         <Link href={`/item/${encodeURIComponent(name)}`}>
           <a>
             <div
-              className={`relative h-72 sm:h-72 lg:h-96 xl:h-96 2xl:h-122 relative bg-blue-light mb-6 
+              className={`relative h-72 sm:h-72 lg:h-96 xl:h-96 2xl:h-122 relative bg-blue-lightest mb-6 
                 ${url ? 'py-1 sm:py-2 lg:py-10 xl:py-12 2xl:py-14' : ''}`}
             >
               {url ? (

@@ -8,7 +8,7 @@ const DesktopMenu: FunctionComponent = () => {
   // const dispatch = useDispatch()
 
   return (
-    <div className="hidden ml-auto mr-6 lg:flex items-center">
+    <div className="hidden ml-auto mr-8 2xl:mr-16 lg:flex items-center">
       <div className="flex items-center">
         <MenuButtonDesktop>Shop</MenuButtonDesktop>
         <DesktopCategories />

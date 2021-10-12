@@ -11,6 +11,7 @@ import Logo from '@components/common/Logo'
 import MobileSpinner from '@components/landing-page/hero/MobileSpinner'
 import Cart from '@components/nav-bar/Cart'
 import DesktopMenu from '@components/nav-bar/DesktopMenu'
+import DesktopSearch from '@components/nav-bar/DesktopSearch'
 import Hamburger from '@components/nav-bar/Hamburger'
 import MobileMenu from '@components/nav-bar/MobileMenu'
 import { selectGlobal, setNavOpen } from '@redux/globalSlice'
@@ -59,7 +60,10 @@ const NavBar: FunctionComponent = () => {
         <MobileSpinner />
         <Logo />
         <DesktopMenu />
-        <Cart />
+        <div className="flex">
+          <DesktopSearch />
+          <Cart />
+        </div>
       </div>
       {mobileNavOpen && <MobileMenu />}
     </nav>
