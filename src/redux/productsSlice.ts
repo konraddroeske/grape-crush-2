@@ -92,7 +92,22 @@ export const productsSlice = createSlice({
   reducers: {
     setCategories(state, action) {
       const { items } = action.payload
-      return { ...state, categories: items }
+
+      const { parentType, category, type } = { ...state.allTags }
+      const merged = { ...parentType, ...category, ...type }
+
+      const categoriesWithCount = items.map((item: ICategoryFields) => {
+        const count = merged[item.categoryName.toLowerCase()]
+        return { ...item, count: count || 0 }
+      })
+
+      const sortedCategories = categoriesWithCount.sort(
+        (a: ICategoryFields, b: ICategoryFields) => {
+          return b.count - a.count
+        }
+      )
+
+      return { ...state, categories: sortedCategories }
     },
     setProducts(state, action) {
       return { ...state, products: action.payload }

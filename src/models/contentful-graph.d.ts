@@ -30,6 +30,7 @@ export interface ICategoryFields {
   image: Asset
   categoryName: string
   link: string
+  count: number
 }
 
 export interface IContactFields {

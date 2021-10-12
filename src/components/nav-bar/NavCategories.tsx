@@ -17,6 +17,7 @@ const NavCategories: FunctionComponent = () => {
     undefined
   )
   const [svgMask, setSvgMask] = useState<Asset | null>(null)
+
   const [topStyles, setTopStyles] = useState<string[]>([])
 
   const handleHover = (url: string | undefined) => {
@@ -34,6 +35,7 @@ const NavCategories: FunctionComponent = () => {
   }, [categories])
 
   useEffect(() => {
+    // console.log(allTags)
     if (allTags) {
       const { style } = allTags
 
