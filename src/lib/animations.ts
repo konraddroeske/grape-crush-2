@@ -1,3 +1,5 @@
+import { MutableRefObject } from 'react'
+
 import gsap from 'gsap'
 
 export const buttonExpand = (
@@ -89,5 +91,74 @@ export const headlineTextOut = (splitHeadline: SplitText) => {
       ease: `back.out(${ease})`,
       delay,
     })
+  })
+}
+
+export const hamburgerOpen = (
+  topBar: MutableRefObject<HTMLDivElement | null>,
+  midBar: MutableRefObject<HTMLDivElement | null>,
+  lowBar: MutableRefObject<HTMLDivElement | null>,
+  duration: number
+) => {
+  const topTl = gsap.timeline()
+  topTl.to(topBar.current, {
+    top: '50%',
+    transform: 'translateY(-50%)',
+    duration,
+  })
+  topTl.to(topBar.current, {
+    rotate: '45deg',
+    duration,
+  })
+
+  const lowTl = gsap.timeline()
+  lowTl.to(lowBar.current, {
+    bottom: '50%',
+    transform: 'translateY(50%)',
+    duration,
+  })
+  lowTl.to(lowBar.current, {
+    rotate: '-45deg',
+    duration,
+  })
+
+  gsap.to(midBar.current, {
+    opacity: 0,
+    duration,
+  })
+}
+
+export const hamburgerClose = (
+  topBar: MutableRefObject<HTMLDivElement | null>,
+  midBar: MutableRefObject<HTMLDivElement | null>,
+  lowBar: MutableRefObject<HTMLDivElement | null>,
+  duration: number
+) => {
+  const topTl = gsap.timeline()
+  topTl.to(topBar.current, {
+    rotate: '0deg',
+    duration,
+  })
+  topTl.to(topBar.current, {
+    top: 0,
+    transform: 'translateY(0)',
+    duration,
+  })
+
+  const lowTl = gsap.timeline()
+  lowTl.to(lowBar.current, {
+    rotate: '0deg',
+    duration,
+  })
+  lowTl.to(lowBar.current, {
+    bottom: 0,
+    transform: 'translateY(0)',
+    duration,
+  })
+
+  gsap.to(midBar.current, {
+    opacity: 1,
+    duration,
+    delay: duration,
   })
 }
