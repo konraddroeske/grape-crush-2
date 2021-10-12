@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 
 import Link from 'next/link'
 
+import AnimatedText from '@components/common/AnimatedText'
 import ShadowLink from '@components/common/ShadowLink'
 
 const Description: FunctionComponent = () => {
@@ -21,15 +22,16 @@ const Description: FunctionComponent = () => {
         </h2>
       </div>
       <div className="pt-4 lg:flex lg:flex-col lg:justify-center w-full lg:w-1/2">
-        <p
-          id="description-text"
-          className="font-headline text-blue-dark text-base sm:text-xl font-medium
-        xl:text-2xl 2xl:text-3xl"
-        >
+        {/* <p className="font-headline text-blue-dark text-base sm:text-xl font-medium xl:text-2xl 2xl:text-3xl"> */}
+        {/*  We work with some of our favourite sommeliers and local{' '} */}
+        {/*  <span className="bg-lime">wine enthusiasts</span> to bring you a */}
+        {/*  curated selection of natural, biodynamic and classic wines. */}
+        {/* </p> */}
+        <AnimatedText textStyles="font-headline text-blue-dark text-base sm:text-xl font-medium xl:text-2xl 2xl:text-3xl">
           We work with some of our favourite sommeliers and local{' '}
           <span className="bg-lime">wine enthusiasts</span> to bring you a
           curated selection of natural, biodynamic and classic wines.
-        </p>
+        </AnimatedText>
         <div className="my-4 xl:my-6 2xl:my-8 flex">
           <Link href="/products">
             <a>

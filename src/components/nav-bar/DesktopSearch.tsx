@@ -58,7 +58,11 @@ const DesktopSearch: FunctionComponent = () => {
   }, [navOpen, expanded])
 
   return (
-    <div className="hidden lg:block mr-4 xl:mr-6">
+    <div
+      className={`hidden lg:block ${
+        router.route === '/products' ? 'mr-0' : 'mr-4 xl:mr-6'
+      }`}
+    >
       <form
         ref={formRef}
         className="justify-center items-center h-8 rounded-full transition-all duration-300"

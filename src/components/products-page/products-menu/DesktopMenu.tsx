@@ -7,6 +7,8 @@ import React, {
 } from 'react'
 
 import { gsap } from 'gsap'
+import { useRouter } from 'next/dist/client/router'
+
 import { useSelector } from 'react-redux'
 
 import SimpleBarReact from 'simplebar-react'
@@ -19,6 +21,7 @@ import { selectProducts } from '@redux/productsSlice'
 const DesktopMenu: FunctionComponent = () => {
   const { menuOpen } = useSelector(selectProducts())
 
+  const router = useRouter()
   const containerRef = useRef<HTMLDivElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -60,6 +63,10 @@ const DesktopMenu: FunctionComponent = () => {
   }, [categoriesHeight, isSticky])
 
   useEffect(() => {
+    handleHeight()
+  }, [handleHeight, router])
+
+  useEffect(() => {
     if (window) {
       handleHeight()
       window.addEventListener('scroll', handleHeight)
@@ -68,17 +75,6 @@ const DesktopMenu: FunctionComponent = () => {
       window.removeEventListener('scroll', handleHeight)
     }
   }, [handleHeight])
-
-  // useEffect(() => {
-  //   if (Object.values(router.query).length > 0) {
-  //     const { page, ...tags } = router.query
-  //
-  //     dispatch(handlePage(page))
-  //     dispatch(handleTags(tags))
-  //   } else {
-  //     dispatch(resetTags())
-  //   }
-  // }, [router, dispatch])
 
   const [margin, setMargin] = useState(0)
 

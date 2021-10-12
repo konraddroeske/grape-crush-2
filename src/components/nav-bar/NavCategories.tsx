@@ -119,7 +119,7 @@ const NavCategories: FunctionComponent = () => {
                       <a>
                         <div
                           className="leading-5 text-white hover:text-lime
-                    text-left text-base font-medium uppercase"
+                    text-left text-base font-medium uppercase inline-block"
                         >
                           {style}
                         </div>
