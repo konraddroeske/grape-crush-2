@@ -35,12 +35,12 @@ const ProductsSort: FunctionComponent = () => {
   }, [expanded])
 
   const sortOptions = [
+    'date, new to old',
+    'date, old to new',
     'alphabetical, a - z',
     'alphabetical, z - a',
     'price, high to low',
     'price, low to high',
-    'date, new to old',
-    'date, old to new',
   ] as SortOption[]
 
   return (
