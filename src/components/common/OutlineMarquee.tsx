@@ -36,11 +36,13 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   const initAnimation = useCallback(() => {
     const [textElement] = textRefs.current
 
-    const dimensions = textElement ? textElement.getBoundingClientRect() : null
+    // const dimensions = textElement ? textElement.getBoundingClientRect() : null
 
-    if (!dimensions) return
+    if (!textElement) return
 
-    const { width, height } = dimensions
+    // const { width, height } = dimensions
+    const width = textElement.offsetWidth
+    const height = textElement.offsetHeight
 
     gsap.set(textRefs.current, {
       x: (i) => i * width,
@@ -89,6 +91,7 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   }, [initAnimation, textArr])
 
   useEffect(() => {
+    // console.log('checking screen size')
     updateAnimation()
   }, [isDesktop, isDesktopXl, isDesktop2Xl, updateAnimation])
 
