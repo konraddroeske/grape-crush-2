@@ -15,9 +15,11 @@ import NewLogo from '@assets/svgs/new-logo.svg'
 import SpinningStar from '@components/landing-page/hero/SpinningStar'
 import { remToPixels } from '@lib/remToPixels'
 import { selectGlobal } from '@redux/globalSlice'
+import { selectIndex } from '@redux/indexSlice'
 
 const DesktopSpinner: FunctionComponent = () => {
   const { navOpen } = useSelector(selectGlobal())
+  const { bgGreen } = useSelector(selectIndex())
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
   const [isSticky, setIsSticky] = useState<boolean>(false)
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -104,6 +106,18 @@ const DesktopSpinner: FunctionComponent = () => {
   const handleClick = () => {
     gsap.to(window, 0.3, { scrollTo: 0 })
   }
+
+  useEffect(() => {
+    if (bgGreen) {
+      gsap.to('.spinner-logo-svg path', {
+        fill: '#dfff85',
+      })
+    } else {
+      gsap.to('.spinner-logo-svg path', {
+        fill: '#2c148e',
+      })
+    }
+  }, [bgGreen])
 
   return (
     <div

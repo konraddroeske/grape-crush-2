@@ -8,11 +8,13 @@ import { useSelector } from 'react-redux'
 import NewLogo from '@assets/svgs/new-logo.svg'
 import SpinningStar from '@components/landing-page/hero/SpinningStar'
 import { selectGlobal } from '@redux/globalSlice'
+import { selectIndex } from '@redux/indexSlice'
 
 const MobileSpinner: FunctionComponent = () => {
   const router = useRouter()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const { navOpen } = useSelector(selectGlobal())
+  const { bgGreen } = useSelector(selectIndex())
   const starRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -38,6 +40,18 @@ const MobileSpinner: FunctionComponent = () => {
       scrollTo: 0,
     })
   }
+
+  useEffect(() => {
+    if (bgGreen) {
+      gsap.to('.svg-mobile-logo path', {
+        fill: '#dfff85',
+      })
+    } else {
+      gsap.to('.svg-mobile-logo path', {
+        fill: '#2c148e',
+      })
+    }
+  }, [bgGreen])
 
   return (
     <div

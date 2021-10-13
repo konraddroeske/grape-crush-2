@@ -4,6 +4,8 @@ import gsap from 'gsap'
 
 import { useInView } from 'react-intersection-observer'
 
+import { useDispatch, useSelector } from 'react-redux'
+
 import Seo from '@components/common/Seo'
 import Description from '@components/landing-page/description/Description'
 import NewFeaturesSlideshow from '@components/landing-page/features/NewFeaturesSlideshow'
@@ -19,19 +21,30 @@ import {
   setNav,
   setPages,
 } from '@redux/globalSlice'
-import { setHouseWines, setInfoBoxes } from '@redux/indexSlice'
+import {
+  selectIndex,
+  setBgGreen,
+  setHouseWines,
+  setInfoBoxes,
+} from '@redux/indexSlice'
 import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 const Home: FunctionComponent = () => {
   const mainRef = useRef<HTMLElement>(null)
+  const { bgGreen } = useSelector(selectIndex())
+  const dispatch = useDispatch()
 
   const { ref, inView } = useInView({
     threshold: 0.25,
   })
 
   useEffect(() => {
-    if (inView) {
+    dispatch(setBgGreen(inView))
+  }, [dispatch, inView])
+
+  useEffect(() => {
+    if (bgGreen) {
       gsap.to(mainRef.current, {
         backgroundColor: '#dfff85',
       })
@@ -40,7 +53,7 @@ const Home: FunctionComponent = () => {
         backgroundColor: '#ffffff',
       })
     }
-  }, [inView])
+  }, [bgGreen])
 
   return (
     <>

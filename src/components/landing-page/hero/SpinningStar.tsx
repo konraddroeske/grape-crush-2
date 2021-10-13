@@ -4,11 +4,16 @@ import { gsap } from 'gsap'
 
 import { useInView } from 'react-intersection-observer'
 
+import { useSelector } from 'react-redux'
+
+import { selectIndex } from '@redux/indexSlice'
+
 import Star from '../../../assets/svgs/star.svg'
 
 const SpinningStar: FunctionComponent = () => {
   const starRef = useRef<HTMLDivElement | null>(null)
   const animation = useRef<gsap.core.Timeline | null>(null)
+  const { bgGreen } = useSelector(selectIndex())
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -45,10 +50,22 @@ const SpinningStar: FunctionComponent = () => {
     updateAnimation()
   }, [])
 
+  useEffect(() => {
+    if (bgGreen) {
+      gsap.to('.svg-spinning-star path', {
+        fill: '#2c148e',
+      })
+    } else {
+      gsap.to('.svg-spinning-star path', {
+        fill: '#dfff85',
+      })
+    }
+  }, [bgGreen])
+
   return (
     <div ref={ref}>
       <div ref={starRef} className="">
-        <Star className="w-full" />
+        <Star className="w-full svg-spinning-star" />
       </div>
     </div>
   )

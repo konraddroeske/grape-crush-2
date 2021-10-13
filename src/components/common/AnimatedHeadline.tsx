@@ -30,8 +30,8 @@ const AnimatedHeadline: FunctionComponent<Props> = ({
     })
 
     splitHeadline.chars.forEach((char) => {
-      const yPos = getRandomInRange(3, 8)
-      const xPos = getRandomInRange(-3, 3)
+      const yPos = getRandomInRange(50, 100)
+      const xPos = getRandomInRange(-50, 50)
       const scale = getRandomInRange(0.1, 0.3)
       const ease = getRandomInRange(1.5, 2.5)
       const delay = getRandomInRange(0.2, 0.5)
@@ -44,8 +44,8 @@ const AnimatedHeadline: FunctionComponent<Props> = ({
       tl.from(char, {
         duration: 0.75 - delay,
         opacity: 0,
-        y: `${yPos}rem`,
-        x: `${xPos}rem`,
+        y: `${yPos}%`,
+        x: `${xPos}%`,
         scale,
         ease: `back.out(${ease})`,
         delay,
