@@ -1,4 +1,10 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import gsap from 'gsap'
 import { SplitText } from 'gsap/dist/SplitText'
@@ -31,21 +37,30 @@ const AnimatedText: FunctionComponent<Props> = ({
   const childText = useRef<SplitText | null>(null)
   const parentText = useRef<SplitText | null>(null)
 
+  const handleSplit = useCallback(async () => {
+    return document.fonts.ready
+  }, [])
+
   useEffect(() => {
     gsap.registerPlugin(SplitText)
+    handleSplit().then(() => {
+      if (!childText.current) {
+        childText.current = new SplitText(textRef.current, {
+          type: 'lines',
+          position: 'relative',
+          linesClass: `child-text-${id} transform translate-y-11/10 whitespace-nowrap`,
+        })
+      }
 
-    childText.current = new SplitText(textRef.current, {
-      type: 'lines',
-      position: 'relative',
-      linesClass: `child-text-${id} transform translate-y-11/10 whitespace-nowrap`,
+      if (!parentText.current) {
+        parentText.current = new SplitText(textRef.current, {
+          type: 'lines',
+          position: 'relative',
+          linesClass: `parent-text-${id} overflow-hidden`,
+        })
+      }
     })
-
-    parentText.current = new SplitText(textRef.current, {
-      type: 'lines',
-      position: 'relative',
-      linesClass: `parent-text-${id} overflow-hidden`,
-    })
-  }, [id])
+  }, [id, handleSplit])
 
   useEffect(() => {
     if (inView && parentText.current && childText.current) {
@@ -69,7 +84,7 @@ const AnimatedText: FunctionComponent<Props> = ({
   }, [inView, id, delay])
 
   return (
-    <div ref={ref} className="w-full">
+    <div ref={ref} className="">
       {
         {
           p: (
