@@ -41,7 +41,6 @@ const FeaturesText: FunctionComponent<Props> = ({ upcomingSlide, slides }) => {
       const yPos = getRandomInRange(30, 40)
       const xPos = getRandomInRange(-20, 20)
       const scale = getRandomInRange(0.1, 0.3)
-      const ease = getRandomInRange(1, 1.3)
 
       gsap.set(splitItems.words, {
         display: 'block',
@@ -52,7 +51,6 @@ const FeaturesText: FunctionComponent<Props> = ({ upcomingSlide, slides }) => {
         y: `${yPos}%`,
         x: `${xPos}%`,
         scale,
-        ease: `back.out(${ease})`,
       })
 
       return splitItems

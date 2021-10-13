@@ -246,7 +246,7 @@ const NewFeaturesSlideshow: FunctionComponent = () => {
       type: 'x',
       trigger: list.current,
       inertia: true,
-      dragResistance: 0.65,
+      dragResistance: 0.6,
       onPress() {
         slideAnimation.current.kill()
         // eslint-disable-next-line react/no-this-in-sfc

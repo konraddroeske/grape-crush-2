@@ -76,17 +76,17 @@ export const headlineTextIn = (splitHeadline: SplitText) => {
 
 export const headlineTextOut = (splitHeadline: SplitText) => {
   splitHeadline.chars.forEach((char) => {
-    const yPos = getRandomInRange(3, 8)
-    const xPos = getRandomInRange(-3, 3)
+    const yPos = getRandomInRange(30, 40)
+    const xPos = getRandomInRange(-20, 20)
     const scale = getRandomInRange(0.1, 0.3)
-    const ease = getRandomInRange(1.5, 2.5)
+    const ease = getRandomInRange(1, 1.3)
     const delay = getRandomInRange(0, 0.1)
 
     gsap.to(char, {
       duration: 0.3 - delay,
       opacity: 0,
-      y: `${yPos}rem`,
-      x: `${xPos}rem`,
+      y: `${yPos}%`,
+      x: `${xPos}%`,
       scale,
       ease: `back.out(${ease})`,
       delay,

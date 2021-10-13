@@ -36,13 +36,9 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   const initAnimation = useCallback(() => {
     const [textElement] = textRefs.current
 
-    // const dimensions = textElement ? textElement.getBoundingClientRect() : null
-
     if (!textElement) return
 
-    // const { width, height } = dimensions
-    const width = textElement.offsetWidth
-    const height = textElement.offsetHeight
+    const { offsetWidth: width, offsetHeight: height } = textElement
 
     gsap.set(textRefs.current, {
       x: (i) => i * width,
