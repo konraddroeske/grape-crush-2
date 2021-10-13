@@ -44,7 +44,7 @@ const PageNav: FunctionComponent = () => {
   }
 
   return (
-    <nav className="flex justify-center items-center mt-8">
+    <nav className="flex justify-center items-center mt-16">
       <button
         type="button"
         className={`flex items-center ${
