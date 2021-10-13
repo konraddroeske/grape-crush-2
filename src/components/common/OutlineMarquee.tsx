@@ -110,7 +110,7 @@ const OutlineMarquee: FunctionComponent<Props> = ({
             return (
               <li
                 key={key}
-                className="uppercase text-7xl lg:text-8xl xl:text-9xl 2xl:text-10xl italic absolute px-2 font-bold
+                className="uppercase no-select text-7xl lg:text-8xl xl:text-9xl 2xl:text-10xl italic absolute px-2 font-bold
               text-transparent text-stroke-blue whitespace-nowrap hover:text-blue-dark cursor-pointer"
                 ref={(el) => {
                   textRefs.current[index] = el

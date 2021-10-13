@@ -21,7 +21,7 @@ const InfoBox1: FunctionComponent = () => {
     body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl max-w-screen-2xl mx-auto"
     >
       <div className="flex sm:items-center w-full sm:col-start-2">
-        <div className="sm:pr-16 xl:pr-20">
+        <div className="w-full sm:pr-16 xl:pr-20">
           <InfoBoxTitle>{title}</InfoBoxTitle>
           <InfoBoxText>{description}</InfoBoxText>
           <div className="flex justify-center sm:mt-0 sm:justify-start">
