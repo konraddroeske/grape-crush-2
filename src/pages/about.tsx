@@ -5,6 +5,7 @@ import { BLOCKS, MARKS } from '@contentful/rich-text-types'
 import { useSelector } from 'react-redux'
 
 import TeamMembers from '@components/about-page/TeamMembers'
+import AnimatedText from '@components/common/AnimatedText'
 import ContentfulImage from '@components/common/ContentfulImage'
 import ContentfulRichText from '@components/common/ContentfulRichText'
 import OutlineMarquee from '@components/common/OutlineMarquee'
@@ -44,17 +45,18 @@ const About: FunctionComponent = () => {
   const options: Options = {
     renderMark: {
       [MARKS.BOLD]: (text) => (
-        <span className="inline-block bg-lime">{text}</span>
+        <span className="bg-lime whitespace-nowrap">{text}</span>
       ),
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p
-          className="font-headline font-medium text-base text-blue-dark
+        <AnimatedText
+          blockType="p"
+          textStyles="font-headline font-medium text-base text-blue-dark
         xs:text-base sm:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl"
         >
           {children}
-        </p>
+        </AnimatedText>
       ),
     },
   }
@@ -65,12 +67,13 @@ const About: FunctionComponent = () => {
       <div className="min-h-screen pt-24">
         {headline && (
           <section className="relative body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
-            <h1
-              className="relative z-10 uppercase text-4xl text-blue-dark font-bold mb-36
+            <AnimatedText
+              blockType="h1"
+              textStyles="relative z-10 uppercase text-4xl text-blue-dark font-bold mb-36
           xs:text-5xl sm:text-6xl lg:text-7xl lg:w-9/12 lg:pt-28 xl:text-8xl 2xl:text-9xl"
             >
               {headline}
-            </h1>
+            </AnimatedText>
             <Star
               className="w-60 absolute bottom-0 right-0 transform translate-y-1/2
           lg:w-4/12 lg:bottom-auto lg:top-0 lg:translate-y-0 lg:right-12 xl:right-24
@@ -109,13 +112,13 @@ const About: FunctionComponent = () => {
           </div>
           {paragraph2 && (
             <div className="my-4 flex items-center sm:my-0 sm:grid-col-1 sm:grid-row-1">
-              <div className="relative">
+              <div className="relative w-full">
                 <ContentfulRichText
                   options={options}
                   richText={paragraph2.json}
                 />
                 <AboutSwirl
-                  className="absolute bottom-0 transform translate-y-3/4
+                  className="hidden sm:block absolute bottom-0 transform translate-y-3/4
               left-1/2 w-1/2"
                 />
               </div>

@@ -4,6 +4,7 @@ import { Options } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, MARKS } from '@contentful/rich-text-types'
 import { useSelector } from 'react-redux'
 
+import AnimatedText from '@components/common/AnimatedText'
 import ContentfulImage from '@components/common/ContentfulImage'
 import ContentfulRichText from '@components/common/ContentfulRichText'
 
@@ -31,12 +32,13 @@ const ContactEmail: FunctionComponent = () => {
     },
     renderNode: {
       [BLOCKS.HEADING_2]: (node, children) => (
-        <h2
-          className="uppercase text-4xl font-bold text-center text-blue-dark mb-1
+        <AnimatedText
+          blockType="h2"
+          textStyles="uppercase text-4xl font-bold text-center text-blue-dark mb-1
         xs:text-5xl sm:text-left sm:text-5xl lg:text-6xl xl:text-6xl 2xl:text-8xl"
         >
           {children}
-        </h2>
+        </AnimatedText>
       ),
     },
   }

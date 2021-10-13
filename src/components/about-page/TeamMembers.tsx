@@ -11,8 +11,8 @@ const TeamMembers: FunctionComponent = () => {
 
   return (
     <ul
-      className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl
-    lg:grid lg:grid-cols-3 lg:gap-x-8"
+      className="py-6 body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl
+    grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-12 lg:pb-0"
     >
       {teamMembers.length > 0 &&
         teamMembers
@@ -20,7 +20,7 @@ const TeamMembers: FunctionComponent = () => {
           .reverse()
           .map((teamMember) => {
             return (
-              <li key={teamMember.name} className="py-6">
+              <li key={teamMember.name} className="">
                 {teamMember.image && (
                   <div className="w-10/12 mx-auto mb-6 lg:w-8/12">
                     <ContentfulImage image={teamMember.image} />

@@ -15,15 +15,7 @@ const AlternatingTitle: FunctionComponent = () => {
   // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 
   const titles = useMemo(
-    () => [
-      'Natural',
-      'Organic',
-      'Tasty',
-      'Groovy',
-      'Local',
-      'Wild',
-      'Crushable',
-    ],
+    () => ['Natural', 'Organic', 'Local', 'Classic', 'Crushable'],
     []
   )
 

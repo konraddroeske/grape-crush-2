@@ -39,7 +39,7 @@ const Contact: FunctionComponent = () => {
         </div>
         <ContactInfo />
         <div id="contact" className="overflow-hidden">
-          <OutlineMarquee text="Get in touch us" direction="-=" />
+          <OutlineMarquee text="Get in touch" direction="-=" />
         </div>
         <ContactEmail />
         <ContactForm />

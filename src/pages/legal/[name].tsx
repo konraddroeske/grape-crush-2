@@ -88,7 +88,10 @@ const LegalPage: FunctionComponent = () => {
             <OutlineMarquee text={title || 'Legal Page'} />
           </div>
         )}
-        <div className="py-6 body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+        <div
+          className="py-6 body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl
+        2xl:body-gutter-2xl max-w-screen-xl mx-auto"
+        >
           {document && (
             <ContentfulRichText options={options} richText={document} />
           )}

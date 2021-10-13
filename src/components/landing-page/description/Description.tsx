@@ -12,25 +12,21 @@ const Description: FunctionComponent = () => {
       xl:body-gutter-xl pt-6 lg:pt-12 2xl:pt-24"
     >
       <div className="w-full lg:w-1/2 lg:pr-8">
-        <h2
-          className="flex flex-col text-4xl xs:text-5xl sm:text-6xl text-blue-dark font-bold
+        <AnimatedText
+          textStyles="flex flex-col text-4xl xs:text-5xl sm:text-6xl text-blue-dark font-bold
         uppercase xl:text-7xl 2xl:text-8xl"
+          blockType="h2"
         >
-          <span>Find your</span>
-          <span>next grape</span>
-          <span>crush</span>
-        </h2>
+          <span className="block">Find your</span>
+          <span className="block">next grape</span>
+          <span className="block">crush</span>
+        </AnimatedText>
       </div>
       <div className="pt-4 lg:flex lg:flex-col lg:justify-center w-full lg:w-1/2">
-        {/* <p className="font-headline text-blue-dark text-base sm:text-xl font-medium xl:text-2xl 2xl:text-3xl"> */}
-        {/*  We work with some of our favourite sommeliers and local{' '} */}
-        {/*  <span className="bg-lime">wine enthusiasts</span> to bring you a */}
-        {/*  curated selection of natural, biodynamic and classic wines. */}
-        {/* </p> */}
         <AnimatedText textStyles="font-headline text-blue-dark text-base sm:text-xl font-medium xl:text-2xl 2xl:text-3xl">
-          We work with some of our favourite sommeliers and local{' '}
-          <span className="bg-lime">wine enthusiasts</span> to bring you a
-          curated selection of natural, biodynamic and classic wines.
+          With one of Ontario's largest natural wines selection, shop{' '}
+          <span className="bg-lime">from over 200+</span> natural, biodynamic
+          and classic wines for any budget.
         </AnimatedText>
         <div className="my-4 xl:my-6 2xl:my-8 flex">
           <Link href="/products">

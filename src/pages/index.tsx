@@ -8,7 +8,7 @@ import Seo from '@components/common/Seo'
 import Description from '@components/landing-page/description/Description'
 import NewFeaturesSlideshow from '@components/landing-page/features/NewFeaturesSlideshow'
 import Hero from '@components/landing-page/hero/Hero'
-import NewInfoBox1 from '@components/landing-page/info-boxes/info-box-1/NewInfoBox1'
+import InfoBox1 from '@components/landing-page/info-boxes/info-box-1/InfoBox1'
 import ShopByTypeGrid from '@components/landing-page/shop-by-type/ShopByTypeGrid'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchIndexData from '@lib/fetchIndexData'
@@ -59,7 +59,7 @@ const Home: FunctionComponent = () => {
           {/* <FeaturesSlideshow /> */}
         </div>
         {/* <NewInfoBox3 /> */}
-        <NewInfoBox1 />
+        <InfoBox1 />
       </main>
     </>
   )
