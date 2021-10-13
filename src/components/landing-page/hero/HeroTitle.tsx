@@ -1,19 +1,18 @@
 import React, { FunctionComponent } from 'react'
 
-import { useInView } from 'react-intersection-observer'
-
 import AnimatedHeadline from '@components/common/AnimatedHeadline'
 import AlternatingTitle from '@components/landing-page/hero/AlternatingTitle'
 import LowerTitle from '@components/landing-page/hero/LowerTitle'
 
 const HeroTitle: FunctionComponent = () => {
-  const { ref, inView } = useInView({
-    threshold: 0,
-  })
+  // const { ref, inView } = useInView({
+  //   threshold: 0,
+  // })
   return (
-    <div ref={ref}>
+    // <div ref={ref}>
+    <div>
       <h1 className="title-size uppercase font-bold flex flex-col text-center lg:text-left">
-        {inView && <AlternatingTitle />}
+        <AlternatingTitle />
         <div className="flex flex-col lg:flex-row">
           <AnimatedHeadline text="Wines" textStyle="text-white" />
           <span className="hidden lg:block">&nbsp;</span>

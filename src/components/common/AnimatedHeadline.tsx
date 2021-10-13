@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
 import gsap from 'gsap'
+
 import { SplitText } from 'gsap/dist/SplitText'
 
 import { getRandomInRange } from '@lib/animations'

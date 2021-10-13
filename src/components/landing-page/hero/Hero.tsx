@@ -25,19 +25,17 @@ const Hero: FunctionComponent = () => {
         className="py-16 h-screen relative flex body-gutter-sm lg:body-gutter-lg
       xl:body-gutter-xl 2xl:body-gutter-2xl"
       >
-        {seoImage && (
-          <div className="relative flex w-full">
-            <ContentfulImage image={seoImage} priority />
-            {fontsLoaded && (
-              <div className="absolute title-position">
-                <HeroTitle />
-              </div>
-            )}
-            <div className="hidden lg:block lg:absolute lg:bottom-6 lg:right-6">
-              <SkipButton />
+        <div className="relative flex w-full">
+          {seoImage && <ContentfulImage image={seoImage} priority />}
+          {fontsLoaded && (
+            <div className="absolute title-position">
+              <HeroTitle />
             </div>
+          )}
+          <div className="hidden lg:block lg:absolute lg:bottom-6 lg:right-6">
+            <SkipButton />
           </div>
-        )}
+        </div>
         <div className="block lg:hidden absolute left-10 bottom-20 transform translate-y-2 -translate-x-2">
           <HeroMarquee />
         </div>

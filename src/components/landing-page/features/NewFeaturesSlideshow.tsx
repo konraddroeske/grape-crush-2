@@ -339,7 +339,7 @@ const NewFeaturesSlideshow: FunctionComponent = () => {
                 ))}
               </ul>
               <SlideButtons handleSlide={animateSlides} />
-              <div className="absolute circle-position">
+              <div className="absolute circle-position pointer-events-none">
                 <SpinningCircle direction={circleDirection} />
               </div>
             </div>
