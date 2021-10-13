@@ -1,10 +1,4 @@
-import React, {
-  FunctionComponent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import gsap from 'gsap'
 import { SplitText } from 'gsap/dist/SplitText'
@@ -37,13 +31,9 @@ const AnimatedText: FunctionComponent<Props> = ({
   const childText = useRef<SplitText | null>(null)
   const parentText = useRef<SplitText | null>(null)
 
-  const checkFontsLoaded = useCallback(async () => {
-    return document.fonts.ready
-  }, [])
-
   useEffect(() => {
     gsap.registerPlugin(SplitText)
-    checkFontsLoaded().then(() => {
+    document.fonts.ready.then(() => {
       if (!childText.current) {
         childText.current = new SplitText(textRef.current, {
           type: 'lines',
@@ -60,7 +50,7 @@ const AnimatedText: FunctionComponent<Props> = ({
         })
       }
     })
-  }, [id, checkFontsLoaded])
+  }, [id])
 
   useEffect(() => {
     if (inView && parentText.current && childText.current) {

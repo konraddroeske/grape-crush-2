@@ -81,18 +81,24 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   }, [text])
 
   useEffect(() => {
+    if (window && textArr && textRefs.current.length > 0) {
+      document.fonts.ready.then(() => initAnimation())
+    }
+  }, [initAnimation, textArr])
+
+  useEffect(() => {
     updateAnimation()
   }, [isDesktop, isDesktopXl, isDesktop2Xl, updateAnimation])
 
   useEffect(() => {
-    if (inView && !animation.current) {
-      initAnimation()
-    } else if (!inView && animation.current) {
+    if (!inView && animation.current) {
       animation.current.pause()
-    } else if (inView && animation.current) {
+    }
+
+    if (inView && animation.current) {
       animation.current.resume()
     }
-  }, [inView, initAnimation])
+  }, [inView])
 
   return (
     <div ref={ref} className="">

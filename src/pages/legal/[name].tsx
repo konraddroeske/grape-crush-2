@@ -68,7 +68,7 @@ const LegalPage: FunctionComponent = () => {
       ),
       [INLINES.HYPERLINK]: (node, children) => (
         <a
-          className="font-bold"
+          className="font-bold dont-break-out"
           href={`${children}`}
           target="_blank"
           rel="noopener noreferrer"
