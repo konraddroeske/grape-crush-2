@@ -13,7 +13,7 @@ const InfoBoxText: FunctionComponent<Props> = ({ children }) => {
     <AnimatedText
       blockType="p"
       textStyles="font-headline text-blue-dark text-lg font-medium leading-tight
-    text-center my-4 sm:text-left lg:text-lg xl:text-xl"
+    text-center my-4 sm:text-left lg:text-2xl xl:text-2xl"
       delay={0.5}
     >
       {children}

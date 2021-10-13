@@ -82,7 +82,7 @@ const Mailer: FunctionComponent = () => {
       className="flex flex-col justify-center w-full body-gutter-sm
     border-t border-b border-blue-dark lg:border-0"
     >
-      <h3 className="my-6 font-bold center text-blue-dark text-center text-4xl sm:text-5xl xl:text-7xl 2xl:text-8xl">
+      <h3 className="mb-6 font-bold center text-blue-dark text-center text-4xl sm:text-5xl xl:text-7xl 2xl:text-8xl">
         <span>Let's be</span>
         <span className="block">friends</span>
       </h3>

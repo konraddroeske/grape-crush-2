@@ -41,14 +41,9 @@ const FooterSocial: FunctionComponent = () => {
           >
             <span>@grapecrush.wine</span>
           </div>
-          {image && (
-            <ContentfulImage
-              image={image}
-              // imageStyle="transform hover:scale-110 duration-300"
-            />
-          )}
+          {image && <ContentfulImage image={image} />}
         </a>
-      </div>{' '}
+      </div>
     </div>
   )
 }

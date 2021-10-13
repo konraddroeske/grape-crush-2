@@ -24,8 +24,8 @@ const InfoBox1: FunctionComponent = () => {
         <div className="w-full sm:pr-16 xl:pr-20">
           <InfoBoxTitle>{title}</InfoBoxTitle>
           <InfoBoxText>{description}</InfoBoxText>
-          <div className="flex justify-center sm:mt-0 sm:justify-start">
-            <Link href="/products">
+          <div className="flex justify-center mt-8 sm:justify-start">
+            <Link href="/products?page=1&type=grape%20crush%20house%20wines!">
               <a>
                 <ShadowLink>Explore</ShadowLink>
               </a>
