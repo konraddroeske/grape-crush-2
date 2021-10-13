@@ -114,7 +114,7 @@ const FeaturesText: FunctionComponent<Props> = ({ upcomingSlide, slides }) => {
               ref={(el) => {
                 textRefs.current[index] = el
               }}
-              className="no-select pointer-events-none uppercase text-5xl xs:text-6xl sm:text-8xl xl:text-9xl
+              className="no-select uppercase text-5xl xs:text-6xl sm:text-8xl xl:text-9xl
               2xl:text-10xl text-blue-dark font-bold"
             >
               {slide.title}
