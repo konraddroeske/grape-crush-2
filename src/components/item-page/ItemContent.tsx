@@ -83,6 +83,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
     type,
     bottleSize,
     imageUrl,
+    ABV,
   } = data
 
   const facts = [
@@ -92,6 +93,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
     { region },
     { country },
     { type },
+    { ABV },
     { size: bottleSize },
   ] as Facts
 
@@ -155,7 +157,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
           }}
         >
           {url && (
-            <div className="bg-blue-lightest pointer-events-auto hover:bg-lime-background py-6 h-122 xl:h-144">
+            <div className="bg-blue-lightest pointer-events-auto hover:bg-lime-background p-6 h-122 xl:h-144">
               <AmbassadorImage url={url} title={productName} />
             </div>
           )}

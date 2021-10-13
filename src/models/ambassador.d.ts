@@ -63,6 +63,7 @@ export interface ProductDataLowercase {
   variants: Variants[]
   vintage?: string
   winery?: string
+  ABV?: string
 }
 
 export interface Product {
