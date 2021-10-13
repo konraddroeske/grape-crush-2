@@ -37,13 +37,13 @@ const AnimatedText: FunctionComponent<Props> = ({
   const childText = useRef<SplitText | null>(null)
   const parentText = useRef<SplitText | null>(null)
 
-  const handleSplit = useCallback(async () => {
+  const checkFontsLoaded = useCallback(async () => {
     return document.fonts.ready
   }, [])
 
   useEffect(() => {
     gsap.registerPlugin(SplitText)
-    handleSplit().then(() => {
+    checkFontsLoaded().then(() => {
       if (!childText.current) {
         childText.current = new SplitText(textRef.current, {
           type: 'lines',
@@ -60,7 +60,7 @@ const AnimatedText: FunctionComponent<Props> = ({
         })
       }
     })
-  }, [id, handleSplit])
+  }, [id, checkFontsLoaded])
 
   useEffect(() => {
     if (inView && parentText.current && childText.current) {
