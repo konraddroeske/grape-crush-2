@@ -81,13 +81,12 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   }, [text])
 
   useEffect(() => {
-    if (window && textArr && textRefs.current.length > 0) {
+    if (inView && !animation.current) {
       initAnimation()
     }
-  }, [initAnimation, textArr])
+  }, [inView, initAnimation, textArr])
 
   useEffect(() => {
-    // console.log('checking screen size')
     updateAnimation()
   }, [isDesktop, isDesktopXl, isDesktop2Xl, updateAnimation])
 

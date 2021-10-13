@@ -12,9 +12,9 @@ const InfoBoxText: FunctionComponent<Props> = ({ children }) => {
   return (
     <AnimatedText
       blockType="p"
-      textStyles="font-headline text-blue-dark text-lg font-medium leading-tight
+      textStyles="w-full font-headline text-blue-dark text-lg font-medium leading-tight
     text-center my-4 sm:text-left lg:text-lg xl:text-xl"
-      delay={0.7}
+      delay={0.5}
     >
       {children}
     </AnimatedText>

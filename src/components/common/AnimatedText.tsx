@@ -69,7 +69,7 @@ const AnimatedText: FunctionComponent<Props> = ({
   }, [inView, id, delay])
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="w-full">
       {
         {
           p: (
