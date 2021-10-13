@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react'
 
+import Link from 'next/link'
+
 interface OwnProps {
   name: string
   fontSize?: string
@@ -12,12 +14,13 @@ const ProductTitle: FunctionComponent<Props> = ({
   fontSize = 'text-base',
 }) => {
   return (
-    <h4
-      // className={`${fontSize} text-center leading-4 font-bold uppercase line-clamp`}
-      className={`${fontSize} text-left leading-5 font-bold uppercase`}
-    >
-      {name}
-    </h4>
+    <Link href={`/item/${encodeURIComponent(name)}`}>
+      <a>
+        <h4 className={`${fontSize} text-left leading-5 font-bold uppercase`}>
+          {name}
+        </h4>
+      </a>
+    </Link>
   )
 }
 

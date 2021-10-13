@@ -67,7 +67,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
           <a>
             <div
               className={`relative h-72 sm:h-72 lg:h-96 xl:h-96 2xl:h-122 relative bg-blue-lightest mb-6 
-                ${url ? 'py-1 sm:py-2 lg:py-10 xl:py-12 2xl:py-14' : ''}`}
+                ${url ? 'p-4 sm:p-4 lg:p-4 xl:p-4 2xl:p-4' : ''}`}
             >
               {url ? (
                 <AmbassadorImage url={url} title={name} />
