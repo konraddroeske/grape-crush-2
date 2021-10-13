@@ -24,6 +24,7 @@ const AnimatedHeadline: FunctionComponent<Props> = ({
 
   useEffect(() => {
     gsap.registerPlugin(SplitText)
+
     const splitHeadline = new SplitText(textRef.current, {
       type: 'words,chars',
       position: 'relative',
@@ -33,6 +34,20 @@ const AnimatedHeadline: FunctionComponent<Props> = ({
       const yPos = getRandomInRange(50, 100)
       const xPos = getRandomInRange(-50, 50)
       const scale = getRandomInRange(0.1, 0.3)
+
+      gsap.set(char, {
+        opacity: 0,
+        y: `${yPos}%`,
+        x: `${xPos}%`,
+        scale,
+      })
+    })
+
+    gsap.set(textRef.current, {
+      opacity: 1,
+    })
+
+    splitHeadline.chars.forEach((char) => {
       const ease = getRandomInRange(1.5, 2.5)
       const delay = getRandomInRange(0.2, 0.5)
 
@@ -41,12 +56,12 @@ const AnimatedHeadline: FunctionComponent<Props> = ({
         repeat,
       })
 
-      tl.from(char, {
+      tl.to(char, {
         duration: 0.75 - delay,
-        opacity: 0,
-        y: `${yPos}%`,
-        x: `${xPos}%`,
-        scale,
+        opacity: 1,
+        y: 0,
+        x: 0,
+        scale: 1,
         ease: `back.out(${ease})`,
         delay,
       }).repeatDelay(3.5)
@@ -54,7 +69,7 @@ const AnimatedHeadline: FunctionComponent<Props> = ({
   }, [text, yoyo, repeat])
 
   return (
-    <div ref={textRef} className={textStyle}>
+    <div ref={textRef} className={`${textStyle} opacity-0`}>
       {text}
     </div>
   )

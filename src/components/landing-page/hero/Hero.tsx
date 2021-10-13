@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -11,6 +11,13 @@ import { selectGlobal } from '@redux/globalSlice'
 
 const Hero: FunctionComponent = () => {
   const { seoImage } = useSelector(selectGlobal())
+  const [fontsLoaded, setFontsLoaded] = useState<boolean>(false)
+
+  useEffect(() => {
+    document.fonts.ready.then(() => {
+      setFontsLoaded(true)
+    })
+  }, [])
 
   return (
     <section id="hero-section" className="relative">
@@ -21,9 +28,11 @@ const Hero: FunctionComponent = () => {
         {seoImage && (
           <div className="relative flex w-full">
             <ContentfulImage image={seoImage} priority />
-            <div className="absolute title-position">
-              <HeroTitle />
-            </div>
+            {fontsLoaded && (
+              <div className="absolute title-position">
+                <HeroTitle />
+              </div>
+            )}
             <div className="hidden lg:block lg:absolute lg:bottom-6 lg:right-6">
               <SkipButton />
             </div>
