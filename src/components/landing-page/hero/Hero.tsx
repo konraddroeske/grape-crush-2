@@ -20,7 +20,7 @@ const Hero: FunctionComponent = () => {
       >
         {seoImage && (
           <div className="relative flex w-full">
-            <ContentfulImage image={seoImage} />
+            <ContentfulImage image={seoImage} priority />
             <div className="absolute title-position">
               <HeroTitle />
             </div>

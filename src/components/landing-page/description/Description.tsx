@@ -23,7 +23,10 @@ const Description: FunctionComponent = () => {
         </AnimatedText>
       </div>
       <div className="pt-4 lg:flex lg:flex-col lg:justify-center w-full lg:w-1/2">
-        <AnimatedText textStyles="font-headline text-blue-dark text-base sm:text-xl font-medium xl:text-2xl 2xl:text-3xl">
+        <AnimatedText
+          delay={0.3}
+          textStyles="font-headline text-blue-dark text-base sm:text-xl font-medium xl:text-2xl 2xl:text-3xl"
+        >
           With one of Ontario's largest natural wines selection, shop{' '}
           <span className="bg-lime">from over 200+</span> natural, biodynamic
           and classic wines for any budget.
