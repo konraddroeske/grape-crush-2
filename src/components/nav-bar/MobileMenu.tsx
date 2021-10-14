@@ -1,4 +1,10 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
+import React, {
+  FunctionComponent,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import gsap from 'gsap'
 
@@ -6,12 +12,14 @@ import MenuButtonMobile from '@components/nav-bar/MenuButtonMobile'
 import MenuLink from '@components/nav-bar/MenuLink'
 import NavCategories from '@components/nav-bar/NavCategories'
 import NavSearch from '@components/nav-bar/NavSearch'
+import useScrollDetector from '@hooks/useScrollDetector'
 
 interface Props {
   mobileNavOpen: boolean
+  barRef: RefObject<HTMLDivElement>
 }
 
-const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen }) => {
+const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => {
@@ -19,19 +27,37 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen }) => {
   }
 
   const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const isScrollUp = useScrollDetector(mobileMenuRef)
 
   useEffect(() => {
-    gsap.to(mobileMenuRef.current, {
-      x: mobileNavOpen ? '0' : '-100%',
-      duration: 0.3,
-    })
+    if (mobileMenuRef.current) {
+      mobileMenuRef.current.scrollTo(0, 0)
+    }
   }, [mobileNavOpen])
+
+  useEffect(() => {
+    const duration = 1
+
+    if (!isScrollUp && mobileNavOpen) {
+      gsap.set(barRef.current, {
+        y: '-7rem',
+        duration,
+      })
+    } else if (isScrollUp && mobileNavOpen) {
+      gsap.set(barRef.current, {
+        y: 0,
+        duration,
+      })
+    }
+  }, [isScrollUp, mobileNavOpen, barRef])
 
   return (
     <div
       ref={mobileMenuRef}
-      className="fixed inset-0 transform -translate-x-full overflow-x-hidden
-      overflow-y-auto py-20 body-gutter-sm bg-blue-dark lg:hidden"
+      className={`fixed inset-0 transform ${
+        mobileNavOpen ? 'translate-x-0' : '-translate-x-full'
+      } transition duration-300 overflow-x-hidden overflow-y-auto py-20 
+      body-gutter-sm bg-blue-dark lg:hidden`}
     >
       <div className="w-full max-w-xl mx-auto">
         <div className="mb-2">

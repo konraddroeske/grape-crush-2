@@ -4,6 +4,7 @@ import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 
+import ShadowButton from '@components/common/ShadowButton'
 import ShadowLink from '@components/common/ShadowLink'
 import SvgPreview from '@components/nav-bar/SvgPreview'
 import { Asset } from '@models/contentful-graph'
@@ -33,13 +34,12 @@ const NavCategories: FunctionComponent = () => {
   const handleClick = (href: string) => {
     const isShallow = router.route === '/products'
 
-    if (isShallow) {
-      dispatch(setNavOpen(false))
-    }
-
-    router
-      .push(href, href, { shallow: isShallow })
-      .then(() => window.scrollTo(0, 0))
+    router.push(href, href, { shallow: isShallow }).then(() => {
+      if (isShallow) {
+        dispatch(setNavOpen(false))
+        window.scrollTo(0, 0)
+      }
+    })
   }
 
   useEffect(() => {
@@ -150,11 +150,9 @@ const NavCategories: FunctionComponent = () => {
             className="hidden lg:mt-5 lg:flex lg:ml-1/2 lg:w-1/2
           lg:justify-start lg:transform lg:translate-x-1.5"
           >
-            <Link href="/products">
-              <a>
-                <ShadowLink variant="nav">Shop All Wines</ShadowLink>
-              </a>
-            </Link>
+            <ShadowButton variant="nav" fn={() => handleClick('/products')}>
+              Shop All Wines
+            </ShadowButton>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
 import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
+import gsap from 'gsap'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -9,10 +10,12 @@ import { useMediaQuery } from 'react-responsive'
 import Logo from '@components/common/Logo'
 import MobileSpinner from '@components/landing-page/hero/MobileSpinner'
 import Cart from '@components/nav-bar/Cart'
+import DesktopCategories from '@components/nav-bar/DesktopCategories'
 import DesktopMenu from '@components/nav-bar/DesktopMenu'
 import DesktopSearch from '@components/nav-bar/DesktopSearch'
 import Hamburger from '@components/nav-bar/Hamburger'
 import MobileMenu from '@components/nav-bar/MobileMenu'
+import useScrollDetector from '@hooks/useScrollDetector'
 import { selectGlobal, setNavOpen } from '@redux/globalSlice'
 
 const NavBar: FunctionComponent = () => {
@@ -24,12 +27,6 @@ const NavBar: FunctionComponent = () => {
   const mobileNavOpen = navOpen && !isDesktop
 
   useEffect(() => {
-    // gsap.set(navRef.current, {
-    //   backgroundColor: mobileNavOpen ? '#2C148E' : 'transparent',
-    //   bottom: mobileNavOpen ? 0 : 'auto',
-    //   overflowX: mobileNavOpen ? 'hidden' : 'auto',
-    // }
-
     if (mobileNavOpen && navRef.current) {
       disableBodyScroll(navRef.current)
     } else {
@@ -43,10 +40,35 @@ const NavBar: FunctionComponent = () => {
     }
   }, [navOpen, dispatch, isDesktop])
 
+  const barRef = useRef<HTMLDivElement>(null)
+
+  const isScrollUp = useScrollDetector()
+
+  useEffect(() => {
+    const duration = 1
+
+    if (isDesktop) {
+      gsap.set(barRef.current, {
+        y: 0,
+        duration,
+      })
+    } else if (!isScrollUp && !isDesktop) {
+      gsap.set(barRef.current, {
+        y: '-7rem',
+        duration,
+      })
+    } else if (isScrollUp && !isDesktop) {
+      gsap.set(barRef.current, {
+        y: 0,
+        duration,
+      })
+    }
+  }, [isScrollUp, navOpen, isDesktop])
+
   return (
     <nav
       ref={navRef}
-      className="fixed z-30 top-0 left-0 right-0 body-gutter-sm overflow-y-auto
+      className="fixed z-30 top-0 left-0 right-0 body-gutter-sm lg:overflow-y-auto
       lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl"
       onMouseLeave={() => {
         if (isDesktop) {
@@ -54,7 +76,11 @@ const NavBar: FunctionComponent = () => {
         }
       }}
     >
-      <div className="relative z-10 flex h-16 justify-between items-center">
+      <div
+        ref={barRef}
+        className="relative z-10 flex h-16 justify-between items-center
+        transition duration-300"
+      >
         <Hamburger />
         <MobileSpinner />
         <Logo />
@@ -64,8 +90,8 @@ const NavBar: FunctionComponent = () => {
           <Cart />
         </div>
       </div>
-      {/* {mobileNavOpen && <MobileMenu />} */}
-      <MobileMenu mobileNavOpen={mobileNavOpen} />
+      <DesktopCategories />
+      <MobileMenu mobileNavOpen={mobileNavOpen} barRef={barRef} />
     </nav>
   )
 }

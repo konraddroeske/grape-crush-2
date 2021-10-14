@@ -29,6 +29,7 @@ const ProductsList: FunctionComponent = () => {
 
   useEffect(() => {
     setIsLoading(true)
+
     dispatch(
       handleProducts({
         selectedTags,

@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react'
 
-import DesktopCategories from '@components/nav-bar/DesktopCategories'
 import MenuButtonDesktop from '@components/nav-bar/MenuButtonDesktop'
 import MenuLink from '@components/nav-bar/MenuLink'
 
@@ -11,7 +10,7 @@ const DesktopMenu: FunctionComponent = () => {
     <div className="hidden ml-auto mr-8 2xl:mr-16 lg:flex items-center">
       <div className="flex items-center">
         <MenuButtonDesktop>Shop</MenuButtonDesktop>
-        <DesktopCategories />
+        {/* <DesktopCategories /> */}
       </div>
       <MenuLink variant="desktop" to="/about">
         About Us
