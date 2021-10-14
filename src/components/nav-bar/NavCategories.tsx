@@ -1,15 +1,19 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
+import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import ShadowLink from '@components/common/ShadowLink'
 import SvgPreview from '@components/nav-bar/SvgPreview'
 import { Asset } from '@models/contentful-graph'
-import { selectGlobal } from '@redux/globalSlice'
+import { selectGlobal, setNavOpen } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
 const NavCategories: FunctionComponent = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
+
   const { categories, allTags } = useSelector(selectProducts())
   const { nav } = useSelector(selectGlobal())
 
@@ -26,6 +30,18 @@ const NavCategories: FunctionComponent = () => {
     }
   }
 
+  const handleClick = (href: string) => {
+    const isShallow = router.route === '/products'
+
+    if (isShallow) {
+      dispatch(setNavOpen(false))
+    }
+
+    router
+      .push(href, href, { shallow: isShallow })
+      .then(() => window.scrollTo(0, 0))
+  }
+
   useEffect(() => {
     const [defaultCategory] = categories
 
@@ -35,7 +51,6 @@ const NavCategories: FunctionComponent = () => {
   }, [categories])
 
   useEffect(() => {
-    // console.log(allTags)
     if (allTags) {
       const { style } = allTags
 
@@ -81,13 +96,13 @@ const NavCategories: FunctionComponent = () => {
                     key={category.categoryName}
                     onMouseEnter={() => handleHover(category?.image?.url)}
                   >
-                    <Link href={category.link}>
-                      <a>
-                        <div className="leading-5 text-left text-base text-white hover:text-lime font-medium uppercase">
-                          {category.title}
-                        </div>
-                      </a>
-                    </Link>
+                    <button
+                      type="button"
+                      className="leading-5 text-left text-base text-white hover:text-lime font-medium uppercase"
+                      onClick={() => handleClick(category.link)}
+                    >
+                      {category.title}
+                    </button>
                   </li>
                 )
               })}
@@ -115,16 +130,18 @@ const NavCategories: FunctionComponent = () => {
               topStyles.slice(0, 14).map((style) => {
                 return (
                   <li key={style} className="">
-                    <Link href={`/products?style=${encodeURIComponent(style)}`}>
-                      <a>
-                        <div
-                          className="leading-5 text-white hover:text-lime
+                    <button
+                      type="button"
+                      className="leading-5 text-white hover:text-lime
                     text-left text-base font-medium uppercase inline-block"
-                        >
-                          {style}
-                        </div>
-                      </a>
-                    </Link>
+                      onClick={() =>
+                        handleClick(
+                          `/products?style=${encodeURIComponent(style)}`
+                        )
+                      }
+                    >
+                      {style}
+                    </button>
                   </li>
                 )
               })}

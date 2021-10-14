@@ -4,10 +4,11 @@ import { NextRouter } from 'next/router'
 export const simpleRoute = (
   router: NextRouter,
   newCategory: string,
-  newTag: string
+  newTag: string,
+  shallow = false
 ) => {
   const href = `/products/?${encodeURIComponent(
     newCategory
   )}=${encodeURIComponent(newTag)}`
-  router.push(href, href, { shallow: true }).then(() => window.scrollTo(0, 0))
+  router.push(href, href, { shallow }).then(() => window.scrollTo(0, 0))
 }
