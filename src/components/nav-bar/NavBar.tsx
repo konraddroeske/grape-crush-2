@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
 import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
-import { gsap } from 'gsap'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -25,11 +24,11 @@ const NavBar: FunctionComponent = () => {
   const mobileNavOpen = navOpen && !isDesktop
 
   useEffect(() => {
-    gsap.set(navRef.current, {
-      backgroundColor: mobileNavOpen ? '#2C148E' : 'transparent',
-      bottom: mobileNavOpen ? 0 : 'auto',
-      overflowX: mobileNavOpen ? 'hidden' : 'auto',
-    })
+    // gsap.set(navRef.current, {
+    //   backgroundColor: mobileNavOpen ? '#2C148E' : 'transparent',
+    //   bottom: mobileNavOpen ? 0 : 'auto',
+    //   overflowX: mobileNavOpen ? 'hidden' : 'auto',
+    // }
 
     if (mobileNavOpen && navRef.current) {
       disableBodyScroll(navRef.current)
@@ -55,7 +54,7 @@ const NavBar: FunctionComponent = () => {
         }
       }}
     >
-      <div className="relative flex h-16 justify-between items-center">
+      <div className="relative z-10 flex h-16 justify-between items-center">
         <Hamburger />
         <MobileSpinner />
         <Logo />
@@ -65,7 +64,8 @@ const NavBar: FunctionComponent = () => {
           <Cart />
         </div>
       </div>
-      {mobileNavOpen && <MobileMenu />}
+      {/* {mobileNavOpen && <MobileMenu />} */}
+      <MobileMenu mobileNavOpen={mobileNavOpen} />
     </nav>
   )
 }

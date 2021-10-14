@@ -77,8 +77,8 @@ const ProductCategories: FunctionComponent<Props> = (props) => {
       <Category title="Featured" category="type" tags={typeOptions} />
       <Category title="Style" category="style" tags={styleOptions} />
       <Category title="Price Range" category="range" tags={priceRangeOptions} />
-      <Category title="Varietal" category="varietal" tags={varietalOptions} />
       <Category title="Country" category="country" tags={countryOptions} />
+      <Category title="Varietal" category="varietal" tags={varietalOptions} />
     </div>
   )
 }
