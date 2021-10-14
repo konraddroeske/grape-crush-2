@@ -26,7 +26,7 @@ const Hero: FunctionComponent = () => {
       xl:body-gutter-xl 2xl:body-gutter-2xl"
       >
         <div className="relative flex w-full">
-          {seoImage && <ContentfulImage image={seoImage} priority />}
+          {seoImage && <ContentfulImage image={seoImage} />}
           {fontsLoaded && (
             <div className="absolute title-position">
               <HeroTitle />

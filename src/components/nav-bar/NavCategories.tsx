@@ -1,11 +1,9 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import { useRouter } from 'next/dist/client/router'
-import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 
 import ShadowButton from '@components/common/ShadowButton'
-import ShadowLink from '@components/common/ShadowLink'
 import SvgPreview from '@components/nav-bar/SvgPreview'
 import { Asset } from '@models/contentful-graph'
 import { selectGlobal, setNavOpen } from '@redux/globalSlice'
@@ -108,11 +106,9 @@ const NavCategories: FunctionComponent = () => {
               })}
             </ul>
             <div className="flex justify-start w-full mt-5 mb-2 lg:hidden">
-              <Link href="/products">
-                <a>
-                  <ShadowLink variant="nav">Shop All Wines</ShadowLink>
-                </a>
-              </Link>
+              <ShadowButton variant="nav" fn={() => handleClick('/products')}>
+                Shop All Wines
+              </ShadowButton>
             </div>
           </div>
           <div className="flex-grow relative pointer-events-none">
