@@ -1,17 +1,16 @@
 import { RefObject, useCallback, useEffect, useRef, useState } from 'react'
 
 const useScrollDetector = (
-  element: RefObject<HTMLDivElement> | Window = window
+  element: RefObject<HTMLElement> | undefined = undefined
 ) => {
   const [isScrollUp, setIsScrollUp] = useState<boolean>(true)
   const oldValue = useRef<number>(0)
   const newValue = useRef<number>(0)
 
   const handleScroll = useCallback(() => {
-    newValue.current =
-      element instanceof Window
-        ? element.scrollY
-        : element?.current?.scrollTop || 0
+    newValue.current = element?.current
+      ? element.current.scrollTop
+      : window.scrollY
 
     if (oldValue.current < newValue.current && isScrollUp) {
       setIsScrollUp(false)
@@ -23,19 +22,19 @@ const useScrollDetector = (
   }, [element, isScrollUp])
 
   useEffect(() => {
-    const currentElement = element
+    let curElement: HTMLElement | Window | undefined
 
-    if (currentElement instanceof Window) {
-      currentElement.addEventListener('scroll', handleScroll)
-    } else if (currentElement?.current) {
-      currentElement.current?.addEventListener('scroll', handleScroll)
+    if (!element && window) {
+      curElement = window
+      window.addEventListener('scroll', handleScroll)
+    } else if (element?.current) {
+      curElement = element.current
+      curElement.addEventListener('scroll', handleScroll)
     }
 
     return () => {
-      if (currentElement instanceof Window) {
-        currentElement.removeEventListener('scroll', handleScroll)
-      } else if (currentElement?.current) {
-        currentElement.current?.removeEventListener('scroll', handleScroll)
+      if (curElement) {
+        curElement.removeEventListener('scroll', handleScroll)
       }
     }
   }, [element, handleScroll])
