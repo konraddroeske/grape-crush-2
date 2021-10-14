@@ -39,7 +39,8 @@ const ContactInfo: FunctionComponent = () => {
   return (
     <section
       id="contact-location"
-      className="contact-padding body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl overflow-hidden"
+      className="contact-padding body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl overflow-hidden
+      max-w-screen-2xl mx-auto"
     >
       <div className="grid grid-cols-1 sm:grid-cols-3 sm:gap-x-4 sm:gap-y-8 lg:gap-y-10 xl:gap-y-16">
         <div className="text-center my-4 sm:grid-col-1 sm:grid-row-1 sm:my-0">
