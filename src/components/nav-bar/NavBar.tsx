@@ -45,25 +45,20 @@ const NavBar: FunctionComponent = () => {
   const isScrollUp = useScrollDetector()
 
   useEffect(() => {
-    const duration = 1
-
     if (isDesktop) {
       gsap.set(barRef.current, {
         y: 0,
-        duration,
       })
-    } else if (!isScrollUp && !isDesktop) {
+    } else if (!isScrollUp && !isDesktop && !mobileNavOpen) {
       gsap.set(barRef.current, {
         y: '-7rem',
-        duration,
       })
-    } else if (isScrollUp && !isDesktop) {
+    } else if (isScrollUp && !isDesktop && !mobileNavOpen) {
       gsap.set(barRef.current, {
         y: 0,
-        duration,
       })
     }
-  }, [isScrollUp, navOpen, isDesktop])
+  }, [isScrollUp, navOpen, isDesktop, mobileNavOpen])
 
   return (
     <nav
@@ -79,7 +74,7 @@ const NavBar: FunctionComponent = () => {
       <div
         ref={barRef}
         className="relative z-10 flex h-16 justify-between items-center
-        transition duration-300"
+        transition duration-700"
       >
         <Hamburger />
         <MobileSpinner />

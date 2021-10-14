@@ -29,11 +29,13 @@ const MobileSpinner: FunctionComponent = () => {
       opacity: navOpen ? 0 : 1,
     })
 
-    gsap.to('.svg-mobile-logo path', {
-      duration,
-      fill: navOpen ? '#dfff85' : '#2c148e',
-    })
-  }, [navOpen])
+    if (!bgGreen) {
+      gsap.to('.svg-mobile-logo path', {
+        duration,
+        fill: navOpen ? '#dfff85' : '#2c148e',
+      })
+    }
+  }, [bgGreen, navOpen])
 
   const handleScroll = () => {
     gsap.to(window, {

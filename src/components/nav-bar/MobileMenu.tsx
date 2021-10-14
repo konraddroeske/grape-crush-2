@@ -33,20 +33,20 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
     if (mobileMenuRef.current) {
       mobileMenuRef.current.scrollTo(0, 0)
     }
-  }, [mobileNavOpen])
+
+    gsap.set(barRef.current, {
+      y: 0,
+    })
+  }, [barRef, mobileNavOpen])
 
   useEffect(() => {
-    const duration = 1
-
     if (!isScrollUp && mobileNavOpen) {
       gsap.set(barRef.current, {
         y: '-7rem',
-        duration,
       })
     } else if (isScrollUp && mobileNavOpen) {
       gsap.set(barRef.current, {
         y: 0,
-        duration,
       })
     }
   }, [isScrollUp, mobileNavOpen, barRef])
