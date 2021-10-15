@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 
 import gsap from 'gsap'
-import _Draggable, { Draggable } from 'gsap/dist/Draggable'
+import { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 
 import AmbassadorImage from '@components/common/AmbassadorImage'
@@ -35,7 +35,7 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
   const wrapWidth = useRef(0)
   const animation = useRef<gsap.core.Tween | null>(null)
 
-  const [draggable, setDraggable] = useState<_Draggable | null>(null)
+  const [draggable, setDraggable] = useState<Draggable[] | null>(null)
 
   const timer = useRef<gsap.core.Tween | null>(null)
   const slideDelay = useRef(5)
@@ -90,8 +90,8 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
 
   const animateSlides = useCallback(
     (direction: Direction) => {
-      if (draggable && draggable.isThrowing) {
-        draggable.tween.kill()
+      if (draggable && draggable[0].isThrowing) {
+        draggable[0].tween.kill()
       }
 
       if (timer.current) {
@@ -118,7 +118,7 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
     if (
       draggable &&
       timer.current &&
-      (draggable.isDragging || draggable.isThrowing)
+      (draggable[0].isDragging || draggable[0].isThrowing)
     ) {
       timer.current.restart(true)
     } else {
@@ -182,10 +182,11 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
   }, [])
 
   const initDraggable = useCallback(() => {
-    const instance = new Draggable(proxy.current, {
+    const instance = Draggable.create(proxy.current, {
       type: 'x',
       trigger: list.current,
-      throwProps: true,
+      inertia: true,
+      dragResistance: 0.6,
       onPress() {
         slideAnimation.current.kill()
         // eslint-disable-next-line react/no-this-in-sfc
