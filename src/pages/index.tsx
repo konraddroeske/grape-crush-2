@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import Seo from '@components/common/Seo'
 import Description from '@components/landing-page/description/Description'
-import NewFeaturesSlideshow from '@components/landing-page/features/NewFeaturesSlideshow'
+import FeaturesSlideshow from '@components/landing-page/features/FeaturesSlideshow'
 import Hero from '@components/landing-page/hero/Hero'
 import InfoBox1 from '@components/landing-page/info-boxes/info-box-1/InfoBox1'
 import ShopByTypeGrid from '@components/landing-page/shop-by-type/ShopByTypeGrid'
@@ -67,9 +67,9 @@ const Home: FunctionComponent = () => {
         <Description />
         {/* <NewShopByType /> */}
         <div ref={ref}>
-          <NewFeaturesSlideshow />
+          <FeaturesSlideshow />
           <ShopByTypeGrid />
-          {/* <FeaturesSlideshow /> */}
+          {/* <ItemSlideshow /> */}
         </div>
         {/* <NewInfoBox3 /> */}
         <InfoBox1 />

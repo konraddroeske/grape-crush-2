@@ -10,27 +10,27 @@ interface OwnProps {
 
 type Props = OwnProps
 
-const SlideButtons: FunctionComponent<Props> = ({ handleSlide }) => {
+const ItemSlideButtons: FunctionComponent<Props> = ({ handleSlide }) => {
   return (
-    <div className="pointer-events-none slideshow-button-position">
+    <div className="pointer-events-none item-slide-button-position">
       <button
         type="button"
-        className="pointer-events-auto mx-3 md:hidden"
+        className="pointer-events-auto transform -translate-x-1/4"
         aria-label="slide left"
         onClick={() => handleSlide(Direction.Left)}
       >
-        <Arrow direction={Direction.Left} />
+        <Arrow direction={Direction.Left} variant="item" />
       </button>
       <button
         type="button"
-        className="pointer-events-auto mx-3 md:mx-0 md:transform md:translate-x-2/3"
+        className="pointer-events-auto transform translate-x-1/4"
         aria-label="slide right"
         onClick={() => handleSlide(Direction.Right)}
       >
-        <Arrow direction={Direction.Right} />
+        <Arrow direction={Direction.Right} variant="item" />
       </button>
     </div>
   )
 }
 
-export default SlideButtons
+export default ItemSlideButtons

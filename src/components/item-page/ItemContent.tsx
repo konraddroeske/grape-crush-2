@@ -12,6 +12,7 @@ import AmbassadorImage from '@components/common/AmbassadorImage'
 import BuyButton from '@components/common/BuyButton'
 import Tags from '@components/common/product/Tags'
 import FactList from '@components/item-page/FactList'
+import ItemSlideshow from '@components/item-page/ItemSlideshow'
 import { ProductLowercase } from '@models/ambassador'
 
 export interface Props {
@@ -101,7 +102,10 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
 
   return (
     <div>
-      <div ref={desktopTitleRef} className="hidden lg:block relative z-10">
+      <div
+        ref={desktopTitleRef}
+        className="hidden pointer-events-none lg:block relative z-10"
+      >
         <h1 className="font-bold text-7xl uppercase text-blue-dark lg:max-w-2/3">
           {productName}
         </h1>
@@ -156,8 +160,10 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
                 : 0,
           }}
         >
-          {url && (
-            <div className="bg-blue-lightest pointer-events-auto hover:bg-lime-background p-6 h-122 xl:h-144">
+          {imageUrl.length > 1 ? (
+            <ItemSlideshow slides={imageUrl} title={productName} />
+          ) : (
+            <div className="bg-blue-lightest pointer-events-auto p-6 h-122 xl:h-144">
               <AmbassadorImage url={url} title={productName} />
             </div>
           )}

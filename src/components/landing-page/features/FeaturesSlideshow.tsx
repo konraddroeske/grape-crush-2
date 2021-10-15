@@ -7,21 +7,27 @@ import React, {
 } from 'react'
 
 import gsap from 'gsap'
-import _Draggable, { Draggable } from 'gsap/dist/Draggable'
+import { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
-import Link from 'next/link'
+import { useInView } from 'react-intersection-observer'
 import { useSelector } from 'react-redux'
 
 import ContentfulImage from '@components/common/ContentfulImage'
 import OutlineMarquee from '@components/common/OutlineMarquee'
-import SlideButtons from '@components/landing-page/features/SlideButtons'
+import FeaturesSlideButtons from '@components/landing-page/features/FeaturesSlideButtons'
+import FeaturesText from '@components/landing-page/features/FeaturesText'
 import SpinningCircle from '@components/landing-page/features/SpinningCircle'
 import { Direction } from '@models/misc'
 import { selectGlobal } from '@redux/globalSlice'
 
 const FeaturesSlideshow: FunctionComponent = () => {
+  const { ref, inView } = useInView({
+    threshold: 0.25,
+  })
+
   const { heroSlides: slides } = useSelector(selectGlobal())
   const [circleDirection, setCircleDirection] = useState<Direction>(-1)
+  const [upcomingSlide, setUpcomingSlide] = useState<number>(0)
 
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
@@ -38,7 +44,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
   const wrapWidth = useRef(0)
   const animation = useRef<gsap.core.Tween | null>(null)
 
-  const [draggable, setDraggable] = useState<_Draggable | null>(null)
+  const [draggable, setDraggable] = useState<Draggable[] | null>(null)
 
   const timer = useRef<gsap.core.Tween | null>(null)
   const slideDelay = useRef(5)
@@ -93,8 +99,8 @@ const FeaturesSlideshow: FunctionComponent = () => {
 
   const animateSlides = useCallback(
     (direction: Direction) => {
-      if (draggable && draggable.isThrowing) {
-        draggable.tween.kill()
+      if (draggable && draggable[0].isThrowing) {
+        draggable[0].tween.kill()
       }
 
       if (timer.current) {
@@ -114,6 +120,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
         onUpdate: updateProgress,
       })
 
+      setUpcomingSlide(calculatePositionFromSnap(xVal))
       setCircleDirection(direction)
     },
     [draggable]
@@ -123,7 +130,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
     if (
       draggable &&
       timer.current &&
-      (draggable.isDragging || draggable.isThrowing)
+      (draggable[0].isDragging || draggable[0].isThrowing)
     ) {
       timer.current.restart(true)
     } else {
@@ -178,14 +185,48 @@ const FeaturesSlideshow: FunctionComponent = () => {
     slideAnimation.current.progress(1)
   }, [animateSlides, setWidths])
 
-  // const handleImageLoad = () => {
-  //   if (list?.current?.offsetHeight === 0) {
-  //     handleResize()
-  //   }
-  // }
+  const handleOpacity = useCallback((newSlide: number) => {
+    const prev = newSlide === 0 ? count.current - 1 : newSlide - 1
+
+    items.current.forEach((item, index) => {
+      if (index === prev) {
+        gsap.to(item, {
+          opacity: 0,
+          duration: slideDuration.current / 2,
+          delay: slideDuration.current / 2,
+        })
+      } else {
+        gsap.to(item, {
+          opacity: 1,
+          duration: slideDuration.current / 2,
+          // delay: slideDuration.current / 2,
+        })
+      }
+    })
+  }, [])
+
+  const calculatePositionFromSnap = (newPosition: number) => {
+    if (newPosition === 0) {
+      return 0
+    }
+
+    const val = newPosition / itemWidth.current
+
+    if (val % count.current === 0) {
+      return 0
+    }
+
+    if (val > 0) {
+      return count.current - (val % count.current)
+    }
+
+    return Math.abs(val) % count.current
+  }
 
   const handleSnap = useCallback((x: number) => {
     const newPosition = gsap.utils.snap(itemWidth.current)(x)
+
+    setUpcomingSlide(calculatePositionFromSnap(newPosition))
 
     if (prevPosition.current < newPosition) {
       setCircleDirection(Direction.Left)
@@ -198,17 +239,14 @@ const FeaturesSlideshow: FunctionComponent = () => {
     prevPosition.current = newPosition
 
     return newPosition
-
-    // setSlide(snap)
-
-    // return snap
   }, [])
 
   const initDraggable = useCallback(() => {
-    const instance = new Draggable(proxy.current, {
+    const instance = Draggable.create(proxy.current, {
       type: 'x',
       trigger: list.current,
-      throwProps: true,
+      inertia: true,
+      dragResistance: 0.6,
       onPress() {
         slideAnimation.current.kill()
         // eslint-disable-next-line react/no-this-in-sfc
@@ -216,6 +254,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
       },
       onDrag: updateProgress,
       onThrowUpdate: updateProgress,
+      // onThrowComplete: handleOpacity,
       snap: {
         x: handleSnap,
       },
@@ -261,59 +300,49 @@ const FeaturesSlideshow: FunctionComponent = () => {
     }
   }, [handleResize])
 
+  useEffect(() => {
+    // console.log('handling opacity', upcomingSlide)
+    handleOpacity(upcomingSlide)
+  }, [handleOpacity, upcomingSlide])
+
   return (
     <>
       {slides && (
-        <section className="">
+        <section ref={ref} className="section-margin">
           <OutlineMarquee text="Shop by Featured" direction="-=" />
-          <div
-            className="pt-20 pb-10 hero-background overflow-hidden
-            md:pt-24 md:pb-12 xl:pt-28 xl:pb-14 2xl:pt-36 2xl:pb-24"
-          >
+          <div className="hero-background overflow-hidden features-slideshow-padding">
             <div ref={slider} className="w-full relative">
+              {inView && (
+                <FeaturesText
+                  slides={reorderedSlides}
+                  upcomingSlide={upcomingSlide}
+                />
+              )}
               <ul ref={list} className="absolute inset-0 m-0 p-0">
-                {reorderedSlides.map((slide) => (
+                {reorderedSlides.map((slide, index) => (
                   <li
                     key={slide.title}
-                    ref={(el) => items.current.push(el)}
-                    className="absolute w-full sm:w-2/3 top-0 right-0 sm:right-1/6"
+                    ref={(el) => {
+                      items.current[index] = el
+                    }}
+                    className="absolute slide-width top-0"
                   >
                     <div className="w-full">
                       <div
-                        className="my-0 min-h-80 body-gutter-sm lg:body-gutter-lg
-                      xl:body-gutter-xl 2xl:body-gutter-2xl mx-auto max-h-hero flex"
+                        className="my-0 min-h-80 max-h-75vh body-gutter-sm
+                      md:px-0 image-width mx-auto flex"
                       >
                         {slide.image && <ContentfulImage image={slide.image} />}
-                      </div>
-                      <div
-                        ref={(el) => titles.current.push(el)}
-                        className="absolute left-1/2 top-full transform flex justify-center
-                        -translate-x-1/2 -translate-y-5 md:-translate-y-8 w-full
-                        body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl"
-                      >
-                        <Link href={slide.link || '/products'}>
-                          <a>
-                            <div
-                              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-center
-                          whitespace-normal uppercase font-bold text-blue-dark"
-                            >
-                              {slide.title}
-                            </div>
-                          </a>
-                        </Link>
                       </div>
                     </div>
                   </li>
                 ))}
               </ul>
-              <SlideButtons handleSlide={animateSlides} />
-              <div className="absolute circle-position">
+              <FeaturesSlideButtons handleSlide={animateSlides} />
+              <div className="absolute circle-position pointer-events-none">
                 <SpinningCircle direction={circleDirection} />
               </div>
             </div>
-            {/* <div className="flex justify-center md:hidden"> */}
-            {/*  <ShadowButton text="Explore" /> */}
-            {/* </div> */}
           </div>
         </section>
       )}

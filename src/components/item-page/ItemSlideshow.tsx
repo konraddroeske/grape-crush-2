@@ -7,28 +7,19 @@ import React, {
 } from 'react'
 
 import gsap from 'gsap'
-import { Draggable } from 'gsap/dist/Draggable'
+import _Draggable, { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
-import { useInView } from 'react-intersection-observer'
-import { useSelector } from 'react-redux'
 
-import ContentfulImage from '@components/common/ContentfulImage'
-import OutlineMarquee from '@components/common/OutlineMarquee'
-import FeaturesText from '@components/landing-page/features/FeaturesText'
-import SlideButtons from '@components/landing-page/features/SlideButtons'
-import SpinningCircle from '@components/landing-page/features/SpinningCircle'
+import AmbassadorImage from '@components/common/AmbassadorImage'
+import ItemSlideButtons from '@components/item-page/ItemSlideButtons'
 import { Direction } from '@models/misc'
-import { selectGlobal } from '@redux/globalSlice'
 
-const NewFeaturesSlideshow: FunctionComponent = () => {
-  const { ref, inView } = useInView({
-    threshold: 0.25,
-  })
+interface Props {
+  slides: string[]
+  title: string
+}
 
-  const { heroSlides: slides } = useSelector(selectGlobal())
-  const [circleDirection, setCircleDirection] = useState<Direction>(-1)
-  const [upcomingSlide, setUpcomingSlide] = useState<number>(0)
-
+const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
   const list = useRef<HTMLUListElement>(null)
@@ -44,7 +35,7 @@ const NewFeaturesSlideshow: FunctionComponent = () => {
   const wrapWidth = useRef(0)
   const animation = useRef<gsap.core.Tween | null>(null)
 
-  const [draggable, setDraggable] = useState<Draggable[] | null>(null)
+  const [draggable, setDraggable] = useState<_Draggable | null>(null)
 
   const timer = useRef<gsap.core.Tween | null>(null)
   const slideDelay = useRef(5)
@@ -99,8 +90,8 @@ const NewFeaturesSlideshow: FunctionComponent = () => {
 
   const animateSlides = useCallback(
     (direction: Direction) => {
-      if (draggable && draggable[0].isThrowing) {
-        draggable[0].tween.kill()
+      if (draggable && draggable.isThrowing) {
+        draggable.tween.kill()
       }
 
       if (timer.current) {
@@ -119,9 +110,6 @@ const NewFeaturesSlideshow: FunctionComponent = () => {
         x: xVal,
         onUpdate: updateProgress,
       })
-
-      setUpcomingSlide(calculatePositionFromSnap(xVal))
-      setCircleDirection(direction)
     },
     [draggable]
   )
@@ -130,7 +118,7 @@ const NewFeaturesSlideshow: FunctionComponent = () => {
     if (
       draggable &&
       timer.current &&
-      (draggable[0].isDragging || draggable[0].isThrowing)
+      (draggable.isDragging || draggable.isThrowing)
     ) {
       timer.current.restart(true)
     } else {
@@ -185,56 +173,8 @@ const NewFeaturesSlideshow: FunctionComponent = () => {
     slideAnimation.current.progress(1)
   }, [animateSlides, setWidths])
 
-  const handleOpacity = useCallback((newSlide: number) => {
-    const prev = newSlide === 0 ? count.current - 1 : newSlide - 1
-
-    items.current.forEach((item, index) => {
-      if (index === prev) {
-        gsap.to(item, {
-          opacity: 0,
-          duration: slideDuration.current / 2,
-          delay: slideDuration.current / 2,
-        })
-      } else {
-        gsap.to(item, {
-          opacity: 1,
-          duration: slideDuration.current / 2,
-          // delay: slideDuration.current / 2,
-        })
-      }
-    })
-  }, [])
-
-  const calculatePositionFromSnap = (newPosition: number) => {
-    if (newPosition === 0) {
-      return 0
-    }
-
-    const val = newPosition / itemWidth.current
-
-    if (val % count.current === 0) {
-      return 0
-    }
-
-    if (val > 0) {
-      return count.current - (val % count.current)
-    }
-
-    return Math.abs(val) % count.current
-  }
-
   const handleSnap = useCallback((x: number) => {
     const newPosition = gsap.utils.snap(itemWidth.current)(x)
-
-    setUpcomingSlide(calculatePositionFromSnap(newPosition))
-
-    if (prevPosition.current < newPosition) {
-      setCircleDirection(Direction.Left)
-    }
-
-    if (prevPosition.current > newPosition) {
-      setCircleDirection(Direction.Right)
-    }
 
     prevPosition.current = newPosition
 
@@ -242,11 +182,10 @@ const NewFeaturesSlideshow: FunctionComponent = () => {
   }, [])
 
   const initDraggable = useCallback(() => {
-    const instance = Draggable.create(proxy.current, {
+    const instance = new Draggable(proxy.current, {
       type: 'x',
       trigger: list.current,
-      inertia: true,
-      dragResistance: 0.6,
+      throwProps: true,
       onPress() {
         slideAnimation.current.kill()
         // eslint-disable-next-line react/no-this-in-sfc
@@ -254,7 +193,6 @@ const NewFeaturesSlideshow: FunctionComponent = () => {
       },
       onDrag: updateProgress,
       onThrowUpdate: updateProgress,
-      // onThrowComplete: handleOpacity,
       snap: {
         x: handleSnap,
       },
@@ -300,54 +238,32 @@ const NewFeaturesSlideshow: FunctionComponent = () => {
     }
   }, [handleResize])
 
-  useEffect(() => {
-    // console.log('handling opacity', upcomingSlide)
-    handleOpacity(upcomingSlide)
-  }, [handleOpacity, upcomingSlide])
-
   return (
     <>
       {slides && (
-        <section ref={ref} className="section-margin">
-          <OutlineMarquee text="Shop by Featured" direction="-=" />
-          <div className="hero-background overflow-hidden features-slideshow-padding">
-            <div ref={slider} className="w-full relative">
-              {inView && (
-                <FeaturesText
-                  slides={reorderedSlides}
-                  upcomingSlide={upcomingSlide}
-                />
-              )}
-              <ul ref={list} className="absolute inset-0 m-0 p-0">
-                {reorderedSlides.map((slide, index) => (
-                  <li
-                    key={slide.title}
-                    ref={(el) => {
-                      items.current[index] = el
-                    }}
-                    className="absolute slide-width top-0"
-                  >
-                    <div className="w-full">
-                      <div
-                        className="my-0 min-h-80 max-h-75vh body-gutter-sm
-                      md:px-0 image-width mx-auto flex"
-                      >
-                        {slide.image && <ContentfulImage image={slide.image} />}
-                      </div>
+        <div className="relative">
+          <div ref={slider} className="w-full relative overflow-hidden">
+            <ul ref={list} className="absolute inset-0 m-0 p-0">
+              {reorderedSlides.map((slide) => (
+                <li
+                  key={slide}
+                  ref={(el) => items.current.push(el)}
+                  className="absolute w-full top-0 right-0"
+                >
+                  <div className="w-full">
+                    <div className="bg-blue-lightest pointer-events-auto p-6 h-122 xl:h-144">
+                      {slide && <AmbassadorImage url={slide} title={title} />}
                     </div>
-                  </li>
-                ))}
-              </ul>
-              <SlideButtons handleSlide={animateSlides} />
-              <div className="absolute circle-position pointer-events-none">
-                <SpinningCircle direction={circleDirection} />
-              </div>
-            </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-        </section>
+          <ItemSlideButtons handleSlide={animateSlides} />
+        </div>
       )}
     </>
   )
 }
 
-export default NewFeaturesSlideshow
+export default ItemSlideshow
