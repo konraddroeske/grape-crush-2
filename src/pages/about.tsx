@@ -52,8 +52,8 @@ const About: FunctionComponent = () => {
       [BLOCKS.PARAGRAPH]: (node, children) => (
         <AnimatedText
           blockType="p"
-          textStyles="font-headline font-medium text-base text-blue-dark
-        xs:text-base sm:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl"
+          textStyles="font-headline font-medium text-base text-blue-dark my-4
+        xs:text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
         >
           {children}
         </AnimatedText>
