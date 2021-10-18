@@ -30,10 +30,7 @@ const TeamMembers: FunctionComponent = () => {
                         WebkitMaskImage: `url(${teamMember.svgMask.url})`,
                       }}
                     >
-                      <ContentfulImage
-                        image={teamMember.image}
-                        containerStyles="absolute"
-                      />
+                      <ContentfulImage image={teamMember.image} />
                     </div>
                   </div>
                 )}
@@ -41,7 +38,9 @@ const TeamMembers: FunctionComponent = () => {
                   <h2 className="text-center text-2xl text-blue-dark font-medium lg:text-3xl">
                     {teamMember?.name}
                   </h2>
-                  <h3 className="text-center">{teamMember?.position}</h3>
+                  <h3 className="uppercase font-bold text-center text-sm 2xl:text-base">
+                    {teamMember?.position}
+                  </h3>
                 </div>
                 <p className="text-base 2xl:text-lg">
                   {teamMember.description}
