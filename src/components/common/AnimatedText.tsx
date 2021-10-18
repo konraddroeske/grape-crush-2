@@ -54,6 +54,10 @@ const AnimatedText: FunctionComponent<Props> = ({
 
   useEffect(() => {
     if (inView && parentText.current && childText.current) {
+      gsap.set(textRef.current, {
+        opacity: 1,
+      })
+
       gsap.to(`.child-text-${id}`, {
         y: '0',
         delay,
@@ -78,22 +82,22 @@ const AnimatedText: FunctionComponent<Props> = ({
       {
         {
           p: (
-            <p ref={textRef} className={textStyles}>
+            <p ref={textRef} className={`opacity-0 ${textStyles}`}>
               {children}
             </p>
           ),
           h1: (
-            <h1 ref={textRef} className={textStyles}>
+            <h1 ref={textRef} className={`opacity-0 ${textStyles}`}>
               {children}
             </h1>
           ),
           h2: (
-            <h2 ref={textRef} className={textStyles}>
+            <h2 ref={textRef} className={`opacity-0 ${textStyles}`}>
               {children}
             </h2>
           ),
           h3: (
-            <h3 ref={textRef} className={textStyles}>
+            <h3 ref={textRef} className={`opacity-0 ${textStyles}`}>
               {children}
             </h3>
           ),
