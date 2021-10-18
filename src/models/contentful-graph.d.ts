@@ -69,7 +69,9 @@ export interface IAboutFields {
 
 export interface ITeamMembersFields {
   name: string
+  position: string
   image: Asset
+  svgMask: Asset
   description: string
 }
 

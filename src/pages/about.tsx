@@ -132,7 +132,7 @@ const About: FunctionComponent = () => {
         >
           <AboutWaveMobile
             className="absolute bottom-full left-0 right-0 w-full
-        transform translate-y-px lg:translate-y-0 lg:bottom-7/12"
+        transform translate-y-px lg:translate-y-0 lg:bottom-8/12"
           />
           <TeamMembers />
         </section>

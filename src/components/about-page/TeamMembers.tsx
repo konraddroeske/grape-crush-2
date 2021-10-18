@@ -20,18 +20,29 @@ const TeamMembers: FunctionComponent = () => {
           .reverse()
           .map((teamMember) => {
             return (
-              <li key={teamMember.name} className="">
-                {teamMember.image && (
-                  <div className="w-10/12 mx-auto mb-6 lg:w-8/12">
-                    <ContentfulImage image={teamMember.image} />
+              <li key={teamMember.name} className="z-10 my-4">
+                {teamMember.image && teamMember.svgMask && (
+                  <div className="relative w-10/12 mx-auto mb-6 lg:w-8/12">
+                    <div
+                      className="mask-nav"
+                      style={{
+                        maskImage: `url(${teamMember.svgMask.url})`,
+                        WebkitMaskImage: `url(${teamMember.svgMask.url})`,
+                      }}
+                    >
+                      <ContentfulImage
+                        image={teamMember.image}
+                        containerStyles="absolute"
+                      />
+                    </div>
                   </div>
                 )}
-                <h2
-                  className="text-center text-2xl text-blue-dark font-medium my-2
-                lg:text-3xl 2xl:my-3"
-                >
-                  {teamMember?.name}
-                </h2>
+                <div className="mb-3 2xl:mb-4">
+                  <h2 className="text-center text-2xl text-blue-dark font-medium lg:text-3xl">
+                    {teamMember?.name}
+                  </h2>
+                  <h3 className="text-center">{teamMember?.position}</h3>
+                </div>
                 <p className="text-base 2xl:text-lg">
                   {teamMember.description}
                 </p>

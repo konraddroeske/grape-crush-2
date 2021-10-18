@@ -194,12 +194,20 @@ const aboutFragment = gql`
 const teamMembersFragment = gql`
   fragment TeamMembersFragment on TeamMembers {
     name
+    position
     image {
       description
       url
       width
       height
       title
+    }
+    svgMask {
+      title
+      description
+      url
+      width
+      height
     }
     description
   }

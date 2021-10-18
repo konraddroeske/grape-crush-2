@@ -9,7 +9,7 @@ type Props = OwnProps
 
 const ProductSubheading: FunctionComponent<Props> = ({ region, vintage }) => {
   return (
-    <div className="flex flex-wrap justify-start text-sm capitalize h-5 font-bold">
+    <div className="flex flex-wrap justify-start text-sm capitalize h-5 font-bold overflow-hidden">
       {region && <p className="h-5">{region}</p>}
       {region && vintage && <span className="h-5">&nbsp;&#8226;&nbsp;</span>}
       {vintage && <p className="h-5">{vintage}</p>}
