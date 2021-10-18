@@ -23,6 +23,8 @@ const AnimatedText: FunctionComponent<Props> = ({
   delay = 0.1,
 }) => {
   const [id] = useState<string>(uuid())
+  const [fontsLoaded, setFontsLoaded] = useState<boolean>(false)
+
   const textRef = useRef<HTMLDivElement>(null)
   const { ref, inView } = useInView({
     threshold: 0.8,
@@ -49,11 +51,13 @@ const AnimatedText: FunctionComponent<Props> = ({
           linesClass: `parent-text-${id} overflow-hidden`,
         })
       }
+
+      setFontsLoaded(true)
     })
   }, [id])
 
   useEffect(() => {
-    if (inView && parentText.current && childText.current) {
+    if (inView && fontsLoaded && parentText.current && childText.current) {
       gsap.set(textRef.current, {
         opacity: 1,
       })
@@ -75,7 +79,7 @@ const AnimatedText: FunctionComponent<Props> = ({
         },
       })
     }
-  }, [inView, id, delay])
+  }, [inView, fontsLoaded, id, delay])
 
   return (
     <div ref={ref} className="">
