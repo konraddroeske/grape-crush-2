@@ -108,7 +108,13 @@ const About: FunctionComponent = () => {
       2xl:body-gutter-2xl sm:grid grid-cols-2 gap-16"
         >
           <div className="my-4 sm:my-0 sm:grid-col-2">
-            <ContentfulImage image={image2} containerStyles="max-h-70vh" />
+            <a
+              href="https://nowtoronto.pressreader.com/now-magazine/20210318"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ContentfulImage image={image2} containerStyles="max-h-70vh" />
+            </a>
           </div>
           {paragraph2 && (
             <div className="my-4 flex items-center sm:my-0 sm:grid-col-1 sm:grid-row-1">
