@@ -178,7 +178,7 @@ export const productsSlice = createSlice({
               const { name, description, country, tags } = data
 
               const inCountry =
-                country.length > 0
+                country?.length > 0
                   ? compareArr(
                       country.map((val) => val.toLowerCase()),
                       searchTerms
@@ -186,7 +186,7 @@ export const productsSlice = createSlice({
                   : false
 
               const inTags =
-                tags.length > 0
+                tags?.length > 0
                   ? compareArr(
                       tags.map((val) => val.toLowerCase()),
                       searchTerms
