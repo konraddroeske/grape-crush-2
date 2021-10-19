@@ -21,14 +21,13 @@ const MobileMenu: FunctionComponent = () => {
       })
 
       disableBodyScroll(menuRef.current)
-    } else {
-      clearAllBodyScrollLocks()
     }
   }, [mobileMenuOpen])
 
   const closeMobileMenu = () => {
     const tl = gsap.timeline({
       onComplete: () => {
+        clearAllBodyScrollLocks()
         dispatch(toggleMobileMenuOpen())
       },
     })
