@@ -50,7 +50,7 @@ const ProductsSort: FunctionComponent = () => {
         className="flex items-center h-12 w-full"
         onClick={() => setExpanded(!expanded)}
         onMouseEnter={() => setExpanded(true)}
-        onFocus={() => setExpanded(true)}
+        // onFocus={() => setExpanded(true)}
       >
         <span className="uppercase text-blue-dark text-sm sm:text-base font-bold mr-2">
           Sort
