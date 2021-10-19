@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react'
 
+import { useSelector } from 'react-redux'
 import { useMediaQuery } from 'react-responsive'
 
 import AmbassadorImage from '@components/common/AmbassadorImage'
@@ -14,6 +15,7 @@ import Tags from '@components/common/product/Tags'
 import FactList from '@components/item-page/FactList'
 import ItemSlideshow from '@components/item-page/ItemSlideshow'
 import { ProductLowercase } from '@models/ambassador'
+import { selectProducts } from '@redux/productsSlice'
 
 export interface Props {
   product: ProductLowercase
@@ -22,6 +24,7 @@ export interface Props {
 export type Facts = { [key: string]: string | string[] }[]
 
 const ItemContent: FunctionComponent<Props> = ({ product }) => {
+  const { missingImage } = useSelector(selectProducts())
   const [label, setLabel] = useState<string | null>(null)
   const [price, setPrice] = useState<number | null>(null)
   const [desktopTitleHeight, setDesktopTitleHeight] = useState<number | null>(
@@ -98,7 +101,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
     { size: bottleSize },
   ] as Facts
 
-  const [url] = imageUrl
+  // const [url] = imageUrl
 
   return (
     <div>
@@ -160,12 +163,25 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
                 : 0,
           }}
         >
-          {imageUrl.length > 1 ? (
+          {imageUrl?.length > 1 ? (
             <ItemSlideshow slides={imageUrl} title={productName} />
           ) : (
-            <div className="bg-blue-lightest pointer-events-auto p-6 h-122 xl:h-144">
-              <AmbassadorImage url={url} title={productName} />
-            </div>
+            <>
+              {imageUrl?.length > 0 ? (
+                <div className="bg-blue-lightest pointer-events-auto p-6 h-122 xl:h-144">
+                  <AmbassadorImage url={imageUrl[0]} title={productName} />
+                </div>
+              ) : (
+                <AmbassadorImage
+                  url={
+                    missingImage?.url ||
+                    'https://images.ctfassets.net/q0vbuozzojij/7lYYm9hx5eDUs2a0bbeB7L/513dc8bf19515816374ad5d28d864165/1.png'
+                  }
+                  title={missingImage?.title || 'Missing item.'}
+                  imageStyle="object-cover"
+                />
+              )}
+            </>
           )}
           <div ref={mobileTitleRef} className="transform -translate-y-1/2">
             <h1 className="font-bold pointer-events-auto text-3xl text-center uppercase text-blue-dark lg:hidden">

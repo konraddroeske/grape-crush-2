@@ -27,8 +27,6 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
   const titles = useRef<(HTMLDivElement | null)[]>([])
   const proxy = useRef<HTMLDivElement | null>(null)
   const prevPosition = useRef<number>(0)
-
-  const reorderedSlides = [...slides.slice(-1), ...slides.slice(0, -1)]
   const count = useRef(slides.length)
 
   const itemWidth = useRef(0)
@@ -245,7 +243,7 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
         <div className="relative">
           <div ref={slider} className="w-full relative overflow-hidden">
             <ul ref={list} className="absolute inset-0 m-0 p-0">
-              {reorderedSlides.map((slide) => (
+              {slides.map((slide) => (
                 <li
                   key={slide}
                   ref={(el) => items.current.push(el)}
