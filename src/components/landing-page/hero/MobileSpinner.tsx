@@ -60,11 +60,7 @@ const MobileSpinner: FunctionComponent = () => {
       ref={containerRef}
       className={`${router.pathname === '/' ? 'block' : 'hidden'} lg:hidden`}
     >
-      <button
-        type="button"
-        className="fixed top-8 left-1/2 z-10"
-        onClick={() => handleScroll()}
-      >
+      <button type="button" className="z-10" onClick={() => handleScroll()}>
         <div
           ref={starRef}
           className="w-28 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
