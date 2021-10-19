@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
+import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
 import { gsap } from 'gsap'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,11 +14,15 @@ const MobileMenu: FunctionComponent = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (mobileMenuOpen) {
+    if (mobileMenuOpen && menuRef.current) {
       gsap.to(menuRef.current, {
         duration: 0.2,
         marginTop: 0,
       })
+
+      disableBodyScroll(menuRef.current)
+    } else {
+      clearAllBodyScrollLocks()
     }
   }, [mobileMenuOpen])
 

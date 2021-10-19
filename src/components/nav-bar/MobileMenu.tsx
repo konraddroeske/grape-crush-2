@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react'
 
+import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
 import gsap from 'gsap'
 
 import MenuButtonMobile from '@components/nav-bar/MenuButtonMobile'
@@ -50,6 +51,14 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
       })
     }
   }, [isScrollUp, mobileNavOpen, barRef])
+
+  useEffect(() => {
+    if (mobileNavOpen && mobileMenuRef.current) {
+      disableBodyScroll(mobileMenuRef.current)
+    } else {
+      clearAllBodyScrollLocks()
+    }
+  }, [mobileNavOpen])
 
   return (
     <div

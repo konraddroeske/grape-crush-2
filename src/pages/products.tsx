@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react'
 
-import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -54,14 +53,14 @@ const Products: FunctionComponent = () => {
     }
   }, [router, dispatch])
 
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      const body = document.getElementsByTagName('BODY')[0]
-      disableBodyScroll(body)
-    } else {
-      clearAllBodyScrollLocks()
-    }
-  }, [mobileMenuOpen])
+  // useEffect(() => {
+  //   if (mobileMenuOpen) {
+  //     const body = document.getElementsByTagName('BODY')[0]
+  //     disableBodyScroll(body)
+  //   } else {
+  //     clearAllBodyScrollLocks()
+  //   }
+  // }, [mobileMenuOpen])
 
   return (
     <>
