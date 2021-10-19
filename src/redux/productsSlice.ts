@@ -161,9 +161,7 @@ export const productsSlice = createSlice({
       }
 
       const compareArr = (arr: string[], searchTerms: string[]) => {
-        // console.log('tags', arr)
-        // console.log('search terms', searchTerms)
-        return searchTerms.every((val) => arr.indexOf(val) !== -1)
+        return searchTerms.every((val) => arr.find((ele) => ele.includes(val)))
       }
 
       const searchTerms = productsSearch
