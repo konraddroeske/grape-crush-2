@@ -14,7 +14,7 @@ const MobileSpinner: FunctionComponent = () => {
   const router = useRouter()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const { navOpen } = useSelector(selectGlobal())
-  const { bgGreen } = useSelector(selectIndex())
+  const { bgLime } = useSelector(selectIndex())
   const starRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -29,13 +29,13 @@ const MobileSpinner: FunctionComponent = () => {
       opacity: navOpen ? 0 : 1,
     })
 
-    if (!bgGreen) {
+    if (!bgLime) {
       gsap.to('.svg-mobile-logo path', {
         duration,
         fill: navOpen ? '#dfff85' : '#2c148e',
       })
     }
-  }, [bgGreen, navOpen])
+  }, [bgLime, navOpen])
 
   const handleScroll = () => {
     gsap.to(window, {
@@ -44,7 +44,7 @@ const MobileSpinner: FunctionComponent = () => {
   }
 
   useEffect(() => {
-    if (bgGreen) {
+    if (bgLime) {
       gsap.to('.svg-mobile-logo path', {
         fill: '#dfff85',
       })
@@ -53,7 +53,7 @@ const MobileSpinner: FunctionComponent = () => {
         fill: '#2c148e',
       })
     }
-  }, [bgGreen])
+  }, [bgLime])
 
   return (
     <div

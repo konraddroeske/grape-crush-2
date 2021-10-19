@@ -19,7 +19,7 @@ import { selectIndex } from '@redux/indexSlice'
 
 const DesktopSpinner: FunctionComponent = () => {
   const { navOpen } = useSelector(selectGlobal())
-  const { bgGreen } = useSelector(selectIndex())
+  const { bgLime } = useSelector(selectIndex())
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
   const [isSticky, setIsSticky] = useState<boolean>(false)
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -108,7 +108,7 @@ const DesktopSpinner: FunctionComponent = () => {
   }
 
   useEffect(() => {
-    if (bgGreen) {
+    if (bgLime) {
       gsap.to('.spinner-logo-svg path', {
         fill: '#dfff85',
       })
@@ -117,7 +117,7 @@ const DesktopSpinner: FunctionComponent = () => {
         fill: '#2c148e',
       })
     }
-  }, [bgGreen])
+  }, [bgLime])
 
   return (
     <div

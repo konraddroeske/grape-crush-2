@@ -10,24 +10,24 @@ export const addPriceRange = (products: Product[]) => {
         const data = { ...product.data, range: [] }
         return { ...product, data }
       }
-      case price < 2000: {
-        const data = { ...product.data, range: ['under $20'] }
+      case price < 2500: {
+        const data = { ...product.data, range: ['under $25'] }
         return { ...product, data }
       }
-      case price < 3000: {
-        const data = { ...product.data, range: ['$20 — $30'] }
+      case price < 3500: {
+        const data = { ...product.data, range: ['$25 — $35'] }
         return { ...product, data }
       }
-      case price < 5000: {
-        const data = { ...product.data, range: ['$30 — $50'] }
+      case price < 4500: {
+        const data = { ...product.data, range: ['$35 — $45'] }
         return { ...product, data }
       }
-      case price < 10000: {
-        const data = { ...product.data, range: ['$50 — $100'] }
-        return { ...product, data }
-      }
+      // case price < 10000: {
+      //   const data = { ...product.data, range: ['$50 — $100'] }
+      //   return { ...product, data }
+      // }
       default: {
-        const data = { ...product.data, range: ['over $100'] }
+        const data = { ...product.data, range: ['over $45'] }
         return { ...product, data }
       }
     }

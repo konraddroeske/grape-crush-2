@@ -11,7 +11,7 @@ interface IndexSlice {
   infoBox2: IInfoBox1Fields | null
   infoBox3: IInfoBox1Fields | null
   houseWines: Asset[]
-  bgGreen: boolean
+  bgLime: boolean
 }
 
 const initialState: IndexSlice = {
@@ -20,15 +20,15 @@ const initialState: IndexSlice = {
   infoBox2: null,
   infoBox3: null,
   houseWines: [],
-  bgGreen: false,
+  bgLime: false,
 }
 
 export const indexSlice = createSlice({
   name: 'index',
   initialState,
   reducers: {
-    setBgGreen(state, action) {
-      return { ...state, bgGreen: action.payload }
+    setBgLime(state, action) {
+      return { ...state, bgLime: action.payload }
     },
     // setNewArrivals(state, action) {
     //   return { ...state, newArrivals: action.payload }
@@ -66,6 +66,6 @@ export const indexSlice = createSlice({
   },
 })
 
-export const { setInfoBoxes, setHouseWines, setBgGreen } = indexSlice.actions
+export const { setInfoBoxes, setHouseWines, setBgLime } = indexSlice.actions
 
 export const selectIndex = () => (state: AppState) => state?.[indexSlice.name]

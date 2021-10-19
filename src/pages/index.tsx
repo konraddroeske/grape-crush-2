@@ -1,7 +1,5 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
-import gsap from 'gsap'
-
 import { useInView } from 'react-intersection-observer'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -23,7 +21,7 @@ import {
 } from '@redux/globalSlice'
 import {
   selectIndex,
-  setBgGreen,
+  setBgLime,
   setHouseWines,
   setInfoBoxes,
 } from '@redux/indexSlice'
@@ -32,7 +30,7 @@ import { wrapper } from '@redux/store'
 
 const Home: FunctionComponent = () => {
   const mainRef = useRef<HTMLElement>(null)
-  const { bgGreen } = useSelector(selectIndex())
+  const { bgLime } = useSelector(selectIndex())
   const dispatch = useDispatch()
 
   const { ref, inView } = useInView({
@@ -40,20 +38,8 @@ const Home: FunctionComponent = () => {
   })
 
   useEffect(() => {
-    dispatch(setBgGreen(inView))
+    dispatch(setBgLime(inView))
   }, [dispatch, inView])
-
-  useEffect(() => {
-    if (bgGreen) {
-      gsap.to(mainRef.current, {
-        backgroundColor: '#dfff85',
-      })
-    } else {
-      gsap.to(mainRef.current, {
-        backgroundColor: '#ffffff',
-      })
-    }
-  }, [bgGreen])
 
   return (
     <>
@@ -61,7 +47,9 @@ const Home: FunctionComponent = () => {
       <main
         id="main"
         ref={mainRef}
-        className="bg-white min-h-screen overflow-hidden"
+        className={`${
+          bgLime ? 'bg-lime' : 'bg-white'
+        } min-h-screen overflow-hidden transition duration-1000`}
       >
         <Hero />
         <Description />

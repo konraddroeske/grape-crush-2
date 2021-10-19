@@ -13,7 +13,7 @@ import Star from '../../../assets/svgs/star.svg'
 const SpinningStar: FunctionComponent = () => {
   const starRef = useRef<HTMLDivElement | null>(null)
   const animation = useRef<gsap.core.Timeline | null>(null)
-  const { bgGreen } = useSelector(selectIndex())
+  const { bgLime } = useSelector(selectIndex())
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -51,7 +51,7 @@ const SpinningStar: FunctionComponent = () => {
   }, [])
 
   useEffect(() => {
-    if (bgGreen) {
+    if (bgLime) {
       gsap.to('.svg-spinning-star path', {
         fill: '#2c148e',
       })
@@ -60,7 +60,7 @@ const SpinningStar: FunctionComponent = () => {
         fill: '#dfff85',
       })
     }
-  }, [bgGreen])
+  }, [bgLime])
 
   return (
     <div ref={ref}>
