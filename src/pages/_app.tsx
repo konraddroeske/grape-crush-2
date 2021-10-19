@@ -36,8 +36,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         strategy="lazyOnload"
         onLoad={() => {
           window.AmbassadorChat.init({
-            domain: 'chat.ambassador.ai',
-            pageId: '-vsyv9_4MKus',
+            // domain: 'chat.ambassador.ai',
+            // pageId: '-vsyv9_4MKus',
+            domain: 'grapecrush.ambassador.ai',
           })
         }}
       />
