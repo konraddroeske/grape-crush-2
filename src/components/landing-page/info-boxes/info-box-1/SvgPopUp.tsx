@@ -31,7 +31,7 @@ const SvgPopUp: FunctionComponent<Props> = ({ images, title, description }) => {
         y: '100%',
         x: '65%',
         rotate: '-6deg',
-        opacity: 1,
+        opacity: 0,
       })
     }
   }, [])
@@ -58,7 +58,7 @@ const SvgPopUp: FunctionComponent<Props> = ({ images, title, description }) => {
 
       gsap.to(image3Ref.current, {
         y: '15%',
-        x: '65%',
+        // x: '65%',
         opacity: 1,
         duration,
         delay: 0.1,
