@@ -1,15 +1,23 @@
-import React, { FunctionComponent, useEffect } from 'react'
+import React, {
+  BaseSyntheticEvent,
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 
+import debounce from 'lodash.debounce'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Search from '@assets/svgs/search.svg'
 import { selectClient, setNavSearch } from '@redux/clientSlice'
-import { handleProductsSearch, selectProducts } from '@redux/productsSlice'
+import { handleProductsSearch } from '@redux/productsSlice'
 
 const ProductsSearch: FunctionComponent = () => {
   const dispatch = useDispatch()
   const { navSearch } = useSelector(selectClient())
-  const { productsSearch } = useSelector(selectProducts())
+
+  const [value, setValue] = useState<string>(navSearch || '')
 
   useEffect(() => {
     if (navSearch.length > 0) {
@@ -18,8 +26,17 @@ const ProductsSearch: FunctionComponent = () => {
     dispatch(setNavSearch(''))
   }, [dispatch, navSearch])
 
-  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch(handleProductsSearch(event.currentTarget.value))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedSearch = useCallback(
+    debounce((nextValue) => dispatch(handleProductsSearch(nextValue)), 300),
+    []
+  )
+
+  const handleChange = (event: BaseSyntheticEvent) => {
+    const { value: nextValue } = event.target
+    setValue(nextValue)
+
+    debouncedSearch(nextValue)
   }
 
   return (
@@ -28,7 +45,7 @@ const ProductsSearch: FunctionComponent = () => {
         type="text"
         placeholder="Search"
         className="w-full border-none bg-transparent font-bold placeholder-transparent py-0 pr-8"
-        value={productsSearch}
+        value={value}
         onChange={handleChange}
       />
       <Search className="absolute right-2 top-1/2 transform -translate-y-1/2 w-5" />
