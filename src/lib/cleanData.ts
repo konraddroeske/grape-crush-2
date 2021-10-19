@@ -2,7 +2,7 @@ import { Product } from '@models/ambassador'
 
 // eslint-disable-next-line import/prefer-default-export
 export const cleanData = (products: Product[]) => {
-  return products.map((product) => {
+  const newKeys = products.map((product) => {
     const { type: parentType, data } = product
 
     const {
@@ -27,4 +27,6 @@ export const cleanData = (products: Product[]) => {
       },
     }
   })
+
+  return newKeys.filter((product) => !product.data.tags.includes('delivery'))
 }
