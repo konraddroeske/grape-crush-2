@@ -33,7 +33,7 @@ const InfoBox1: FunctionComponent = () => {
           </div>
         </div>
       </div>
-      <div className="row-start-1 sm:col-start-1 w-full sm:flex sm:max-h-70vh">
+      <div className="row-start-1 sm:col-start-1 w-full sm:flex">
         <SvgPopUp images={houseWines} title={title} description={description} />
       </div>
     </section>
