@@ -26,6 +26,17 @@ const SvgPopUp: FunctionComponent<Props> = ({ images, title, description }) => {
   const image3Ref = useRef<SVGImageElement>(null)
 
   useEffect(() => {
+    if (image3Ref.current) {
+      gsap.set(image3Ref.current, {
+        y: '100%',
+        x: '65%',
+        rotate: '-6deg',
+        opacity: 1,
+      })
+    }
+  }, [])
+
+  useEffect(() => {
     const duration = 0.6
     const ease = 1.5
 
@@ -47,6 +58,7 @@ const SvgPopUp: FunctionComponent<Props> = ({ images, title, description }) => {
 
       gsap.to(image3Ref.current, {
         y: '15%',
+        x: '65%',
         opacity: 1,
         duration,
         delay: 0.1,
@@ -93,7 +105,7 @@ const SvgPopUp: FunctionComponent<Props> = ({ images, title, description }) => {
           />
           <image
             ref={image3Ref}
-            className="w-5/12 transform -rotate-6 translate-x-1/4 translate-y-full"
+            className="w-5/12"
             fill="none"
             href={image1.url}
           />
