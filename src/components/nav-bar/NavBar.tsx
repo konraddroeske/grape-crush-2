@@ -40,10 +40,10 @@ const NavBar: FunctionComponent = () => {
 
   const barRef = useRef<HTMLDivElement>(null)
 
-  const isScrollUp = useScrollDetector()
+  const [isScrollUp, scrollDistance] = useScrollDetector()
 
   useEffect(() => {
-    if (isDesktop) {
+    if (isDesktop || scrollDistance < 50) {
       gsap.set(barRef.current, {
         y: 0,
       })
@@ -56,7 +56,7 @@ const NavBar: FunctionComponent = () => {
         y: 0,
       })
     }
-  }, [isScrollUp, navOpen, isDesktop, mobileNavOpen])
+  }, [isScrollUp, scrollDistance, navOpen, isDesktop, mobileNavOpen])
 
   return (
     <nav

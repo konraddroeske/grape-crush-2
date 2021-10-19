@@ -4,6 +4,7 @@ const useScrollDetector = (
   element: RefObject<HTMLElement> | undefined = undefined
 ) => {
   const [isScrollUp, setIsScrollUp] = useState<boolean>(true)
+  const [scrollDistance, setScrollDistance] = useState<number>(0)
   const oldValue = useRef<number>(0)
   const newValue = useRef<number>(0)
 
@@ -19,6 +20,7 @@ const useScrollDetector = (
     }
 
     oldValue.current = newValue.current
+    setScrollDistance(newValue.current)
   }, [element, isScrollUp])
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const useScrollDetector = (
     }
   }, [element, handleScroll])
 
-  return isScrollUp
+  return [isScrollUp, scrollDistance]
 }
 
 export default useScrollDetector

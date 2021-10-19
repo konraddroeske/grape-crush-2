@@ -28,7 +28,7 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
   }
 
   const mobileMenuRef = useRef<HTMLDivElement>(null)
-  const isScrollUp = useScrollDetector(mobileMenuRef)
+  const [isScrollUp, scrollDistance] = useScrollDetector(mobileMenuRef)
 
   useEffect(() => {
     if (mobileMenuRef.current) {
@@ -41,7 +41,11 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
   }, [barRef, mobileNavOpen])
 
   useEffect(() => {
-    if (!isScrollUp && mobileNavOpen) {
+    if (scrollDistance < 50 && mobileNavOpen) {
+      gsap.set(barRef.current, {
+        y: 0,
+      })
+    } else if (!isScrollUp && mobileNavOpen) {
       gsap.set(barRef.current, {
         y: '-7rem',
       })
@@ -50,7 +54,7 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
         y: 0,
       })
     }
-  }, [isScrollUp, mobileNavOpen, barRef])
+  }, [isScrollUp, scrollDistance, mobileNavOpen, barRef])
 
   useEffect(() => {
     if (mobileNavOpen && mobileMenuRef.current) {
