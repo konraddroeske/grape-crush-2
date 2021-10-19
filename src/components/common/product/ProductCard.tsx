@@ -10,6 +10,7 @@ import ProductSubheading from '@components/common/product/ProductSubheading'
 
 import Tags from '@components/common/product/Tags'
 import QuickBuy from '@components/common/QuickBuy'
+import { getPriceAsString } from '@lib/getPriceAsString'
 import { ProductDataLowercase } from '@models/ambassador'
 
 import { selectProducts } from '@redux/productsSlice'
@@ -25,7 +26,7 @@ type Props = OwnProps
 
 const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
   const { missingImage } = useSelector(selectProducts())
-  const [price, setPrice] = useState<number | null>(null)
+  const [price, setPrice] = useState<string>('')
   const [label, setLabel] = useState<string>('')
   const [url, setUrl] = useState<string | null>(null)
   const [buyVisible, setBuyVisible] = useState<boolean>(false)
@@ -45,7 +46,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
     const [variant] = variants
     if (variant) {
       const { amount, label: primaryLabel } = variant
-      setPrice(amount / 100)
+      setPrice(getPriceAsString(amount))
       setLabel(primaryLabel)
     }
 

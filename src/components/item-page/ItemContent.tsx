@@ -14,6 +14,7 @@ import BuyButton from '@components/common/BuyButton'
 import Tags from '@components/common/product/Tags'
 import FactList from '@components/item-page/FactList'
 import ItemSlideshow from '@components/item-page/ItemSlideshow'
+import { getPriceAsString } from '@lib/getPriceAsString'
 import { ProductLowercase } from '@models/ambassador'
 import { selectProducts } from '@redux/productsSlice'
 
@@ -26,7 +27,7 @@ export type Facts = { [key: string]: string | string[] }[]
 const ItemContent: FunctionComponent<Props> = ({ product }) => {
   const { missingImage } = useSelector(selectProducts())
   const [label, setLabel] = useState<string | null>(null)
-  const [price, setPrice] = useState<number | null>(null)
+  const [price, setPrice] = useState<string>('')
   const [desktopTitleHeight, setDesktopTitleHeight] = useState<number | null>(
     null
   )
@@ -69,7 +70,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
 
     if (variant) {
       const { amount, label: primaryLabel } = variant
-      setPrice(amount / 100)
+      setPrice(getPriceAsString(amount))
       setLabel(primaryLabel)
     }
   }, [product])
