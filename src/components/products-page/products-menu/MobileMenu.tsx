@@ -37,7 +37,7 @@ const MobileMenu: FunctionComponent = () => {
   return (
     <div
       ref={menuRef}
-      className="fixed z-40 inset-0 bg-white pt-6 body-gutter-sm overflow-auto mt-full
+      className="fixed z-40 inset-0 bg-white pt-6 body-gutter-sm overflow-y-auto mt-full
       lg:hidden"
     >
       <ProductCategories closeMobileMenu={closeMobileMenu} />
