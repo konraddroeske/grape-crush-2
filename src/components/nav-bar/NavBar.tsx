@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef } from 'react'
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import gsap from 'gsap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,17 +20,13 @@ const NavBar: FunctionComponent = () => {
   const dispatch = useDispatch()
   const { navOpen } = useSelector(selectGlobal())
   const navRef = useRef<null | HTMLElement>(null)
-
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
-  const mobileNavOpen = navOpen && !isDesktop
 
-  // useEffect(() => {
-  //   if (mobileNavOpen && navRef.current) {
-  //     disableBodyScroll(navRef.current)
-  //   } else {
-  //     clearAllBodyScrollLocks()
-  //   }
-  // }, [mobileNavOpen])
+  const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    setMobileNavOpen(navOpen && !isDesktop)
+  }, [navOpen, isDesktop])
 
   useEffect(() => {
     if (navOpen && !isDesktop) {

@@ -37,7 +37,7 @@ const Seo: FunctionComponent<Props> = ({ title, description, image }) => {
           ? {
               images: [
                 {
-                  url: `${imageData.url}`,
+                  url: imageData.url,
                   width: imageData.width,
                   height: imageData.height,
                   alt: imageData.description,
