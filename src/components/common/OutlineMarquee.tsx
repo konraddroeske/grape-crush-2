@@ -102,7 +102,7 @@ const OutlineMarquee: FunctionComponent<Props> = ({
 
   return (
     <div ref={ref} className="">
-      <ul ref={containerRef} className="relative h-40 w-full">
+      <ul ref={containerRef} className="relative w-full">
         {textArr &&
           textArr.map(([key, ele], index) => {
             return (
