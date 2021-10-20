@@ -31,7 +31,7 @@ const Seo: FunctionComponent<Props> = ({ title, description, image }) => {
         description ||
         "With one of Ontario's largest natural wines selection, shop from 200+ curated natural, biodynamic, and classic wines for any budget. We ship province-wide."
       }
-      canonical="https://grapecrush.wine/"
+      canonical="https://www.grapecrush.wine/"
       openGraph={
         imageData
           ? {
