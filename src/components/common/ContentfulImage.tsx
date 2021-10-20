@@ -35,7 +35,7 @@ const ContentfulImage: FunctionComponent<Props> = ({
         height={height}
         className={`${imageStyle}`}
         layout={layout}
-        lazyBoundary="500px"
+        // lazyBoundary="500px"
         priority={priority}
       />
     </div>

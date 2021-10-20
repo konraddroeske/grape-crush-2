@@ -22,7 +22,7 @@ const AmbassadorImage: FunctionComponent<Props> = ({
         alt={title}
         className={`mix-blend-multiply ${imageStyle}`}
         layout="fill"
-        lazyBoundary="500px"
+        // lazyBoundary="500px"
       />
     </div>
   )

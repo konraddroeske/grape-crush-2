@@ -33,6 +33,7 @@ const Logo: FunctionComponent = () => {
       <Link href="/">
         <a>
           <NewLogo className="w-full svg-logo" />
+          <span className="sr-only">Home</span>
         </a>
       </Link>
     </div>
