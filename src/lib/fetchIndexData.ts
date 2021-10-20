@@ -1,14 +1,14 @@
-import client from '@lib/apolloClient'
+import { fetchWithCacheApollo } from '@lib/fetchWithCache'
 import { assetCollectionQuery, indexQuery } from '@models/schema'
 
 export default async function fetchIndexData() {
-  const { data: indexData } = await client.query({
+  const indexData = await fetchWithCacheApollo({
     query: indexQuery,
   })
 
   const { infoBox1Collection } = indexData
 
-  const { data: houseWineImageData } = await client.query({
+  const houseWineImageData = await fetchWithCacheApollo({
     query: assetCollectionQuery,
     variables: {
       assetCollectionWhere: {

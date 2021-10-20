@@ -71,9 +71,9 @@
       }
     ],
     "no-console": [
-      1,
+      2,
       {
-        "allow": ["warn"]
+        "allow": ["warn", "error"]
       }
     ],
     "import/order": [
