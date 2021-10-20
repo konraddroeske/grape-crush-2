@@ -18,6 +18,7 @@ const LearnMore: FunctionComponent<Props> = ({ name }) => {
           <span className="mr-2 text-base text-blue-dark leading-none font-bold uppercase">
             Learn More
           </span>
+          <span className="sr-only">about {name}</span>
           <ProductArrow className="w-8 svg-blue-dark" />
         </div>
       </a>

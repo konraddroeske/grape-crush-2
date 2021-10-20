@@ -42,7 +42,7 @@ export const LogoContainer: FunctionComponent = ({ children }) => (
 const FooterInfo: FunctionComponent = () => {
   const { legalPages } = useSelector(selectGlobal())
   return (
-    <div className="relative z-30 bg-blue-dark xl:flex xl:overflow-hidden">
+    <div className="relative z-20 bg-blue-dark xl:flex xl:overflow-hidden">
       <FooterLogo />
       <div
         className="flex flex-wrap pt-4 sm:py-6 lg:py-8 body-gutter-sm

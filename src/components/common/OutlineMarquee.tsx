@@ -55,7 +55,7 @@ const OutlineMarquee: FunctionComponent<Props> = ({
     const tl = gsap.timeline()
 
     animation.current = tl.to(textRefs.current, {
-      duration: totalWidth / 100,
+      duration: totalWidth / 75,
       ease: 'none',
       x: `${direction}${totalWidth}`,
       modifiers: {

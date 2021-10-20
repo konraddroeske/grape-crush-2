@@ -12,7 +12,8 @@ import ProductArrow from '../../../assets/svgs/product-arrow.svg'
 const PageNav: FunctionComponent = () => {
   const router = useRouter()
   const {
-    totalSelected,
+    // totalSelected,
+    selectedProductsByPage,
     productsPerPage,
     page: currentPage,
     selectedTags,
@@ -21,17 +22,15 @@ const PageNav: FunctionComponent = () => {
   const [middlePages, setMiddlePages] = useState<number[]>([1])
 
   useEffect(() => {
-    const pageCount =
-      totalSelected.length === 0
-        ? 1
-        : Math.ceil(totalSelected.length / productsPerPage)
+    const pageCount = selectedProductsByPage.length
 
-    const filtered = [currentPage - 1, currentPage, currentPage + 1].filter(
+    const middle = [currentPage - 1, currentPage, currentPage + 1].filter(
       (ele) => ele > 1 && ele < pageCount
     )
-    setMiddlePages(filtered)
+
+    setMiddlePages(middle)
     setTotalPages(pageCount)
-  }, [currentPage, totalSelected, productsPerPage])
+  }, [currentPage, selectedProductsByPage, productsPerPage])
 
   const handleClick = (newPage: number) => {
     const href = convertTagsToHref(selectedTags, newPage)
