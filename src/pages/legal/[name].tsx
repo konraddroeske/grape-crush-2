@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 
 import ContentfulRichText from '@components/common/ContentfulRichText'
 import OutlineMarquee from '@components/common/OutlineMarquee'
+import RouterScroll from '@components/common/RouterScroll'
 import Seo from '@components/common/Seo'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchPageData from '@lib/fetchPageData'
@@ -82,21 +83,23 @@ const LegalPage: FunctionComponent = () => {
   return (
     <>
       <Seo title={title || 'Wines Within Reach'} />
-      <div className="min-h-screen py-12">
-        {title && (
-          <div className="my-4 overflow-hidden">
-            <OutlineMarquee text={title || 'Legal Page'} />
-          </div>
-        )}
-        <div
-          className="py-6 body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl
-        2xl:body-gutter-2xl max-w-screen-xl mx-auto"
-        >
-          {document && (
-            <ContentfulRichText options={options} richText={document} />
+      <RouterScroll>
+        <div className="min-h-screen py-12">
+          {title && (
+            <div className="my-4 overflow-hidden">
+              <OutlineMarquee text={title || 'Legal Page'} />
+            </div>
           )}
+          <div
+            className="py-6 body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl
+        2xl:body-gutter-2xl max-w-screen-xl mx-auto"
+          >
+            {document && (
+              <ContentfulRichText options={options} richText={document} />
+            )}
+          </div>
         </div>
-      </div>
+      </RouterScroll>
     </>
   )
 }
