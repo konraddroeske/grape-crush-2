@@ -53,15 +53,6 @@ const Products: FunctionComponent = () => {
     }
   }, [router, dispatch])
 
-  // useEffect(() => {
-  //   if (mobileMenuOpen) {
-  //     const body = document.getElementsByTagName('BODY')[0]
-  //     disableBodyScroll(body)
-  //   } else {
-  //     clearAllBodyScrollLocks()
-  //   }
-  // }, [mobileMenuOpen])
-
   return (
     <>
       <Seo title="Shop" />

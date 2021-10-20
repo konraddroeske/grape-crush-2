@@ -20,7 +20,7 @@ const ProductsList: FunctionComponent = () => {
 
   const {
     products,
-    selectedProducts,
+    selectedProductsByPage,
     page,
     selectedTags,
     productsSearch,
@@ -41,7 +41,7 @@ const ProductsList: FunctionComponent = () => {
 
   useEffect(() => {
     setIsLoading(false)
-  }, [selectedProducts])
+  }, [selectedProductsByPage])
 
   const resetSearch = () => {
     dispatch(setNavSearch(''))
@@ -50,9 +50,9 @@ const ProductsList: FunctionComponent = () => {
 
   return (
     <div className="flex flex-col h-full">
-      {selectedProducts && selectedProducts?.length > 0 && (
+      {selectedProductsByPage.length > 0 && (
         <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-8 xl:gap-10">
-          {selectedProducts?.map((product) => {
+          {selectedProductsByPage[page - 1]?.map((product) => {
             const { data } = product
             return (
               <li key={product._id}>
@@ -62,7 +62,7 @@ const ProductsList: FunctionComponent = () => {
           })}
         </ul>
       )}
-      {!isLoading && selectedProducts?.length === 0 && (
+      {!isLoading && selectedProductsByPage.length === 0 && (
         <div className="h-full flex justify-center items-center py-24">
           <Warning text="Oops!">
             <p className="font-headline relative z-10 my-4">

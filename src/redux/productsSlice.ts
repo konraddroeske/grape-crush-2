@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import chunk from 'lodash.chunk'
 import deburr from 'lodash.deburr'
 import { HYDRATE } from 'next-redux-wrapper'
 
@@ -50,7 +51,8 @@ interface ProductsSlice {
   products: ProductLowercase[]
   allTags: TagsByCount | null
   // productsByTag: ProductsByTag | null
-  selectedProducts: ProductLowercase[] | null
+  // selectedProducts: ProductLowercase[] | null
+  selectedProductsByPage: ProductLowercase[][]
   totalSelected: ProductLowercase[]
   selectedTags: TagsByCategory
   page: number
@@ -67,7 +69,8 @@ const initialState: ProductsSlice = {
   products: [],
   allTags: null,
   // productsByTag: null,
-  selectedProducts: [],
+  // selectedProducts: [],
+  selectedProductsByPage: [],
   totalSelected: [],
   selectedTags: {
     parentType: [],
@@ -203,30 +206,25 @@ export const productsSlice = createSlice({
             })
 
       const sortedProducts = sortProducts([...searchedProducts], productsSort)
+      const selectedProductsByPage = chunk(
+        sortedProducts,
+        state.productsPerPage
+      )
 
-      const maxPage = Math.ceil(sortedProducts.length / state.productsPerPage)
+      const maxPage = selectedProductsByPage.length
 
       if (state.page !== 1 && state.page >= maxPage) {
-        const lastPageStart =
-          sortedProducts.length -
-          (sortedProducts.length % state.productsPerPage)
-        const sortedProductsByPage = sortedProducts.slice(lastPageStart)
         return {
           ...state,
           page: maxPage,
-          selectedProducts: sortedProductsByPage,
+          selectedProductsByPage,
           totalSelected: sortedProducts,
         }
       }
 
-      const start = (state.page - 1) * state.productsPerPage
-      const end = state.page * state.productsPerPage
-
-      const sortedProductsByPage = sortedProducts.slice(start, end)
-
       return {
         ...state,
-        selectedProducts: sortedProductsByPage,
+        selectedProductsByPage,
         totalSelected: sortedProducts,
       }
     },
