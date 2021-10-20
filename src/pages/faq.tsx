@@ -33,7 +33,8 @@ const Faq: FunctionComponent = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollToPlugin)
     const path = router.asPath
-    const anchor = path.slice(path.indexOf('#'))
+    const position = path.indexOf('#')
+    const anchor = position !== -1 ? path.slice(position) : null
 
     if (anchor) {
       gsap.to(window, 0.3, { scrollTo: { y: anchor, offsetY: 70 } })
