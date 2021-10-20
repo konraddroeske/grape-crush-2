@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import RouterScroll from '@components/common/RouterScroll'
 import Seo from '@components/common/Seo'
 import Description from '@components/landing-page/description/Description'
 import FeaturesSlideshow from '@components/landing-page/features/FeaturesSlideshow'
@@ -44,24 +45,26 @@ const Home: FunctionComponent = () => {
   return (
     <>
       <Seo title="Wines Within Reach" />
-      <main
-        id="main"
-        ref={mainRef}
-        className={`${
-          bgLime ? 'bg-lime' : 'bg-white'
-        } min-h-screen overflow-hidden transition duration-1000`}
-      >
-        <Hero />
-        <Description />
-        {/* <NewShopByType /> */}
-        <div ref={ref}>
-          <FeaturesSlideshow />
-          <ShopByTypeGrid />
-          {/* <ItemSlideshow /> */}
-        </div>
-        {/* <NewInfoBox3 /> */}
-        <InfoBox1 />
-      </main>
+      <RouterScroll>
+        <main
+          id="main"
+          ref={mainRef}
+          className={`${
+            bgLime ? 'bg-lime' : 'bg-white'
+          } min-h-screen overflow-hidden transition duration-1000`}
+        >
+          <Hero />
+          <Description />
+          {/* <NewShopByType /> */}
+          <div ref={ref}>
+            <FeaturesSlideshow />
+            <ShopByTypeGrid />
+            {/* <ItemSlideshow /> */}
+          </div>
+          {/* <NewInfoBox3 /> */}
+          <InfoBox1 />
+        </main>
+      </RouterScroll>
     </>
   )
 }

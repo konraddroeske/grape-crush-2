@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react'
 import { useSelector } from 'react-redux'
 
 import OutlineMarquee from '@components/common/OutlineMarquee'
+import RouterScroll from '@components/common/RouterScroll'
 import Seo from '@components/common/Seo'
 import ContactEmail from '@components/contact-page/ContactEmail'
 import ContactForm from '@components/contact-page/ContactForm'
@@ -33,17 +34,19 @@ const Contact: FunctionComponent = () => {
   return (
     <>
       <Seo title="Contact" />
-      <div className="min-h-screen pt-12">
-        <div id="location" className="mt-4 overflow-hidden">
-          <OutlineMarquee text="Visit us" />
+      <RouterScroll>
+        <div className="min-h-screen pt-12">
+          <div id="location" className="mt-4 overflow-hidden">
+            <OutlineMarquee text="Visit us" />
+          </div>
+          <ContactInfo />
+          <div id="contact" className="overflow-hidden">
+            <OutlineMarquee text="Get in touch" direction="-=" />
+          </div>
+          <ContactEmail />
+          <ContactForm />
         </div>
-        <ContactInfo />
-        <div id="contact" className="overflow-hidden">
-          <OutlineMarquee text="Get in touch" direction="-=" />
-        </div>
-        <ContactEmail />
-        <ContactForm />
-      </div>
+      </RouterScroll>{' '}
     </>
   )
 }

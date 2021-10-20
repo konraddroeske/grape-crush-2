@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import ClientOnlyPortal from '@components/common/ClientOnlyPortal'
 import OutlineMarquee from '@components/common/OutlineMarquee'
+import RouterScroll from '@components/common/RouterScroll'
 import Seo from '@components/common/Seo'
 import ProductsBar from '@components/products-page/products-bar/ProductsBar'
 import ProductsBreadcrumbs from '@components/products-page/products-bar/ProductsBreadcrumbs'
@@ -56,28 +57,30 @@ const Products: FunctionComponent = () => {
   return (
     <>
       <Seo title="Shop" />
-      <div className="py-12 pb-12 min-h-screen">
-        <div className="my-4 overflow-hidden">
-          <OutlineMarquee text="shop" />
-        </div>
-        <div className="lg:mb-10 border border-l-0 border-r-0 border-dark-blue">
-          <ProductsBar />
-        </div>
-        <div className="my-4 body-gutter-sm lg:hidden">
-          <ProductsBreadcrumbs />
-        </div>
-        <div className="flex">
-          <DesktopMenu />
-          <div className="flex-grow body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
-            <ProductsList />
+      <RouterScroll>
+        <div className="py-12 pb-12 min-h-screen">
+          <div className="my-4 overflow-hidden">
+            <OutlineMarquee text="shop" />
           </div>
+          <div className="lg:mb-10 border border-l-0 border-r-0 border-dark-blue">
+            <ProductsBar />
+          </div>
+          <div className="my-4 body-gutter-sm lg:hidden">
+            <ProductsBreadcrumbs />
+          </div>
+          <div className="flex">
+            <DesktopMenu />
+            <div className="flex-grow body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+              <ProductsList />
+            </div>
+          </div>
+          {mobileMenuOpen && (
+            <ClientOnlyPortal selector="#modal">
+              <MobileMenu />
+            </ClientOnlyPortal>
+          )}
         </div>
-        {mobileMenuOpen && (
-          <ClientOnlyPortal selector="#modal">
-            <MobileMenu />
-          </ClientOnlyPortal>
-        )}
-      </div>
+      </RouterScroll>
     </>
   )
 }

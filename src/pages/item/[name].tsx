@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
 import OutlineMarquee from '@components/common/OutlineMarquee'
+import RouterScroll from '@components/common/RouterScroll'
 import Seo from '@components/common/Seo'
 import ItemBar from '@components/item-page/item-bar/ItemBar'
 import ItemContent from '@components/item-page/ItemContent'
@@ -82,22 +83,24 @@ const Item: FunctionComponent = () => {
             : undefined
         }
       />
-      <div className="min-h-screen py-12 pb-28">
-        <div className="my-4 overflow-hidden">
-          <OutlineMarquee text="shop" />
+      <RouterScroll>
+        <div className="min-h-screen py-12 pb-28">
+          <div className="my-4 overflow-hidden">
+            <OutlineMarquee text="shop" />
+          </div>
+          {productData && (
+            <>
+              <div className="mb-4 lg:mb-10 lg:border lg:border-l-0 lg:border-r-0 border-dark-blue">
+                <ItemBar product={productData} />
+              </div>
+              <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl bg-purple">
+                <ItemContent product={productData} />
+              </div>
+              {/* <Suggested product={productData} /> */}
+            </>
+          )}
         </div>
-        {productData && (
-          <>
-            <div className="mb-4 lg:mb-10 lg:border lg:border-l-0 lg:border-r-0 border-dark-blue">
-              <ItemBar product={productData} />
-            </div>
-            <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl bg-purple">
-              <ItemContent product={productData} />
-            </div>
-            {/* <Suggested product={productData} /> */}
-          </>
-        )}
-      </div>
+      </RouterScroll>
     </>
   )
 }
