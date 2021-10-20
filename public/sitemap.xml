@@ -1,346 +1,345 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://www.grapecrush.wine</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/contact</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/faq</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/products</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/server-sitemap.xml</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/legal/terms-and-conditions</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/legal/cookies-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/legal/privacy-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Frederic Brouca - Champs Pentus</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Grangeneuve Bordeaux </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Pearce Predhomme - Cinsault%2FSyrah</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Baud Génération 9 - Crémant de Jura</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Casa Mariol - Cava 14 Mesos Brut Nature</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/GreenLane Rosé </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine de Carmignan - Côtes-du-Rhône</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Casa Los Frailes - Bilogia </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Ciù Ciù - Oris </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fattoria di Sammontanna - Alberese</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/First Contact</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Stekar - Emilio</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Leaning Post - Petillant Naturel</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Caves du Luberon - Alidon Rosé</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Botanica - Cabernet Franc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elora Borealis Citra Pale Ale</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elora Shine IPA </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Traynor Family Ophelia Piquette</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/GreenLane Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Pirineos - 3404</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Pearce Predhomme - Chenin Blanc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Cueva - Brutal Ancestral </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Montfaucon - Lirac</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Kamara - Shadow Play </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Le Ragnaie - Vino Bianco </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Gilvesy Martinus Tohely Olaszrizling</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Castillo de La Mota - Verdejo</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Pearl Morissette - Cuvée Roselana</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Casa Mariol - Vermut Negre (1L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Willem's Wermoed - Original Sweet</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Willem's Wermoed - Dutch Dry</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Meinklang - Grüner Veltliner </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Loimer - Grüner Veltliner</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Vino Lauria - Vino a Gogo Frappato Rosé </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Vino Lauria - Vino a Gogo Pinot Grigio</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Scarpetta Frico Frizzante 250ml</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/20,000 Leguas</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Lunaria Orsogna - Ramoro Pinot Grigio</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Traynor - Haberdasher</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Adamo Kirby Gamay Rosé (1.5L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Pearce Predhomme - Pinot Noir</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Channing Daughters - Rosso Fresco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Poderi Cellario - È Bianco! (1L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Terre Di Bruca - Quaranta</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Tenuta Montemagno - Solis Vis</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domini del Leone Bianco IGT</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Valdonica - Mersino Vermentino</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Adamo Legacy Pet Nat</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Caves du Luberon - Alidon Blanc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/La Rondinina - Lambrusco </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Serra & Barcelo - Aucalà </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Therianthropy - Mouflon Viognier </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Mini Bollino Lambrusco (375mL)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Cueva - Orange</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Big Flower - Rosé</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Dillon's Cherry Gin</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Tenuta Foresta - Monferrato Bianco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Supernatural Pet Nat</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Mosole Tai</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Adamo Sogno Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Trebbiano d’Abruzzo Anfora</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fidora Prosecco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Saint Cosme - Côtes-du-Rhône</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Filipa Pato - "Dinamica" Baga</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rinaldini - Brut Bianco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Scarpetta Frico Lambrusco </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Faillenc - Sainte Marie Corbières</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine de la Marinière - Peau de L'Ours </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/La Sorga Rouge</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/La Sorga Carimou</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/S.M La Sorga</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Ciù Ciù - Bacchus Rosso Piceno</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Poderi Cellario - Il Barrusco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Poderi Cellario - È Rosso! (1L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Pandolfa - Battista Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Lua Cheia - ‘Maria Bonita’ Alvarinho</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Adamo - Estate Red</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Vignerons de Bel-Air - Morgon "Climat Grand Cras"</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Olivier Pithon - Mon P’tit Pithon Rouge </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Scout - Wild White Albacore Tuna Garden Pesto</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Scout - Atlantic Canadian Lobster</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Scout - PEI Mussels </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Scout - Ontario Trout </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Evelyn's Cheddar Crispies</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Covered Bridge Storm Chips</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Covered Bridge Sweet & Spicy Jalapeño Chips</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Alpha Box & Dice Tarot Grenache</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Cervarola Damigella</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/‘Sacromontino’ Sangiovese (1L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Cocchi Rosa</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Champagne Lelarge-Pugeot - Tradition Extra Brut</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Cantina di Soliera - Lambrusco Di Sorbara</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Pinot Noir Pittnauer</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Horseshoes and Handgrenades</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Cuvée Jean-Paul - Blanc De Blancs Demi</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Cuvée Jean-Paul - Vaucluse Cuvee Rouge</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Tenuta Garetto - Rosina </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Gavioli Lambrusco Ancestrale</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Gift Card</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Cocchi Storico Vermouth di Torino</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Mosole - Millesimato Prosecco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Grape Crush X Banded Purple - Calypso Rose Pet Nat </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fairweather High Grade</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/FitaPreta - a Laranja Mecanica</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Nicholas Pearce - Crew Sauvage Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Viret Renaissance </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Gilbert Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/COS - Rami </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Les Equilibristes - Le Joufflu </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Maison Ventenac - L'Intrus</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Calabretta Gaio Gaio </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Abbia Nòva Senza Vandalismi Bianco Passerina </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Daniele Saccoletto - I Tigli Bianco </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Mansois - Dimanche Sous un Cerisier</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Poderi Cellario - Il Baffone</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Terre di Bruca - Syrano</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Loimer - Gluegglich</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Sornin - Beaujolais Villages Naturel </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Traynor Family - Gamay Noir </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Traynor Family - Pinot Gris </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Clos Aguilem - Rouge D'Adé </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Casa Mariol - Vermut Blanco (1L) </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/L’Archetipo - Litrotto Rosso </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Hidalgo - Fino Seco Sherry</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Feravino - Dika Graševina</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Dominio de Punctum - Norte Sur Rosado</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Loveblock - Sauvignon Blanc </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Scarbolo - Il Ramato </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Burdock Pilsner </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Willibald Strawberry Rhubarb Seltzer </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Willibald Purple Seltzer</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/West Avenue - Rosie</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Poderi Cellario - Rosso Vasca (2L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Poderi Cellario - È Rosato! (1L) </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Adamo - Flying Change</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Adamo - Diamond in the Ruff </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Vignerons de Bel Air - Beaujolais Rosé</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Buil & Giné - Nosis Verdejo</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Bodega Pirineos - Impás Blanco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/13th Street - Riesling</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/13th Street - Pinot Grigio </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/13th Street - Cabernet Franc Rosé </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Crawler- The Citrus One</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elora Australis IPA </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elios - Modus Bibendi Grillo</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elios - Modus Bibendi Nero d'Avola</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elios - "Glou Glou" Nerello Mascalese</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Palmento Costanzo - Mofete Etna Bianco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Terraviva - Pecorino</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Cantina Bassoli - "Royal" Lambrusco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Marrow Vermouth</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Monde du Chocolat - Milk Chocolate Bark</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Kozaemon - Junmai Ginjo Sake</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Izumi - “Nama-Nama” Junmai Sake</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Nakano - Japanese “Momo” Peach Liqueur</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Ökonomierat Rebholz - Riesling Trocken</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Wonderland Ranch - Red (1L) </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Therianthropy - Claire de Lune Riesling </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Riccitelli - Blanco de la Casa</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.537Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Riccitelli - Vino de La Carrera Sauvignon Blanc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Merit Brewing - Roses are Red </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Merit Brewing - Violets are Blue </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Grape Crush - Clarisa </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Grape Crush - High Tide </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Nakano - Japanese “Nashi” Pear Liqueur </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Santa Colomba - Principiante </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Delinquente - Hell Malvasia </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Delinquente - Hell Rosé </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/FieldBird - Black Barred Cider</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/FieldBird - Fledgling Sur Lie </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/FieldBird - Lazy Whistle </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Summer Water Rosé </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fairweather Long Shadow</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/West Avenue - Rhineapple</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Merit Brewing - Chanan</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Summer Water Bubbly Rosé </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/TÖST Sparkling White Tea, Ginger & Cranberry</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Cueva Vi Viu Syrah </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Burdock Rasbu </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Ai Galli - Prosecco Brut</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elora Lodestar Plum Sour</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elora Original Draft Lager </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Chateau Léoube - Le Petit Rosé </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Cota 45 - UBE de Ubérrima Paganilla </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Burdock Lyra </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rorschach Brewing - Heresy Raspberry Passionfruit Plum </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Gorgo - Bardolino Chiaretto Rosé</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Willibald Watermelon Seltzer</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fine Balance Brewing - Blé Weizen </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fine Balance Brewing - Raven Meets Wolfe Lager </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/FieldBird - Inky Rabbits </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Château Pesquié - ‘Terrasses’ Rosé</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Grape Crush Branded Ice Bags</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Vinhos Aparte - Superavit </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fairweather Red Sky at Night </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Grape Crush Wine Opener Turquoise</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Batard Langelier - Polaris Muscadet </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Menade - Nosso Verdejo </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Grape Crush - Birdie </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/City Seltzer - Cool Melon</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/City Seltzer - Berry Whip</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/City Seltzer - Orange Cream</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/City Seltzer - City Citrus</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Burdock Good Grapes Lemberger and Gamay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Burdock Zesté Tropic</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Willibald x Rosewood Cherry Mead Seltzer </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Grain & Grit Hokey Pokey Pastry Stout</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Grain & Grit Thrillsner </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/ Cave de Tain - Exploration Syrah </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Aphros Yakkos Grande Reserva Sparkling Vinhão </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/A to Z Wineworks Bubbles Rosé</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fairweather Gummy Venus </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/João Tavares da Pina Tretas</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Les Enfants Sauvages Bouche-Bée</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Carussin Asinoi Barbera d’Asti </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Royal Canadian Mead - Bright Nights </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Royal Canadian Mead - Feels Like Friday</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Duseigneur- La Goute du Seigneur</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Aphros PAN Sparkling Rosé</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Colleformica - "Rossa" Vino Rosso</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Colleformica - "Gialla" Vino Bianco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Amorro Blanco Ancestrale Pet Nat </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Amorro Tinto Ancestrale Pet Nat </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Amorro Rosado Ancestrale Pet Nat </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Organized Crime - Pinot Gris </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Revel Cider - Sol IV </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Proemio Wines Miravalles - Malbec</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Schloss Gobelsburg - Kamptal Grüner Veltliner </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Castello Monterinaldi - Purple Turtle </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Redtail Vineyards - Good One Magnum (1.5L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rosewood - Nebulous </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rosewood - No Bad Days Sangria Bagnum (1.5L) </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Tenuta Demaio - On the Moon </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Baud Génération 9 - Crémant de Jura Rosé Brut</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Southbrook - Bubbly Pet Nat Riesling</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Southbrook - Triomphe Skin Fermented White</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Southbrook - Triomphe Merlot </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Burdock Juice Aisle</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Burdock IPA du Vin</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Burdock Brett Lime </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elora Lodestar Mango and Black Tea </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Redtail - The Joint </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Big Head - Savagnin </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Tiberio - Trebbiano d'Abruzzo</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Tiberio - Cerasuolo d'Abruzzo </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Teetotaler White</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Teetotaler Sparkling Rose </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fine Balance Brewing - Raspberry & Lavender Gelato Sour  </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fattoria Mani di Luna - Sangiovese Litro (1L) </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Baud Génération 9 - L'Audacieuse Côtes du Jura</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Tiberio - Montepulciano d'Abruzzo  </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Olivier Coste - Illegal Mourvèdre </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Vino Lauria - Catarratto Costabisaccia</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Olivier Rivière - Rayos Uva </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Meinklang - Foam Vulkán</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Stekar - Rebula</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Alberici “Casalone” Lambrusco dell’Emilia Rosso </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rosewood - Pure Imagination</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Big Head - Chenin Blanc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rosewood - Neptune </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fabulas 'Fecerunt' Pecorino </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fabulas 'Fortitudo' Cerasuolo d'Abruzzo</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Grape Crush - Birdie Spritz</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fairweather Witte</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elora White Whale Blood Orange</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Roberta Fugatti - Pinot Grigio</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Roberta Fugatti - Teroldego</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Revel - Picture This</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rachis & Derma - Chantilly </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rachis & Derma - Gamay </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rachis & Derma - Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rachis & Derma - Aromatiq! </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Southbrook - Bubbly Pet Nat Field Blend </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/MontRubí - Durona Tinto</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Stéphane Aviron - Chénas</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Frederic Brouca - Champs Pentus Blanc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/D. Marioni Wine - Rademacher Rosé </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/D. Marioni Wine - Fields </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/D. Marioni Wine - Rademacher </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rtvelisi - Rkatsiteli Qvevri </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rtvelisi - Saperavi Qvevri </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Sclavos - Efranor </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Martin Texier - Preyna </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine de la Garrelière - Le P’tit Ch’nin</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine de la Garrelière - Le Rosé de la Cabane</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Slow Dance Wines - Cabernet Sauvignon Pet Nat Rosé</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Feravino - Dika Frankovka</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Domaine Lardy - Gamay Poppy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Scout - Smoked Wild Pink Salmon</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Scout - Smoked Wild Albacore Tuna</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Podere il Saliceto - Albone </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Podere il Saliceto - Falistra </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Squish - Sour Wine O'Clock </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Squish - Sunny Sangria </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Squish - Matcha Alligator </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Squish - Gin & Juice </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Squish - Vegan Sparkling Bears </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Casa de Cello - Quinta de San Joanne Terroir Mineral </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Acid League - Pastiche</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Acid League - Nightshade</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Acid League - Zephyr</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Town Brewery - Big Money </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Town Brewery - Witzig</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Town Brewery - Brave Noise</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/DWN Craft Chocolatier - Chocolate Coffee Covered Hazelnuts</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/DWN Craft Chocolatier - Milk Chocolate Maple Almonds</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/DWN Craft Chocolatier - Rhuby Raspberry Malt Balls</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Fairweather Kid Gloves</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Pearce Predhomme x NP Wines - 3XP Chardonnay </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rosewood - Soupair Këwl </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rosewood - Shoulders of Giants </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rosewood - Litre of Gris </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Rosewood - There Be Dragons </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Willibald x Bellwood's - Jutsu G & T Cocktail </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Gilvesy - Bohém Balatoni Cuvée</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Maenad Wine Co - Vidal Pet Nat </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Maenad Wine Co - Piquette </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Jordan River Wines - JR Classic Barbera </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Monde du Chocolat - Dark Chocolate Bark</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Monde du Chocolat - Caramelized White Chocolate Bark</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/DWN Craft Chocolatier - Sesame Chocolate Chip Cookie Bar</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/DWN Craft Chocolatier - Caramelized Hazelnut Milk Chocolate Bar</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/DWN Craft Chocolatier - Mocha Almond Crunch</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Colleformica - Formica Pazza Gialla</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Colleformica - Formica Pazza Rosé</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elora Autumn Logger</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Elora Unsubtle Porter</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Lammidia - Bianchetto</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Lammidia - Rosh </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Alpha Box & Dice - Mistress</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Anderson Craft Ales - Stout</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Clos Lojen - Bobal </loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Toronto Popcorn Co</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
-<url><loc>https://www.grapecrush.wine/item/Grape Crush Wine Opener Lime</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T17:46:10.538Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/contact</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/faq</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/products</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/legal/terms-and-conditions</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/legal/cookies-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/legal/privacy-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Frederic%20Brouca%20-%20Champs%20Pentus</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Grangeneuve%20Bordeaux%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Pearce%20Predhomme%20-%20Cinsault%252FSyrah</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Baud%20G%C3%A9n%C3%A9ration%209%20-%20Cr%C3%A9mant%20de%20Jura</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Casa%20Mariol%20-%20Cava%2014%20Mesos%20Brut%20Nature</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/GreenLane%20Ros%C3%A9%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20de%20Carmignan%20-%20C%C3%B4tes-du-Rh%C3%B4ne</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Casa%20Los%20Frailes%20-%20Bilogia%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Ci%C3%B9%20Ci%C3%B9%20-%20Oris%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fattoria%20di%20Sammontanna%20-%20Alberese</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/First%20Contact</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Stekar%20-%20Emilio</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Leaning%20Post%20-%20Petillant%20Naturel</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Caves%20du%20Luberon%20-%20Alidon%20Ros%C3%A9</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Botanica%20-%20Cabernet%20Franc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elora%20Borealis%20Citra%20Pale%20Ale</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elora%20Shine%20IPA%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Traynor%20Family%20Ophelia%20Piquette</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/GreenLane%20Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Pirineos%20-%203404</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Pearce%20Predhomme%20-%20Chenin%20Blanc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Cueva%20-%20Brutal%20Ancestral%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Montfaucon%20-%20Lirac</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Kamara%20-%20Shadow%20Play%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Le%20Ragnaie%20-%20Vino%20Bianco%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Gilvesy%20Martinus%20Tohely%20Olaszrizling</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Castillo%20de%20La%20Mota%20-%20Verdejo</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Pearl%20Morissette%20-%20Cuv%C3%A9e%20Roselana</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Casa%20Mariol%20-%20Vermut%20Negre%20(1L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Willem's%20Wermoed%20-%20Original%20Sweet</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Willem's%20Wermoed%20-%20Dutch%20Dry</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Meinklang%20-%20Gr%C3%BCner%20Veltliner%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Loimer%20-%20Gr%C3%BCner%20Veltliner</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Vino%20Lauria%20-%20Vino%20a%20Gogo%20Frappato%20Ros%C3%A9%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Vino%20Lauria%20-%20Vino%20a%20Gogo%20Pinot%20Grigio</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Scarpetta%20Frico%20Frizzante%20250ml</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/20%2C000%20Leguas</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Lunaria%20Orsogna%20-%20Ramoro%20Pinot%20Grigio</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Traynor%20-%20Haberdasher</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Adamo%20Kirby%20Gamay%20Ros%C3%A9%20(1.5L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Pearce%20Predhomme%20-%20Pinot%20Noir</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Channing%20Daughters%20-%20Rosso%20Fresco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Poderi%20Cellario%20-%20%C3%88%20Bianco!%20(1L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Terre%20Di%20Bruca%20-%20Quaranta</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Tenuta%20Montemagno%20-%20Solis%20Vis</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domini%20del%20Leone%20Bianco%20IGT</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Valdonica%20-%20Mersino%20Vermentino</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Adamo%20Legacy%20Pet%20Nat</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Caves%20du%20Luberon%20-%20Alidon%20Blanc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/La%20Rondinina%20-%20Lambrusco%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Serra%20%26%20Barcelo%20-%20Aucal%C3%A0%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Therianthropy%20-%20Mouflon%20Viognier%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Cueva%20-%20Orange</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Big%20Flower%20-%20Ros%C3%A9</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Dillon's%20Cherry%20Gin</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Tenuta%20Foresta%20-%20Monferrato%20Bianco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Supernatural%20Pet%20Nat</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Mosole%20Tai</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Adamo%20Sogno%20Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Trebbiano%20d%E2%80%99Abruzzo%20Anfora</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fidora%20Prosecco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Saint%20Cosme%20-%20C%C3%B4tes-du-Rh%C3%B4ne</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Filipa%20Pato%20-%20%22Dinamica%22%20Baga</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rinaldini%20-%20Brut%20Bianco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Scarpetta%20Frico%20Lambrusco%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Faillenc%20-%20Sainte%20Marie%20Corbi%C3%A8res</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20de%20la%20Marini%C3%A8re%20-%20Peau%20de%20L'Ours%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/La%20Sorga%20Rouge</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/La%20Sorga%20Carimou</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/S.M%20La%20Sorga</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Ci%C3%B9%20Ci%C3%B9%20-%20Bacchus%20Rosso%20Piceno</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Poderi%20Cellario%20-%20Il%20Barrusco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Poderi%20Cellario%20-%20%C3%88%20Rosso!%20(1L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.605Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Pandolfa%20-%20Battista%20Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Lua%20Cheia%20-%20%E2%80%98Maria%20Bonita%E2%80%99%20Alvarinho</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Adamo%20-%20Estate%20Red</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Vignerons%20de%20Bel-Air%20-%20Morgon%20%22Climat%20Grand%20Cras%22</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Olivier%20Pithon%20-%20Mon%20P%E2%80%99tit%20Pithon%20Rouge%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Scout%20-%20Wild%20White%20Albacore%20Tuna%20Garden%20Pesto</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Scout%20-%20Atlantic%20Canadian%20Lobster</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Scout%20-%20PEI%20Mussels%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Scout%20-%20Ontario%20Trout%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Evelyn's%20Cheddar%20Crispies</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Covered%20Bridge%20Storm%20Chips</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Covered%20Bridge%20Sweet%20%26%20Spicy%20Jalape%C3%B1o%20Chips</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Alpha%20Box%20%26%20Dice%20Tarot%20Grenache</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Cervarola%20Damigella</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/%E2%80%98Sacromontino%E2%80%99%20Sangiovese%20(1L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Cocchi%20Rosa</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Champagne%20Lelarge-Pugeot%20-%20Tradition%20Extra%20Brut</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Cantina%20di%20Soliera%20-%20Lambrusco%20Di%20Sorbara</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Pinot%20Noir%20Pittnauer</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Horseshoes%20and%20Handgrenades</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Cuv%C3%A9e%20Jean-Paul%20-%20Blanc%20De%20Blancs%20Demi</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Cuv%C3%A9e%20Jean-Paul%20-%20Vaucluse%20Cuvee%20Rouge</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Tenuta%20Garetto%20-%20Rosina%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Gavioli%20Lambrusco%20Ancestrale</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Gift%20Card</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Cocchi%20Storico%20Vermouth%20di%20Torino</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Mosole%20-%20Millesimato%20Prosecco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Grape%20Crush%20X%20Banded%20Purple%20-%20Calypso%20Rose%20Pet%20Nat%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fairweather%20High%20Grade</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/FitaPreta%20-%20a%20Laranja%20Mecanica</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Nicholas%20Pearce%20-%20Crew%20Sauvage%20Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Viret%20Renaissance%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Gilbert%20Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/COS%20-%20Rami%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Les%20Equilibristes%20-%20Le%20Joufflu%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Maison%20Ventenac%20-%20L'Intrus</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Calabretta%20Gaio%20Gaio%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Abbia%20N%C3%B2va%20Senza%20Vandalismi%20Bianco%20Passerina%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Daniele%20Saccoletto%20-%20I%20Tigli%20Bianco%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Mansois%20-%20Dimanche%20Sous%20un%20Cerisier</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Poderi%20Cellario%20-%20Il%20Baffone</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Terre%20di%20Bruca%20-%20Syrano</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Loimer%20-%20Gluegglich</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Sornin%20-%20Beaujolais%20Villages%20Naturel%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Traynor%20Family%20-%20Gamay%20Noir%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Traynor%20Family%20-%20Pinot%20Gris%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Clos%20Aguilem%20-%20Rouge%20D'Ad%C3%A9%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Casa%20Mariol%20-%20Vermut%20Blanco%20(1L)%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/L%E2%80%99Archetipo%20-%20Litrotto%20Rosso%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Hidalgo%20-%20Fino%20Seco%20Sherry</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Feravino%20-%20Dika%20Gra%C5%A1evina</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Dominio%20de%20Punctum%20-%20Norte%20Sur%20Rosado</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Loveblock%20-%20Sauvignon%20Blanc%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Scarbolo%20-%20Il%20Ramato%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Burdock%20Pilsner%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Willibald%20Strawberry%20Rhubarb%20Seltzer%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Willibald%20Purple%20Seltzer</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/West%20Avenue%20-%20Rosie</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Poderi%20Cellario%20-%20Rosso%20Vasca%20(2L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Poderi%20Cellario%20-%20%C3%88%20Rosato!%20(1L)%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Adamo%20-%20Flying%20Change</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Adamo%20-%20Diamond%20in%20the%20Ruff%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Vignerons%20de%20Bel%20Air%20-%20Beaujolais%20Ros%C3%A9</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Buil%20%26%20Gin%C3%A9%20-%20Nosis%20Verdejo</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Bodega%20Pirineos%20-%20Imp%C3%A1s%20Blanco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/13th%20Street%20-%20Riesling</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/13th%20Street%20-%20Pinot%20Grigio%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/13th%20Street%20-%20Cabernet%20Franc%20Ros%C3%A9%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Crawler-%20The%20Citrus%20One</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elora%20Australis%20IPA%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elios%20-%20Modus%20Bibendi%20Grillo</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elios%20-%20Modus%20Bibendi%20Nero%20d'Avola</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elios%20-%20%22Glou%20Glou%22%20Nerello%20Mascalese</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Palmento%20Costanzo%20-%20Mofete%20Etna%20Bianco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Terraviva%20-%20Pecorino</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Cantina%20Bassoli%20-%20%22Royal%22%20Lambrusco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Marrow%20Vermouth</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Monde%20du%20Chocolat%20-%20Milk%20Chocolate%20Bark</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Kozaemon%20-%20Junmai%20Ginjo%20Sake</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Izumi%20-%20%E2%80%9CNama-Nama%E2%80%9D%20Junmai%20Sake</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Nakano%20-%20Japanese%20%E2%80%9CMomo%E2%80%9D%20Peach%20Liqueur</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/%C3%96konomierat%20Rebholz%20-%20Riesling%20Trocken</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Wonderland%20Ranch%20-%20Red%20(1L)%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Therianthropy%20-%20Claire%20de%20Lune%20Riesling%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Riccitelli%20-%20Blanco%20de%20la%20Casa</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Riccitelli%20-%20Vino%20de%20La%20Carrera%20Sauvignon%20Blanc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Merit%20Brewing%20-%20Roses%20are%20Red%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Merit%20Brewing%20-%20Violets%20are%20Blue%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Grape%20Crush%20-%20Clarisa%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Grape%20Crush%20-%20High%20Tide%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Nakano%20-%20Japanese%20%E2%80%9CNashi%E2%80%9D%20Pear%20Liqueur%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Santa%20Colomba%20-%20Principiante%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Delinquente%20-%20Hell%20Malvasia%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Delinquente%20-%20Hell%20Ros%C3%A9%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/FieldBird%20-%20Black%20Barred%20Cider</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/FieldBird%20-%20Fledgling%20Sur%20Lie%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/FieldBird%20-%20Lazy%20Whistle%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Summer%20Water%20Ros%C3%A9%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fairweather%20Long%20Shadow</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/West%20Avenue%20-%20Rhineapple</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Merit%20Brewing%20-%20Chanan</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Summer%20Water%20Bubbly%20Ros%C3%A9%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/T%C3%96ST%20Sparkling%20White%20Tea%2C%20Ginger%20%26%20Cranberry</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Cueva%20Vi%20Viu%20Syrah%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Burdock%20Rasbu%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Ai%20Galli%20-%20Prosecco%20Brut</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elora%20Lodestar%20Plum%20Sour</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elora%20Original%20Draft%20Lager%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Chateau%20L%C3%A9oube%20-%20Le%20Petit%20Ros%C3%A9%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Cota%2045%20-%20UBE%20de%20Ub%C3%A9rrima%20Paganilla%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Burdock%20Lyra%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rorschach%20Brewing%20-%20Heresy%20Raspberry%20Passionfruit%20Plum%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Gorgo%20-%20Bardolino%20Chiaretto%20Ros%C3%A9</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Willibald%20Watermelon%20Seltzer</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fine%20Balance%20Brewing%20-%20Bl%C3%A9%20Weizen%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fine%20Balance%20Brewing%20-%20Raven%20Meets%20Wolfe%20Lager%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/FieldBird%20-%20Inky%20Rabbits%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Ch%C3%A2teau%20Pesqui%C3%A9%20-%20%E2%80%98Terrasses%E2%80%99%20Ros%C3%A9</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Grape%20Crush%20Branded%20Ice%20Bags</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Vinhos%20Aparte%20-%20Superavit%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fairweather%20Red%20Sky%20at%20Night%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Grape%20Crush%20Wine%20Opener%20Turquoise</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Batard%20Langelier%20-%20Polaris%20Muscadet%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Menade%20-%20Nosso%20Verdejo%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Grape%20Crush%20-%20Birdie%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/City%20Seltzer%20-%20Cool%20Melon</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/City%20Seltzer%20-%20Berry%20Whip</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/City%20Seltzer%20-%20Orange%20Cream</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/City%20Seltzer%20-%20City%20Citrus</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Burdock%20Good%20Grapes%20Lemberger%20and%20Gamay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Burdock%20Zest%C3%A9%20Tropic</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Willibald%20x%20Rosewood%20Cherry%20Mead%20Seltzer%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Grain%20%26%20Grit%20Hokey%20Pokey%20Pastry%20Stout</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Grain%20%26%20Grit%20Thrillsner%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/%20Cave%20de%20Tain%20-%20Exploration%20Syrah%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Aphros%20Yakkos%20Grande%20Reserva%20Sparkling%20Vinh%C3%A3o%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/A%20to%20Z%20Wineworks%20Bubbles%20Ros%C3%A9</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fairweather%20Gummy%20Venus%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Jo%C3%A3o%20Tavares%20da%20Pina%20Tretas</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Les%20Enfants%20Sauvages%20Bouche-B%C3%A9e</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Carussin%20Asinoi%20Barbera%20d%E2%80%99Asti%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Royal%20Canadian%20Mead%20-%20Bright%20Nights%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Royal%20Canadian%20Mead%20-%20Feels%20Like%20Friday</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Duseigneur-%20La%20Goute%20du%20Seigneur</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Aphros%20PAN%20Sparkling%20Ros%C3%A9</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Colleformica%20-%20%22Rossa%22%20Vino%20Rosso</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Colleformica%20-%20%22Gialla%22%20Vino%20Bianco</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Amorro%20Blanco%20Ancestrale%20Pet%20Nat%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Amorro%20Tinto%20Ancestrale%20Pet%20Nat%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Amorro%20Rosado%20Ancestrale%20Pet%20Nat%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Organized%20Crime%20-%20Pinot%20Gris%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Revel%20Cider%20-%20Sol%20IV%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Proemio%20Wines%20Miravalles%20-%20Malbec</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Schloss%20Gobelsburg%20-%20Kamptal%20Gr%C3%BCner%20Veltliner%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Castello%20Monterinaldi%20-%20Purple%20Turtle%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Redtail%20Vineyards%20-%20Good%20One%20Magnum%20(1.5L)</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rosewood%20-%20Nebulous%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rosewood%20-%20No%20Bad%20Days%20Sangria%20Bagnum%20(1.5L)%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Tenuta%20Demaio%20-%20On%20the%20Moon%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Baud%20G%C3%A9n%C3%A9ration%209%20-%20Cr%C3%A9mant%20de%20Jura%20Ros%C3%A9%20Brut</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Southbrook%20-%20Bubbly%20Pet%20Nat%20Riesling</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Southbrook%20-%20Triomphe%20Skin%20Fermented%20White</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Southbrook%20-%20Triomphe%20Merlot%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Burdock%20Juice%20Aisle</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Burdock%20IPA%20du%20Vin</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Burdock%20Brett%20Lime%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elora%20Lodestar%20Mango%20and%20Black%20Tea%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Redtail%20-%20The%20Joint%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Big%20Head%20-%20Savagnin%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Tiberio%20-%20Trebbiano%20d'Abruzzo</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Tiberio%20-%20Cerasuolo%20d'Abruzzo%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Teetotaler%20White</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Teetotaler%20Sparkling%20Rose%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fine%20Balance%20Brewing%20-%20Raspberry%20%26%20Lavender%20Gelato%20Sour%20%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fattoria%20Mani%20di%20Luna%20-%20Sangiovese%20Litro%20(1L)%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Baud%20G%C3%A9n%C3%A9ration%209%20-%20L'Audacieuse%20C%C3%B4tes%20du%20Jura</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Tiberio%20-%20Montepulciano%20d'Abruzzo%20%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Olivier%20Coste%20-%20Illegal%20Mourv%C3%A8dre%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Vino%20Lauria%20-%20Catarratto%20Costabisaccia</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Olivier%20Rivi%C3%A8re%20-%20Rayos%20Uva%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Meinklang%20-%20Foam%20Vulk%C3%A1n</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Stekar%20-%20Rebula</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Alberici%20%E2%80%9CCasalone%E2%80%9D%20Lambrusco%20dell%E2%80%99Emilia%20Rosso%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rosewood%20-%20Pure%20Imagination</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Big%20Head%20-%20Chenin%20Blanc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rosewood%20-%20Neptune%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fabulas%20'Fecerunt'%20Pecorino%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fabulas%20'Fortitudo'%20Cerasuolo%20d'Abruzzo</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Grape%20Crush%20-%20Birdie%20Spritz</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fairweather%20Witte</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elora%20White%20Whale%20Blood%20Orange</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Roberta%20Fugatti%20-%20Pinot%20Grigio</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Roberta%20Fugatti%20-%20Teroldego</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Revel%20-%20Picture%20This</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rachis%20%26%20Derma%20-%20Chantilly%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rachis%20%26%20Derma%20-%20Gamay%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rachis%20%26%20Derma%20-%20Chardonnay</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rachis%20%26%20Derma%20-%20Aromatiq!%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Southbrook%20-%20Bubbly%20Pet%20Nat%20Field%20Blend%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/MontRub%C3%AD%20-%20Durona%20Tinto</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/St%C3%A9phane%20Aviron%20-%20Ch%C3%A9nas</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Frederic%20Brouca%20-%20Champs%20Pentus%20Blanc</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/D.%20Marioni%20Wine%20-%20Rademacher%20Ros%C3%A9%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/D.%20Marioni%20Wine%20-%20Fields%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/D.%20Marioni%20Wine%20-%20Rademacher%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rtvelisi%20-%20Rkatsiteli%20Qvevri%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rtvelisi%20-%20Saperavi%20Qvevri%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Sclavos%20-%20Efranor%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Martin%20Texier%20-%20Preyna%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20de%20la%20Garreli%C3%A8re%20-%20Le%20P%E2%80%99tit%20Ch%E2%80%99nin</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20de%20la%20Garreli%C3%A8re%20-%20Le%20Ros%C3%A9%20de%20la%20Cabane</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Slow%20Dance%20Wines%20-%20Cabernet%20Sauvignon%20Pet%20Nat%20Ros%C3%A9</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Feravino%20-%20Dika%20Frankovka</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Domaine%20Lardy%20-%20Gamay%20Poppy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Scout%20-%20Smoked%20Wild%20Pink%20Salmon</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Scout%20-%20Smoked%20Wild%20Albacore%20Tuna</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Podere%20il%20Saliceto%20-%20Albone%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Podere%20il%20Saliceto%20-%20Falistra%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Squish%20-%20Sour%20Wine%20O'Clock%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Squish%20-%20Sunny%20Sangria%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Squish%20-%20Matcha%20Alligator%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Squish%20-%20Gin%20%26%20Juice%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Squish%20-%20Vegan%20Sparkling%20Bears%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Casa%20de%20Cello%20-%20Quinta%20de%20San%20Joanne%20Terroir%20Mineral%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Acid%20League%20-%20Pastiche</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Acid%20League%20-%20Nightshade</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Acid%20League%20-%20Zephyr</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Town%20Brewery%20-%20Big%20Money%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Town%20Brewery%20-%20Witzig</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Town%20Brewery%20-%20Brave%20Noise</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/DWN%20Craft%20Chocolatier%20-%20Chocolate%20Coffee%20Covered%20Hazelnuts</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/DWN%20Craft%20Chocolatier%20-%20Milk%20Chocolate%20Maple%20Almonds</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/DWN%20Craft%20Chocolatier%20-%20Rhuby%20Raspberry%20Malt%20Balls</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Fairweather%20Kid%20Gloves</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Pearce%20Predhomme%20x%20NP%20Wines%20-%203XP%20Chardonnay%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rosewood%20-%20Soupair%20K%C3%ABwl%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rosewood%20-%20Shoulders%20of%20Giants%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rosewood%20-%20Litre%20of%20Gris%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Rosewood%20-%20There%20Be%20Dragons%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Willibald%20x%20Bellwood's%20-%20Jutsu%20G%20%26%20T%20Cocktail%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Gilvesy%20-%20Boh%C3%A9m%20Balatoni%20Cuv%C3%A9e</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Maenad%20Wine%20Co%20-%20Vidal%20Pet%20Nat%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Maenad%20Wine%20Co%20-%20Piquette%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Jordan%20River%20Wines%20-%20JR%20Classic%20Barbera%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Monde%20du%20Chocolat%20-%20Dark%20Chocolate%20Bark</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Monde%20du%20Chocolat%20-%20Caramelized%20White%20Chocolate%20Bark</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/DWN%20Craft%20Chocolatier%20-%20Sesame%20Chocolate%20Chip%20Cookie%20Bar</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/DWN%20Craft%20Chocolatier%20-%20Caramelized%20Hazelnut%20Milk%20Chocolate%20Bar</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/DWN%20Craft%20Chocolatier%20-%20Mocha%20Almond%20Crunch</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Colleformica%20-%20Formica%20Pazza%20Gialla</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Colleformica%20-%20Formica%20Pazza%20Ros%C3%A9</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elora%20Autumn%20Logger</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Elora%20Unsubtle%20Porter</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Lammidia%20-%20Bianchetto</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Lammidia%20-%20Rosh%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Alpha%20Box%20%26%20Dice%20-%20Mistress</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Anderson%20Craft%20Ales%20-%20Stout</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Clos%20Lojen%20-%20Bobal%20</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Toronto%20Popcorn%20Co</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Grape%20Crush%20Wine%20Opener%20Lime</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
+<url><loc>https://www.grapecrush.wine/item/Revel%20Cider%20-%20Elderflower</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-20T19:54:24.606Z</lastmod></url>
 </urlset>

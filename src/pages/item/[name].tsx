@@ -111,7 +111,7 @@ export const getStaticPaths = async () => {
 
   const paths = products.map((product: Product) => ({
     params: {
-      name: product.data.name,
+      name: encodeURIComponent(product.data.name),
     },
   }))
 

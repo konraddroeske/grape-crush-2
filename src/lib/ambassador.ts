@@ -1,7 +1,22 @@
 import axios, { AxiosResponse } from 'axios'
 
-import { AmbassadorIg, AmbassadorShops } from '@models/ambassador'
-// import { Activity } from '../models/activity'
+import cacheData from 'memory-cache'
+
+const fetchWithCache = async <T>(url: string) => {
+  const value = cacheData.get(url)
+
+  if (value) {
+    console.log('fetching from cache')
+    return value
+  }
+
+  console.log('fetching from api')
+  const hours = 24
+  const data = await axios.get<T>(url)
+  cacheData.put(url, data, hours * 1000 * 60 * 60)
+
+  return data
+}
 
 axios.defaults.baseURL = 'https://dashboard.ambassador.ai/data/v1/'
 axios.defaults.headers.common.Authorization = process.env.BEARER_TOKEN
@@ -9,23 +24,12 @@ axios.defaults.headers.common.Authorization = process.env.BEARER_TOKEN
 const responseBody = <T>(response: AxiosResponse<T>) => response.data
 
 const requests = {
-  get: <T>(url: string) => axios.get<T>(url).then(responseBody),
-  // post: <T>(url: string, body: {}) =>
-  //   axios.post<T>(url, body).then(responseBody),
-  // put: <T>(url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
-  // del: <T>(url: string) => axios.delete<T>(url).then(responseBody),
+  get: <T>(url: string) =>
+    fetchWithCache<T>(url).then((res) => responseBody<T>(res)),
 }
 
 const api = {
-  allShops: () => requests.get<any>(`/shops`),
-  filterByKey: (key: string, type: string) =>
-    requests.get<AmbassadorShops>(`/shops?data.${key}=${type}`),
-  getSocial: () => requests.get<AmbassadorIg>('/instagram'),
-  // details: (id: string) => requests.get<Activity>(`/activities/${id}`),
-  // create: (activity: Activity) => axios.post<void>('/activities', activity),
-  // update: (activity: Activity) =>
-  //   axios.put<void>(`/activities/${activity.id}`, activity),
-  // delete: (id: string) => axios.delete<void>(`/activities/${id}`),
+  allShops: <T>() => requests.get<T>(`/shops`),
 }
 
 const ambassador = {

@@ -78,7 +78,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         }}
       />
       <DefaultSeo
-        titleTemplate="Grape Crush Wines | %s"
+        titleTemplate="Grape Crush | %s"
         additionalLinkTags={[
           {
             rel: 'icon',
@@ -92,7 +92,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           site_name: 'Grape Crush',
           title: 'Grape Crush',
           description:
-            'Hundreds of natural, organic, and classic wines at great prices.',
+            "With one of Ontario's largest natural wines selection, shop from 200+ curated natural, biodynamic, and classic wines for any budget. We ship province-wide.",
         }}
         twitter={{
           cardType: 'summary_large_image',
