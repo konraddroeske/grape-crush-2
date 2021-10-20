@@ -31,6 +31,7 @@ const ContentfulImage: FunctionComponent<Props> = ({
       className={`relative image-container overflow-hidden ${containerStyles}`}
     >
       <Image
+        key={url}
         src={url}
         alt={description || ''}
         width={width}

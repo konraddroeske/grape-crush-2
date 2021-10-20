@@ -18,6 +18,7 @@ const AmbassadorImage: FunctionComponent<Props> = ({
   return (
     <div className="relative w-full h-full">
       <NextImage
+        key={url}
         src={url}
         alt={title}
         className={`mix-blend-multiply ${imageStyle}`}
