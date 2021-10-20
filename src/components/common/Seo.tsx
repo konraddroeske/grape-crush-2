@@ -31,7 +31,7 @@ const Seo: FunctionComponent<Props> = ({ title, description, image }) => {
         description ||
         'Hundreds of natural, organic, and classic wines at great prices.'
       }
-      canonical="https://grapecrush.wines/"
+      canonical="https://grapecrush.wine/"
       openGraph={
         imageData
           ? {
