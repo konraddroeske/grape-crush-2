@@ -1,5 +1,6 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 
+import { getCookie } from 'cookies-next'
 import { useSelector } from 'react-redux'
 
 import Footer from '@components/footer/Footer'
@@ -15,11 +16,18 @@ type Props = OwnProps
 
 const Layout: FunctionComponent<Props> = ({ children }) => {
   const { modalOpen } = useSelector(selectClient())
+  const [hasCookie, setHasCookie] = useState<boolean>(true)
+
+  useEffect(() => {
+    const cookie = !!getCookie('grapeCrushAgeConsent')
+    setHasCookie(cookie)
+  }, [])
+
   return (
     <>
       <NavBar />
       {children}
-      {modalOpen && <HeroModal />}
+      {modalOpen && !hasCookie && <HeroModal />}
       <Footer />
     </>
   )
