@@ -8,9 +8,9 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import OutlineMarquee from '@components/common/OutlineMarquee'
-import RouterScroll from '@components/common/RouterScroll'
 import Seo from '@components/common/Seo'
 import ShadowLink from '@components/common/ShadowLink'
+import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import fetchFaqData from '@lib/fetchFaqData'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { IFaqFields } from '@models/contentful-graph'
@@ -26,6 +26,7 @@ import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 const Faq: FunctionComponent = () => {
+  useRouterScrollUpdate()
   const router = useRouter()
   const { questions } = useSelector(selectFaq())
 
@@ -60,40 +61,38 @@ const Faq: FunctionComponent = () => {
   return (
     <>
       <Seo title="FAQ" />
-      <RouterScroll>
-        <div className="min-h-screen py-12">
-          <div className="my-4 overflow-hidden">
-            <OutlineMarquee text="Frequently asked questions" />
-          </div>
-          <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl max-w-screen-xl mx-auto">
-            <ul className="">
-              {sortedQuestions.length > 0 &&
-                sortedQuestions.map((item) => {
-                  const { question, answer, anchor } = item
-                  return (
-                    <li
-                      key={anchor}
-                      id={anchor}
-                      className="py-6 border-b-4 border-lime last:border-b-0"
-                    >
-                      <h3 className="text-2xl text-blue-dark font-medium mb-2">
-                        {question}
-                      </h3>
-                      <p>{answer}</p>
-                    </li>
-                  )
-                })}
-            </ul>
-            <div className="flex justify-center mt-6" id="shop">
-              <Link href="/products">
-                <a>
-                  <ShadowLink>Ready to shop?</ShadowLink>
-                </a>
-              </Link>
-            </div>
+      <div className="min-h-screen py-12">
+        <div className="my-4 overflow-hidden">
+          <OutlineMarquee text="Frequently asked questions" />
+        </div>
+        <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl max-w-screen-xl mx-auto">
+          <ul className="">
+            {sortedQuestions.length > 0 &&
+              sortedQuestions.map((item) => {
+                const { question, answer, anchor } = item
+                return (
+                  <li
+                    key={anchor}
+                    id={anchor}
+                    className="py-6 border-b-4 border-lime last:border-b-0"
+                  >
+                    <h3 className="text-2xl text-blue-dark font-medium mb-2">
+                      {question}
+                    </h3>
+                    <p>{answer}</p>
+                  </li>
+                )
+              })}
+          </ul>
+          <div className="flex justify-center mt-6" id="shop">
+            <Link href="/products">
+              <a>
+                <ShadowLink>Ready to shop?</ShadowLink>
+              </a>
+            </Link>
           </div>
         </div>
-      </RouterScroll>
+      </div>
     </>
   )
 }

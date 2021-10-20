@@ -3,11 +3,11 @@ import React, { FunctionComponent } from 'react'
 import { useSelector } from 'react-redux'
 
 import OutlineMarquee from '@components/common/OutlineMarquee'
-import RouterScroll from '@components/common/RouterScroll'
 import Seo from '@components/common/Seo'
 import ContactEmail from '@components/contact-page/ContactEmail'
 import ContactForm from '@components/contact-page/ContactForm'
 import ContactInfo from '@components/contact-page/ContactInfo'
+import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import fetchContactData from '@lib/fetchContactData'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { selectContact, setContact, setLocation } from '@redux/contactSlice'
@@ -22,6 +22,7 @@ import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 const Contact: FunctionComponent = () => {
+  useRouterScrollUpdate()
   const { fields } = useSelector(selectContact())
 
   if (!fields)
@@ -34,19 +35,17 @@ const Contact: FunctionComponent = () => {
   return (
     <>
       <Seo title="Contact" />
-      <RouterScroll>
-        <div className="min-h-screen pt-12">
-          <div id="location" className="mt-4 overflow-hidden">
-            <OutlineMarquee text="Visit us" />
-          </div>
-          <ContactInfo />
-          <div id="contact" className="overflow-hidden">
-            <OutlineMarquee text="Get in touch" direction="-=" />
-          </div>
-          <ContactEmail />
-          <ContactForm />
+      <div className="min-h-screen pt-12">
+        <div id="location" className="mt-4 overflow-hidden">
+          <OutlineMarquee text="Visit us" />
         </div>
-      </RouterScroll>
+        <ContactInfo />
+        <div id="contact" className="overflow-hidden">
+          <OutlineMarquee text="Get in touch" direction="-=" />
+        </div>
+        <ContactEmail />
+        <ContactForm />
+      </div>
     </>
   )
 }

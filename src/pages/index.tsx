@@ -4,13 +4,13 @@ import { useInView } from 'react-intersection-observer'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import RouterScroll from '@components/common/RouterScroll'
 import Seo from '@components/common/Seo'
 import Description from '@components/landing-page/description/Description'
 import FeaturesSlideshow from '@components/landing-page/features/FeaturesSlideshow'
 import Hero from '@components/landing-page/hero/Hero'
 import InfoBox1 from '@components/landing-page/info-boxes/info-box-1/InfoBox1'
 import ShopByTypeGrid from '@components/landing-page/shop-by-type/ShopByTypeGrid'
+import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchIndexData from '@lib/fetchIndexData'
 import {
@@ -30,6 +30,7 @@ import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 const Home: FunctionComponent = () => {
+  useRouterScrollUpdate()
   const mainRef = useRef<HTMLElement>(null)
   const { bgLime } = useSelector(selectIndex())
   const dispatch = useDispatch()
@@ -45,26 +46,24 @@ const Home: FunctionComponent = () => {
   return (
     <>
       <Seo title="Wines Within Reach" />
-      <RouterScroll>
-        <main
-          id="main"
-          ref={mainRef}
-          className={`${
-            bgLime ? 'bg-lime' : 'bg-white'
-          } min-h-screen overflow-hidden transition duration-1000`}
-        >
-          <Hero />
-          <Description />
-          {/* <NewShopByType /> */}
-          <div ref={ref}>
-            <FeaturesSlideshow />
-            <ShopByTypeGrid />
-            {/* <ItemSlideshow /> */}
-          </div>
-          {/* <NewInfoBox3 /> */}
-          <InfoBox1 />
-        </main>
-      </RouterScroll>
+      <main
+        id="main"
+        ref={mainRef}
+        className={`${
+          bgLime ? 'bg-lime' : 'bg-white'
+        } min-h-screen overflow-hidden transition duration-1000`}
+      >
+        <Hero />
+        <Description />
+        {/* <NewShopByType /> */}
+        <div ref={ref}>
+          <FeaturesSlideshow />
+          <ShopByTypeGrid />
+          {/* <ItemSlideshow /> */}
+        </div>
+        {/* <NewInfoBox3 /> */}
+        <InfoBox1 />
+      </main>
     </>
   )
 }
