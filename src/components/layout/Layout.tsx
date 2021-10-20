@@ -19,7 +19,7 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
   const [hasCookie, setHasCookie] = useState<boolean>(true)
 
   useEffect(() => {
-    const cookie = !!getCookie('grapeCrushAgeConsentTest')
+    const cookie = !!getCookie('grapeCrushAgeConsent')
     setHasCookie(cookie)
   }, [])
 
