@@ -3,4 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://grapecrush.wine
+Host: https://www.grapecrush.wine
+
+# Sitemaps
+Sitemap: https://www.grapecrush.wine/sitemap.xml
