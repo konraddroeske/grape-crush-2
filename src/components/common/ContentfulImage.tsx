@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef } from 'react'
+import React, { FunctionComponent } from 'react'
 
 import Image from 'next/image'
 
@@ -22,16 +22,13 @@ const ContentfulImage: FunctionComponent<Props> = ({
   layout = 'responsive',
   priority = false,
 }) => {
-  const imgRef = useRef(null)
   const { url, description, width, height } = image
 
   return (
     <div
-      ref={imgRef}
       className={`relative image-container overflow-hidden ${containerStyles}`}
     >
       <Image
-        key={url}
         src={url}
         alt={description || ''}
         width={width}
