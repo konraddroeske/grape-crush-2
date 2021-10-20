@@ -93,7 +93,7 @@ const Faq: FunctionComponent = () => {
             </div>
           </div>
         </div>
-      </RouterScroll>{' '}
+      </RouterScroll>
     </>
   )
 }
