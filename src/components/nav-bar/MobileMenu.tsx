@@ -67,12 +67,14 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
   return (
     <div
       ref={mobileMenuRef}
-      className={`fixed inset-0 transform ${
-        mobileNavOpen ? 'translate-x-0' : '-translate-x-full'
-      } transition duration-300 overflow-x-hidden overflow-y-auto py-20 
-      body-gutter-sm bg-blue-dark lg:hidden`}
+      className={`fixed inset-0 transform 
+      transition-all duration-300 overflow-x-hidden overflow-y-auto py-20 
+      bg-blue-dark lg:hidden`}
+      style={{
+        marginRight: mobileNavOpen ? 0 : '100%',
+      }}
     >
-      <div className="w-full max-w-xl mx-auto">
+      <div className="w-full body-gutter-sm max-w-xl mx-auto">
         <div className="mb-2">
           <MenuButtonMobile handleOpen={handleOpen} open={open}>
             Shop
