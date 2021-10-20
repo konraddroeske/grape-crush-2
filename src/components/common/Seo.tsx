@@ -29,7 +29,7 @@ const Seo: FunctionComponent<Props> = ({ title, description, image }) => {
       title={title}
       description={
         description ||
-        'Hundreds of natural, organic, and classic wines at great prices.'
+        "With one of Ontario's largest natural wines selection, shop from 200+ curated natural, biodynamic, and classic wines for any budget. We ship province-wide."
       }
       canonical="https://grapecrush.wine/"
       openGraph={
