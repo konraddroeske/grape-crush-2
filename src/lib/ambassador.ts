@@ -6,11 +6,9 @@ const fetchWithCache = async <T>(url: string) => {
   const value = cacheData.get(url)
 
   if (value) {
-    console.log('fetching from cache')
     return value
   }
 
-  console.log('fetching from api')
   const hours = 24
   const data = await axios.get<T>(url)
   cacheData.put(url, data, hours * 1000 * 60 * 60)
