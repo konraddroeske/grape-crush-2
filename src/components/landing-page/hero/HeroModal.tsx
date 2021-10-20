@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 
+import { setCookies } from 'cookies-next'
 import { useDispatch } from 'react-redux'
 
 import ShadowButton from '@components/common/ShadowButton'
@@ -11,8 +12,25 @@ const HeroModal: FunctionComponent = () => {
   const ref = useRef<HTMLDivElement | null>(null)
   const [scrollDistance, setScrollDistance] = useState<number>(0)
 
+  const getOneMonthDate = () => {
+    const now = new Date()
+    return new Date(
+      now.getFullYear(),
+      now.getMonth() + 1,
+      now.getDate(),
+      now.getHours()
+    )
+  }
+
   const handleScroll = () => {
     setScrollDistance(window.scrollY)
+  }
+
+  const handleClick = () => {
+    setCookies('grapeCrushAgeConsent', true, {
+      expires: getOneMonthDate(),
+    })
+    dispatch(closeModal())
   }
 
   useEffect(() => {
@@ -48,7 +66,7 @@ const HeroModal: FunctionComponent = () => {
           buy and consume alcohol.
         </p>
         <div className="flex justify-center">
-          <ShadowButton fn={() => dispatch(closeModal())}>Okay!</ShadowButton>
+          <ShadowButton fn={handleClick}>Okay!</ShadowButton>
         </div>
       </div>
     </div>
