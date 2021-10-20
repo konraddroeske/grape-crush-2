@@ -46,7 +46,7 @@ const Contact: FunctionComponent = () => {
           <ContactEmail />
           <ContactForm />
         </div>
-      </RouterScroll>{' '}
+      </RouterScroll>
     </>
   )
 }
