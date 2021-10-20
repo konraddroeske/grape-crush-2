@@ -89,8 +89,8 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           type: 'website',
           locale: 'en_US',
           url: 'https://www.grapecrush.wine/',
-          site_name: 'Grape Crush Wines',
-          title: 'Grape Crush Wines',
+          site_name: 'Grape Crush',
+          title: 'Grape Crush',
           description:
             'Hundreds of natural, organic, and classic wines at great prices.',
         }}
