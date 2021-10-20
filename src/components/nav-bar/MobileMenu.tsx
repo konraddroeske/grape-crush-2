@@ -71,7 +71,7 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
       transition-all duration-300 overflow-x-hidden overflow-y-auto py-20 
       bg-blue-dark lg:hidden`}
       style={{
-        marginRight: mobileNavOpen ? 0 : '100%',
+        transform: mobileNavOpen ? 'translateX(0)' : 'translateX(-100%)',
       }}
     >
       <div className="w-full body-gutter-sm max-w-xl mx-auto">
