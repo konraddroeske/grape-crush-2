@@ -27,10 +27,12 @@ const Hero: FunctionComponent = () => {
       >
         <div className="relative flex w-full">
           {seoImage && <ContentfulImage image={seoImage} />}
-          {fontsLoaded && (
+          {fontsLoaded ? (
             <div className="absolute title-position">
               <HeroTitle />
             </div>
+          ) : (
+            <h1 className="sr-only">Natural Wines for Everyone</h1>
           )}
           <div className="hidden lg:block lg:absolute lg:bottom-6 lg:right-6">
             <SkipButton />
