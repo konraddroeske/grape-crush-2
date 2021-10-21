@@ -31,7 +31,7 @@ const DesktopCategories: FunctionComponent = () => {
   return (
     <div
       ref={categoriesRef}
-      className="hidden transition-all duration-300 lg:block fixed -z-10 top-0 left-0 right-0"
+      className="hidden transition-all duration-300 lg:block fixed -z-10 top-0 left-0 right-0 pointer-events-auto"
       style={{
         marginTop: navOpen ? 0 : initialMargin,
       }}
