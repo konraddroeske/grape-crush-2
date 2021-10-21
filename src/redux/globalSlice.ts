@@ -32,6 +32,7 @@ interface Global {
   nav: INavFields[]
   navOpen: boolean
   mobileNavOpen: boolean
+  isSticky: boolean
   heroSlides: IHeroSlideFields[]
   // seoImage: CmsImage | null
   seoImage: Asset | null
@@ -46,6 +47,7 @@ const initialState: Global = {
   legalPages: [],
   navOpen: false,
   mobileNavOpen: false,
+  isSticky: false,
   footer: [],
   nav: [],
   heroSlides: [],
@@ -105,6 +107,9 @@ export const globalSlice = createSlice({
     setMobileNavOpen(state, action) {
       return { ...state, mobileNavOpen: action.payload }
     },
+    setIsSticky(state, action) {
+      return { ...state, isSticky: action.payload }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -125,6 +130,7 @@ export const {
   setNav,
   setHeroSlides,
   setMobileNavOpen,
+  setIsSticky,
 } = globalSlice.actions
 
 export const selectGlobal = () => (state: AppState) => state?.[globalSlice.name]

@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useMediaQuery } from 'react-responsive'
 
@@ -16,14 +16,16 @@ import ProductsSearch from '@components/products-page/products-bar/ProductsSearc
 import ProductsSort from '@components/products-page/products-bar/ProductsSort'
 import useScrollDetector from '@hooks/useScrollDetector'
 import { remToPixels } from '@lib/remToPixels'
-import { selectGlobal } from '@redux/globalSlice'
+import { selectGlobal, setIsSticky } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
 const ProductsBar: FunctionComponent = () => {
+  const dispatch = useDispatch()
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
+
   const { menuOpen, mobileMenuOpen } = useSelector(selectProducts())
-  const { mobileNavOpen } = useSelector(selectGlobal())
-  const [isSticky, setIsSticky] = useState<boolean>(false)
+  const { mobileNavOpen, isSticky } = useSelector(selectGlobal())
+
   const [isExpand, setIsExpand] = useState<boolean>(false)
 
   const outerRef = useRef<null | HTMLDivElement>(null)
@@ -33,18 +35,17 @@ const ProductsBar: FunctionComponent = () => {
     if (window && outerRef.current && innerRef.current) {
       const distanceToTop = outerRef.current.getBoundingClientRect().top
 
-      // console.log('distance to top', distanceToTop)
       const distance = remToPixels(4)
 
       if (distanceToTop <= 0 && !isSticky) {
-        setIsSticky(true)
+        dispatch(setIsSticky(true))
       }
 
       if (distanceToTop > distance && isSticky) {
-        setIsSticky(false)
+        dispatch(setIsSticky(false))
       }
     }
-  }, [isSticky])
+  }, [isSticky, dispatch])
 
   useEffect(() => {
     if (window && !isDesktop) {
@@ -53,20 +54,18 @@ const ProductsBar: FunctionComponent = () => {
 
     if (isDesktop) {
       window.removeEventListener('scroll', handleScroll)
-      setIsSticky(false)
+      dispatch(setIsSticky(false))
     }
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [handleScroll, isDesktop])
+  }, [handleScroll, isDesktop, dispatch])
 
   const [isScrollUp, scrollDistance] = useScrollDetector()
 
   useEffect(() => {
-    if (isDesktop) {
-      setIsExpand(false)
-    } else if (!isSticky) {
+    if (isDesktop || !isSticky) {
       setIsExpand(false)
     } else if (isSticky && !isScrollUp && !isDesktop && !mobileNavOpen) {
       setIsExpand(false)
