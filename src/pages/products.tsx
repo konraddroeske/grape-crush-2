@@ -16,6 +16,7 @@ import client from '@lib/apolloClient'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { assetCollectionQuery } from '@models/schema'
 import {
+  selectGlobal,
   setFooter,
   setHeroSlides,
   setLocale,
@@ -55,11 +56,17 @@ const Products: FunctionComponent = () => {
     }
   }, [router, dispatch])
 
+  const { isSticky } = useSelector(selectGlobal())
+
   return (
     <>
       <Seo title="Shop" />
       <div className="flex flex-col py-12 pb-12 min-h-screen">
-        <div className="my-4 overflow-hidden">
+        <div
+          className={`${
+            isSticky ? 'opacity-0' : 'opacity-1'
+          } transition duration-1000 my-4 overflow-hidden`}
+        >
           <OutlineMarquee text="shop" />
         </div>
         <div className="lg:mb-10">

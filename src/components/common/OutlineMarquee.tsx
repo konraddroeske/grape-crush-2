@@ -7,13 +7,9 @@ import React, {
 } from 'react'
 
 import { gsap } from 'gsap'
-import { useRouter } from 'next/dist/client/router'
 import { useInView } from 'react-intersection-observer'
-import { useSelector } from 'react-redux'
 import { useMediaQuery } from 'react-responsive'
 import { v4 as uuid } from 'uuid'
-
-import { selectGlobal } from '@redux/globalSlice'
 
 interface Props {
   text: string
@@ -24,8 +20,6 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   text,
   direction = '+=',
 }) => {
-  const { isSticky } = useSelector(selectGlobal())
-
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
   const isDesktopXl = useMediaQuery({ query: '(min-width: 1280px)' })
   const isDesktop2Xl = useMediaQuery({ query: '(min-width: 1536px)' })
@@ -108,17 +102,6 @@ const OutlineMarquee: FunctionComponent<Props> = ({
       animation.current.resume()
     }
   }, [inView])
-
-  const router = useRouter()
-
-  useEffect(() => {
-    if (router.route === '/products') {
-      gsap.to(containerRef.current, {
-        opacity: isSticky ? 0 : 1,
-        duration: 1,
-      })
-    }
-  }, [isSticky, router])
 
   return (
     <div ref={ref} className="items-center h-20 lg:h-24 xl:h-32 2xl:h-40">
