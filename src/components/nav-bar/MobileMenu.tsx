@@ -69,7 +69,7 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
       ref={mobileMenuRef}
       className={`fixed inset-0 transform 
       transition-all duration-300 overflow-x-hidden overflow-y-auto py-20 
-      bg-blue-dark lg:hidden`}
+      bg-blue-dark lg:hidden pointer-events-auto`}
       style={{
         transform: mobileNavOpen ? 'translateX(0)' : 'translateX(-100%)',
       }}
