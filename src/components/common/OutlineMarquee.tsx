@@ -38,7 +38,7 @@ const OutlineMarquee: FunctionComponent<Props> = ({
 
     if (!textElement) return
 
-    const { offsetWidth: width, offsetHeight: height } = textElement
+    const { offsetWidth: width } = textElement
 
     gsap.set(textRefs.current, {
       x: (i) => i * width,
@@ -46,7 +46,11 @@ const OutlineMarquee: FunctionComponent<Props> = ({
 
     gsap.set(containerRef.current, {
       x: -width,
-      height,
+    })
+
+    gsap.to(containerRef.current, {
+      opacity: 1,
+      duration: 0.6,
     })
 
     const totalWidth = width * count
@@ -67,7 +71,6 @@ const OutlineMarquee: FunctionComponent<Props> = ({
 
   const updateAnimation = useCallback(() => {
     if (animation.current) {
-      animation.current.pause()
       animation.current.kill()
       initAnimation()
     }
@@ -101,8 +104,8 @@ const OutlineMarquee: FunctionComponent<Props> = ({
   }, [inView])
 
   return (
-    <div ref={ref} className="">
-      <ul ref={containerRef} className="relative w-full">
+    <div ref={ref} className="items-center h-20 lg:h-24 xl:h-32 2xl:h-40">
+      <ul ref={containerRef} className="relative w-full opacity-0">
         {textArr &&
           textArr.map(([key, ele], index) => {
             return (

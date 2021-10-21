@@ -13,8 +13,8 @@ const ProductsBreadcrumbs: FunctionComponent = () => {
     <>
       <div
         className={`${
-          isLoading ? 'hidden' : 'flex'
-        } h-8 lg:h-12 flex-wrap text-xs leading-none font-bold overflow-hidden`}
+          isLoading ? 'opacity-0' : 'opacity-1'
+        } h-8 lg:h-12 flex flex-wrap text-xs leading-none font-bold overflow-hidden`}
       >
         <ProductsBreadcrumbLink
           hasBorder={parentType.length === 0 && category.length === 0}
