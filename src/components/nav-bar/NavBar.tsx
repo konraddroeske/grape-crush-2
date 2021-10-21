@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
+import React, { FunctionComponent, useEffect, useRef } from 'react'
 
 import gsap from 'gsap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,19 +14,19 @@ import DesktopSearch from '@components/nav-bar/DesktopSearch'
 import Hamburger from '@components/nav-bar/Hamburger'
 import MobileMenu from '@components/nav-bar/MobileMenu'
 import useScrollDetector from '@hooks/useScrollDetector'
-import { selectGlobal, setNavOpen } from '@redux/globalSlice'
+import { selectGlobal, setMobileNavOpen, setNavOpen } from '@redux/globalSlice'
 
 const NavBar: FunctionComponent = () => {
   const dispatch = useDispatch()
-  const { navOpen } = useSelector(selectGlobal())
+  const { navOpen, mobileNavOpen } = useSelector(selectGlobal())
   const navRef = useRef<null | HTMLElement>(null)
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
 
-  const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false)
+  // const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false)
 
   useEffect(() => {
-    setMobileNavOpen(navOpen && !isDesktop)
-  }, [navOpen, isDesktop])
+    dispatch(setMobileNavOpen(navOpen && !isDesktop))
+  }, [dispatch, navOpen, isDesktop])
 
   useEffect(() => {
     if (navOpen && !isDesktop) {

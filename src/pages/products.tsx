@@ -62,7 +62,7 @@ const Products: FunctionComponent = () => {
         <div className="my-4 overflow-hidden">
           <OutlineMarquee text="shop" />
         </div>
-        <div className="lg:mb-10 border border-l-0 border-r-0 border-dark-blue">
+        <div className="lg:mb-10">
           <ProductsBar />
         </div>
         <div className="my-4 body-gutter-sm lg:hidden">
