@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react'
 
-import gsap from 'gsap'
 import { useSelector } from 'react-redux'
 
 import { useMediaQuery } from 'react-responsive'
@@ -16,6 +15,7 @@ import ProductsBreadcrumbs from '@components/products-page/products-bar/Products
 import ProductsSearch from '@components/products-page/products-bar/ProductsSearch'
 import ProductsSort from '@components/products-page/products-bar/ProductsSort'
 import useScrollDetector from '@hooks/useScrollDetector'
+import { remToPixels } from '@lib/remToPixels'
 import { selectGlobal } from '@redux/globalSlice'
 import { selectProducts } from '@redux/productsSlice'
 
@@ -24,6 +24,7 @@ const ProductsBar: FunctionComponent = () => {
   const { menuOpen, mobileMenuOpen } = useSelector(selectProducts())
   const { mobileNavOpen } = useSelector(selectGlobal())
   const [isSticky, setIsSticky] = useState<boolean>(false)
+  const [isExpand, setIsExpand] = useState<boolean>(false)
 
   const outerRef = useRef<null | HTMLDivElement>(null)
   const innerRef = useRef<null | HTMLDivElement>(null)
@@ -32,11 +33,14 @@ const ProductsBar: FunctionComponent = () => {
     if (window && outerRef.current && innerRef.current) {
       const distanceToTop = outerRef.current.getBoundingClientRect().top
 
+      // console.log('distance to top', distanceToTop)
+      const distance = remToPixels(4)
+
       if (distanceToTop <= 0 && !isSticky) {
         setIsSticky(true)
       }
 
-      if (distanceToTop > 0 && isSticky) {
+      if (distanceToTop > distance && isSticky) {
         setIsSticky(false)
       }
     }
@@ -60,18 +64,14 @@ const ProductsBar: FunctionComponent = () => {
   const [isScrollUp, scrollDistance] = useScrollDetector()
 
   useEffect(() => {
-    if (!isSticky || isDesktop) {
-      gsap.set(innerRef.current, {
-        height: '3rem',
-      })
-    } else if (!isScrollUp && !isDesktop && !mobileNavOpen) {
-      gsap.set(innerRef.current, {
-        height: '3rem',
-      })
-    } else if (isScrollUp && !isDesktop && !mobileNavOpen) {
-      gsap.set(innerRef.current, {
-        height: '7rem',
-      })
+    if (isDesktop) {
+      setIsExpand(false)
+    } else if (!isSticky) {
+      setIsExpand(false)
+    } else if (isSticky && !isScrollUp && !isDesktop && !mobileNavOpen) {
+      setIsExpand(false)
+    } else if (isSticky && isScrollUp && !isDesktop && !mobileNavOpen) {
+      setIsExpand(true)
     }
   }, [isSticky, isScrollUp, scrollDistance, isDesktop, mobileNavOpen])
 
@@ -80,8 +80,11 @@ const ProductsBar: FunctionComponent = () => {
       <div
         ref={innerRef}
         className={`${
-          isSticky && !isDesktop ? 'fixed top-0 left-0 right-0' : 'relative'
-        } flex items-end z-10 bg-white h-12 transition-height duration-700`}
+          isSticky && !isDesktop
+            ? 'fixed top-0 left-0 right-0 duration-700'
+            : 'relative duration-0'
+        } flex items-end z-10 bg-white ${isExpand ? 'h-28' : 'h-12'}
+        transition-height`}
       >
         <div
           className="h-12 flex w-full items-center border-b border-blue-dark
