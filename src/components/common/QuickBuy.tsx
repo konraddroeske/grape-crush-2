@@ -26,16 +26,6 @@ const BuyButton: FunctionComponent<Props> = ({ productId }) => {
   }
 
   return (
-    // <div className="flex w-full h-9 mt-auto border border-blue-dark">
-    // <button
-    //   type="button"
-    //   className="flex items-center w-full mr-auto text-sm h-10 border border-blue-dark shadow-blue-dark
-    //   bg-lime font-bold text-blue-dark uppercase line-clamp leading-9"
-    //   onClick={() => handleClick()}
-    // >
-    //   Add to Cart
-    // </button>
-    // </div>
     <button
       type="button"
       className="flex py-2 px-3 h-8 bg-lime justify-between items-center
