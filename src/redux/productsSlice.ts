@@ -62,6 +62,7 @@ interface ProductsSlice {
   menuOpen: boolean
   mobileMenuOpen: boolean
   missingImage: Asset | null
+  isLoading: boolean
 }
 
 const initialState: ProductsSlice = {
@@ -88,6 +89,7 @@ const initialState: ProductsSlice = {
   menuOpen: true,
   mobileMenuOpen: false,
   missingImage: null,
+  isLoading: false,
 }
 
 export const productsSlice = createSlice({
@@ -367,6 +369,9 @@ export const productsSlice = createSlice({
         missingImage: lightImage,
       }
     },
+    setIsLoading(state, action) {
+      return { ...state, isLoading: action.payload }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -392,6 +397,7 @@ export const {
   toggleMobileMenuOpen,
   setMenuOpen,
   setMissingImage,
+  setIsLoading,
 } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>

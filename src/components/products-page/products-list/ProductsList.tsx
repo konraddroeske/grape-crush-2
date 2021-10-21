@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,11 +12,12 @@ import {
   handleProducts,
   handleProductsSearch,
   selectProducts,
+  setIsLoading,
 } from '@redux/productsSlice'
 
 const ProductsList: FunctionComponent = () => {
+  const { isLoading } = useSelector(selectProducts())
   const dispatch = useDispatch()
-  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const {
     products,
@@ -28,7 +29,7 @@ const ProductsList: FunctionComponent = () => {
   } = useSelector(selectProducts())
 
   useEffect(() => {
-    setIsLoading(true)
+    dispatch(setIsLoading(true))
 
     dispatch(
       handleProducts({
@@ -40,8 +41,8 @@ const ProductsList: FunctionComponent = () => {
   }, [products, selectedTags, productsSearch, productsSort, page, dispatch])
 
   useEffect(() => {
-    setIsLoading(false)
-  }, [selectedProductsByPage])
+    dispatch(setIsLoading(false))
+  }, [dispatch, selectedProductsByPage])
 
   const resetSearch = () => {
     dispatch(setNavSearch(''))
@@ -63,7 +64,7 @@ const ProductsList: FunctionComponent = () => {
         </ul>
       )}
       {!isLoading && selectedProductsByPage.length === 0 && (
-        <div className="h-full flex justify-center items-center py-24">
+        <div className="h-full flex justify-center items-center pt-32 lg:pt-20">
           <Warning text="Oops!">
             <p className="font-headline relative z-10 my-4">
               <span className="block">

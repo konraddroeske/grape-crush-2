@@ -6,35 +6,37 @@ import ProductsBreadcrumbLink from '@components/products-page/products-bar/Produ
 import { selectProducts } from '@redux/productsSlice'
 
 const ProductsBreadcrumbs: FunctionComponent = () => {
-  const { selectedTags } = useSelector(selectProducts())
-
+  const { selectedTags, isLoading } = useSelector(selectProducts())
   const { parentType, category } = selectedTags
 
   return (
-    <div
-      className="h-8 lg:h-12 flex flex-wrap text-xs leading-none font-bold
-    overflow-hidden"
-    >
-      <ProductsBreadcrumbLink
-        hasBorder={parentType.length === 0 && category.length === 0}
-        category=""
-        tag=""
-      />
-      {parentType.length > 0 && (
+    <>
+      <div
+        className={`${
+          isLoading ? 'hidden' : 'flex'
+        } h-8 lg:h-12 flex-wrap text-xs leading-none font-bold overflow-hidden`}
+      >
         <ProductsBreadcrumbLink
-          hasBorder={category.length === 0}
-          category="parentType"
-          tag={parentType[0]}
+          hasBorder={parentType.length === 0 && category.length === 0}
+          category=""
+          tag=""
         />
-      )}
-      {category.length > 0 && (
-        <ProductsBreadcrumbLink
-          hasBorder
-          category="category"
-          tag={category[0]}
-        />
-      )}
-    </div>
+        {parentType.length > 0 && (
+          <ProductsBreadcrumbLink
+            hasBorder={category.length === 0}
+            category="parentType"
+            tag={parentType[0]}
+          />
+        )}
+        {category.length > 0 && (
+          <ProductsBreadcrumbLink
+            hasBorder
+            category="category"
+            tag={category[0]}
+          />
+        )}
+      </div>
+    </>
   )
 }
 

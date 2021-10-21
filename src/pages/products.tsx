@@ -58,7 +58,7 @@ const Products: FunctionComponent = () => {
   return (
     <>
       <Seo title="Shop" />
-      <div className="py-12 pb-12 min-h-screen">
+      <div className="flex flex-col py-12 pb-12 min-h-screen">
         <div className="my-4 overflow-hidden">
           <OutlineMarquee text="shop" />
         </div>
@@ -68,9 +68,9 @@ const Products: FunctionComponent = () => {
         <div className="my-4 body-gutter-sm lg:hidden">
           <ProductsBreadcrumbs />
         </div>
-        <div className="flex">
+        <div className="flex flex-grow">
           <DesktopMenu />
-          <div className="flex-grow body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+          <div className="w-full body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
             <ProductsList />
           </div>
         </div>
