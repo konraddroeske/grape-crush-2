@@ -89,7 +89,7 @@ const initialState: ProductsSlice = {
   menuOpen: true,
   mobileMenuOpen: false,
   missingImage: null,
-  isLoading: false,
+  isLoading: true,
 }
 
 export const productsSlice = createSlice({
