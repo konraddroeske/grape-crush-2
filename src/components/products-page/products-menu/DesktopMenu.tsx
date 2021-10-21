@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react'
 
+import { ResizeObserver } from '@juggle/resize-observer'
 import { gsap } from 'gsap'
 import { useRouter } from 'next/dist/client/router'
 
