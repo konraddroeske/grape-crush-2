@@ -10,9 +10,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { useMediaQuery } from 'react-responsive'
 
+import DesktopSearch from '@components/nav-bar/DesktopSearch'
 import MenuToggle from '@components/products-page/products-bar/MenuToggle'
 import ProductsBreadcrumbs from '@components/products-page/products-bar/ProductsBreadcrumbs'
-import ProductsSearch from '@components/products-page/products-bar/ProductsSearch'
 import ProductsSort from '@components/products-page/products-bar/ProductsSort'
 import useScrollDetector from '@hooks/useScrollDetector'
 import { remToPixels } from '@lib/remToPixels'
@@ -92,7 +92,7 @@ const ProductsBar: FunctionComponent = () => {
           <div className="hidden lg:flex items-center mr-auto">
             <ProductsBreadcrumbs />
           </div>
-          <div className="flex w-full items-center lg:w-auto">
+          <div className="relative flex w-full items-center lg:w-auto">
             <div className="flex mr-2 lg:mr-0">
               <div className="hidden lg:block mr-3 lg:mr-6">
                 <MenuToggle type="desktop" menuOpen={menuOpen} />
@@ -105,7 +105,8 @@ const ProductsBar: FunctionComponent = () => {
               </div>
             </div>
             <div className="ml-auto lg:ml-0">
-              <ProductsSearch />
+              {/* <ProductsSearch /> */}
+              <DesktopSearch variant="productsBar" />
             </div>
           </div>
         </div>

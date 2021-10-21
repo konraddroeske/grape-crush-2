@@ -11,7 +11,11 @@ import { selectGlobal } from '@redux/globalSlice'
 
 import SearchIcon from '../../assets/svgs/search.svg'
 
-const DesktopSearch: FunctionComponent = () => {
+interface Props {
+  variant?: 'navBar' | 'productsBar'
+}
+
+const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
   const router = useRouter()
   const dispatch = useDispatch()
   const { navOpen } = useSelector(selectGlobal())
@@ -57,18 +61,28 @@ const DesktopSearch: FunctionComponent = () => {
     }
   }, [navOpen, expanded])
 
+  const variants = {
+    navBar: {
+      container: 'hidden lg:block mr-4 xl:mr-6',
+      form: 'flex justify-center items-center h-8 rounded-full transition-all duration-300',
+      width: '10rem',
+    },
+    productsBar: {
+      container:
+        'flex absolute top-1/2 left-0 right-0 transform -translate-y-1/2 xs:left-auto ' +
+        'lg:static lg:translate-y-0',
+      form: 'flex w-full justify-end items-center h-8 rounded-full transition-all duration-300 sm:w-auto sm:justufy-center',
+      width: 'calc(100% - 2rem)',
+    },
+  }
+
   return (
-    <div
-      className={`hidden lg:block ${
-        router.route === '/products' ? 'mr-0' : 'mr-4 xl:mr-6'
-      }`}
-    >
+    <div className={variants[variant].container}>
       <form
         ref={formRef}
-        className="justify-center items-center h-8 rounded-full transition-all duration-300"
+        className={variants[variant].form}
         style={{
           backgroundColor: expanded ? '#f4f3f9' : 'transparent',
-          display: router.route === '/products' ? 'none' : 'flex',
         }}
         onSubmit={(event) => handleSearch(event)}
       >
@@ -88,7 +102,7 @@ const DesktopSearch: FunctionComponent = () => {
           onChange={handleChange}
           onBlur={() => setExpanded(false)}
           style={{
-            width: expanded ? '10rem' : 0,
+            width: expanded ? variants[variant].width : 0,
             paddingLeft: expanded ? '1rem' : 0,
           }}
         />
