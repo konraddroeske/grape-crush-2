@@ -15,6 +15,7 @@ import { wrapper } from '@redux/store'
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter()
+  //
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
