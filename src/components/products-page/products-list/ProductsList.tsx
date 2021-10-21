@@ -97,11 +97,9 @@ const ProductsList: FunctionComponent = () => {
           </Warning>
         </div>
       )}
-      {!isLoading && (
-        <div className="mt-auto">
-          <PageNav />
-        </div>
-      )}
+      <div className={`${isLoading ? 'opacity-0' : 'opacity-1'} mt-auto`}>
+        <PageNav />
+      </div>
     </div>
   )
 }

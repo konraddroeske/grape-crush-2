@@ -63,11 +63,11 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
       onMouseEnter={() => setBuyVisible(true)}
       onMouseLeave={() => setBuyVisible(false)}
     >
-      <div className="relative">
+      <div className="relative mb-4 sm:mb-6">
         <Link href={`/item/${encodeURIComponent(name)}`}>
           <a>
             <div
-              className={`relative h-60 sm:h-72 lg:h-96 xl:h-96 2xl:h-122 relative bg-blue-lightest mb-4 sm:mb-6 
+              className={`relative h-60 sm:h-72 lg:h-96 xl:h-96 2xl:h-122 relative bg-blue-lightest 
                 ${url ? 'py-4 sm:p-4 lg:p-4 xl:p-4 2xl:p-4' : ''}`}
             >
               {url ? (
@@ -102,7 +102,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
           {price && label && (
             <div className="hidden sm:block ml-3">
               <h5 className="text-sm leading-5 text-left font-bold uppercase">
-                {/* ${price} / {label} */}${price}
+                ${price}
               </h5>
             </div>
           )}
@@ -118,17 +118,17 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
         <p className="hidden sm:block text-sm sm:line-clamp sm:line-clamp-p leading-5 mb-3">
           {description}
         </p>
-        <div className="hidden">
-          <QuickBuy productId={id} />
-        </div>
         {price && label && (
           <div className="sm:hidden">
             <h5 className="text-sm leading-5 text-left font-bold uppercase">
-              {/* ${price} / {label} */}${price}
+              ${price}
             </h5>
           </div>
         )}
-        <div className="mt-auto pt-2 sm:mt-0 sm:pt-0 flex sm:justify-start sm:items-center">
+        <div className="mt-auto pt-2 sm:mt-0 sm:pt-0 flex justify-center sm:hidden">
+          <QuickBuy productId={id} />
+        </div>
+        <div className="hidden mt-auto pt-2 sm:mt-0 sm:pt-0 sm:flex justify-start">
           <LearnMore name={name} />
         </div>
       </div>
