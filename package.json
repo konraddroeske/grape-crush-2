@@ -31,6 +31,7 @@
     "@contentful/rich-text-types": "^14.1.2",
     "@googlemaps/google-maps-services-js": "^3.1.16",
     "@googlemaps/js-api-loader": "^1.12.3",
+    "@juggle/resize-observer": "^3.3.1",
     "@moxy/next-router-scroll": "^2.2.0",
     "@reduxjs/toolkit": "^1.5.1",
     "@svgr/webpack": "^5.5.0",
