@@ -82,7 +82,7 @@ const ProductsBar: FunctionComponent = () => {
           isSticky && !isDesktop
             ? 'fixed top-0 left-0 right-0 duration-700'
             : 'relative duration-0'
-        } flex items-end z-10 bg-white ${isExpand ? 'h-28' : 'h-12'}
+        } flex items-end z-20 bg-white ${isExpand ? 'h-28' : 'h-12'}
         transition-height`}
       >
         <div
