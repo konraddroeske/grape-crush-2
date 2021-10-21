@@ -60,7 +60,7 @@ const ProductsSort: FunctionComponent = () => {
       <ul
         ref={sortMenu}
         className="absolute z-20 top-full left-0 right-14 bg-white w-48
-        overflow-hidden transition-all duration-300 transform -translate-y-px"
+        overflow-hidden transition-all duration-300"
         style={{
           maxHeight: expanded ? `${scrollHeight}px` : 0,
         }}
@@ -69,7 +69,7 @@ const ProductsSort: FunctionComponent = () => {
           return (
             <li
               key={option}
-              className="h-10 border border border-b-0 bg-white last:border-b"
+              className="h-10 border border first:border-t-0 border-b-0 bg-white last:border-b"
             >
               <button
                 type="button"
