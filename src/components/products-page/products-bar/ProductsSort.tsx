@@ -59,7 +59,7 @@ const ProductsSort: FunctionComponent = () => {
       </button>
       <ul
         ref={sortMenu}
-        className="absolute z-10 top-full left-0 right-14 bg-white w-48
+        className="absolute z-20 top-full left-0 right-14 bg-white w-48
         overflow-hidden transition-all duration-300"
         style={{
           maxHeight: expanded ? `${scrollHeight}px` : 0,

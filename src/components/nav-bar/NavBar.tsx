@@ -58,7 +58,7 @@ const NavBar: FunctionComponent = () => {
     <nav
       ref={navRef}
       className="fixed z-30 top-0 left-0 right-0 body-gutter-sm lg:overflow-y-auto
-      lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl"
+      lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl pointer-events-none"
       onMouseLeave={() => {
         if (isDesktop) {
           dispatch(setNavOpen(false))
@@ -68,7 +68,7 @@ const NavBar: FunctionComponent = () => {
       <div
         ref={barRef}
         className="relative z-10 flex h-16 justify-between items-center
-        transition duration-700"
+        transition duration-700 pointer-events-auto"
       >
         <Hamburger />
         <MobileSpinner />
