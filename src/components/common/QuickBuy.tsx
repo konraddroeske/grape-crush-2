@@ -29,7 +29,8 @@ const BuyButton: FunctionComponent<Props> = ({ productId }) => {
     <button
       type="button"
       className="flex py-2 px-3 h-8 bg-lime justify-between items-center
-      cursor-pointer sm:w-full sm:h-10 sm:justify-between"
+      cursor-pointer sm:w-full sm:h-10 sm:border sm:border-dark-blue sm:shadow-blue-dark
+      sm:justify-center"
       onClick={() => handleClick()}
     >
       <span
@@ -38,7 +39,7 @@ const BuyButton: FunctionComponent<Props> = ({ productId }) => {
       >
         Add To Cart
       </span>
-      <Plus className="w-3 ml-2 svg-blue-dark" />
+      <Plus className="w-3 ml-2 svg-blue-dark sm:hidden" />
     </button>
   )
 }

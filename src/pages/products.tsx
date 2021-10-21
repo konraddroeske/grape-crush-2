@@ -70,7 +70,7 @@ const Products: FunctionComponent = () => {
         </div>
         <div className="flex flex-grow">
           <DesktopMenu />
-          <div className="w-full sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+          <div className="w-full px-2 sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
             <ProductsList />
           </div>
         </div>
