@@ -59,7 +59,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
 
   return (
     <div
-      className=""
+      className="flex flex-col h-full"
       onMouseEnter={() => setBuyVisible(true)}
       onMouseLeave={() => setBuyVisible(false)}
     >
@@ -67,8 +67,8 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
         <Link href={`/item/${encodeURIComponent(name)}`}>
           <a>
             <div
-              className={`relative h-72 sm:h-72 lg:h-96 xl:h-96 2xl:h-122 relative bg-blue-lightest mb-6 
-                ${url ? 'p-4 sm:p-4 lg:p-4 xl:p-4 2xl:p-4' : ''}`}
+              className={`relative h-60 sm:h-72 lg:h-96 xl:h-96 2xl:h-122 relative bg-blue-lightest mb-4 sm:mb-6 
+                ${url ? 'py-4 sm:p-4 lg:p-4 xl:p-4 2xl:p-4' : ''}`}
             >
               {url ? (
                 <AmbassadorImage url={url} title={name} />
@@ -91,38 +91,46 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
           </div>
         )}
       </div>
-      <div className="flex justify-between mb-1">
-        <div className="flex-grow-1">
-          <ProductTitle name={name} fontSize="text-base" />
-          {(region || vintage) && (
-            <ProductSubheading region={region} vintage={vintage} />
+      <div className="flex flex-col flex-grow px-2 sm:px-0">
+        <div className="flex justify-between mb-1">
+          <div className="flex-grow-1">
+            <ProductTitle name={name} fontSize="text-base" />
+            {(region || vintage) && (
+              <ProductSubheading region={region} vintage={vintage} />
+            )}
+          </div>
+          {price && label && (
+            <div className="hidden sm:block ml-3">
+              <h5 className="text-sm leading-5 text-left font-bold uppercase">
+                {/* ${price} / {label} */}${price}
+              </h5>
+            </div>
           )}
         </div>
+        <div className="hidden sm:block">
+          <Tags
+            country={country}
+            varietal={varietal}
+            style={style}
+            variant="card"
+          />
+        </div>
+        <p className="hidden sm:block text-sm sm:line-clamp sm:line-clamp-p leading-5 mb-3">
+          {description}
+        </p>
+        <div className="hidden">
+          <QuickBuy productId={id} />
+        </div>
         {price && label && (
-          <div className="w-10 ml-3">
+          <div className="sm:hidden">
             <h5 className="text-sm leading-5 text-left font-bold uppercase">
               {/* ${price} / {label} */}${price}
             </h5>
           </div>
         )}
-      </div>
-      <Tags
-        country={country}
-        varietal={varietal}
-        style={style}
-        variant="card"
-      />
-      {/* <div className="flex justify-center my-4"> */}
-      {/*  <BuyButton productId={id} /> */}
-      {/* </div> */}
-      <p className="text-sm line-clamp line-clamp-p leading-5 mb-3">
-        {description}
-      </p>
-      <div className="sm:hidden">
-        <QuickBuy productId={id} />
-      </div>
-      <div className="hidden sm:flex sm:justify-start sm:items-center">
-        <LearnMore name={name} />
+        <div className="mt-auto pt-2 sm:mt-0 sm:pt-0 flex sm:justify-start sm:items-center">
+          <LearnMore name={name} />
+        </div>
       </div>
     </div>
   )

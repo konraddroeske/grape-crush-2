@@ -53,8 +53,8 @@ const ProductsList: FunctionComponent = () => {
     <div className="flex flex-col h-full">
       {!isLoading && selectedProductsByPage.length > 0 && (
         <ul
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4
-        gap-8 md:gap-8 xl:gap-10"
+          className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4
+        gap-x-2 gap-y-6 sm:gap-8 md:gap-8 xl:gap-10"
         >
           {selectedProductsByPage[page - 1]?.map((product) => {
             const { data } = product
