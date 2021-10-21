@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from 'react'
 
+import { RouterScrollProvider } from '@moxy/next-router-scroll'
 import { DefaultSeo } from 'next-seo'
 import { AppProps } from 'next/app'
 
@@ -98,11 +99,11 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           cardType: 'summary_large_image',
         }}
       />
-      {/* <RouterScrollProvider> */}
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-      {/* </RouterScrollProvider> */}
+      <RouterScrollProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </RouterScrollProvider>
     </>
   )
 }
