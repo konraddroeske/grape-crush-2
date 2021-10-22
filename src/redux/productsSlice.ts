@@ -55,6 +55,7 @@ interface ProductsSlice {
   selectedProductsByPage: ProductLowercase[][]
   totalSelected: ProductLowercase[]
   selectedTags: TagsByCategory
+  totalSelectedTags: number
   page: number
   productsPerPage: number
   productsSearch: string
@@ -73,6 +74,7 @@ const initialState: ProductsSlice = {
   // selectedProducts: [],
   selectedProductsByPage: [],
   totalSelected: [],
+  totalSelectedTags: 0,
   selectedTags: {
     parentType: [],
     category: [],
@@ -135,6 +137,7 @@ export const productsSlice = createSlice({
         .map(([key, _]) => key)
 
       const selectedTags = Object.values(selectedTagsObj).flat()
+      const totalSelectedTags = selectedTags.length
 
       const selectedProducts =
         selectedTags.length === 0
@@ -221,6 +224,7 @@ export const productsSlice = createSlice({
           page: maxPage,
           selectedProductsByPage,
           totalSelected: sortedProducts,
+          totalSelectedTags,
         }
       }
 
@@ -228,6 +232,7 @@ export const productsSlice = createSlice({
         ...state,
         selectedProductsByPage,
         totalSelected: sortedProducts,
+        totalSelectedTags,
       }
     },
     setAllTags(state, action) {

@@ -15,7 +15,6 @@ import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import client from '@lib/apolloClient'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { assetCollectionQuery } from '@models/schema'
-import { setIsLoading } from '@redux/clientSlice'
 import {
   selectGlobal,
   setFooter,
@@ -42,10 +41,6 @@ const Products: FunctionComponent = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const { mobileMenuOpen } = useSelector(selectProducts())
-
-  useEffect(() => {
-    dispatch(setIsLoading(true))
-  }, [dispatch])
 
   useEffect(() => {
     if (Object.values(router.query).length > 0) {
