@@ -30,8 +30,9 @@ export const cleanData = (products: Product[]) => {
 
   return newKeys.filter((product) => {
     return !(
-      product.data.variants.length === 1 &&
-      product.data.variants[0].tags?.includes('delivery')
+      (product.data.variants.length === 1 &&
+        product.data.variants[0].tags?.includes('delivery')) ||
+      product.data.type.includes('do not use')
     )
   })
 }
