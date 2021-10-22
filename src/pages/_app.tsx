@@ -9,7 +9,6 @@ import { useRouter } from 'next/dist/client/router'
 import Script from 'next/script'
 
 import Layout from '@components/layout/Layout'
-import * as fbq from '@lib/fpixel'
 import * as gtag from '@lib/gTag'
 import { wrapper } from '@redux/store'
 
@@ -19,7 +18,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       gtag.pageview(url)
-      fbq.pageview()
+      // fbq.pageview()
     }
 
     router.events.on('routeChangeComplete', handleRouteChange)
@@ -61,23 +60,23 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             `,
         }}
       />
-      <Script
-        id="fpixel"
-        strategy="lazyOnload"
-        dangerouslySetInnerHTML={{
-          __html: `
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', ${fbq.FB_PIXEL_ID});
-          `,
-        }}
-      />
+      {/* <Script */}
+      {/*  id="fpixel" */}
+      {/*  strategy="lazyOnload" */}
+      {/*  dangerouslySetInnerHTML={{ */}
+      {/*    __html: ` */}
+      {/*      !function(f,b,e,v,n,t,s) */}
+      {/*      {if(f.fbq)return;n=f.fbq=function(){n.callMethod? */}
+      {/*      n.callMethod.apply(n,arguments):n.queue.push(arguments)}; */}
+      {/*      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; */}
+      {/*      n.queue=[];t=b.createElement(e);t.async=!0; */}
+      {/*      t.src=v;s=b.getElementsByTagName(e)[0]; */}
+      {/*      s.parentNode.insertBefore(t,s)}(window, document,'script', */}
+      {/*      'https://connect.facebook.net/en_US/fbevents.js'); */}
+      {/*      fbq('init', ${fbq.FB_PIXEL_ID}); */}
+      {/*    `, */}
+      {/*  }} */}
+      {/* /> */}
       <DefaultSeo
         titleTemplate="Grape Crush | %s"
         additionalLinkTags={[
