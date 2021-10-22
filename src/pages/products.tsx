@@ -55,11 +55,7 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
         dispatch(handlePage(parseInt(queryPage, 10)))
       }
 
-      const newTagsFlat = Object.values(newTags).flat()
-
-      if (newTagsFlat.length > 0) {
-        dispatch(handleTags(newTags))
-      }
+      dispatch(handleTags(newTags))
     } else {
       dispatch(resetTags())
     }
