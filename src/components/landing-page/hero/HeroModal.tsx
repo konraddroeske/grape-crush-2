@@ -1,6 +1,13 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import { setCookies } from 'cookies-next'
+import throttle from 'lodash.throttle'
 import { useDispatch } from 'react-redux'
 
 import ShadowButton from '@components/common/ShadowButton'
@@ -23,8 +30,13 @@ const HeroModal: FunctionComponent = () => {
   }
 
   const handleScroll = () => {
-    setScrollDistance(window.scrollY)
+    if (window) {
+      setScrollDistance(window.scrollY)
+    }
   }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const throttledScroll = useCallback(throttle(handleScroll, 500), [])
 
   const handleClick = () => {
     setCookies('grapeCrushAgeConsent', true, {
@@ -39,11 +51,11 @@ const HeroModal: FunctionComponent = () => {
     }
 
     if (window) {
-      document.addEventListener('scroll', handleScroll)
+      document.addEventListener('scroll', throttledScroll)
     }
 
-    return () => document.removeEventListener('scroll', handleScroll)
-  }, [scrollDistance])
+    return () => document.removeEventListener('scroll', throttledScroll)
+  }, [throttledScroll])
 
   return (
     <div

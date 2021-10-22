@@ -10,6 +10,8 @@ import gsap from 'gsap'
 import { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 
+import debounce from 'lodash.debounce'
+
 import AmbassadorImage from '@components/common/AmbassadorImage'
 import ItemSlideButtons from '@components/item-page/ItemSlideButtons'
 import { Direction } from '@models/misc'
@@ -229,13 +231,16 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
     useTimer,
   ])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedResize = useCallback(debounce(handleResize, 500), [])
+
   useEffect(() => {
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', debouncedResize)
 
     return () => {
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', debouncedResize)
     }
-  }, [handleResize])
+  }, [debouncedResize])
 
   return (
     <>
