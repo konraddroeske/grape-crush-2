@@ -7,16 +7,20 @@ import ProductCard from '@components/common/product/ProductCard'
 
 import Warning from '@components/common/Warning'
 import PageNav from '@components/products-page/products-list/PageNav'
-import { setNavSearch, setSearch } from '@redux/clientSlice'
+import {
+  selectClient,
+  setIsLoading,
+  setNavSearch,
+  setSearch,
+} from '@redux/clientSlice'
 import {
   handleProducts,
   handleProductsSearch,
   selectProducts,
-  setIsLoading,
 } from '@redux/productsSlice'
 
 const ProductsList: FunctionComponent = () => {
-  const { isLoading } = useSelector(selectProducts())
+  const { isLoading } = useSelector(selectClient())
   const dispatch = useDispatch()
 
   const {
@@ -24,6 +28,7 @@ const ProductsList: FunctionComponent = () => {
     selectedProductsByPage,
     page,
     selectedTags,
+    totalSelectedTags,
     productsSearch,
     productsSort,
   } = useSelector(selectProducts())
@@ -67,37 +72,39 @@ const ProductsList: FunctionComponent = () => {
           })}
         </ul>
       )}
-      {!isLoading && selectedProductsByPage.length === 0 && (
-        <div className="h-full flex justify-center items-center pt-32 lg:pt-20">
-          <Warning text="Oops!">
-            <p className="font-headline relative z-10 my-4">
-              <span className="block">
-                We can't find what you were looking&nbsp;for.
-              </span>
-              <span className="block">
-                Try removing{' '}
-                <span className="underline">
-                  <Link href="/products?page=1" shallow>
-                    <a>some filters</a>
-                  </Link>
-                </span>{' '}
-                or{' '}
-                <span className="underline">
-                  <button
-                    type="button"
-                    className="underline"
-                    onClick={() => resetSearch()}
-                  >
-                    <a>resetting search</a>
-                  </button>
-                </span>{' '}
-                <br />
-                and maybe you'll find it there.
-              </span>
-            </p>
-          </Warning>
-        </div>
-      )}
+      {!isLoading &&
+        selectedProductsByPage.length === 0 &&
+        (totalSelectedTags > 0 || productsSearch.length > 0) && (
+          <div className="h-full flex justify-center items-center pt-32 lg:pt-20">
+            <Warning text="Oops!">
+              <p className="font-headline relative z-10 my-4">
+                <span className="block">
+                  We can't find what you were looking&nbsp;for.
+                </span>
+                <span className="block">
+                  Try removing{' '}
+                  <span className="underline">
+                    <Link href="/products?page=1" shallow>
+                      <a>some filters</a>
+                    </Link>
+                  </span>{' '}
+                  or{' '}
+                  <span className="underline">
+                    <button
+                      type="button"
+                      className="underline"
+                      onClick={() => resetSearch()}
+                    >
+                      <a>resetting search</a>
+                    </button>
+                  </span>{' '}
+                  <br />
+                  and maybe you'll find it there.
+                </span>
+              </p>
+            </Warning>
+          </div>
+        )}
       <div className={`${isLoading ? 'opacity-0' : 'opacity-1'} mt-auto`}>
         <PageNav />
       </div>

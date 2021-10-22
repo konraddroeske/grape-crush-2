@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -18,13 +18,7 @@ interface Props {
 
 const MenuToggle: FunctionComponent<Props> = ({ type, menuOpen }) => {
   const dispatch = useDispatch()
-  const { selectedTags } = useSelector(selectProducts())
-
-  const [totalSelected, setTotalSelected] = useState<number>(0)
-
-  useEffect(() => {
-    setTotalSelected(Object.values(selectedTags).flat().length)
-  }, [selectedTags])
+  const { totalSelectedTags } = useSelector(selectProducts())
 
   const handleClick = () => {
     if (type === 'desktop') {
@@ -59,12 +53,12 @@ const MenuToggle: FunctionComponent<Props> = ({ type, menuOpen }) => {
         </span>
         Filters
       </span>
-      {totalSelected > 0 && (
+      {totalSelectedTags > 0 && (
         <div
           className="ml-1 w-6 h-6 rounded-full bg-blue-lightest flex
       justify-center items-center text-blue-dark font-bold"
         >
-          {totalSelected}
+          {totalSelectedTags}
         </div>
       )}
     </button>
