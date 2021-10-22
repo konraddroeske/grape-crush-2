@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react'
 import { useSelector } from 'react-redux'
 
 import ProductsBreadcrumbLink from '@components/products-page/products-bar/ProductsBreadcrumbLink'
+import { selectClient } from '@redux/clientSlice'
 import { selectProducts } from '@redux/productsSlice'
 
 interface Props {
@@ -12,7 +13,8 @@ interface Props {
 const ProductsBreadcrumbs: FunctionComponent<Props> = ({
   variant = 'desktop',
 }) => {
-  const { selectedTags, isLoading } = useSelector(selectProducts())
+  const { isLoading } = useSelector(selectClient())
+  const { selectedTags } = useSelector(selectProducts())
   const { parentType, category } = selectedTags
 
   const variants = {

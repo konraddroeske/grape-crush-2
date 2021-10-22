@@ -369,9 +369,9 @@ export const productsSlice = createSlice({
         missingImage: lightImage,
       }
     },
-    setIsLoading(state, action) {
-      return { ...state, isLoading: action.payload }
-    },
+    // setIsLoading(state, action) {
+    //   return { ...state, isLoading: action.payload }
+    // },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -397,7 +397,7 @@ export const {
   toggleMobileMenuOpen,
   setMenuOpen,
   setMissingImage,
-  setIsLoading,
+  // setIsLoading,
 } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>

@@ -7,16 +7,20 @@ import ProductCard from '@components/common/product/ProductCard'
 
 import Warning from '@components/common/Warning'
 import PageNav from '@components/products-page/products-list/PageNav'
-import { setNavSearch, setSearch } from '@redux/clientSlice'
+import {
+  selectClient,
+  setIsLoading,
+  setNavSearch,
+  setSearch,
+} from '@redux/clientSlice'
 import {
   handleProducts,
   handleProductsSearch,
   selectProducts,
-  setIsLoading,
 } from '@redux/productsSlice'
 
 const ProductsList: FunctionComponent = () => {
-  const { isLoading } = useSelector(selectProducts())
+  const { isLoading } = useSelector(selectClient())
   const dispatch = useDispatch()
 
   const {
