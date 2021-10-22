@@ -26,7 +26,7 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen">{children}</div>
+      {children}
       {modalOpen && !hasCookie && <HeroModal />}
       <Footer />
     </>

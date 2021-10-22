@@ -44,12 +44,12 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         }}
       />
       <Script
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
       />
       <Script
         id="gtag"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
               window.dataLayer = window.dataLayer || [];
@@ -63,7 +63,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
       />
       <Script
         id="fpixel"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             !function(f,b,e,v,n,t,s)
