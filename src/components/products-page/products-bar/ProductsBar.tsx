@@ -104,8 +104,10 @@ const ProductsBar: FunctionComponent = () => {
                 <ProductsSort />
               </div>
             </div>
-            <div className="ml-auto lg:ml-0">
-              {/* <ProductsSearch /> */}
+            <div
+              className="absolute top-1/2 left-0 right-0 transform -translate-y-1/2
+            xs:left-auto lg:static lg:translate-y-0 pointer-events-none"
+            >
               <DesktopSearch variant="productsBar" />
             </div>
           </div>

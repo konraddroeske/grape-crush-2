@@ -78,7 +78,11 @@ const NavBar: FunctionComponent = () => {
         <Logo />
         <DesktopMenu />
         <div className="flex">
-          {router.route !== '/products' && <DesktopSearch />}
+          {router.route !== '/products' && (
+            <div className="hidden lg:block mr-4 xl:mr-6">
+              <DesktopSearch />
+            </div>
+          )}
           <Cart />
         </div>
       </div>
