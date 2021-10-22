@@ -41,6 +41,8 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
       setSearch(navSearch)
       setExpanded(true)
       dispatch(handleProductsSearch(navSearch))
+    } else {
+      setSearch('')
     }
 
     return () => {
