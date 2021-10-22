@@ -29,7 +29,7 @@ const SvgPopUp: FunctionComponent<Props> = ({ images, title, description }) => {
     if (image3Ref.current) {
       gsap.set(image3Ref.current, {
         y: '100%',
-        x: '65%',
+        x: '130%',
         rotate: '-6deg',
         opacity: 0,
       })
@@ -57,7 +57,7 @@ const SvgPopUp: FunctionComponent<Props> = ({ images, title, description }) => {
       })
 
       gsap.to(image3Ref.current, {
-        y: '15%',
+        y: '30%',
         // x: '65%',
         opacity: 1,
         duration,
@@ -71,13 +71,13 @@ const SvgPopUp: FunctionComponent<Props> = ({ images, title, description }) => {
     <div ref={ref} className="relative w-full">
       <div
         ref={image1Ref}
-        className="w-4/12 absolute top-1/2 left-0 transform rotate-12 translate-x-8 opacity-0"
+        className="w-2/12 absolute top-1/2 left-0 transform rotate-12 translate-x-8 opacity-0"
       >
         <ContentfulImage image={image2} />
       </div>
       <div
         ref={image2Ref}
-        className="w-4/12 absolute top-1/2 right-0 transform -rotate-12 -translate-x-4 opacity-0"
+        className="w-1/5 absolute top-1/2 right-0 transform -rotate-12 -translate-x-4 opacity-0"
       >
         <ContentfulImage image={image3} />
       </div>
@@ -105,7 +105,7 @@ const SvgPopUp: FunctionComponent<Props> = ({ images, title, description }) => {
           />
           <image
             ref={image3Ref}
-            className="w-5/12"
+            className="w-3/12"
             fill="none"
             href={image1.url}
           />
