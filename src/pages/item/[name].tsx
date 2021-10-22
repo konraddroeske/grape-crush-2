@@ -27,7 +27,7 @@ const Item: FunctionComponent<Props> = ({ productData }) => {
   } | null>(null)
 
   useEffect(() => {
-    if (productData) {
+    if (Object.values(productData).length > 0) {
       const img = new Image()
       // eslint-disable-next-line prefer-destructuring
       img.src = productData.data.imageUrl[0]
@@ -105,9 +105,8 @@ export const getStaticProps = wrapper.getStaticProps(
     const { products } = await fetchGlobalData(store)
     const name = context.params?.name
 
-    const currentProduct = products.find(
-      (product) => product.data.name === name
-    )
+    const currentProduct =
+      products.find((product) => product.data.name === name) || {}
 
     return {
       props: {
