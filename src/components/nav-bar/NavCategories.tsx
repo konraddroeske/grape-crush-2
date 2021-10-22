@@ -7,14 +7,12 @@ import ShadowButton from '@components/common/ShadowButton'
 import SvgPreview from '@components/nav-bar/SvgPreview'
 import { Asset } from '@models/contentful-graph'
 import { selectGlobal, setNavOpen } from '@redux/globalSlice'
-import { selectProducts } from '@redux/productsSlice'
 
 const NavCategories: FunctionComponent = () => {
   const dispatch = useDispatch()
   const router = useRouter()
 
-  const { categories, topStyles } = useSelector(selectProducts())
-  const { nav } = useSelector(selectGlobal())
+  const { nav, topStyles, categories } = useSelector(selectGlobal())
 
   const [categoryImage, setCategoryImage] = useState<string | undefined>(
     undefined

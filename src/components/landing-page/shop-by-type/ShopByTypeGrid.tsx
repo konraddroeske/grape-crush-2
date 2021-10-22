@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux'
 import ContentfulImage from '@components/common/ContentfulImage'
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import ShadowLink from '@components/common/ShadowLink'
-import { selectProducts } from '@redux/productsSlice'
+import { selectGlobal } from '@redux/globalSlice'
 
 const ShopByTypeGrid: FunctionComponent = () => {
-  const { categories } = useSelector(selectProducts())
+  const { categories } = useSelector(selectGlobal())
   return (
     <section className="section-margin-bottom">
       <OutlineMarquee text="Shop by type" />

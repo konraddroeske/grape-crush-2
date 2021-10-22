@@ -5,7 +5,7 @@ import { HYDRATE } from 'next-redux-wrapper'
 
 import { sortProducts } from '@lib/sortProducts'
 import { ProductCategories, ProductLowercase } from '@models/ambassador'
-import { Asset, ICategoryFields } from '@models/contentful-graph'
+import { Asset } from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
 
 export interface TagsByCategory {
@@ -47,10 +47,8 @@ export type SortOption =
   | 'date, old to new'
 
 interface ProductsSlice {
-  categories: ICategoryFields[]
   products: ProductLowercase[]
   allTags: TagsByCount | null
-  topStyles: string[]
   // productsByTag: ProductsByTag | null
   // selectedProducts: ProductLowercase[] | null
   selectedProductsByPage: ProductLowercase[][]
@@ -68,10 +66,8 @@ interface ProductsSlice {
 }
 
 const initialState: ProductsSlice = {
-  categories: [],
   products: [],
   allTags: null,
-  topStyles: [],
   // productsByTag: null,
   // selectedProducts: [],
   selectedProductsByPage: [],
@@ -100,25 +96,6 @@ export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    setCategories(state, action) {
-      const { items } = action.payload
-
-      const { parentType, category, type } = { ...state.allTags }
-      const merged = { ...parentType, ...category, ...type }
-
-      const categoriesWithCount = items.map((item: ICategoryFields) => {
-        const count = merged[item.categoryName.toLowerCase()]
-        return { ...item, count: count || 0 }
-      })
-
-      const sortedCategories = categoriesWithCount.sort(
-        (a: ICategoryFields, b: ICategoryFields) => {
-          return b.count - a.count
-        }
-      )
-
-      return { ...state, categories: sortedCategories }
-    },
     setProducts(state, action) {
       return { ...state, products: action.payload }
     },
@@ -376,9 +353,6 @@ export const productsSlice = createSlice({
         missingImage: lightImage,
       }
     },
-    setTopStyles(state, action) {
-      return { ...state, topStyles: action.payload }
-    },
     // setIsLoading(state, action) {
     //   return { ...state, isLoading: action.payload }
     // },
@@ -394,7 +368,6 @@ export const productsSlice = createSlice({
 })
 
 export const {
-  setCategories,
   setAllTags,
   setProducts,
   handleTags,
@@ -407,7 +380,6 @@ export const {
   toggleMobileMenuOpen,
   setMenuOpen,
   setMissingImage,
-  setTopStyles,
   // setIsLoading,
 } = productsSlice.actions
 

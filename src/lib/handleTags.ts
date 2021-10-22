@@ -1,4 +1,5 @@
 import { ProductCategories, ProductLowercase } from '@models/ambassador'
+import { ICategoryFields } from '@models/contentful-graph'
 import { TagsByCategory, TagsByCount } from '@redux/productsSlice'
 
 export const getTopStyles = (tags: TagsByCount) => {
@@ -11,8 +12,27 @@ export const getTopStyles = (tags: TagsByCount) => {
     .map((tag) => tag[0])
 }
 
+export const getCategories = (
+  items: ICategoryFields[],
+  allTags: TagsByCount
+) => {
+  // const { items } = categoryCollection
+
+  const { parentType, category, type } = { ...allTags }
+  const merged = { ...parentType, ...category, ...type }
+
+  const categoriesWithCount = items.map((item: ICategoryFields) => {
+    const count = merged[item.categoryName.toLowerCase()]
+    return { ...item, count: count || 0 }
+  })
+
+  return categoriesWithCount.sort((a: ICategoryFields, b: ICategoryFields) => {
+    return b.count - a.count
+  })
+}
+
 export const getAllTags = (products: ProductLowercase[]) => {
-  const getCategories = (
+  const getTagCategories = (
     acc: TagsByCategory,
     cur: ProductLowercase,
     category: ProductCategories
@@ -50,7 +70,7 @@ export const getAllTags = (products: ProductLowercase[]) => {
 
   const tagsByCategory = products.reduce((acc, cur) => {
     const newAcc = categories.reduce((childAcc, childCur) => {
-      return getCategories(childAcc, cur, childCur)
+      return getTagCategories(childAcc, cur, childCur)
     }, acc as TagsByCategory)
 
     if (cur.type) {

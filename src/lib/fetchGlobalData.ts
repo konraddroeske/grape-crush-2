@@ -5,17 +5,18 @@ import { addPriceRange } from '@lib/addPriceRange'
 import ambassador from '@lib/ambassador'
 import { cleanData } from '@lib/cleanData'
 import { fetchWithCacheApollo } from '@lib/fetchWithCache'
-import { getAllTags, getTopStyles } from '@lib/handleTags'
+import { getAllTags, getCategories, getTopStyles } from '@lib/handleTags'
 import { AmbassadorShops } from '@models/ambassador'
 import { globalQuery } from '@models/schema'
 import {
+  setCategories,
   setFooter,
   setHeroSlides,
   setLocale,
   setNav,
   setPages,
+  setTopStyles,
 } from '@redux/globalSlice'
-import { setCategories, setTopStyles } from '@redux/productsSlice'
 
 export default async function fetchGlobalData(store: EnhancedStore) {
   const locale = 'en-US'
@@ -42,11 +43,14 @@ export default async function fetchGlobalData(store: EnhancedStore) {
 
   const allTags = getAllTags(productsWithNewKeys)
   const topStyles = getTopStyles(allTags)
+  const categories = getCategories(categoryCollection.items, allTags)
+
+  // console.log(categoryCollection)
 
   store.dispatch(setTopStyles(topStyles))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageCollection))
-  store.dispatch(setCategories(categoryCollection))
+  store.dispatch(setCategories(categories))
   store.dispatch(setFooter(footerCollection))
   store.dispatch(setNav(navCollection))
   store.dispatch(setHeroSlides(heroSlideCollection))
