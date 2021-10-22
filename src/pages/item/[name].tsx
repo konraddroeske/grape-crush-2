@@ -2,6 +2,8 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import { useRouter } from 'next/dist/client/router'
 
+import { useDispatch } from 'react-redux'
+
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import Seo from '@components/common/Seo'
 import ItemBar from '@components/item-page/item-bar/ItemBar'
@@ -11,23 +13,41 @@ import ambassador from '@lib/ambassador'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { Product, ProductLowercase } from '@models/ambassador'
 
+import { setProducts } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 interface Props {
-  productData: ProductLowercase
+  products: ProductLowercase[]
 }
 
-const Item: FunctionComponent<Props> = ({ productData }) => {
+const Item: FunctionComponent<Props> = ({ products }) => {
   useRouterScrollUpdate()
-
+  const dispatch = useDispatch()
   const router = useRouter()
+
+  const [productData, setProductData] = useState<ProductLowercase | null>(null)
+
   const [dimensions, setDimensions] = useState<{
     height: number
     width: number
   } | null>(null)
 
   useEffect(() => {
-    if (Object.values(productData).length > 0) {
+    const currentProduct = products.find(
+      (product) => product.data.name === router.query.name
+    )
+
+    if (currentProduct) {
+      setProductData(currentProduct)
+    } else {
+      router.push('/404', '/404')
+    }
+
+    dispatch(setProducts(products))
+  }, [dispatch, products, router])
+
+  useEffect(() => {
+    if (productData && Object.values(productData).length > 0) {
       const img = new Image()
       // eslint-disable-next-line prefer-destructuring
       img.src = productData.data.imageUrl[0]
@@ -43,8 +63,6 @@ const Item: FunctionComponent<Props> = ({ productData }) => {
           })
         }
       }
-    } else {
-      router.push('/404', '/404')
     }
   }, [router, productData])
 
@@ -100,21 +118,15 @@ export const getStaticPaths = async () => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps = wrapper.getStaticProps(
-  (store) => async (context) => {
-    const { products } = await fetchGlobalData(store)
-    const name = context.params?.name
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  const { products } = await fetchGlobalData(store)
 
-    const currentProduct =
-      products.find((product) => product.data.name === name) || {}
-
-    return {
-      props: {
-        productData: currentProduct,
-      },
-      revalidate: 60,
-    }
+  return {
+    props: {
+      products,
+    },
+    revalidate: 60,
   }
-)
+})
 
 export default Item
