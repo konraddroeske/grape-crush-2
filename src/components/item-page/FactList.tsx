@@ -30,10 +30,12 @@ const FactList: FunctionComponent<Props> = ({ facts }) => {
         const [category, value] = pair
 
         if (value instanceof Array) {
-          const [ele] = value
           return (
             <li className={`${borderStyle} border-lime`} key={category}>
-              <Fact category={category} value={ele} />
+              <Fact
+                category={category}
+                value={value.toString().replace(',', '/')}
+              />
             </li>
           )
         }

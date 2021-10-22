@@ -106,8 +106,6 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
     { size: bottleSize },
   ] as Facts
 
-  // const [url] = imageUrl
-
   return (
     <div>
       <div
