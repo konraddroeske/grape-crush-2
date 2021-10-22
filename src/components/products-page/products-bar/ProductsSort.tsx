@@ -50,8 +50,14 @@ const ProductsSort: FunctionComponent = () => {
     }
   }
 
+  const desktopOnlyContract = () => {
+    if (!isMobileDevice) {
+      setExpanded(false)
+    }
+  }
+
   return (
-    <div className="xs:relative w-full" onMouseLeave={() => setExpanded(false)}>
+    <div className="xs:relative w-full" onMouseLeave={desktopOnlyContract}>
       <button
         type="button"
         className="flex items-center h-12 w-full"
