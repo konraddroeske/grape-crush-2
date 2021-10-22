@@ -35,7 +35,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
       <Script
         async
         src="https://grapecrush.ambassador.ai/widget/ambassador-chat.js"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         onLoad={() => {
           window.AmbassadorChat.init({
             // domain: 'chat.ambassador.ai',
@@ -50,7 +50,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
       />
       <Script
         id="gtag"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
               window.dataLayer = window.dataLayer || [];
