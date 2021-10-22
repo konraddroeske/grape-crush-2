@@ -71,13 +71,13 @@ const SvgPopUp: FunctionComponent<Props> = ({ images, title, description }) => {
     <div ref={ref} className="relative w-full">
       <div
         ref={image1Ref}
-        className="w-2/12 absolute top-1/2 left-0 transform rotate-12 translate-x-8 opacity-0"
+        className="w-1/5 absolute top-1/2 left-0 transform rotate-12 translate-x-12 opacity-0"
       >
         <ContentfulImage image={image2} />
       </div>
       <div
         ref={image2Ref}
-        className="w-1/5 absolute top-1/2 right-0 transform -rotate-12 -translate-x-4 opacity-0"
+        className="w-1/5 absolute top-1/2 right-0 transform -rotate-12 -translate-x-12 opacity-0"
       >
         <ContentfulImage image={image3} />
       </div>
