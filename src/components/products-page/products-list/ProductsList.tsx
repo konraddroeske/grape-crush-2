@@ -29,13 +29,6 @@ const ProductsList: FunctionComponent = () => {
   } = useSelector(selectProducts())
 
   useEffect(() => {
-    // dispatch(setIsLoading(true))
-    // console.log('list products', products)
-    // console.log('list selectedTags', selectedTags)
-    // console.log('list productsSearch', productsSearch)
-    // console.log('list products sort', productsSort)
-    // console.log('list page', page)
-
     dispatch(
       handleProducts({
         selectedTags,
@@ -44,10 +37,6 @@ const ProductsList: FunctionComponent = () => {
       })
     )
   }, [products, selectedTags, productsSearch, productsSort, page, dispatch])
-
-  // useEffect(() => {
-  // dispatch(setIsLoading(false))
-  // }, [dispatch, selectedProductsByPage])
 
   const resetSearch = () => {
     dispatch(setNavSearch(''))

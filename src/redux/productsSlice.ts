@@ -99,7 +99,12 @@ export const productsSlice = createSlice({
     setProducts(state, action) {
       if (state.products.length > 0) return state
 
-      return { ...state, products: action.payload }
+      const sortedProducts = sortProducts(
+        [...action.payload],
+        state.productsSort
+      )
+
+      return { ...state, products: sortedProducts }
     },
     handleProducts(state, action) {
       const { products } = state
