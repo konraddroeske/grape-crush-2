@@ -23,7 +23,7 @@ const CategoryMenu: FunctionComponent<Props> = ({
   const isSmall = useMediaQuery({ query: '(min-width: 640px)' })
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
 
-  const [scrollHeight, setScrollHeight] = useState<number>(0)
+  const [scrollHeight, setScrollHeight] = useState<number | null>(null)
   const menuRef = useRef<null | HTMLUListElement>(null)
 
   const handleScrollHeight = () => {
@@ -44,7 +44,8 @@ const CategoryMenu: FunctionComponent<Props> = ({
       className="grid grid-cols-1 gap-y-4 overflow-hidden transition-all duration-300
       sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-1 lg:gap-x-0"
       style={{
-        maxHeight: menuOpen ? `${scrollHeight}px` : 0,
+        // eslint-disable-next-line no-nested-ternary
+        maxHeight: menuOpen ? (scrollHeight ? `${scrollHeight}px` : 'none') : 0,
       }}
     >
       {tagsWithProducts.map(({ name }) => {
