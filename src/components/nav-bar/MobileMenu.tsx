@@ -81,7 +81,7 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
           </MenuButtonMobile>
           {open && <NavCategories />}
           <MenuLink variant="mobile" to="/about">
-            About Us
+            About
           </MenuLink>
           <MenuLink variant="mobile" to="/contact">
             Visit Us
