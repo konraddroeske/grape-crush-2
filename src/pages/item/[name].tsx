@@ -12,19 +12,8 @@ import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import ambassador from '@lib/ambassador'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { Product, ProductLowercase } from '@models/ambassador'
-import {
-  setFooter,
-  setHeroSlides,
-  setLocale,
-  setNav,
-  setPages,
-} from '@redux/globalSlice'
-import {
-  selectProducts,
-  setAllTags,
-  setCategories,
-  setProducts,
-} from '@redux/productsSlice'
+
+import { selectProducts, setProducts } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 const Item: FunctionComponent = () => {
@@ -121,24 +110,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const {
-    products,
-    locale,
-    heroSlideCollection,
-    pageCollection,
-    footerCollection,
-    navCollection,
-    categoryCollection,
-  } = await fetchGlobalData()
-
-  // Global
-  store.dispatch(setAllTags(products))
-  store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageCollection))
-  store.dispatch(setCategories(categoryCollection))
-  store.dispatch(setFooter(footerCollection))
-  store.dispatch(setNav(navCollection))
-  store.dispatch(setHeroSlides(heroSlideCollection))
+  const { products } = await fetchGlobalData(store)
 
   // Products
   store.dispatch(setProducts(products))

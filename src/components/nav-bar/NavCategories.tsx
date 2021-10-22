@@ -13,7 +13,7 @@ const NavCategories: FunctionComponent = () => {
   const dispatch = useDispatch()
   const router = useRouter()
 
-  const { categories, allTags } = useSelector(selectProducts())
+  const { categories, topStyles } = useSelector(selectProducts())
   const { nav } = useSelector(selectGlobal())
 
   const [categoryImage, setCategoryImage] = useState<string | undefined>(
@@ -21,7 +21,7 @@ const NavCategories: FunctionComponent = () => {
   )
   const [svgMask, setSvgMask] = useState<Asset | null>(null)
 
-  const [topStyles, setTopStyles] = useState<string[]>([])
+  // const [topStyles, setTopStyles] = useState<string[]>([])
 
   const handleHover = (url: string | undefined) => {
     if (url && url !== categoryImage) {
@@ -48,19 +48,19 @@ const NavCategories: FunctionComponent = () => {
     }
   }, [categories])
 
-  useEffect(() => {
-    if (allTags) {
-      const { style } = allTags
-
-      const sortedStyles = Object.entries(style)
-        .sort((a, b) => {
-          return b[1] - a[1]
-        })
-        .map((tag) => tag[0])
-
-      setTopStyles(sortedStyles)
-    }
-  }, [allTags])
+  // useEffect(() => {
+  //   if (allTags) {
+  //     const { style } = allTags
+  //
+  //     const sortedStyles = Object.entries(style)
+  //       .sort((a, b) => {
+  //         return b[1] - a[1]
+  //       })
+  //       .map((tag) => tag[0])
+  //
+  //     setTopStyles(sortedStyles)
+  //   }
+  // }, [allTags])
 
   useEffect(() => {
     if (nav) {

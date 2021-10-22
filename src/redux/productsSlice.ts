@@ -50,6 +50,7 @@ interface ProductsSlice {
   categories: ICategoryFields[]
   products: ProductLowercase[]
   allTags: TagsByCount | null
+  topStyles: string[]
   // productsByTag: ProductsByTag | null
   // selectedProducts: ProductLowercase[] | null
   selectedProductsByPage: ProductLowercase[][]
@@ -70,6 +71,7 @@ const initialState: ProductsSlice = {
   categories: [],
   products: [],
   allTags: null,
+  topStyles: [],
   // productsByTag: null,
   // selectedProducts: [],
   selectedProductsByPage: [],
@@ -374,6 +376,9 @@ export const productsSlice = createSlice({
         missingImage: lightImage,
       }
     },
+    setTopStyles(state, action) {
+      return { ...state, topStyles: action.payload }
+    },
     // setIsLoading(state, action) {
     //   return { ...state, isLoading: action.payload }
     // },
@@ -402,6 +407,7 @@ export const {
   toggleMobileMenuOpen,
   setMenuOpen,
   setMissingImage,
+  setTopStyles,
   // setIsLoading,
 } = productsSlice.actions
 

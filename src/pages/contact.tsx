@@ -11,14 +11,7 @@ import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import fetchContactData from '@lib/fetchContactData'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { selectContact, setContact, setLocation } from '@redux/contactSlice'
-import {
-  setFooter,
-  setHeroSlides,
-  setLocale,
-  setNav,
-  setPages,
-} from '@redux/globalSlice'
-import { setAllTags, setCategories } from '@redux/productsSlice'
+
 import { wrapper } from '@redux/store'
 
 const Contact: FunctionComponent = () => {
@@ -51,24 +44,7 @@ const Contact: FunctionComponent = () => {
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const {
-    products,
-    locale,
-    heroSlideCollection,
-    pageCollection,
-    footerCollection,
-    navCollection,
-    categoryCollection,
-  } = await fetchGlobalData()
-
-  // Global
-  store.dispatch(setAllTags(products))
-  store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageCollection))
-  store.dispatch(setCategories(categoryCollection))
-  store.dispatch(setFooter(footerCollection))
-  store.dispatch(setNav(navCollection))
-  store.dispatch(setHeroSlides(heroSlideCollection))
+  await fetchGlobalData(store)
 
   const { contactCollection, locationData } = await fetchContactData()
 

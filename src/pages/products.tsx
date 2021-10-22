@@ -15,14 +15,7 @@ import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import client from '@lib/apolloClient'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { assetCollectionQuery } from '@models/schema'
-import {
-  selectGlobal,
-  setFooter,
-  setHeroSlides,
-  setLocale,
-  setNav,
-  setPages,
-} from '@redux/globalSlice'
+import { selectGlobal } from '@redux/globalSlice'
 
 import {
   handlePage,
@@ -30,7 +23,6 @@ import {
   resetTags,
   selectProducts,
   setAllTags,
-  setCategories,
   setMissingImage,
   setProducts,
 } from '@redux/productsSlice'
@@ -96,15 +88,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   // console.log('store', store.getState())
   // const { products: currentProducts } = store.getState()
 
-  const {
-    products,
-    locale,
-    heroSlideCollection,
-    pageCollection,
-    footerCollection,
-    navCollection,
-    categoryCollection,
-  } = await fetchGlobalData()
+  const { products } = await fetchGlobalData(store)
 
   const { data: missingImageData } = await client.query({
     query: assetCollectionQuery,
@@ -117,16 +101,8 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   const { assetCollection } = missingImageData
 
-  // Global
-  store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageCollection))
-  store.dispatch(setCategories(categoryCollection))
-  store.dispatch(setFooter(footerCollection))
-  store.dispatch(setNav(navCollection))
-  store.dispatch(setHeroSlides(heroSlideCollection))
-  store.dispatch(setMissingImage(assetCollection))
-
   // Products
+  store.dispatch(setMissingImage(assetCollection))
   store.dispatch(setAllTags(products))
   store.dispatch(setProducts(products))
 
