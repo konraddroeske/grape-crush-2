@@ -166,7 +166,9 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
       <button
         ref={buttonRef}
         type="button"
-        className="w-8 h-8 bg-blue-lightest rounded-full flex justify-center items-center pointer-events-auto"
+        className={`w-8 h-8 ${
+          navOpen ? 'bg-lime' : 'bg-blue-lightest'
+        } rounded-full flex justify-center items-center pointer-events-auto transition-all duration-300`}
         onClick={
           variant === 'navBar' ? handleClickNavBar : handleClickProductsBar
         }
