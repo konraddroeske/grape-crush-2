@@ -42,11 +42,18 @@ export const sortProducts = (
   }
 
   if (sortOption === 'date, new to old') {
-    return unsortedProducts.sort((a, b) => {
-      const dateA = parseInt(a._id.slice(0, 8), 16)
-      const dateB = parseInt(b._id.slice(0, 8), 16)
-      return dateB - dateA
-    })
+    const newTags = unsortedProducts.filter((product) =>
+      product.data.type.includes('new!')
+    )
+
+    const withoutNewTags = unsortedProducts.filter(
+      (product) => !product.data.type.includes('new!')
+    )
+
+    const sortedNewTags = sortNewToOld(newTags)
+    const sortedWithoutNewTags = sortNewToOld(withoutNewTags)
+
+    return sortedNewTags.concat(sortedWithoutNewTags)
   }
 
   if (sortOption === 'date, old to new') {
@@ -59,3 +66,19 @@ export const sortProducts = (
 
   return unsortedProducts
 }
+
+const sortNewToOld = (products: ProductLowercase[]) => {
+  return products.sort((a, b) => {
+    const dateA = parseInt(a._id.slice(0, 8), 16)
+    const dateB = parseInt(b._id.slice(0, 8), 16)
+    return dateB - dateA
+  })
+}
+
+// const sortOldToNew = (products: ProductLowercase[]) => {
+//   return products.sort((a, b) => {
+//     const dateA = parseInt(a._id.slice(0, 8), 16)
+//     const dateB = parseInt(b._id.slice(0, 8), 16)
+//     return dateA - dateB
+//   })
+// }

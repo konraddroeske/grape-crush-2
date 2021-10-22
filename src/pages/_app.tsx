@@ -17,7 +17,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
-      gtag.pageview(url)
+      if (window) {
+        gtag.pageview(url)
+      }
       // fbq.pageview()
     }
 

@@ -118,7 +118,6 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const { assetCollection } = missingImageData
 
   // Global
-  store.dispatch(setAllTags(products))
   store.dispatch(setLocale(locale))
   store.dispatch(setPages(pageCollection))
   store.dispatch(setCategories(categoryCollection))
@@ -128,6 +127,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(setMissingImage(assetCollection))
 
   // Products
+  store.dispatch(setAllTags(products))
   store.dispatch(setProducts(products))
 
   return {
