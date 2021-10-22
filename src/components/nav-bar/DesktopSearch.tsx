@@ -14,7 +14,7 @@ import { useRouter } from 'next/router'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { selectClient, setNavSearch } from '@redux/clientSlice'
+import { selectClient, setNavSearch, setSearch } from '@redux/clientSlice'
 
 import { selectGlobal } from '@redux/globalSlice'
 
@@ -31,23 +31,19 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
   const dispatch = useDispatch()
 
   const { navOpen } = useSelector(selectGlobal())
-  const { navSearch } = useSelector(selectClient())
-
+  const { navSearch, search } = useSelector(selectClient())
   const [expanded, setExpanded] = useState<boolean>(false)
-  const [search, setSearch] = useState<string>('')
 
   useEffect(() => {
     if (navSearch.length > 0) {
-      setSearch(navSearch)
       setExpanded(true)
+      dispatch(setSearch(navSearch))
       dispatch(handleProductsSearch(navSearch))
-    } else {
-      setSearch('')
     }
 
     return () => {
       setExpanded(false)
-      setSearch('')
+      dispatch(setSearch(''))
 
       if (variant === 'productsBar') {
         dispatch(setNavSearch(''))
@@ -62,10 +58,10 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
   )
 
   const handleChange = (event: BaseSyntheticEvent) => {
-    if (variant === 'navBar') setSearch(event.target.value)
+    if (variant === 'navBar') dispatch(setSearch(event.target.value))
     else {
       const { value: nextValue } = event.target
-      setSearch(nextValue)
+      dispatch(setSearch(nextValue))
       debouncedSearch(nextValue)
     }
   }
@@ -82,7 +78,7 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
 
   const handleRoute = () => {
     dispatch(setNavSearch(search))
-    setSearch('')
+    dispatch(setSearch(''))
 
     router
       .push('/products', '/products', {
