@@ -62,7 +62,7 @@ interface ProductsSlice {
   menuOpen: boolean
   mobileMenuOpen: boolean
   missingImage: Asset | null
-  isLoading: boolean
+  // isLoading: boolean
 }
 
 const initialState: ProductsSlice = {
@@ -89,7 +89,7 @@ const initialState: ProductsSlice = {
   menuOpen: true,
   mobileMenuOpen: false,
   missingImage: null,
-  isLoading: true,
+  // isLoading: true,
 }
 
 export const productsSlice = createSlice({

@@ -3,7 +3,6 @@ import React, { FunctionComponent } from 'react'
 import { useSelector } from 'react-redux'
 
 import ProductsBreadcrumbLink from '@components/products-page/products-bar/ProductsBreadcrumbLink'
-import { selectClient } from '@redux/clientSlice'
 import { selectProducts } from '@redux/productsSlice'
 
 interface Props {
@@ -13,17 +12,13 @@ interface Props {
 const ProductsBreadcrumbs: FunctionComponent<Props> = ({
   variant = 'desktop',
 }) => {
-  const { isLoading } = useSelector(selectClient())
+  // const { isLoading } = useSelector(selectClient())
   const { selectedTags } = useSelector(selectProducts())
   const { parentType, category } = selectedTags
 
   const variants = {
-    mobile: `${
-      isLoading ? 'opacity-0' : 'opacity-1'
-    } h-8 lg:h-12 flex justify-center sm:justify-start flex-wrap text-xs leading-none font-bold overflow-hidden`,
-    desktop: `${
-      isLoading ? 'opacity-0' : 'opacity-1'
-    } h-8 lg:h-12 flex flex-wrap text-xs leading-none font-bold overflow-hidden`,
+    mobile: `h-8 lg:h-12 flex justify-center sm:justify-start flex-wrap text-xs leading-none font-bold overflow-hidden`,
+    desktop: `h-8 lg:h-12 flex flex-wrap text-xs leading-none font-bold overflow-hidden`,
   }
 
   return (

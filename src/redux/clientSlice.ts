@@ -6,14 +6,14 @@ interface Client {
   navSearch: string
   search: string
   modalOpen: boolean
-  isLoading: boolean
+  // isLoading: boolean
 }
 
 const initialState: Client = {
   navSearch: '',
   search: '',
   modalOpen: true,
-  isLoading: false,
+  // isLoading: false,
 }
 
 export const clientSlice = createSlice({
@@ -29,13 +29,12 @@ export const clientSlice = createSlice({
     setSearch(state, action) {
       return { ...state, search: action.payload }
     },
-    setIsLoading(state, action) {
-      return { ...state, isLoading: action.payload }
-    },
+    // setIsLoading(state, action) {
+    //   return { ...state, isLoading: action.payload }
+    // },
   },
 })
 
-export const { setNavSearch, closeModal, setSearch, setIsLoading } =
-  clientSlice.actions
+export const { setNavSearch, closeModal, setSearch } = clientSlice.actions
 
 export const selectClient = () => (state: AppState) => state?.[clientSlice.name]
