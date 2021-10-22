@@ -1,8 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
-import { useRouter } from 'next/router'
-
-import { useSelector } from 'react-redux'
+import { useRouter } from 'next/dist/client/router'
 
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import Seo from '@components/common/Seo'
@@ -13,29 +11,20 @@ import ambassador from '@lib/ambassador'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { Product, ProductLowercase } from '@models/ambassador'
 
-import { selectProducts, setProducts } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
-const Item: FunctionComponent = () => {
+interface Props {
+  productData: ProductLowercase
+}
+
+const Item: FunctionComponent<Props> = ({ productData }) => {
   useRouterScrollUpdate()
+
   const router = useRouter()
-  const { name } = router.query
-  const [productData, setProductData] = useState<ProductLowercase | null>(null)
   const [dimensions, setDimensions] = useState<{
     height: number
     width: number
   } | null>(null)
-  const { products } = useSelector(selectProducts())
-
-  useEffect(() => {
-    const currentProduct = products.find(
-      (product) => product.data.name === name
-    )
-
-    if (currentProduct) {
-      setProductData(currentProduct)
-    }
-  }, [name, products])
 
   useEffect(() => {
     if (productData) {
@@ -54,8 +43,10 @@ const Item: FunctionComponent = () => {
           })
         }
       }
+    } else {
+      router.push('/404', '/404')
     }
-  }, [productData])
+  }, [router, productData])
 
   return (
     <>
@@ -109,16 +100,22 @@ export const getStaticPaths = async () => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const { products } = await fetchGlobalData(store)
+export const getStaticProps = wrapper.getStaticProps(
+  (store) => async (context) => {
+    const { products } = await fetchGlobalData(store)
+    const name = context.params?.name
 
-  // Products
-  store.dispatch(setProducts(products))
+    const currentProduct = products.find(
+      (product) => product.data.name === name
+    )
 
-  return {
-    props: {},
-    revalidate: 60,
+    return {
+      props: {
+        productData: currentProduct,
+      },
+      revalidate: 60,
+    }
   }
-})
+)
 
 export default Item
