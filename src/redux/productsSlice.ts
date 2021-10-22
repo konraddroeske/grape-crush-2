@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import chunk from 'lodash.chunk'
 import deburr from 'lodash.deburr'
-import { HYDRATE } from 'next-redux-wrapper'
 
 import { sortProducts } from '@lib/sortProducts'
+import { sortTags } from '@lib/sortTags'
 import { ProductCategories, ProductLowercase } from '@models/ambassador'
 import { Asset } from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
@@ -97,9 +97,13 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     setProducts(state, action) {
+      if (state.products.length > 0) return state
+
+      console.log('setting products')
       return { ...state, products: action.payload }
     },
     handleProducts(state, action) {
+      console.log('handling products')
       const { products } = state
       const {
         selectedTags: selectedTagsObj,
@@ -215,6 +219,9 @@ export const productsSlice = createSlice({
       }
     },
     setAllTags(state, action) {
+      if (state.allTags) return state
+      console.log('setting all tags')
+
       const products = action.payload as ProductLowercase[]
 
       const getCategories = (
@@ -290,29 +297,34 @@ export const productsSlice = createSlice({
       return { ...state, allTags: tagsByCount }
     },
     handleTags(state, action) {
+      console.log('handling tags')
       const { selectedTags } = state
+      const newTags = action.payload as Record<string, string>
 
-      const tags = action.payload as Record<string, string>
+      const selectedTagsFlat = Object.values(selectedTags).flat().sort()
+      const newTagsFlat = Object.values(newTags).flat().sort()
 
-      const sortedTags = Object.entries(selectedTags).reduce((acc, cur) => {
-        const isCategory = Object.keys(tags).includes(cur[0])
+      if (selectedTagsFlat.length !== newTagsFlat.length) {
+        return { ...state, selectedTags: sortTags(selectedTags, newTags) }
+      }
 
-        if (isCategory) {
-          const splitTags = tags[cur[0]].split(',')
+      const isEqual = selectedTagsFlat.every(
+        (value, index) => value === newTagsFlat[index]
+      )
 
-          return { ...acc, [cur[0]]: splitTags }
-        }
+      if (isEqual) return state
 
-        return { ...acc, [cur[0]]: [] }
-      }, {} as TagsByCategory)
-
-      return { ...state, selectedTags: sortedTags }
+      return { ...state, selectedTags: sortTags(selectedTags, newTags) }
     },
     handlePage(state, action) {
-      const page = action.payload || 1
-      return { ...state, page }
+      if (state.page === action.payload) return state
+      console.log('handle page')
+      return { ...state, page: action.payload }
     },
     resetTags(state) {
+      if (Object.values(state.selectedTags).flat().length === 0) return state
+      console.log('resetting tags')
+
       return {
         ...state,
         selectedTags: {
@@ -327,44 +339,47 @@ export const productsSlice = createSlice({
       }
     },
     handleProductsSearch(state, action) {
+      console.log('handling product search')
       return { ...state, productsSearch: action.payload }
     },
     handleProductsSort(state, action) {
+      console.log('handling product sort')
       return { ...state, productsSort: action.payload }
     },
     setMenuOpen(state, action) {
+      console.log('handling menu open')
       return { ...state, menuOpen: action.payload }
     },
     toggleMenuOpen(state) {
+      console.log('toggle menu open')
       const { menuOpen } = state
       return { ...state, menuOpen: !menuOpen }
     },
     toggleMobileMenuOpen(state) {
+      console.log('toggle mobile open')
       const { mobileMenuOpen } = state
       return { ...state, mobileMenuOpen: !mobileMenuOpen }
     },
     setMissingImage(state, action) {
-      const { items } = action.payload
-      const lightImage = items.find((image: Asset) =>
-        image.title.toLowerCase().includes('light')
-      )
+      if (state.missingImage) return state
+
       return {
         ...state,
-        missingImage: lightImage,
+        missingImage: action.payload,
       }
     },
     // setIsLoading(state, action) {
     //   return { ...state, isLoading: action.payload }
     // },
   },
-  extraReducers: {
-    [HYDRATE]: (state, action) => {
-      return {
-        ...state,
-        ...action.payload.products,
-      }
-    },
-  },
+  // extraReducers: {
+  //   [HYDRATE]: (state, action) => {
+  //     return {
+  //       ...state,
+  //       ...action.payload.products,
+  //     }
+  //   },
+  // },
 })
 
 export const {

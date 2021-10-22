@@ -14,6 +14,8 @@ import MobileMenu from '@components/products-page/products-menu/MobileMenu'
 import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import client from '@lib/apolloClient'
 import fetchGlobalData from '@lib/fetchGlobalData'
+import { ProductLowercase } from '@models/ambassador'
+import { Asset } from '@models/contentful-graph'
 import { assetCollectionQuery } from '@models/schema'
 import { selectGlobal } from '@redux/globalSlice'
 
@@ -28,21 +30,36 @@ import {
 } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
-const Products: FunctionComponent = () => {
+interface Props {
+  products: ProductLowercase[]
+  missingImage: Asset
+}
+
+const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
   useRouterScrollUpdate()
   const dispatch = useDispatch()
   const router = useRouter()
   const { mobileMenuOpen } = useSelector(selectProducts())
 
   useEffect(() => {
-    if (Object.values(router.query).length > 0) {
-      const { page, ...tags } = router.query
+    dispatch(setMissingImage(missingImage))
+    dispatch(setAllTags(products))
+    dispatch(setProducts(products))
+  }, [dispatch, products, missingImage])
 
-      if (page && !(page instanceof Array)) {
-        dispatch(handlePage(parseInt(page, 10)))
+  useEffect(() => {
+    if (Object.values(router.query).length > 0) {
+      const { page: queryPage, ...newTags } = router.query
+
+      if (queryPage && !(queryPage instanceof Array)) {
+        dispatch(handlePage(parseInt(queryPage, 10)))
       }
 
-      dispatch(handleTags(tags))
+      const newTagsFlat = Object.values(newTags).flat()
+
+      if (newTagsFlat.length > 0) {
+        dispatch(handleTags(newTags))
+      }
     } else {
       dispatch(resetTags())
     }
@@ -101,14 +118,14 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   const { assetCollection } = missingImageData
 
-  // Products
-  store.dispatch(setMissingImage(assetCollection))
-  store.dispatch(setAllTags(products))
-  store.dispatch(setProducts(products))
+  const { items } = assetCollection
+  const missingImage = items.find((image: Asset) =>
+    image.title.toLowerCase().includes('light')
+  )
 
+  // Products
   return {
-    // props: { products },
-    props: {},
+    props: { products, missingImage },
     revalidate: 10,
   }
 })
