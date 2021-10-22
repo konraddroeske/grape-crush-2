@@ -99,11 +99,9 @@ export const productsSlice = createSlice({
     setProducts(state, action) {
       if (state.products.length > 0) return state
 
-      console.log('setting products')
       return { ...state, products: action.payload }
     },
     handleProducts(state, action) {
-      console.log('handling products')
       const { products } = state
       const {
         selectedTags: selectedTagsObj,
@@ -220,7 +218,6 @@ export const productsSlice = createSlice({
     },
     setAllTags(state, action) {
       if (state.allTags) return state
-      console.log('setting all tags')
 
       const products = action.payload as ProductLowercase[]
 
@@ -297,7 +294,6 @@ export const productsSlice = createSlice({
       return { ...state, allTags: tagsByCount }
     },
     handleTags(state, action) {
-      console.log('handling tags')
       const { selectedTags } = state
       const newTags = action.payload as Record<string, string>
 
@@ -318,12 +314,10 @@ export const productsSlice = createSlice({
     },
     handlePage(state, action) {
       if (state.page === action.payload) return state
-      console.log('handle page')
       return { ...state, page: action.payload }
     },
     resetTags(state) {
       if (Object.values(state.selectedTags).flat().length === 0) return state
-      console.log('resetting tags')
 
       return {
         ...state,
@@ -339,24 +333,19 @@ export const productsSlice = createSlice({
       }
     },
     handleProductsSearch(state, action) {
-      console.log('handling product search')
       return { ...state, productsSearch: action.payload }
     },
     handleProductsSort(state, action) {
-      console.log('handling product sort')
       return { ...state, productsSort: action.payload }
     },
     setMenuOpen(state, action) {
-      console.log('handling menu open')
       return { ...state, menuOpen: action.payload }
     },
     toggleMenuOpen(state) {
-      console.log('toggle menu open')
       const { menuOpen } = state
       return { ...state, menuOpen: !menuOpen }
     },
     toggleMobileMenuOpen(state) {
-      console.log('toggle mobile open')
       const { mobileMenuOpen } = state
       return { ...state, mobileMenuOpen: !mobileMenuOpen }
     },

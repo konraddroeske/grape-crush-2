@@ -47,7 +47,7 @@ const Item: FunctionComponent<Props> = ({ products }) => {
   }, [dispatch, products, router])
 
   useEffect(() => {
-    if (productData && Object.values(productData).length > 0) {
+    if (productData) {
       const img = new Image()
       // eslint-disable-next-line prefer-destructuring
       img.src = productData.data.imageUrl[0]
