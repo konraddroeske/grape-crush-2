@@ -7,7 +7,12 @@ import ProductCard from '@components/common/product/ProductCard'
 
 import Warning from '@components/common/Warning'
 import PageNav from '@components/products-page/products-list/PageNav'
-import { selectClient, setNavSearch, setSearch } from '@redux/clientSlice'
+import {
+  selectClient,
+  setIsLoading,
+  setNavSearch,
+  setSearch,
+} from '@redux/clientSlice'
 import {
   handleProducts,
   handleProductsSearch,
@@ -29,6 +34,8 @@ const ProductsList: FunctionComponent = () => {
   } = useSelector(selectProducts())
 
   useEffect(() => {
+    dispatch(setIsLoading(true))
+
     dispatch(
       handleProducts({
         selectedTags,
@@ -38,6 +45,10 @@ const ProductsList: FunctionComponent = () => {
     )
   }, [products, selectedTags, productsSearch, productsSort, page, dispatch])
 
+  useEffect(() => {
+    dispatch(setIsLoading(false))
+  }, [dispatch, selectedProductsByPage])
+
   const resetSearch = () => {
     dispatch(setNavSearch(''))
     dispatch(setSearch(''))
@@ -46,7 +57,7 @@ const ProductsList: FunctionComponent = () => {
 
   return (
     <div className="flex flex-col h-full">
-      {selectedProductsByPage.length > 0 && (
+      {!isLoading && selectedProductsByPage.length > 0 && (
         <ul
           className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4
         gap-x-2 gap-y-6 sm:gap-8 md:gap-8 xl:gap-10"
@@ -61,7 +72,8 @@ const ProductsList: FunctionComponent = () => {
           })}
         </ul>
       )}
-      {selectedProductsByPage.length === 0 &&
+      {!isLoading &&
+        selectedProductsByPage.length === 0 &&
         (totalSelectedTags > 0 || productsSearch.length > 0) && (
           <div className="h-full flex justify-center items-center pt-32 lg:pt-20">
             <Warning text="Oops!">
