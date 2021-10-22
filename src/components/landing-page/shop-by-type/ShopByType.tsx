@@ -16,11 +16,11 @@ import ContentfulImage from '@components/common/ContentfulImage'
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import ShadowLink from '@components/common/ShadowLink'
 import { Direction } from '@models/misc'
-import { selectProducts } from '@redux/productsSlice'
+import { selectGlobal } from '@redux/globalSlice'
 
 const SocialGallery: FunctionComponent = () => {
   // const { locale } = useSelector(selectGlobal())
-  const { categories } = useSelector(selectProducts())
+  const { categories } = useSelector(selectGlobal())
 
   const slider = useRef<HTMLDivElement>(null)
   const list = useRef<HTMLUListElement>(null)
