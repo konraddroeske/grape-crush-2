@@ -13,7 +13,7 @@ const DesktopMenu: FunctionComponent = () => {
         {/* <DesktopCategories /> */}
       </div>
       <MenuLink variant="desktop" to="/about">
-        About Us
+        About
       </MenuLink>
       <MenuLink variant="desktop" to="/contact">
         Visit Us

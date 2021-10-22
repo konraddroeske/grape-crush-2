@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 
+import { isMobile as isMobileDevice } from 'react-device-detect'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
@@ -43,14 +44,26 @@ const ProductsSort: FunctionComponent = () => {
     'price, low to high',
   ] as SortOption[]
 
+  const desktopOnlyExpand = () => {
+    if (!isMobileDevice) {
+      setExpanded(true)
+    }
+  }
+
+  const desktopOnlyContract = () => {
+    if (!isMobileDevice) {
+      setExpanded(false)
+    }
+  }
+
   return (
-    <div className="relative w-full" onMouseLeave={() => setExpanded(false)}>
+    <div className="xs:relative w-full" onMouseLeave={desktopOnlyContract}>
       <button
         type="button"
         className="flex items-center h-12 w-full"
         onClick={() => setExpanded(!expanded)}
-        onMouseEnter={() => setExpanded(true)}
-        // onFocus={() => setExpanded(true)}
+        onMouseEnter={desktopOnlyExpand}
+        onFocus={desktopOnlyExpand}
       >
         <span className="uppercase text-blue-dark text-sm sm:text-base font-bold mr-2">
           Sort
@@ -59,7 +72,8 @@ const ProductsSort: FunctionComponent = () => {
       </button>
       <ul
         ref={sortMenu}
-        className="absolute z-20 top-full left-0 right-14 bg-white w-48
+        className="absolute z-20 top-full left-1/2 transform -translate-x-1/2 xs:-left-2 xs:translate-x-0
+        lg:left-auto lg:-right-3 bg-white w-48
         overflow-hidden transition-all duration-300"
         style={{
           maxHeight: expanded ? `${scrollHeight}px` : 0,

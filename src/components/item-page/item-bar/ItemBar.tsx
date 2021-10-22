@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react'
 
-import ItemSearch from '@components/item-page/item-bar/ItemSearch'
 import ItemBreadcrumbs from '@components/item-page/ItemBreadcrumbs'
 import { ProductLowercase } from '@models/ambassador'
 
@@ -14,10 +13,9 @@ const ProductsBar: FunctionComponent<Props> = ({ product }) => {
       <div className="lg:mr-auto">
         <ItemBreadcrumbs product={product} />
       </div>
-      <div className="hidden items-center lg:flex">
-        {/* <ProductsSearch /> */}
-        <ItemSearch />
-      </div>
+      {/* <div className="hidden items-center lg:flex"> */}
+      {/*  <DesktopSearch variant="navBar" /> */}
+      {/* </div> */}
     </div>
   )
 }

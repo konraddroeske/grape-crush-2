@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 
 import gsap from 'gsap'
+import { useRouter } from 'next/dist/client/router'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useMediaQuery } from 'react-responsive'
@@ -54,6 +55,8 @@ const NavBar: FunctionComponent = () => {
     }
   }, [isScrollUp, scrollDistance, navOpen, isDesktop, mobileNavOpen])
 
+  const router = useRouter()
+
   return (
     <nav
       ref={navRef}
@@ -75,7 +78,11 @@ const NavBar: FunctionComponent = () => {
         <Logo />
         <DesktopMenu />
         <div className="flex">
-          <DesktopSearch />
+          {router.route !== '/products' && (
+            <div className="hidden lg:block mr-4 xl:mr-6">
+              <DesktopSearch />
+            </div>
+          )}
           <Cart />
         </div>
       </div>
