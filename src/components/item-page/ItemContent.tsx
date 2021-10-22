@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react'
 
+import debounce from 'lodash.debounce'
 import { useSelector } from 'react-redux'
 import { useMediaQuery } from 'react-responsive'
 
@@ -52,16 +53,19 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
     }
   }, [isDesktop])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedResize = useCallback(debounce(handleResize, 500), [])
+
   useEffect(() => {
     if (window) {
       handleResize()
-      window.addEventListener('resize', handleResize)
+      window.addEventListener('resize', debouncedResize)
     }
 
     return () => {
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', debouncedResize)
     }
-  }, [handleResize])
+  }, [handleResize, debouncedResize])
 
   useEffect(() => {
     const { data } = product

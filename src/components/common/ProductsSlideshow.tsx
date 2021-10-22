@@ -9,6 +9,8 @@ import React, {
 import { gsap } from 'gsap'
 import { Draggable, InertiaPlugin } from 'gsap/all'
 
+import debounce from 'lodash.debounce'
+
 import ProductCard from '@components/common/product/ProductSlide'
 import RoundedButton from '@components/common/RoundedButton'
 import { ProductLowercase } from '@models/ambassador'
@@ -75,13 +77,16 @@ const ProductsSlideshow: FunctionComponent<Props> = ({
     gsap.to(list.current, { x: 0 })
   }, [])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedResize = useCallback(debounce(handleResize, 250), [])
+
   useEffect(() => {
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', debouncedResize)
 
     return () => {
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', debouncedResize)
     }
-  }, [handleResize])
+  }, [debouncedResize])
 
   return (
     <section

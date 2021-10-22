@@ -26,7 +26,6 @@ interface Global {
   locale: CONTENTFUL_DEFAULT_LOCALE_CODE
   locales: LOCALE_CODE[]
   allPages: IPageFields[]
-  // helpPages: CmsAssets[]
   legalPages: IPageFields[]
   footer: IFooterFields[]
   nav: INavFields[]
@@ -34,7 +33,6 @@ interface Global {
   mobileNavOpen: boolean
   isSticky: boolean
   heroSlides: IHeroSlideFields[]
-  // seoImage: CmsImage | null
   seoImage: Asset | null
   currentTheme: Theme
 }
@@ -43,7 +41,6 @@ const initialState: Global = {
   locale: 'en-US',
   locales: ['en-US'],
   allPages: [],
-  // helpPages: [],
   legalPages: [],
   navOpen: false,
   mobileNavOpen: false,
@@ -76,12 +73,6 @@ export const globalSlice = createSlice({
       const legalPages = items.filter(
         (page: IPageFields) => page.category === 'Legal Stuff'
       )
-
-      // const helpPages = action.payload.filter(
-      //   (page: CmsAssets) => page.category[state.locale] === 'Help'
-      // )
-
-      // console.log('help pages', helpPages)
 
       return { ...state, allPages: items, legalPages }
     },

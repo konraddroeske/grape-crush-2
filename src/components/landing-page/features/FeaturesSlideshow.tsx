@@ -9,6 +9,7 @@ import React, {
 import gsap from 'gsap'
 import { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
+import debounce from 'lodash.debounce'
 import { useInView } from 'react-intersection-observer'
 import { useSelector } from 'react-redux'
 
@@ -292,13 +293,16 @@ const FeaturesSlideshow: FunctionComponent = () => {
     useTimer,
   ])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedResize = useCallback(debounce(handleResize, 250), [])
+
   useEffect(() => {
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', debouncedResize)
 
     return () => {
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', debouncedResize)
     }
-  }, [handleResize])
+  }, [debouncedResize])
 
   useEffect(() => {
     // console.log('handling opacity', upcomingSlide)
