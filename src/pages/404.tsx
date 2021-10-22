@@ -7,14 +7,7 @@ import Seo from '@components/common/Seo'
 import Warning from '@components/common/Warning'
 import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import fetchGlobalData from '@lib/fetchGlobalData'
-import {
-  setFooter,
-  setHeroSlides,
-  setLocale,
-  setNav,
-  setPages,
-} from '@redux/globalSlice'
-import { setAllTags, setCategories } from '@redux/productsSlice'
+
 import { wrapper } from '@redux/store'
 
 const Custom404: FunctionComponent = () => {
@@ -54,24 +47,7 @@ const Custom404: FunctionComponent = () => {
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const {
-    products,
-    locale,
-    heroSlideCollection,
-    pageCollection,
-    footerCollection,
-    navCollection,
-    categoryCollection,
-  } = await fetchGlobalData()
-
-  // Global
-  store.dispatch(setAllTags(products))
-  store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageCollection))
-  store.dispatch(setCategories(categoryCollection))
-  store.dispatch(setFooter(footerCollection))
-  store.dispatch(setNav(navCollection))
-  store.dispatch(setHeroSlides(heroSlideCollection))
+  await fetchGlobalData(store)
 
   return {
     props: {},

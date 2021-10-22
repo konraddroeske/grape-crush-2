@@ -14,15 +14,10 @@ import MobileMenu from '@components/products-page/products-menu/MobileMenu'
 import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import client from '@lib/apolloClient'
 import fetchGlobalData from '@lib/fetchGlobalData'
+import { ProductLowercase } from '@models/ambassador'
+import { Asset } from '@models/contentful-graph'
 import { assetCollectionQuery } from '@models/schema'
-import {
-  selectGlobal,
-  setFooter,
-  setHeroSlides,
-  setLocale,
-  setNav,
-  setPages,
-} from '@redux/globalSlice'
+import { selectGlobal } from '@redux/globalSlice'
 
 import {
   handlePage,
@@ -30,27 +25,37 @@ import {
   resetTags,
   selectProducts,
   setAllTags,
-  setCategories,
   setMissingImage,
   setProducts,
 } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
-const Products: FunctionComponent = () => {
+interface Props {
+  products: ProductLowercase[]
+  missingImage: Asset
+}
+
+const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
   useRouterScrollUpdate()
   const dispatch = useDispatch()
   const router = useRouter()
   const { mobileMenuOpen } = useSelector(selectProducts())
 
   useEffect(() => {
-    if (Object.values(router.query).length > 0) {
-      const { page, ...tags } = router.query
+    dispatch(setMissingImage(missingImage))
+    dispatch(setAllTags(products))
+    dispatch(setProducts(products))
+  }, [dispatch, products, missingImage])
 
-      if (page && !(page instanceof Array)) {
-        dispatch(handlePage(parseInt(page, 10)))
+  useEffect(() => {
+    if (Object.values(router.query).length > 0) {
+      const { page: queryPage, ...newTags } = router.query
+
+      if (queryPage && !(queryPage instanceof Array)) {
+        dispatch(handlePage(parseInt(queryPage, 10)))
       }
 
-      dispatch(handleTags(tags))
+      dispatch(handleTags(newTags))
     } else {
       dispatch(resetTags())
     }
@@ -96,15 +101,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   // console.log('store', store.getState())
   // const { products: currentProducts } = store.getState()
 
-  const {
-    products,
-    locale,
-    heroSlideCollection,
-    pageCollection,
-    footerCollection,
-    navCollection,
-    categoryCollection,
-  } = await fetchGlobalData()
+  const { products } = await fetchGlobalData(store)
 
   const { data: missingImageData } = await client.query({
     query: assetCollectionQuery,
@@ -117,22 +114,14 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   const { assetCollection } = missingImageData
 
-  // Global
-  store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageCollection))
-  store.dispatch(setCategories(categoryCollection))
-  store.dispatch(setFooter(footerCollection))
-  store.dispatch(setNav(navCollection))
-  store.dispatch(setHeroSlides(heroSlideCollection))
-  store.dispatch(setMissingImage(assetCollection))
+  const { items } = assetCollection
+  const missingImage = items.find((image: Asset) =>
+    image.title.toLowerCase().includes('light')
+  )
 
   // Products
-  store.dispatch(setAllTags(products))
-  store.dispatch(setProducts(products))
-
   return {
-    // props: { products },
-    props: {},
+    props: { products, missingImage },
     revalidate: 10,
   }
 })

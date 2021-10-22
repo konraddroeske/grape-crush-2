@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/dist/client/router'
 
-import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import Seo from '@components/common/Seo'
@@ -12,41 +12,39 @@ import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import ambassador from '@lib/ambassador'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { Product, ProductLowercase } from '@models/ambassador'
-import {
-  setFooter,
-  setHeroSlides,
-  setLocale,
-  setNav,
-  setPages,
-} from '@redux/globalSlice'
-import {
-  selectProducts,
-  setAllTags,
-  setCategories,
-  setProducts,
-} from '@redux/productsSlice'
+
+import { setProducts } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
-const Item: FunctionComponent = () => {
+interface Props {
+  products: ProductLowercase[]
+}
+
+const Item: FunctionComponent<Props> = ({ products }) => {
   useRouterScrollUpdate()
+  const dispatch = useDispatch()
   const router = useRouter()
-  const { name } = router.query
+
   const [productData, setProductData] = useState<ProductLowercase | null>(null)
+
   const [dimensions, setDimensions] = useState<{
     height: number
     width: number
   } | null>(null)
-  const { products } = useSelector(selectProducts())
 
   useEffect(() => {
     const currentProduct = products.find(
-      (product) => product.data.name === name
+      (product) => product.data.name === router.query.name
     )
 
     if (currentProduct) {
       setProductData(currentProduct)
+    } else {
+      router.push('/404', '/404')
     }
-  }, [name, products])
+
+    dispatch(setProducts(products))
+  }, [dispatch, products, router])
 
   useEffect(() => {
     if (productData) {
@@ -66,7 +64,7 @@ const Item: FunctionComponent = () => {
         }
       }
     }
-  }, [productData])
+  }, [router, productData])
 
   return (
     <>
@@ -121,30 +119,12 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const {
-    products,
-    locale,
-    heroSlideCollection,
-    pageCollection,
-    footerCollection,
-    navCollection,
-    categoryCollection,
-  } = await fetchGlobalData()
-
-  // Global
-  store.dispatch(setAllTags(products))
-  store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageCollection))
-  store.dispatch(setCategories(categoryCollection))
-  store.dispatch(setFooter(footerCollection))
-  store.dispatch(setNav(navCollection))
-  store.dispatch(setHeroSlides(heroSlideCollection))
-
-  // Products
-  store.dispatch(setProducts(products))
+  const { products } = await fetchGlobalData(store)
 
   return {
-    props: {},
+    props: {
+      products,
+    },
     revalidate: 60,
   }
 })

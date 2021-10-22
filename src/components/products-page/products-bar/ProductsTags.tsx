@@ -49,7 +49,7 @@ const ProductsTags: FunctionComponent<Props> = ({ closeMobileMenu }) => {
       </div>
       <ul className="flex flex-wrap">
         <li className="mr-2 mb-2">
-          <CategoryTag variant="clear" url="/products?page=1">
+          <CategoryTag variant="clear" url="/products">
             Clear filters
           </CategoryTag>
         </li>

@@ -7,21 +7,19 @@ import ShadowButton from '@components/common/ShadowButton'
 import SvgPreview from '@components/nav-bar/SvgPreview'
 import { Asset } from '@models/contentful-graph'
 import { selectGlobal, setNavOpen } from '@redux/globalSlice'
-import { selectProducts } from '@redux/productsSlice'
 
 const NavCategories: FunctionComponent = () => {
   const dispatch = useDispatch()
   const router = useRouter()
 
-  const { categories, allTags } = useSelector(selectProducts())
-  const { nav } = useSelector(selectGlobal())
+  const { nav, topStyles, categories } = useSelector(selectGlobal())
 
   const [categoryImage, setCategoryImage] = useState<string | undefined>(
     undefined
   )
   const [svgMask, setSvgMask] = useState<Asset | null>(null)
 
-  const [topStyles, setTopStyles] = useState<string[]>([])
+  // const [topStyles, setTopStyles] = useState<string[]>([])
 
   const handleHover = (url: string | undefined) => {
     if (url && url !== categoryImage) {
@@ -48,19 +46,19 @@ const NavCategories: FunctionComponent = () => {
     }
   }, [categories])
 
-  useEffect(() => {
-    if (allTags) {
-      const { style } = allTags
-
-      const sortedStyles = Object.entries(style)
-        .sort((a, b) => {
-          return b[1] - a[1]
-        })
-        .map((tag) => tag[0])
-
-      setTopStyles(sortedStyles)
-    }
-  }, [allTags])
+  // useEffect(() => {
+  //   if (allTags) {
+  //     const { style } = allTags
+  //
+  //     const sortedStyles = Object.entries(style)
+  //       .sort((a, b) => {
+  //         return b[1] - a[1]
+  //       })
+  //       .map((tag) => tag[0])
+  //
+  //     setTopStyles(sortedStyles)
+  //   }
+  // }, [allTags])
 
   useEffect(() => {
     if (nav) {

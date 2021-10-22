@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import ContentfulImage from '@components/common/ContentfulImage'
 import { Asset } from '@models/contentful-graph'
-import { selectProducts } from '@redux/productsSlice'
+import { selectGlobal } from '@redux/globalSlice'
 
 interface OwnProps {
   categoryImage: string
@@ -14,7 +14,7 @@ interface OwnProps {
 type Props = OwnProps
 
 const SvgPreview: FunctionComponent<Props> = ({ categoryImage, svgMask }) => {
-  const { categories } = useSelector(selectProducts())
+  const { categories } = useSelector(selectGlobal())
 
   return (
     <ul

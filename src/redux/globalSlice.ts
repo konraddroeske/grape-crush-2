@@ -4,6 +4,7 @@ import { HYDRATE } from 'next-redux-wrapper'
 import {
   Asset,
   CONTENTFUL_DEFAULT_LOCALE_CODE,
+  ICategoryFields,
   IFooterFields,
   IHeroSlideFields,
   INavFields,
@@ -35,6 +36,8 @@ interface Global {
   heroSlides: IHeroSlideFields[]
   seoImage: Asset | null
   currentTheme: Theme
+  topStyles: string[]
+  categories: ICategoryFields[]
 }
 
 const initialState: Global = {
@@ -58,6 +61,8 @@ const initialState: Global = {
     duration: 0.7,
     arrows: '#d9ff6c',
   },
+  topStyles: [],
+  categories: [],
 }
 
 export const globalSlice = createSlice({
@@ -101,6 +106,12 @@ export const globalSlice = createSlice({
     setIsSticky(state, action) {
       return { ...state, isSticky: action.payload }
     },
+    setTopStyles(state, action) {
+      return { ...state, topStyles: action.payload }
+    },
+    setCategories(state, action) {
+      return { ...state, categories: action.payload }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -122,6 +133,8 @@ export const {
   setHeroSlides,
   setMobileNavOpen,
   setIsSticky,
+  setTopStyles,
+  setCategories,
 } = globalSlice.actions
 
 export const selectGlobal = () => (state: AppState) => state?.[globalSlice.name]

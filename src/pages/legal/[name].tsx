@@ -13,15 +13,7 @@ import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchPageData from '@lib/fetchPageData'
 import { IPageFields } from '@models/contentful-graph'
-import {
-  selectGlobal,
-  setFooter,
-  setHeroSlides,
-  setLocale,
-  setNav,
-  setPages,
-} from '@redux/globalSlice'
-import { setAllTags, setCategories } from '@redux/productsSlice'
+import { selectGlobal } from '@redux/globalSlice'
 import { wrapper } from '@redux/store'
 
 const LegalPage: FunctionComponent = () => {
@@ -118,24 +110,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const {
-    products,
-    locale,
-    heroSlideCollection,
-    pageCollection,
-    footerCollection,
-    navCollection,
-    categoryCollection,
-  } = await fetchGlobalData()
-
-  // Global
-  store.dispatch(setAllTags(products))
-  store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageCollection))
-  store.dispatch(setCategories(categoryCollection))
-  store.dispatch(setFooter(footerCollection))
-  store.dispatch(setNav(navCollection))
-  store.dispatch(setHeroSlides(heroSlideCollection))
+  await fetchGlobalData(store)
 
   return {
     props: {},

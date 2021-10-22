@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import chunk from 'lodash.chunk'
 import deburr from 'lodash.deburr'
-import { HYDRATE } from 'next-redux-wrapper'
 
 import { sortProducts } from '@lib/sortProducts'
+import { sortTags } from '@lib/sortTags'
 import { ProductCategories, ProductLowercase } from '@models/ambassador'
-import { Asset, ICategoryFields } from '@models/contentful-graph'
+import { Asset } from '@models/contentful-graph'
 import type { AppState } from '@redux/store'
 
 export interface TagsByCategory {
@@ -47,7 +47,6 @@ export type SortOption =
   | 'date, old to new'
 
 interface ProductsSlice {
-  categories: ICategoryFields[]
   products: ProductLowercase[]
   allTags: TagsByCount | null
   // productsByTag: ProductsByTag | null
@@ -63,11 +62,10 @@ interface ProductsSlice {
   menuOpen: boolean
   mobileMenuOpen: boolean
   missingImage: Asset | null
-  isLoading: boolean
+  // isLoading: boolean
 }
 
 const initialState: ProductsSlice = {
-  categories: [],
   products: [],
   allTags: null,
   // productsByTag: null,
@@ -91,33 +89,16 @@ const initialState: ProductsSlice = {
   menuOpen: true,
   mobileMenuOpen: false,
   missingImage: null,
-  isLoading: true,
+  // isLoading: true,
 }
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    setCategories(state, action) {
-      const { items } = action.payload
-
-      const { parentType, category, type } = { ...state.allTags }
-      const merged = { ...parentType, ...category, ...type }
-
-      const categoriesWithCount = items.map((item: ICategoryFields) => {
-        const count = merged[item.categoryName.toLowerCase()]
-        return { ...item, count: count || 0 }
-      })
-
-      const sortedCategories = categoriesWithCount.sort(
-        (a: ICategoryFields, b: ICategoryFields) => {
-          return b.count - a.count
-        }
-      )
-
-      return { ...state, categories: sortedCategories }
-    },
     setProducts(state, action) {
+      if (state.products.length > 0) return state
+
       return { ...state, products: action.payload }
     },
     handleProducts(state, action) {
@@ -236,6 +217,8 @@ export const productsSlice = createSlice({
       }
     },
     setAllTags(state, action) {
+      if (state.allTags) return state
+
       const products = action.payload as ProductLowercase[]
 
       const getCategories = (
@@ -312,28 +295,30 @@ export const productsSlice = createSlice({
     },
     handleTags(state, action) {
       const { selectedTags } = state
+      const newTags = action.payload as Record<string, string>
 
-      const tags = action.payload as Record<string, string>
+      const selectedTagsFlat = Object.values(selectedTags).flat().sort()
+      const newTagsFlat = Object.values(newTags).flat().sort()
 
-      const sortedTags = Object.entries(selectedTags).reduce((acc, cur) => {
-        const isCategory = Object.keys(tags).includes(cur[0])
+      if (selectedTagsFlat.length !== newTagsFlat.length) {
+        return { ...state, selectedTags: sortTags(selectedTags, newTags) }
+      }
 
-        if (isCategory) {
-          const splitTags = tags[cur[0]].split(',')
+      const isEqual = selectedTagsFlat.every(
+        (value, index) => value === newTagsFlat[index]
+      )
 
-          return { ...acc, [cur[0]]: splitTags }
-        }
+      if (isEqual) return state
 
-        return { ...acc, [cur[0]]: [] }
-      }, {} as TagsByCategory)
-
-      return { ...state, selectedTags: sortedTags }
+      return { ...state, selectedTags: sortTags(selectedTags, newTags) }
     },
     handlePage(state, action) {
-      const page = action.payload || 1
-      return { ...state, page }
+      if (state.page === action.payload) return state
+      return { ...state, page: action.payload }
     },
     resetTags(state) {
+      if (Object.values(state.selectedTags).flat().length === 0) return state
+
       return {
         ...state,
         selectedTags: {
@@ -365,31 +350,28 @@ export const productsSlice = createSlice({
       return { ...state, mobileMenuOpen: !mobileMenuOpen }
     },
     setMissingImage(state, action) {
-      const { items } = action.payload
-      const lightImage = items.find((image: Asset) =>
-        image.title.toLowerCase().includes('light')
-      )
+      if (state.missingImage) return state
+
       return {
         ...state,
-        missingImage: lightImage,
+        missingImage: action.payload,
       }
     },
     // setIsLoading(state, action) {
     //   return { ...state, isLoading: action.payload }
     // },
   },
-  extraReducers: {
-    [HYDRATE]: (state, action) => {
-      return {
-        ...state,
-        ...action.payload.products,
-      }
-    },
-  },
+  // extraReducers: {
+  //   [HYDRATE]: (state, action) => {
+  //     return {
+  //       ...state,
+  //       ...action.payload.products,
+  //     }
+  //   },
+  // },
 })
 
 export const {
-  setCategories,
   setAllTags,
   setProducts,
   handleTags,

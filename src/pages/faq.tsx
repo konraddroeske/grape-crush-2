@@ -15,14 +15,7 @@ import fetchFaqData from '@lib/fetchFaqData'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import { IFaqFields } from '@models/contentful-graph'
 import { selectFaq, setQuestions } from '@redux/faqSlice'
-import {
-  setFooter,
-  setHeroSlides,
-  setLocale,
-  setNav,
-  setPages,
-} from '@redux/globalSlice'
-import { setAllTags, setCategories } from '@redux/productsSlice'
+
 import { wrapper } from '@redux/store'
 
 const Faq: FunctionComponent = () => {
@@ -98,24 +91,7 @@ const Faq: FunctionComponent = () => {
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const {
-    products,
-    locale,
-    heroSlideCollection,
-    pageCollection,
-    footerCollection,
-    navCollection,
-    categoryCollection,
-  } = await fetchGlobalData()
-
-  // Global
-  store.dispatch(setAllTags(products))
-  store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageCollection))
-  store.dispatch(setCategories(categoryCollection))
-  store.dispatch(setFooter(footerCollection))
-  store.dispatch(setNav(navCollection))
-  store.dispatch(setHeroSlides(heroSlideCollection))
+  await fetchGlobalData(store)
 
   const { faqCollection } = await fetchFaqData()
 

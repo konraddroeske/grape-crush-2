@@ -13,20 +13,13 @@ import ShopByTypeGrid from '@components/landing-page/shop-by-type/ShopByTypeGrid
 import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import fetchGlobalData from '@lib/fetchGlobalData'
 import fetchIndexData from '@lib/fetchIndexData'
-import {
-  setFooter,
-  setHeroSlides,
-  setLocale,
-  setNav,
-  setPages,
-} from '@redux/globalSlice'
+
 import {
   selectIndex,
   setBgLime,
   setHouseWines,
   setInfoBoxes,
 } from '@redux/indexSlice'
-import { setAllTags, setCategories } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
 const Home: FunctionComponent = () => {
@@ -69,26 +62,9 @@ const Home: FunctionComponent = () => {
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const {
-    products,
-    locale,
-    heroSlideCollection,
-    pageCollection,
-    footerCollection,
-    navCollection,
-    categoryCollection,
-  } = await fetchGlobalData()
+  await fetchGlobalData(store)
 
   const { infoBox1Collection, houseWineCollection } = await fetchIndexData()
-
-  // Global
-  store.dispatch(setAllTags(products))
-  store.dispatch(setLocale(locale))
-  store.dispatch(setPages(pageCollection))
-  store.dispatch(setCategories(categoryCollection))
-  store.dispatch(setFooter(footerCollection))
-  store.dispatch(setNav(navCollection))
-  store.dispatch(setHeroSlides(heroSlideCollection))
 
   // Index
   store.dispatch(setInfoBoxes(infoBox1Collection))
