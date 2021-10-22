@@ -37,7 +37,9 @@ const MenuToggle: FunctionComponent<Props> = ({ type, menuOpen }) => {
   return (
     <button
       type="button"
-      className="flex items-center h-12"
+      className={`${
+        type === 'mobile' ? '-ml-1' : 'ml-0'
+      } flex items-center h-12`}
       onClick={() => handleClick()}
     >
       <span className="mr-1">
