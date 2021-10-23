@@ -93,12 +93,14 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
     bottleSize,
     imageUrl,
     ABV,
+    // eslint-disable-next-line camelcase
+    Varietal_Text,
   } = data
 
   const facts = [
     { winery },
     { vintage },
-    { varietal },
+    { varietal: Varietal_Text },
     { region },
     { country },
     { type },
