@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 
-import { useMediaQuery } from 'react-responsive'
+import useResizeObserver from '@react-hook/resize-observer'
+import debounce from 'lodash.debounce'
 
 import type { TagsWithProducts } from '@components/products-page/products-menu/Category'
 import CategoryLink from '@components/products-page/products-menu/CategoryLink'
@@ -20,25 +21,25 @@ const CategoryMenu: FunctionComponent<Props> = ({
   menuOpen,
   tagsWithProducts,
 }) => {
-  const isXxs = useMediaQuery({ query: '(min-width: 350px)' })
-  const isXs = useMediaQuery({ query: '(min-width: 475px)' })
-  const isSmall = useMediaQuery({ query: '(min-width: 640px)' })
-  const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
-
   const [scrollHeight, setScrollHeight] = useState<string>('none')
   const menuRef = useRef<null | HTMLUListElement>(null)
 
-  const handleScrollHeight = () => {
-    const height = menuRef?.current?.scrollHeight || 0
+  const handleScrollHeight = (target: Element) => {
+    const height = target?.scrollHeight || 0
 
     if (height > 0) {
       setScrollHeight(`${height}px`)
     }
   }
 
+  const debouncedResize = debounce(handleScrollHeight, 250)
+  useResizeObserver(menuRef, ({ target }) => debouncedResize(target))
+
   useEffect(() => {
-    handleScrollHeight()
-  }, [menuOpen, isXxs, isXs, isSmall, isDesktop, tagsWithProducts])
+    if (menuRef.current) {
+      handleScrollHeight(menuRef.current)
+    }
+  }, [tagsWithProducts])
 
   return (
     <ul

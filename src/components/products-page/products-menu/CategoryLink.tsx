@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
+import DOMPurify from 'dompurify'
 import { useRouter } from 'next/router'
 
 import { useSelector } from 'react-redux'
@@ -28,6 +29,14 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
     router.push(href, href, { shallow: true }).then(() => window.scrollTo(0, 0))
   }
 
+  const [tagWithWordBreak, setTagWithWordBreak] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (tag.includes('/')) {
+      setTagWithWordBreak(tag.replace('/', '/<wbr>'))
+    }
+  }, [tag])
+
   useEffect(() => {
     setSelected(selectedTags[category].includes(tag))
   }, [selectedTags, category, tag])
@@ -47,7 +56,16 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
           <Box className="w-4" />
         </div>
       )}
-      <span className="leading-5 text-left dont-break-out">{tag}</span>
+      {tagWithWordBreak ? (
+        <span
+          className="leading-5 text-left dont-break-out"
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(tagWithWordBreak),
+          }}
+        />
+      ) : (
+        <span className="leading-5 text-left dont-break-out">{tag}</span>
+      )}
     </button>
   )
 }
