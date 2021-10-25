@@ -11,18 +11,19 @@ import { selectProducts, toggleMobileMenuOpen } from '@redux/productsSlice'
 
 const MobileMenu: FunctionComponent = () => {
   const menuRef = useRef<HTMLDivElement | null>(null)
+  const categoriesRef = useRef<HTMLDivElement | null>(null)
 
   const { mobileMenuOpen } = useSelector(selectProducts())
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (mobileMenuOpen && menuRef.current) {
+    if (mobileMenuOpen && menuRef.current && categoriesRef.current) {
       gsap.to(menuRef.current, {
         duration: 0.2,
         marginTop: 0,
       })
 
-      disableBodyScroll(menuRef.current)
+      disableBodyScroll(categoriesRef.current)
     }
   }, [mobileMenuOpen])
 
@@ -49,7 +50,7 @@ const MobileMenu: FunctionComponent = () => {
       <div className="body-gutter-sm">
         <ProductsTags variant="mobile" closeMobileMenu={closeMobileMenu} />
       </div>
-      <div className="overflow-y-scroll body-gutter-sm">
+      <div ref={categoriesRef} className="overflow-y-scroll body-gutter-sm">
         <ProductCategories />
       </div>
     </div>
