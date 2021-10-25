@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux'
 import SimpleBarReact from 'simplebar-react'
 import 'simplebar-react/dist/simplebar.min.css'
 
+import ProductsTags from '@components/products-page/products-bar/ProductsTags'
 import ProductCategories from '@components/products-page/products-menu/ProductCategories'
 import { remToPixels } from '@lib/remToPixels'
 import { selectProducts } from '@redux/productsSlice'
@@ -145,6 +146,7 @@ const DesktopMenu: FunctionComponent = () => {
             height: maxHeight,
           }}
         >
+          <ProductsTags />
           <ProductCategories />
         </SimpleBarReact>
       </div>
