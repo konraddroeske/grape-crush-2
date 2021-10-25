@@ -98,24 +98,27 @@ export const productsSlice = createSlice({
   reducers: {
     setProducts(state, action) {
       if (state.products.length > 0) return state
+      // console.log('setting products')
 
       return { ...state, products: action.payload }
     },
     handleProducts(state, action) {
-      const { products } = state
+      // console.log('handling products')
+      const { products, page, selectedTags: selectedTagsObj } = state
+
       const {
-        selectedTags: selectedTagsObj,
         productsSearch,
         productsSort,
       }: {
-        selectedTags: TagsByCategory
         productsSearch: string
         productsSort: SortOption
       } = action.payload
 
+      // HANDLE TAGS
+
       const selectedTagsCategories = Object.entries(selectedTagsObj)
-        .filter(([_, value]) => value.length > 0)
-        .map(([key, _]) => key)
+        .filter(([, value]) => value.length > 0)
+        .map(([key]) => key)
 
       const selectedTags = Object.values(selectedTagsObj).flat()
       const totalSelectedTags = selectedTags.length
@@ -157,6 +160,8 @@ export const productsSlice = createSlice({
         .split(' ')
         .map((term) => deburr(term.toLowerCase()))
 
+      // HANDLE SEARCH
+
       const searchedProducts =
         productsSearch.length === 0
           ? selectedProducts
@@ -191,7 +196,10 @@ export const productsSlice = createSlice({
               return inCountry || inTags || inName || inDescription
             })
 
+      // HANDLE SORT
+
       const sortedProducts = sortProducts([...searchedProducts], productsSort)
+
       const selectedProductsByPage = chunk(
         sortedProducts,
         state.productsPerPage
@@ -199,7 +207,7 @@ export const productsSlice = createSlice({
 
       const maxPage = selectedProductsByPage.length
 
-      if (state.page !== 1 && state.page >= maxPage) {
+      if (page !== 1 && page >= maxPage) {
         return {
           ...state,
           page: maxPage,
@@ -218,6 +226,7 @@ export const productsSlice = createSlice({
     },
     setAllTags(state, action) {
       if (state.allTags) return state
+      // console.log('setting all tags')
 
       const products = action.payload as ProductLowercase[]
 
@@ -294,6 +303,7 @@ export const productsSlice = createSlice({
       return { ...state, allTags: tagsByCount }
     },
     handleTags(state, action) {
+      // console.log('handling tags')
       const { selectedTags } = state
       const newTags = action.payload as Record<string, string>
 
@@ -314,10 +324,13 @@ export const productsSlice = createSlice({
     },
     handlePage(state, action) {
       if (state.page === action.payload) return state
+      // console.log('handling page')
+
       return { ...state, page: action.payload }
     },
     resetTags(state) {
       if (Object.values(state.selectedTags).flat().length === 0) return state
+      // console.log('resetting tags')
 
       return {
         ...state,
@@ -333,24 +346,30 @@ export const productsSlice = createSlice({
       }
     },
     handleProductsSearch(state, action) {
+      // console.log('handle products search')
       return { ...state, productsSearch: action.payload }
     },
     handleProductsSort(state, action) {
+      // console.log('handling products sort')
       return { ...state, productsSort: action.payload }
     },
     setMenuOpen(state, action) {
+      // console.log('setting menu open')
       return { ...state, menuOpen: action.payload }
     },
     toggleMenuOpen(state) {
+      // console.log('toggling menu open')
       const { menuOpen } = state
       return { ...state, menuOpen: !menuOpen }
     },
     toggleMobileMenuOpen(state) {
+      // console.log('toggling mobile menu open')
       const { mobileMenuOpen } = state
       return { ...state, mobileMenuOpen: !mobileMenuOpen }
     },
     setMissingImage(state, action) {
       if (state.missingImage) return state
+      // console.log('setting missing image')
 
       return {
         ...state,
