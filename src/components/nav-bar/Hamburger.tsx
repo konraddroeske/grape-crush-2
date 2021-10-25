@@ -23,11 +23,11 @@ const Hamburger: FunctionComponent = () => {
       backgroundColor: navOpen ? '#FFFFFF' : nav,
     })
 
-    if (navOpen) {
+    if (topBar.current && midBar.current && lowBar.current && navOpen) {
       hamburgerOpen(topBar, midBar, lowBar, duration / 4)
     }
 
-    if (!navOpen) {
+    if (topBar.current && midBar.current && lowBar.current && !navOpen) {
       hamburgerClose(topBar, midBar, lowBar, duration / 4)
     }
   }, [nav, navOpen, duration])
@@ -39,14 +39,12 @@ const Hamburger: FunctionComponent = () => {
       onClick={() => dispatch(setNavOpen(!navOpen))}
       aria-label="open menu"
     >
-      <>
-        <div ref={topBar} className="absolute w-5 h-0.5 top-0 left-0" />
-        <div
-          ref={midBar}
-          className="absolute w-5 h-0.5 top-1/2 left-0 transform -translate-y-1/2"
-        />
-        <div ref={lowBar} className="absolute w-5 h-0.5 bottom-0 left-0" />
-      </>
+      <div ref={topBar} className="absolute w-5 h-0.5 top-0 left-0" />
+      <div
+        ref={midBar}
+        className="absolute w-5 h-0.5 top-1/2 left-0 transform -translate-y-1/2"
+      />
+      <div ref={lowBar} className="absolute w-5 h-0.5 bottom-0 left-0" />
     </button>
   )
 }

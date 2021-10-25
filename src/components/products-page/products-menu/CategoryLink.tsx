@@ -47,7 +47,7 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
           <Box className="w-4" />
         </div>
       )}
-      <span className="leading-5 text-left">{tag}</span>
+      <span className="leading-5 text-left dont-break-out">{tag}</span>
     </button>
   )
 }

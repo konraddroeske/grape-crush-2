@@ -20,6 +20,8 @@ const CategoryMenu: FunctionComponent<Props> = ({
   menuOpen,
   tagsWithProducts,
 }) => {
+  const isXxs = useMediaQuery({ query: '(min-width: 350px)' })
+  const isXs = useMediaQuery({ query: '(min-width: 475px)' })
   const isSmall = useMediaQuery({ query: '(min-width: 640px)' })
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
 
@@ -36,13 +38,13 @@ const CategoryMenu: FunctionComponent<Props> = ({
 
   useEffect(() => {
     handleScrollHeight()
-  }, [menuOpen, isSmall, isDesktop, tagsWithProducts])
+  }, [menuOpen, isXxs, isXs, isSmall, isDesktop, tagsWithProducts])
 
   return (
     <ul
       ref={menuRef}
       className="grid grid-cols-1 gap-y-4 overflow-hidden transition-all duration-700
-      sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-1 lg:gap-x-0"
+      xxs:grid-cols-2 xxs:gap-x-3 xs:gap-x-4 sm:grid-cols-3 lg:grid-cols-1 lg:gap-x-0"
       style={{
         // eslint-disable-next-line no-nested-ternary
         maxHeight: menuOpen ? scrollHeight : 0,
