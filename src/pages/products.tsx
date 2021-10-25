@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react'
 
-import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 
 import ClientOnlyPortal from '@components/common/ClientOnlyPortal'
@@ -20,9 +19,6 @@ import { assetCollectionQuery } from '@models/schema'
 import { selectGlobal } from '@redux/globalSlice'
 
 import {
-  handlePage,
-  handleTags,
-  resetTags,
   selectProducts,
   setAllTags,
   setMissingImage,
@@ -38,30 +34,14 @@ interface Props {
 const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
   useRouterScrollUpdate()
   const dispatch = useDispatch()
-  const router = useRouter()
   const { mobileMenuOpen } = useSelector(selectProducts())
+  const { isSticky } = useSelector(selectGlobal())
 
   useEffect(() => {
     dispatch(setMissingImage(missingImage))
     dispatch(setAllTags(products))
     dispatch(setProducts(products))
   }, [dispatch, products, missingImage])
-
-  useEffect(() => {
-    if (Object.values(router.query).length > 0) {
-      const { page: queryPage, ...newTags } = router.query
-
-      if (queryPage && !(queryPage instanceof Array)) {
-        dispatch(handlePage(parseInt(queryPage, 10)))
-      }
-
-      dispatch(handleTags(newTags))
-    } else {
-      dispatch(resetTags())
-    }
-  }, [router, dispatch])
-
-  const { isSticky } = useSelector(selectGlobal())
 
   return (
     <>

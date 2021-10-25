@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react'
 
+import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -9,8 +10,11 @@ import Warning from '@components/common/Warning'
 import PageNav from '@components/products-page/products-list/PageNav'
 import { setNavSearch, setSearch } from '@redux/clientSlice'
 import {
+  handlePage,
   handleProducts,
   handleProductsSearch,
+  handleTags,
+  resetTags,
   selectProducts,
 } from '@redux/productsSlice'
 
@@ -28,10 +32,26 @@ const ProductsList: FunctionComponent = () => {
     productsSort,
   } = useSelector(selectProducts())
 
+  const router = useRouter()
+
+  useEffect(() => {
+    if (Object.values(router.query).length > 0) {
+      const { page: queryPage, ...newTags } = router.query
+
+      if (queryPage && !(queryPage instanceof Array)) {
+        dispatch(handlePage(parseInt(queryPage, 10)))
+      }
+
+      dispatch(handleTags(newTags))
+    } else {
+      dispatch(handlePage(1))
+      dispatch(resetTags())
+    }
+  }, [router, dispatch])
+
   useEffect(() => {
     dispatch(
       handleProducts({
-        selectedTags,
         productsSearch: productsSearch.toLowerCase(),
         productsSort,
       })
