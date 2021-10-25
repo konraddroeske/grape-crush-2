@@ -32,7 +32,7 @@ const CategoryMenu: FunctionComponent<Props> = ({
     }
   }
 
-  const debouncedResize = debounce(handleScrollHeight, 250)
+  const debouncedResize = debounce(handleScrollHeight, 100)
   useResizeObserver(menuRef, ({ target }) => debouncedResize(target))
 
   useEffect(() => {
