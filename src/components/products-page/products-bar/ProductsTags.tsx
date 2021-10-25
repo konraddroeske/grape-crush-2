@@ -12,9 +12,13 @@ import Close from '../../../assets/svgs/close-rounded.svg'
 
 interface Props {
   closeMobileMenu?: () => void
+  variant?: 'desktop' | 'mobile'
 }
 
-const ProductsTags: FunctionComponent<Props> = ({ closeMobileMenu }) => {
+const ProductsTags: FunctionComponent<Props> = ({
+  closeMobileMenu,
+  variant = 'desktop',
+}) => {
   const { selectedTags } = useSelector(selectProducts())
   const [categoryTagTuples, setCategoryTagTuples] = useState<
     [keyof TagsByCategory, string][] | []
@@ -37,18 +41,18 @@ const ProductsTags: FunctionComponent<Props> = ({ closeMobileMenu }) => {
   }
 
   return (
-    <div className="pb-6">
-      <div className="flex justify-end mb-3 lg:mb-0">
+    <div className={`relative ${variant === 'mobile' ? 'pb-3' : 'pb-6'}`}>
+      <div className="absolute top-0 right-0 flex justify-end mb-3 lg:mb-0">
         <button
           type="button"
-          className="flex justify-center items-center w-10 h-10 rounded-full bg-lime lg:hidden"
+          className="flex justify-center items-center w-9 h-9 rounded-full bg-lime lg:hidden"
           onClick={() => (closeMobileMenu ? closeMobileMenu() : null)}
         >
           <Close className="w-4 svg-close-position" />
         </button>
       </div>
       <ul className="flex flex-wrap">
-        <li className="mr-2 mb-2">
+        <li className={`mb-2 ${variant === 'mobile' ? 'w-full mr-0' : 'mr-2'}`}>
           <CategoryTag variant="clear" url="/products">
             Clear filters
           </CategoryTag>

@@ -24,7 +24,7 @@ const CategoryTag: FunctionComponent<Props> = ({ url, variant, children }) => {
     <button
       type="button"
       className={`${variants[variant]} flex justify-between items-center text-left 
-      text-blue-dark shadow-blue-dark border-blue-dark text-base font-bold uppercase py-2 px-3 border`}
+      text-blue-dark shadow-blue-dark border-blue-dark text-base font-bold uppercase h-9 px-3 border`}
       onClick={() =>
         router
           .push(url, url, { shallow: true })

@@ -205,6 +205,8 @@ export const productsSlice = createSlice({
         state.productsPerPage
       )
 
+      // HANDLE PAGE
+
       const maxPage = selectedProductsByPage.length
 
       if (page !== 1 && page >= maxPage) {
@@ -324,7 +326,7 @@ export const productsSlice = createSlice({
     },
     handlePage(state, action) {
       if (state.page === action.payload) return state
-      // console.log('handling page')
+      if (action.payload <= 0) return { ...state, page: 1 }
 
       return { ...state, page: action.payload }
     },

@@ -2,7 +2,6 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import ProductsTags from '@components/products-page/products-bar/ProductsTags'
 import Category from '@components/products-page/products-menu/Category'
 import { cleanString } from '@lib/sortProducts'
 import { selectGlobal } from '@redux/globalSlice'
@@ -12,7 +11,7 @@ interface Props {
   closeMobileMenu?: () => void
 }
 
-const ProductCategories: FunctionComponent<Props> = (props) => {
+const ProductCategories: FunctionComponent<Props> = () => {
   const { locale } = useSelector(selectGlobal())
   const { allTags } = useSelector(selectProducts())
 
@@ -71,7 +70,6 @@ const ProductCategories: FunctionComponent<Props> = (props) => {
 
   return (
     <div id="product-categories">
-      <ProductsTags {...props} />
       <Category title="Type" category="parentType" tags={parentTypeOptions} />
       <Category title="Category" category="category" tags={categoryOptions} />
       <Category title="Featured" category="type" tags={typeOptions} />
