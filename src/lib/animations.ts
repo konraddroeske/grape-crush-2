@@ -101,26 +101,28 @@ export const hamburgerOpen = (
   duration: number
 ) => {
   const topTl = gsap.timeline()
-  topTl.to(topBar.current, {
-    top: '50%',
-    transform: 'translateY(-50%)',
-    duration,
-  })
-  topTl.to(topBar.current, {
-    rotate: '45deg',
-    duration,
-  })
+  topTl
+    .to(topBar.current, {
+      top: '50%',
+      transform: 'translateY(-50%)',
+      duration,
+    })
+    .to(topBar.current, {
+      rotate: '45deg',
+      duration,
+    })
 
   const lowTl = gsap.timeline()
-  lowTl.to(lowBar.current, {
-    bottom: '50%',
-    transform: 'translateY(50%)',
-    duration,
-  })
-  lowTl.to(lowBar.current, {
-    rotate: '-45deg',
-    duration,
-  })
+  lowTl
+    .to(lowBar.current, {
+      bottom: '50%',
+      transform: 'translateY(50%)',
+      duration,
+    })
+    .to(lowBar.current, {
+      rotate: '-45deg',
+      duration,
+    })
 
   gsap.to(midBar.current, {
     opacity: 0,
@@ -135,26 +137,28 @@ export const hamburgerClose = (
   duration: number
 ) => {
   const topTl = gsap.timeline()
-  topTl.to(topBar.current, {
-    rotate: '0deg',
-    duration,
-  })
-  topTl.to(topBar.current, {
-    top: 0,
-    transform: 'translateY(0)',
-    duration,
-  })
+  topTl
+    .to(topBar.current, {
+      rotate: '0deg',
+      duration,
+    })
+    .to(topBar.current, {
+      top: 0,
+      transform: 'translateY(0)',
+      duration,
+    })
 
   const lowTl = gsap.timeline()
-  lowTl.to(lowBar.current, {
-    rotate: '0deg',
-    duration,
-  })
-  lowTl.to(lowBar.current, {
-    bottom: 0,
-    transform: 'translateY(0)',
-    duration,
-  })
+  lowTl
+    .to(lowBar.current, {
+      rotate: '0deg',
+      duration,
+    })
+    .to(lowBar.current, {
+      bottom: 0,
+      transform: 'translateY(0)',
+      duration,
+    })
 
   gsap.to(midBar.current, {
     opacity: 1,
