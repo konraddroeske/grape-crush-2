@@ -35,15 +35,15 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
   return (
     <button
       type="button"
-      className="font-sans flex text-sm capitalize items-center justify-start"
+      className="font-sans flex text-sm capitalize items-start justify-start"
       onClick={() => handleClick(category, tag)}
     >
       {selected ? (
-        <div className="mr-2">
+        <div className="mr-2 transform translate-y-0.5">
           <Selected className="w-4" />
         </div>
       ) : (
-        <div className="mr-2">
+        <div className="mr-2 transform translate-y-0.5">
           <Box className="w-4" />
         </div>
       )}
