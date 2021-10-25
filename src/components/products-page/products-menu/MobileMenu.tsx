@@ -49,7 +49,7 @@ const MobileMenu: FunctionComponent = () => {
       <div className="body-gutter-sm">
         <ProductsTags variant="mobile" closeMobileMenu={closeMobileMenu} />
       </div>
-      <div className="overflow-y-auto body-gutter-sm">
+      <div className="overflow-y-scroll body-gutter-sm">
         <ProductCategories />
       </div>
     </div>
