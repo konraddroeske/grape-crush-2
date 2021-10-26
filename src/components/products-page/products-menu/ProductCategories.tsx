@@ -67,7 +67,7 @@ const ProductCategories: FunctionComponent<Props> = () => {
   }, [allTags, locale])
 
   return (
-    <div id="product-categories">
+    <div>
       {tagOptions && (
         <>
           <Category

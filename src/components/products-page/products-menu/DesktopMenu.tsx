@@ -95,7 +95,8 @@ const DesktopMenu: FunctionComponent = () => {
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
       const height = entries[0].borderBoxSize[0].blockSize
-      setCategoriesHeight(height)
+      const categoriesMargin = remToPixels(1)
+      setCategoriesHeight(height + categoriesMargin)
     })
 
     if (window) {
@@ -146,8 +147,10 @@ const DesktopMenu: FunctionComponent = () => {
             height: maxHeight,
           }}
         >
-          <ProductsTags />
-          <ProductCategories />
+          <div id="product-categories">
+            <ProductsTags />
+            <ProductCategories />
+          </div>
         </SimpleBarReact>
       </div>
     </div>
