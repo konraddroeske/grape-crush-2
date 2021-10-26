@@ -3,6 +3,8 @@ import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import useResizeObserver from '@react-hook/resize-observer'
 import debounce from 'lodash.debounce'
 
+import deburr from 'lodash.deburr'
+
 import type { TagsWithProducts } from '@components/products-page/products-menu/Category'
 import CategoryLink from '@components/products-page/products-menu/CategoryLink'
 
@@ -39,7 +41,9 @@ const CategoryMenu: FunctionComponent<Props> = ({
   useEffect(() => {
     const filtered =
       search.length > 0
-        ? tagsWithProducts.filter(({ name }) => name.includes(search))
+        ? tagsWithProducts.filter(({ name }) =>
+            deburr(name).toLowerCase().includes(deburr(search).toLowerCase())
+          )
         : tagsWithProducts
 
     const sorted = sortCategoryTags(category, filtered)
