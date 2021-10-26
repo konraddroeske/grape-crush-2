@@ -28,16 +28,6 @@ export interface TagsByCount {
   range: Record<string, number>
 }
 
-// export interface ProductsByTag {
-//   parentType: Record<string, ProductLowercase[]>
-//   category: Record<string, ProductLowercase[]>
-//   style: Record<string, ProductLowercase[]>
-//   country: Record<string, ProductLowercase[]>
-//   varietal: Record<string, ProductLowercase[]>
-//   type: Record<string, ProductLowercase[]>
-//   range: Record<string, ProductLowercase[]>
-// }
-
 export type SortOption =
   | 'alphabetical, a - z'
   | 'alphabetical, z - a'
@@ -49,8 +39,6 @@ export type SortOption =
 interface ProductsSlice {
   products: ProductLowercase[]
   allTags: TagsByCount | null
-  // productsByTag: ProductsByTag | null
-  // selectedProducts: ProductLowercase[] | null
   selectedProductsByPage: ProductLowercase[][]
   totalSelected: ProductLowercase[]
   selectedTags: TagsByCategory
@@ -62,14 +50,11 @@ interface ProductsSlice {
   menuOpen: boolean
   mobileMenuOpen: boolean
   missingImage: Asset | null
-  // isLoading: boolean
 }
 
 const initialState: ProductsSlice = {
   products: [],
   allTags: null,
-  // productsByTag: null,
-  // selectedProducts: [],
   selectedProductsByPage: [],
   totalSelected: [],
   totalSelectedTags: 0,

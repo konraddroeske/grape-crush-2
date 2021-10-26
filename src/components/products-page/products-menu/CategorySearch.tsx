@@ -37,7 +37,7 @@ const CategorySearch: FunctionComponent<Props> = ({ handleSearch }) => {
       <input
         type="text"
         placeholder="Search"
-        className="w-full border border-transparent bg-transparent font-medium
+        className="w-full border border-transparent bg-transparent font-medium text-sm
         placeholder-blue-dark placeholder-opacity-50 uppercase text-blue-dark py-0 pl-7"
         value={value}
         onChange={handleChange}
