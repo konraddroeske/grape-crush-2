@@ -49,18 +49,18 @@ const CategoryLink: FunctionComponent<Props> = ({
       type="button"
       className={`${
         selected ? 'bg-lime' : 'bg-white'
-      } h-7 px-2 py-1 mr-3 mb-3 border border-blue-tag font-sans rounded flex items-center
-      text-xs text-blue-dark uppercase justify-start hover:bg-lime`}
+      } h-7 px-2 py-1 border border-blue-tag font-sans flex items-center
+      text-2xs text-blue-dark uppercase hover:bg-lime`}
       onClick={() => handleClick(category, tag)}
     >
       <span className="flex items-start mr-1 h-7 overflow-hidden">
         {tagWithWordBreak ? (
           <span
-            className="text-left leading-7"
+            className="text-left leading-7 line-clamp"
             dangerouslySetInnerHTML={{ __html: sanitize(tagWithWordBreak) }}
           />
         ) : (
-          <span className="text-left leading-7">{tag}</span>
+          <span className="text-left leading-7 line-clamp">{tag}</span>
         )}
       </span>
       <span className="flex items-center h-7">({productCount})</span>

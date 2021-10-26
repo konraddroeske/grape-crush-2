@@ -44,10 +44,10 @@ const CategoryMenu: FunctionComponent<Props> = ({
         maxHeight: menuOpen ? scrollHeight : 0,
       }}
     >
-      <ul ref={listRef} className="flex flex-wrap">
+      <ul ref={listRef} className="flex flex-wrap pb-2">
         {tagsWithProducts.map(({ name, productCount }) => {
           return (
-            <li key={name} className="last:mb-5">
+            <li key={name} className="mr-2 mb-2">
               <CategoryLink
                 category={category}
                 tag={name}

@@ -53,17 +53,17 @@ const ProductsTags: FunctionComponent<Props> = ({
       </div>
       <ul className="flex flex-wrap">
         <li className={`mb-2 ${variant === 'mobile' ? 'w-full mr-0' : 'mr-2'}`}>
-          <CategoryTag variant="clear" url="/products">
-            Clear filters
-          </CategoryTag>
+          <CategoryTag variant="clear" url="/products" tag="Clear filters" />
         </li>
         {categoryTagTuples?.length > 0 &&
           categoryTagTuples.map(([category, tag]) => {
             return (
               <li key={`${category}-${tag}`} className="mr-2 mb-2">
-                <CategoryTag url={getHref(category, tag)} variant="link">
-                  {tag}
-                </CategoryTag>
+                <CategoryTag
+                  url={getHref(category, tag)}
+                  variant="link"
+                  tag={tag}
+                />
               </li>
             )
           })}

@@ -19,10 +19,10 @@ const Tag: FunctionComponent<Props> = ({ category, tag }) => {
     >
       <a>
         <div
-          className="font-sans text-2xs font-light text-blue-dark py-1 px-3
-        uppercase bg-transparent border border-blue-dark hover:bg-lime"
+          className="flex items-center font-sans h-7 text-2xs font-light text-blue-dark px-3
+        uppercase bg-transparent border border-blue-tag hover:bg-lime"
         >
-          <span className="block transform translate-y-px">{tag}</span>
+          <span className="block transform">{tag}</span>
         </div>
       </a>
     </Link>

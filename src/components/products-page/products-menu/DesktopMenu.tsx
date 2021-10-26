@@ -141,7 +141,7 @@ const DesktopMenu: FunctionComponent = () => {
         ${isSticky ? 'lg:sticky lg:top-20' : 'lg:static'} lg:px-0 lg:z-20`}
       >
         <SimpleBarReact
-          className="max-h-full pt-8 body-gutter-sm lg:w-64 lg:p-0 lg:pr-6"
+          className="max-h-full pt-8 body-gutter-sm lg:w-72 lg:p-0 lg:pr-6"
           style={{
             height: maxHeight,
           }}

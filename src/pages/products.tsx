@@ -34,7 +34,12 @@ interface Props {
 const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
   useRouterScrollUpdate()
   const dispatch = useDispatch()
-  const { mobileMenuOpen } = useSelector(selectProducts())
+  const {
+    mobileMenuOpen,
+    selectedProductsByPage,
+    totalSelectedTags,
+    productsSearch,
+  } = useSelector(selectProducts())
   const { isSticky } = useSelector(selectGlobal())
 
   useEffect(() => {
@@ -42,6 +47,10 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
     dispatch(setAllTags(products))
     dispatch(setProducts(products))
   }, [dispatch, products, missingImage])
+
+  const warningVisible =
+    selectedProductsByPage.length === 0 &&
+    (totalSelectedTags > 0 || productsSearch.length > 0)
 
   return (
     <>
@@ -62,7 +71,11 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
         </div>
         <div className="flex flex-grow">
           <DesktopMenu />
-          <div className="w-full px-2 sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+          <div
+            className={`w-full px-2 ${
+              warningVisible ? 'min-h-0' : 'min-h-screen'
+            } sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl`}
+          >
             <ProductsList />
           </div>
         </div>
