@@ -44,15 +44,15 @@ const CategoryMenu: FunctionComponent<Props> = ({
         maxHeight: menuOpen ? scrollHeight : 0,
       }}
     >
-      <ul
-        ref={listRef}
-        className="grid grid-cols-1 gap-y-4 xxs:grid-cols-2 xxs:gap-x-3 xs:gap-x-4
-        sm:grid-cols-3 lg:grid-cols-1 lg:gap-x-0"
-      >
-        {tagsWithProducts.map(({ name }) => {
+      <ul ref={listRef} className="flex flex-wrap">
+        {tagsWithProducts.map(({ name, productCount }) => {
           return (
             <li key={name} className="last:mb-5">
-              <CategoryLink category={category} tag={name} />
+              <CategoryLink
+                category={category}
+                tag={name}
+                productCount={productCount}
+              />
             </li>
           )
         })}

@@ -61,14 +61,13 @@ const Category: FunctionComponent<Props> = ({ title, category, tags }) => {
 
   return (
     <>
-      {/* {tagsWithProducts?.length > 0 && ( */}
       <div className="border-b-2 border-lime mb-4">
         <button
           type="button"
           className="flex items-center mb-4 pr-2"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <h3 className="text-2xl text-blue-dark font-bold uppercase mr-4">
+          <h3 className="text-2xl text-blue-dark font-bold uppercase mr-3">
             {title}
           </h3>
           {tagsWithProducts.length > 0 && (
@@ -89,7 +88,6 @@ const Category: FunctionComponent<Props> = ({ title, category, tags }) => {
           tagsWithProducts={tagsWithProducts}
         />
       </div>
-      {/* )} */}
     </>
   )
 }

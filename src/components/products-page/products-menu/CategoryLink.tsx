@@ -1,12 +1,10 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
-import DOMPurify from 'dompurify'
+import { sanitize } from 'dompurify'
 import { useRouter } from 'next/router'
 
 import { useSelector } from 'react-redux'
 
-import Selected from '@assets/svgs/box-selected.svg'
-import Box from '@assets/svgs/box.svg'
 import { convertTagsToHref } from '@lib/convertTagsToHref'
 import { getUpdatedTags } from '@lib/getUpdatedTags'
 import { selectProducts, TagsByCategory } from '@redux/productsSlice'
@@ -14,11 +12,16 @@ import { selectProducts, TagsByCategory } from '@redux/productsSlice'
 interface OwnProps {
   category: keyof TagsByCategory
   tag: string
+  productCount: number
 }
 
 type Props = OwnProps
 
-const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
+const CategoryLink: FunctionComponent<Props> = ({
+  category,
+  tag,
+  productCount,
+}) => {
   const router = useRouter()
   const { selectedTags } = useSelector(selectProducts())
   const [selected, setSelected] = useState(false)
@@ -33,7 +36,7 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
 
   useEffect(() => {
     if (tag.includes('/')) {
-      setTagWithWordBreak(tag.replace('/', '/<wbr>'))
+      setTagWithWordBreak(tag.replace('/', '<wbr>/'))
     }
   }, [tag])
 
@@ -44,28 +47,23 @@ const CategoryLink: FunctionComponent<Props> = ({ category, tag }) => {
   return (
     <button
       type="button"
-      className="font-sans flex text-sm capitalize items-start justify-start"
+      className={`${
+        selected ? 'bg-lime' : 'bg-white'
+      } h-7 px-2 py-1 mr-3 mb-3 border border-blue-tag font-sans rounded flex items-center
+      text-xs text-blue-dark uppercase justify-start hover:bg-lime`}
       onClick={() => handleClick(category, tag)}
     >
-      {selected ? (
-        <div className="mr-2 transform translate-y-0.5">
-          <Selected className="w-4" />
-        </div>
-      ) : (
-        <div className="mr-2 transform translate-y-0.5">
-          <Box className="w-4" />
-        </div>
-      )}
-      {tagWithWordBreak ? (
-        <span
-          className="leading-5 text-left dont-break-out"
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(tagWithWordBreak),
-          }}
-        />
-      ) : (
-        <span className="leading-5 text-left dont-break-out">{tag}</span>
-      )}
+      <span className="flex items-start mr-1 h-7 overflow-hidden">
+        {tagWithWordBreak ? (
+          <span
+            className="text-left leading-7"
+            dangerouslySetInnerHTML={{ __html: sanitize(tagWithWordBreak) }}
+          />
+        ) : (
+          <span className="text-left leading-7">{tag}</span>
+        )}
+      </span>
+      <span className="flex items-center h-7">({productCount})</span>
     </button>
   )
 }
