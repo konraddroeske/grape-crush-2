@@ -1,3 +1,5 @@
+import type { TagsWithProducts } from '@components/products-page/products-menu/Category'
+import { cleanString } from '@lib/sortProducts'
 import { ProductCategories, ProductLowercase } from '@models/ambassador'
 import { ICategoryFields } from '@models/contentful-graph'
 import { TagsByCategory, TagsByCount } from '@redux/productsSlice'
@@ -98,4 +100,51 @@ export const getAllTags = (products: ProductLowercase[]) => {
 
     return { ...parentAcc, [name]: count }
   }, {} as TagsByCount)
+}
+
+const sortCount = (tags: TagsWithProducts[]) => {
+  return [...tags].sort((a, b) => {
+    return b.productCount - a.productCount
+  })
+}
+
+const sortAlphabetically = (tags: TagsWithProducts[]) => {
+  return [...tags].sort((a, b) => {
+    return cleanString(a.name).localeCompare(b.name)
+  })
+}
+
+const sortPriceRange = (tags: TagsWithProducts[]) => {
+  const ranges = sortAlphabetically(tags)
+
+  return ranges.slice(-1).concat(ranges.slice(0, -1))
+}
+
+export const sortCategoryTags = (
+  currCategory: keyof TagsByCategory,
+  obj: TagsWithProducts[]
+) => {
+  switch (currCategory) {
+    case 'parentType': {
+      return sortCount(obj)
+    }
+    case 'category': {
+      return sortAlphabetically(obj)
+    }
+    case 'style': {
+      return sortAlphabetically(obj)
+    }
+    case 'country': {
+      return sortAlphabetically(sortCount(obj).slice(0, 20))
+    }
+    case 'varietal': {
+      return sortAlphabetically(sortCount(obj).slice(0, 20))
+    }
+    case 'range': {
+      return sortPriceRange(obj)
+    }
+    default: {
+      return sortAlphabetically(obj)
+    }
+  }
 }

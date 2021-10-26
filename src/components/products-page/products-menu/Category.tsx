@@ -11,7 +11,7 @@ import TriangleArrow from '../../../assets/svgs/triangle-arrow.svg'
 interface OwnProps {
   title: string
   category: keyof TagsByCategory
-  tags: string[]
+  tagsObj: Record<string, number>
 }
 
 type Props = OwnProps
@@ -21,7 +21,7 @@ export interface TagsWithProducts {
   productCount: number
 }
 
-const Category: FunctionComponent<Props> = ({ title, category, tags }) => {
+const Category: FunctionComponent<Props> = ({ title, category, tagsObj }) => {
   const { products, totalSelected } = useSelector(selectProducts())
   const [tagsWithProducts, setTagsWithProducts] = useState<TagsWithProducts[]>(
     []
@@ -35,7 +35,7 @@ const Category: FunctionComponent<Props> = ({ title, category, tags }) => {
   }
 
   useEffect(() => {
-    const filteredTags = tags
+    const filteredTags = Object.keys(tagsObj)
       .map((tag) => {
         const categoryProducts = products.filter((product) => {
           if (category === 'parentType') {
@@ -57,7 +57,7 @@ const Category: FunctionComponent<Props> = ({ title, category, tags }) => {
       .filter((tag) => tag.productCount > 0)
 
     setTagsWithProducts(filteredTags)
-  }, [tags, category, products, totalSelected])
+  }, [tagsObj, category, products, totalSelected])
 
   return (
     <>

@@ -74,6 +74,7 @@ module.exports = {
       },
       blue: {
         tag: 'rgba(44, 20, 142, 0.4)',
+        form: 'rgba(44, 20, 142, 0.2)',
         dark: '#2C148E',
         DEFAULT: '#4348E3',
         light: '#978bc7',
