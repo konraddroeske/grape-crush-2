@@ -11,17 +11,21 @@ interface Props {
   closeMobileMenu?: () => void
 }
 
+interface TagOptions {
+  parentType: string[]
+  category: string[]
+  type: string[]
+  style: string[]
+  country: string[]
+  varietal: string[]
+  priceRange: string[]
+}
+
 const ProductCategories: FunctionComponent<Props> = () => {
   const { locale } = useSelector(selectGlobal())
   const { allTags } = useSelector(selectProducts())
 
-  const [parentTypeOptions, setParentTypeOptions] = useState<string[]>([])
-  const [categoryOptions, setCategoryOptions] = useState<string[]>([])
-  const [typeOptions, setTypeOptions] = useState<string[]>([])
-  const [styleOptions, setStyleOptions] = useState<string[]>([])
-  const [countryOptions, setCountryOptions] = useState<string[]>([])
-  const [varietalOptions, setVarietalOptions] = useState<string[]>([])
-  const [priceRangeOptions, setPriceRangeOptions] = useState<string[]>([])
+  const [tagOptions, setTagOptions] = useState<TagOptions | null>(null)
 
   const sortCount = (tags: Record<string, number>) => {
     return Object.entries(tags)
@@ -50,33 +54,51 @@ const ProductCategories: FunctionComponent<Props> = () => {
       const { parentType, category, type, country, style, varietal, range } =
         allTags
 
-      const sortedParentType = sortCount(parentType)
-      const sortedCategory = sortAlphabetically(category)
-      const sortedType = sortAlphabetically(type)
-      const sortedCountry = sortAlphabetically(country)
-      const sortedStyle = sortAlphabetically(style)
-      const sortedVarietal = sortAlphabetically(varietal)
-      const sortedPriceRange = sortPriceRange(range)
-
-      setParentTypeOptions(sortedParentType)
-      setCategoryOptions(sortedCategory)
-      setTypeOptions(sortedType)
-      setCountryOptions(sortedCountry)
-      setStyleOptions(sortedStyle)
-      setVarietalOptions(sortedVarietal)
-      setPriceRangeOptions(sortedPriceRange)
+      setTagOptions({
+        parentType: sortCount(parentType),
+        category: sortAlphabetically(category),
+        type: sortAlphabetically(type),
+        style: sortAlphabetically(style),
+        country: sortAlphabetically(country),
+        varietal: sortAlphabetically(varietal),
+        priceRange: sortPriceRange(range),
+      })
     }
   }, [allTags, locale])
 
   return (
     <div id="product-categories">
-      <Category title="Type" category="parentType" tags={parentTypeOptions} />
-      <Category title="Category" category="category" tags={categoryOptions} />
-      <Category title="Featured" category="type" tags={typeOptions} />
-      <Category title="Style" category="style" tags={styleOptions} />
-      <Category title="Price Range" category="range" tags={priceRangeOptions} />
-      <Category title="Country" category="country" tags={countryOptions} />
-      <Category title="Varietal" category="varietal" tags={varietalOptions} />
+      {tagOptions && (
+        <>
+          <Category
+            title="Type"
+            category="parentType"
+            tags={tagOptions.parentType}
+          />
+          <Category
+            title="Category"
+            category="category"
+            tags={tagOptions.category}
+          />
+          <Category title="Featured" category="type" tags={tagOptions.type} />
+          <Category title="Style" category="style" tags={tagOptions.style} />
+          <Category
+            title="Price Range"
+            category="range"
+            tags={tagOptions.priceRange}
+          />
+          <Category
+            title="Country"
+            category="country"
+            tags={tagOptions.country}
+          />
+          <Category
+            title="Varietal"
+            category="varietal"
+            tags={tagOptions.varietal}
+          />
+        </>
+      )}
     </div>
   )
 }
