@@ -39,9 +39,11 @@ const Item: FunctionComponent<Props> = ({ products }) => {
 
     if (currentProduct) {
       setProductData(currentProduct)
-    } else {
-      router.push('/404', '/404')
     }
+
+    // else {
+    //   router.push('/404', '/404')
+    // }
 
     dispatch(setProducts(products))
   }, [dispatch, products, router])
