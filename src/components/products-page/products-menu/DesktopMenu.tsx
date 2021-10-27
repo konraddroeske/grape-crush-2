@@ -95,7 +95,8 @@ const DesktopMenu: FunctionComponent = () => {
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
       const height = entries[0].borderBoxSize[0].blockSize
-      setCategoriesHeight(height)
+      const categoriesMargin = remToPixels(1)
+      setCategoriesHeight(height + categoriesMargin)
     })
 
     if (window) {
@@ -141,13 +142,15 @@ const DesktopMenu: FunctionComponent = () => {
         ${isSticky ? 'lg:sticky lg:top-20' : 'lg:static'} lg:px-0 lg:z-20`}
       >
         <SimpleBarReact
-          className="max-h-full pt-8 body-gutter-sm lg:w-64 lg:p-0 lg:pr-6"
+          className="max-h-full pt-8 body-gutter-sm lg:w-72 lg:p-0 lg:pr-6"
           style={{
             height: maxHeight,
           }}
         >
-          <ProductsTags />
-          <ProductCategories />
+          <div id="product-categories">
+            <ProductsTags />
+            <ProductCategories />
+          </div>
         </SimpleBarReact>
       </div>
     </div>

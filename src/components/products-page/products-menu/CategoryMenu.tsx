@@ -1,11 +1,15 @@
-import React, { FunctionComponent, useRef, useState } from 'react'
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import useResizeObserver from '@react-hook/resize-observer'
 import debounce from 'lodash.debounce'
 
+import deburr from 'lodash.deburr'
+
 import type { TagsWithProducts } from '@components/products-page/products-menu/Category'
 import CategoryLink from '@components/products-page/products-menu/CategoryLink'
 
+import CategorySearch from '@components/products-page/products-menu/CategorySearch'
+import { sortCategoryTags } from '@lib/handleTags'
 import type { TagsByCategory } from '@redux/productsSlice'
 
 interface OwnProps {
@@ -22,8 +26,29 @@ const CategoryMenu: FunctionComponent<Props> = ({
   tagsWithProducts,
 }) => {
   const [scrollHeight, setScrollHeight] = useState<string>('none')
+  const [search, setSearch] = useState<string>('')
+  const [tagsAfterSearch, setTagsAfterSearch] = useState<
+    TagsWithProducts[] | null
+  >(null)
+
   const menuRef = useRef<HTMLDivElement | null>(null)
-  const listRef = useRef<HTMLUListElement | null>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
+  const handleSearch = (searchTerm: string) => {
+    setSearch(searchTerm)
+  }
+
+  useEffect(() => {
+    const filtered =
+      search.length > 0
+        ? tagsWithProducts.filter(({ name }) =>
+            deburr(name).toLowerCase().includes(deburr(search).toLowerCase())
+          )
+        : tagsWithProducts
+
+    const sorted = sortCategoryTags(category, filtered)
+    setTagsAfterSearch(sorted)
+  }, [search, category, tagsWithProducts])
 
   const handleScrollHeight = (target: Element) => {
     const height = target?.scrollHeight || 0
@@ -34,7 +59,7 @@ const CategoryMenu: FunctionComponent<Props> = ({
   }
 
   const debouncedResize = debounce(handleScrollHeight, 100)
-  useResizeObserver(listRef, ({ target }) => debouncedResize(target))
+  useResizeObserver(containerRef, ({ target }) => debouncedResize(target))
 
   return (
     <div
@@ -44,19 +69,27 @@ const CategoryMenu: FunctionComponent<Props> = ({
         maxHeight: menuOpen ? scrollHeight : 0,
       }}
     >
-      <ul
-        ref={listRef}
-        className="grid grid-cols-1 gap-y-4 xxs:grid-cols-2 xxs:gap-x-3 xs:gap-x-4
-        sm:grid-cols-3 lg:grid-cols-1 lg:gap-x-0"
-      >
-        {tagsWithProducts.map(({ name }) => {
-          return (
-            <li key={name} className="last:mb-5">
-              <CategoryLink category={category} tag={name} />
-            </li>
-          )
-        })}
-      </ul>
+      <div ref={containerRef}>
+        {tagsWithProducts.length > 10 && (
+          <div className="mb-4 max-w-lg">
+            <CategorySearch handleSearch={handleSearch} />
+          </div>
+        )}
+        <ul className="flex flex-wrap pb-2">
+          {tagsAfterSearch &&
+            tagsAfterSearch.map(({ name, productCount }) => {
+              return (
+                <li key={name} className="mr-2 mb-2">
+                  <CategoryLink
+                    category={category}
+                    tag={name}
+                    productCount={productCount}
+                  />
+                </li>
+              )
+            })}
+        </ul>
+      </div>
     </div>
   )
 }

@@ -41,20 +41,15 @@ module.exports = {
       blue: {
         dark: '#2C148E',
         DEFAULT: '#4348E3',
-        // light: 'rgba(44, 20, 142, 0.05)',
         light: '#978bc7',
         lightest: '#f4f3f9',
       },
       lime: {
-        // DEFAULT: 'rgba(216, 255, 108, 1.0)',
         background: 'rgba(223,255,133,0.2)',
         DEFAULT: '#DFFF85',
         light: 'rgba(217, 255, 108, 0.5)',
         lightest: '#F5FFDA',
       },
-      // paleLime: {
-      //   DEFAULT:
-      // },
       white: {
         DEFAULT: '#FFFFFF',
       },
@@ -78,6 +73,8 @@ module.exports = {
         DEFAULT: '#000000',
       },
       blue: {
+        tag: 'rgba(44, 20, 142, 0.4)',
+        form: 'rgba(44, 20, 142, 0.2)',
         dark: '#2C148E',
         DEFAULT: '#4348E3',
         light: '#978bc7',
@@ -88,7 +85,6 @@ module.exports = {
         DEFAULT: '#C297EF',
       },
       lime: {
-        // DEFAULT: 'rgba(216, 255, 108, 1.0)',
         DEFAULT: '#DFFF85',
         light: 'rgba(217, 255, 108, 0.5)',
         lightest: '#F5FFDA',

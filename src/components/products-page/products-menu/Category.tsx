@@ -11,7 +11,7 @@ import TriangleArrow from '../../../assets/svgs/triangle-arrow.svg'
 interface OwnProps {
   title: string
   category: keyof TagsByCategory
-  tags: string[]
+  tagsObj: Record<string, number>
 }
 
 type Props = OwnProps
@@ -21,7 +21,7 @@ export interface TagsWithProducts {
   productCount: number
 }
 
-const Category: FunctionComponent<Props> = ({ title, category, tags }) => {
+const Category: FunctionComponent<Props> = ({ title, category, tagsObj }) => {
   const { products, totalSelected } = useSelector(selectProducts())
   const [tagsWithProducts, setTagsWithProducts] = useState<TagsWithProducts[]>(
     []
@@ -35,7 +35,7 @@ const Category: FunctionComponent<Props> = ({ title, category, tags }) => {
   }
 
   useEffect(() => {
-    const filteredTags = tags
+    const filteredTags = Object.keys(tagsObj)
       .map((tag) => {
         const categoryProducts = products.filter((product) => {
           if (category === 'parentType') {
@@ -57,18 +57,17 @@ const Category: FunctionComponent<Props> = ({ title, category, tags }) => {
       .filter((tag) => tag.productCount > 0)
 
     setTagsWithProducts(filteredTags)
-  }, [tags, category, products, totalSelected])
+  }, [tagsObj, category, products, totalSelected])
 
   return (
     <>
-      {/* {tagsWithProducts?.length > 0 && ( */}
       <div className="border-b-2 border-lime mb-4">
         <button
           type="button"
           className="flex items-center mb-4 pr-2"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <h3 className="text-2xl text-blue-dark font-bold uppercase mr-4">
+          <h3 className="text-2xl text-blue-dark font-bold uppercase mr-3">
             {title}
           </h3>
           {tagsWithProducts.length > 0 && (
@@ -89,7 +88,6 @@ const Category: FunctionComponent<Props> = ({ title, category, tags }) => {
           tagsWithProducts={tagsWithProducts}
         />
       </div>
-      {/* )} */}
     </>
   )
 }
