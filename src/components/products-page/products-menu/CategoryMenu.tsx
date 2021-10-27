@@ -69,17 +69,17 @@ const CategoryMenu: FunctionComponent<Props> = ({
         maxHeight: menuOpen ? scrollHeight : 0,
       }}
     >
-      <div ref={containerRef}>
+      <div ref={containerRef} className="">
         {tagsWithProducts.length > 20 && (
           <div className="mb-4 max-w-lg">
             <CategorySearch handleSearch={handleSearch} />
           </div>
         )}
-        <ul className="flex flex-wrap pb-2">
+        <ul className="flex flex-wrap">
           {tagsAfterSearch &&
             tagsAfterSearch.map(({ name, productCount }) => {
               return (
-                <li key={name} className="mr-2 mb-2">
+                <li key={name} className="mr-2 mb-2 last:mb-6">
                   <CategoryLink
                     category={category}
                     tag={name}
