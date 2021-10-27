@@ -58,7 +58,7 @@ const CategoryMenu: FunctionComponent<Props> = ({
     }
   }
 
-  const debouncedResize = debounce(handleScrollHeight, 100)
+  const debouncedResize = debounce(handleScrollHeight, 25)
   useResizeObserver(containerRef, ({ target }) => debouncedResize(target))
 
   return (
@@ -70,7 +70,7 @@ const CategoryMenu: FunctionComponent<Props> = ({
       }}
     >
       <div ref={containerRef}>
-        {tagsWithProducts.length > 10 && (
+        {tagsWithProducts.length > 20 && (
           <div className="mb-4 max-w-lg">
             <CategorySearch handleSearch={handleSearch} />
           </div>
