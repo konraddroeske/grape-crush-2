@@ -75,7 +75,12 @@ const LegalPage: FunctionComponent = () => {
 
   return (
     <>
-      <Seo title={title || 'Wines Within Reach'} />
+      <Seo
+        title={title || 'Wines Within Reach'}
+        canonical={
+          title ? `https://www.grapecrush.wine${router.asPath}` : undefined
+        }
+      />
       <div className="min-h-screen py-12">
         {title && (
           <div className="my-4 overflow-hidden">

@@ -53,7 +53,7 @@ const Faq: FunctionComponent = () => {
 
   return (
     <>
-      <Seo title="FAQ" />
+      <Seo title="FAQ" canonical="https://www.grapecrush.wine/faq" />
       <div className="min-h-screen py-12">
         <div className="my-4 overflow-hidden">
           <OutlineMarquee text="Frequently asked questions" />

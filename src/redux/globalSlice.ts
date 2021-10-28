@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import {
-  Asset,
   CONTENTFUL_DEFAULT_LOCALE_CODE,
   ICategoryFields,
   IFooterFields,
@@ -34,7 +33,7 @@ interface Global {
   mobileNavOpen: boolean
   isSticky: boolean
   heroSlides: IHeroSlideFields[]
-  seoImage: Asset | null
+  // seoImage: Asset | null
   currentTheme: Theme
   topStyles: string[]
   categories: ICategoryFields[]
@@ -51,7 +50,7 @@ const initialState: Global = {
   footer: [],
   nav: [],
   heroSlides: [],
-  seoImage: null,
+  // seoImage: null,
   currentTheme: {
     nav: '#2C148E',
     title: '#d9ff6c',
@@ -95,10 +94,10 @@ export const globalSlice = createSlice({
     setHeroSlides(state, action) {
       const { items } = action.payload
 
-      const seoSlide = items.find((item: IHeroSlideFields) => item.mainImage)
-      const { image: seoImage } = seoSlide
+      // const seoSlide = items.find((item: IHeroSlideFields) => item.mainImage)
+      // const { image: seoImage } = seoSlide
 
-      return { ...state, seoImage, heroSlides: items }
+      return { ...state, heroSlides: items }
     },
     setMobileNavOpen(state, action) {
       return { ...state, mobileNavOpen: action.payload }

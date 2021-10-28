@@ -54,7 +54,7 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
 
   return (
     <>
-      <Seo title="Shop" />
+      <Seo title="Shop" canonical="https://www.grapecrush.wine/products" />
       <div className="flex flex-col py-12 pb-12 min-h-screen">
         <div
           className={`${

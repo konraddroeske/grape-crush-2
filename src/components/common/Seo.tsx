@@ -7,34 +7,37 @@ import { Asset } from '@models/contentful-graph'
 import { selectGlobal } from '@redux/globalSlice'
 
 interface OwnProps {
-  title: string
+  title?: string
   description?: string | undefined
   image?: Asset | undefined
+  canonical?: string
 }
 
 type Props = OwnProps
 
-const Seo: FunctionComponent<Props> = ({ title, description, image }) => {
-  const { locale, seoImage: defaultImage } = useSelector(selectGlobal())
+const Seo: FunctionComponent<Props> = ({
+  title,
+  description,
+  image,
+  canonical,
+}) => {
+  const { locale } = useSelector(selectGlobal())
   const [imageData, setImageData] = useState<Asset | null>(null)
 
   useEffect(() => {
-    if (defaultImage) {
-      setImageData(defaultImage)
+    if (image) {
+      setImageData(image)
     }
-  }, [image, defaultImage, locale])
+  }, [image, locale])
 
   return (
     <NextSeo
-      title={title}
+      title={title || 'Wines Within Reach'}
+      canonical={canonical || 'https://www.grapecrush.wine/'}
       description={
         description ||
-        "With one of Ontario's largest natural wines selection, shop from 200+ curated natural, biodynamic, and classic wines for any budget. We ship province-wide."
+        "Ontario's largest selection of natural wines - shop from over 200+ curated natural, biodynamic, and classic wines for any budget. Available for pick-up in Toronto and delivery province-wide."
       }
-      canonical="https://www.grapecrush.wine/"
-      facebook={{
-        appId: '1761199030730074',
-      }}
       openGraph={
         imageData
           ? {

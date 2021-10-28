@@ -57,7 +57,7 @@ const About: FunctionComponent = () => {
 
   return (
     <>
-      <Seo title="About" />
+      <Seo title="About" canonical="https://www.grapecrush.wine/about" />
       <div className="min-h-screen pt-24">
         {headline && (
           <section className="relative body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">

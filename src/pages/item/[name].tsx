@@ -71,7 +71,9 @@ const Item: FunctionComponent<Props> = ({ products }) => {
   return (
     <>
       <Seo
-        title={productData?.data.name || 'Wines Within Reach'}
+        title={productData?.data.name}
+        canonical={`https://www.grapecrush.wine${router.asPath}`}
+        description={productData?.data.description}
         image={
           productData && dimensions
             ? {

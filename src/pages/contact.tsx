@@ -27,7 +27,7 @@ const Contact: FunctionComponent = () => {
 
   return (
     <>
-      <Seo title="Contact" />
+      <Seo title="Contact" canonical="https://www.grapecrush.wine/contact" />
       <div className="min-h-screen pt-12">
         <div id="location" className="mt-4 overflow-hidden">
           <OutlineMarquee text="Visit us" />

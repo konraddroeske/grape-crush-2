@@ -15,7 +15,7 @@ const Custom404: FunctionComponent = () => {
 
   return (
     <>
-      <Seo title="404" />
+      <Seo title="404" canonical="https://www.grapecrush.wine/404" />
       <div className="min-h-screen pt-12 flex flex-col justify-between">
         <div id="location" className="mt-4 overflow-hidden">
           <OutlineMarquee text="Oops!" />
