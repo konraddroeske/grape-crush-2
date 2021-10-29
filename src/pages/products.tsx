@@ -11,11 +11,10 @@ import ProductsList from '@components/products-page/products-list/ProductsList'
 import DesktopMenu from '@components/products-page/products-menu/DesktopMenu'
 import MobileMenu from '@components/products-page/products-menu/MobileMenu'
 import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
-import client from '@lib/apolloClient'
 import fetchGlobalData from '@lib/fetchGlobalData'
+import fetchMissingImage from '@lib/fetchMissingImage'
 import { ProductLowercase } from '@models/ambassador'
 import { Asset } from '@models/contentful-graph'
-import { assetCollectionQuery } from '@models/schema'
 import { selectGlobal } from '@redux/globalSlice'
 
 import {
@@ -90,29 +89,9 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  // const { locale: defaultLocale = 'en-US' } = ctx
-  // console.log('store', store.getState())
-  // const { products: currentProducts } = store.getState()
-
   const { products } = await fetchGlobalData(store)
+  const missingImage = await fetchMissingImage()
 
-  const { data: missingImageData } = await client.query({
-    query: assetCollectionQuery,
-    variables: {
-      assetCollectionWhere: {
-        title_contains: 'missing',
-      },
-    },
-  })
-
-  const { assetCollection } = missingImageData
-
-  const { items } = assetCollection
-  const missingImage = items.find((image: Asset) =>
-    image.title.toLowerCase().includes('light')
-  )
-
-  // Products
   return {
     props: { products, missingImage },
     revalidate: 10,

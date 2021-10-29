@@ -19,6 +19,10 @@ const Seo: FunctionComponent<Props> = ({
   image,
   canonical,
 }) => {
+  // if (image) {
+  //   console.log(image.width, image.height)
+  // }
+
   return (
     <NextSeo
       title={title || 'Wines Within Reach'}

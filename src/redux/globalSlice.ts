@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 
+import { ProductLowercase } from '@models/ambassador'
 import {
   Asset,
   CONTENTFUL_DEFAULT_LOCALE_CODE,
@@ -38,6 +39,7 @@ interface Global {
   currentTheme: Theme
   topStyles: string[]
   categories: ICategoryFields[]
+  pageSeo: ProductLowercase | null
 }
 
 const initialState: Global = {
@@ -63,6 +65,7 @@ const initialState: Global = {
   },
   topStyles: [],
   categories: [],
+  pageSeo: null,
 }
 
 export const globalSlice = createSlice({
@@ -112,6 +115,9 @@ export const globalSlice = createSlice({
     setCategories(state, action) {
       return { ...state, categories: action.payload }
     },
+    setPageSeo(state, action) {
+      return { ...state, pageSeo: action.payload }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -135,6 +141,7 @@ export const {
   setIsSticky,
   setTopStyles,
   setCategories,
+  setPageSeo,
 } = globalSlice.actions
 
 export const selectGlobal = () => (state: AppState) => state?.[globalSlice.name]

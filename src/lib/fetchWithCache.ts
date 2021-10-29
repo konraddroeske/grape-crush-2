@@ -25,8 +25,8 @@ const getGqlString = (doc: DocumentNode) => {
 }
 
 export const fetchWithCacheApollo = async <T>(options: QueryOptions) => {
-  const { query } = options
-  const gqlString = getGqlString(query)
+  const { query, variables } = options
+  const gqlString = getGqlString(query) + JSON.stringify(variables)
   const value = cacheData.get(gqlString)
 
   if (value) {
