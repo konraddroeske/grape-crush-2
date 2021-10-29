@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 
 import { useRouter } from 'next/dist/client/router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -29,35 +29,35 @@ const Item: FunctionComponent<Props> = ({ products, missingImage }) => {
   const router = useRouter()
   const { pageSeo } = useSelector(selectGlobal())
 
-  const [dimensions, setDimensions] = useState<{
-    height: number
-    width: number
-  } | null>(null)
+  // const [dimensions, setDimensions] = useState<{
+  //   height: number
+  //   width: number
+  // } | null>(null)
 
   useEffect(() => {
     dispatch(setMissingImage(missingImage))
     dispatch(setProducts(products))
   }, [dispatch, products, missingImage])
 
-  useEffect(() => {
-    if (pageSeo) {
-      const img = new Image()
-      // eslint-disable-next-line prefer-destructuring
-      img.src = pageSeo.data.imageUrl[0]
-      img.onload = (data) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        const { naturalWidth, naturalHeight } = data.path[0]
-
-        if (naturalWidth && naturalHeight) {
-          setDimensions({
-            width: naturalWidth,
-            height: naturalHeight,
-          })
-        }
-      }
-    }
-  }, [pageSeo])
+  // useEffect(() => {
+  //   if (pageSeo) {
+  //     const img = new Image()
+  //     // eslint-disable-next-line prefer-destructuring
+  //     img.src = pageSeo.data.imageUrl[0]
+  //     img.onload = (data) => {
+  //       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //       // @ts-ignore
+  //       const { naturalWidth, naturalHeight } = data.path[0]
+  //
+  //       if (naturalWidth && naturalHeight) {
+  //         setDimensions({
+  //           width: naturalWidth,
+  //           height: naturalHeight,
+  //         })
+  //       }
+  //     }
+  //   }
+  // }, [pageSeo])
 
   return (
     <>
@@ -70,8 +70,10 @@ const Item: FunctionComponent<Props> = ({ products, missingImage }) => {
             title: pageSeo.data.name,
             url: pageSeo?.data.imageUrl[0],
             description: pageSeo?.data.description,
-            width: dimensions?.width || 500,
-            height: dimensions?.height || 500,
+            // width: dimensions?.width || 500,
+            // height: dimensions?.height || 500,
+            width: 1200,
+            height: 630,
           }}
         />
       )}
