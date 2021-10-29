@@ -15,7 +15,7 @@ export default {
     site_name: 'Grape Crush',
     title: 'Grape Crush',
     description:
-      "Ontario's largest selection of natural wines - shop from over 200+ curated natural, biodynamic, and classic wines for any budget. Available for pick-up in Toronto and delivery province-wide.",
+      "Ontario's largest selection of natural wines - shop from over 200+ curated natural, biodynamic, and classic wines for any budget.",
   },
   twitter: {
     cardType: 'summary_large_image',
