@@ -39,7 +39,7 @@ interface Global {
   currentTheme: Theme
   topStyles: string[]
   categories: ICategoryFields[]
-  pageSeo: ProductLowercase | null
+  pageProductData: ProductLowercase | null
 }
 
 const initialState: Global = {
@@ -65,7 +65,7 @@ const initialState: Global = {
   },
   topStyles: [],
   categories: [],
-  pageSeo: null,
+  pageProductData: null,
 }
 
 export const globalSlice = createSlice({
@@ -115,8 +115,8 @@ export const globalSlice = createSlice({
     setCategories(state, action) {
       return { ...state, categories: action.payload }
     },
-    setPageSeo(state, action) {
-      return { ...state, pageSeo: action.payload }
+    setPageProductData(state, action) {
+      return { ...state, pageProductData: action.payload }
     },
   },
   extraReducers: {
@@ -141,7 +141,7 @@ export const {
   setIsSticky,
   setTopStyles,
   setCategories,
-  setPageSeo,
+  setPageProductData,
 } = globalSlice.actions
 
 export const selectGlobal = () => (state: AppState) => state?.[globalSlice.name]
