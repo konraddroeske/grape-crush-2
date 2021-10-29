@@ -116,16 +116,19 @@ export const getStaticPaths = async () => {
 export const getStaticProps = wrapper.getStaticProps(
   (store) => async (context) => {
     const { products } = await fetchGlobalData(store)
-    const name = context?.params?.name
+    const name = context?.params?.name as string
 
-    if (name && typeof name === 'string') {
-      const currentProduct = products.find(
-        (product) => product.data.name === decodeURIComponent(name)
-      )
+    const currentProduct = products.find(
+      (product) => product.data.name === decodeURIComponent(name)
+    )
 
-      store.dispatch(setPageSeo(currentProduct || null))
+    if (!currentProduct) {
+      return {
+        notFound: true,
+      }
     }
 
+    store.dispatch(setPageSeo(currentProduct || null))
     const missingImage = await fetchMissingImage()
 
     return {
