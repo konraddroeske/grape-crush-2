@@ -26,7 +26,6 @@ const Item: FunctionComponent<Props> = ({ products }) => {
   const router = useRouter()
 
   const [productData, setProductData] = useState<ProductLowercase | null>(null)
-
   const [dimensions, setDimensions] = useState<{
     height: number
     width: number
@@ -40,10 +39,6 @@ const Item: FunctionComponent<Props> = ({ products }) => {
     if (currentProduct) {
       setProductData(currentProduct)
     }
-
-    // else {
-    //   router.push('/404', '/404')
-    // }
 
     dispatch(setProducts(products))
   }, [dispatch, products, router])
@@ -70,22 +65,24 @@ const Item: FunctionComponent<Props> = ({ products }) => {
 
   return (
     <>
-      <Seo
-        title={productData?.data.name}
-        canonical={`https://www.grapecrush.wine${router.asPath}`}
-        description={productData?.data.description}
-        image={
-          productData && dimensions
-            ? {
-                title: productData.data.name,
-                url: productData?.data.imageUrl[0],
-                description: productData?.data.description,
-                width: dimensions.width,
-                height: dimensions.height,
-              }
-            : undefined
-        }
-      />
+      {productData && dimensions && (
+        <Seo
+          title={productData?.data.name}
+          canonical={`https://www.grapecrush.wine${router.asPath}`}
+          description={productData?.data.description}
+          image={
+            productData && dimensions
+              ? {
+                  title: productData.data.name,
+                  url: productData?.data.imageUrl[0],
+                  description: productData?.data.description,
+                  width: dimensions.width,
+                  height: dimensions.height,
+                }
+              : undefined
+          }
+        />
+      )}
       <div className="min-h-screen py-12 pb-28">
         <div className="my-4 overflow-hidden">
           <OutlineMarquee text="shop" />
