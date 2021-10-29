@@ -116,11 +116,9 @@ export const getStaticProps = wrapper.getStaticProps(
     const { products } = await fetchGlobalData(store)
     const name = context?.params?.name
 
-    console.log('param name', name)
-
     if (name) {
       const currentProduct = products.find(
-        (product) => product.data.name === name
+        (product) => product.data.name === decodeURIComponent(name)
       )
 
       store.dispatch(setPageSeo(currentProduct || null))
