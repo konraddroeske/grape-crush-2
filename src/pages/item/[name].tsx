@@ -116,7 +116,7 @@ export const getStaticProps = wrapper.getStaticProps(
     const { products } = await fetchGlobalData(store)
     const name = context?.params?.name
 
-    if (name) {
+    if (name && typeof name === 'string') {
       const currentProduct = products.find(
         (product) => product.data.name === decodeURIComponent(name)
       )
