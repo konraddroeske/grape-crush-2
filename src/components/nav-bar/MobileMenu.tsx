@@ -12,6 +12,7 @@ import gsap from 'gsap'
 import MenuButtonMobile from '@components/nav-bar/MenuButtonMobile'
 import MenuLink from '@components/nav-bar/MenuLink'
 import NavCategories from '@components/nav-bar/NavCategories'
+import NavLinkMobile from '@components/nav-bar/NavLinkMobile'
 import NavSearch from '@components/nav-bar/NavSearch'
 import useScrollDetector from '@hooks/useScrollDetector'
 
@@ -75,7 +76,7 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
       }}
     >
       <div className="w-full body-gutter-sm max-w-xl mx-auto">
-        <div className="mb-2">
+        <div className="mb-10">
           <MenuButtonMobile handleOpen={handleOpen} open={open}>
             Shop
           </MenuButtonMobile>
@@ -89,6 +90,13 @@ const MobileMenu: FunctionComponent<Props> = ({ mobileNavOpen, barRef }) => {
           <MenuLink variant="mobile" to="/faq">
             FAQ
           </MenuLink>
+          <a
+            href="https://www.tbdine.com/book/restaurant/grape-crush?idApp=69879&language=en-us"
+            target=" _blank"
+            rel=" noopener noreferrer"
+          >
+            <NavLinkMobile>Reservations</NavLinkMobile>
+          </a>
         </div>
         {/* <RoundedButton variant="full">Shop All Wines</RoundedButton> */}
         <NavSearch variant="mobile" />
