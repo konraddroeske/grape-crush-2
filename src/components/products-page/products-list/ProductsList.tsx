@@ -30,6 +30,8 @@ const ProductsList: FunctionComponent = () => {
     productsSearch,
     productsSort,
     priceRange,
+    maxPrice,
+    totalSelectedTags,
   } = useSelector(selectProducts())
 
   const router = useRouter()
@@ -72,6 +74,12 @@ const ProductsList: FunctionComponent = () => {
     dispatch(handleProductsSearch(''))
   }
 
+  const isFilters = totalSelectedTags > 0
+  const isSearch = productsSearch.length > 0
+  const isPriceRange =
+    priceRange.min > 0 ||
+    (priceRange.max && maxPrice && priceRange.max < maxPrice)
+
   return (
     <div className="flex flex-col h-full">
       {selectedProductsByPage.length > 0 && (
@@ -89,37 +97,38 @@ const ProductsList: FunctionComponent = () => {
           })}
         </ul>
       )}
-      {selectedProductsByPage.length === 0 && (
-        <div className="h-full flex justify-center items-center pt-32 lg:pt-20">
-          <Warning text="Oops!">
-            <p className="font-headline relative z-10 my-4">
-              <span className="block">
-                We can't find what you were looking&nbsp;for.
-              </span>
-              <span className="block">
-                Try removing{' '}
-                <span className="underline">
-                  <Link href="/products?page=1" shallow>
-                    <a>some filters</a>
-                  </Link>
-                </span>{' '}
-                or{' '}
-                <span className="underline">
-                  <button
-                    type="button"
-                    className="underline"
-                    onClick={() => resetSearch()}
-                  >
-                    <a>resetting search</a>
-                  </button>
-                </span>{' '}
-                <br />
-                and maybe you'll find it there.
-              </span>
-            </p>
-          </Warning>
-        </div>
-      )}
+      {selectedProductsByPage.length === 0 &&
+        (isPriceRange || isSearch || isFilters) && (
+          <div className="h-full flex justify-center items-center pt-32 lg:pt-20">
+            <Warning text="Oops!">
+              <p className="font-headline relative z-10 my-4">
+                <span className="block">
+                  We can't find what you were looking&nbsp;for.
+                </span>
+                <span className="block">
+                  Try removing{' '}
+                  <span className="underline">
+                    <Link href="/products?page=1" shallow>
+                      <a>some filters</a>
+                    </Link>
+                  </span>{' '}
+                  or{' '}
+                  <span className="underline">
+                    <button
+                      type="button"
+                      className="underline"
+                      onClick={() => resetSearch()}
+                    >
+                      <a>resetting search</a>
+                    </button>
+                  </span>{' '}
+                  <br />
+                  and maybe you'll find it there.
+                </span>
+              </p>
+            </Warning>
+          </div>
+        )}
       <div className="mt-auto">
         <PageNav />
       </div>
