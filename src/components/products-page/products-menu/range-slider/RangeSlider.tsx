@@ -79,7 +79,7 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
   const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newMinVal = Math.min(
       Math.floor(+event.target.value / 100) * 100,
-      maxVal - 1000
+      maxVal - max * 0.05
     )
     setMinVal(newMinVal)
     debouncedPriceRange({ min: newMinVal, max: maxVal })
@@ -88,7 +88,7 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
   const handleMaxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newMaxVal = Math.max(
       Math.ceil(+event.target.value / 100) * 100,
-      minVal + 1000
+      minVal + max * 0.05
     )
     setMaxVal(newMaxVal)
     debouncedPriceRange({ min: minVal, max: newMaxVal })
@@ -113,7 +113,7 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
           ref={minValRef}
           onChange={handleMinChange}
           className={`${s.thumb} ${s.thumbZIndex3} ${
-            minVal > max - 100 ? s.thumbZIndex5 : ''
+            minVal > max - 1000 ? s.thumbZIndex5 : ''
           }`}
         />
         <input
