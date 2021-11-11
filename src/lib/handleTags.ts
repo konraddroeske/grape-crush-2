@@ -114,12 +114,6 @@ const sortAlphabetically = (tags: TagsWithProducts[]) => {
   })
 }
 
-const sortPriceRange = (tags: TagsWithProducts[]) => {
-  const ranges = sortAlphabetically(tags)
-
-  return ranges.slice(-1).concat(ranges.slice(0, -1))
-}
-
 export const sortCategoryTags = (
   currCategory: keyof TagsByCategory,
   obj: TagsWithProducts[]
@@ -139,9 +133,6 @@ export const sortCategoryTags = (
     }
     case 'varietal': {
       return sortAlphabetically(sortCount(obj).slice(0, 20))
-    }
-    case 'range': {
-      return sortPriceRange(obj)
     }
     default: {
       return sortAlphabetically(obj)
