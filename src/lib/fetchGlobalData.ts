@@ -1,6 +1,6 @@
 import { EnhancedStore } from '@reduxjs/toolkit'
 
-import { addPriceRange } from '@lib/addPriceRange'
+// import { addPriceRange } from '@lib/addPriceRange'
 
 import ambassador from '@lib/ambassador'
 import { cleanData } from '@lib/cleanData'
@@ -38,14 +38,11 @@ export default async function fetchGlobalData(store: EnhancedStore) {
   const [shop] = shops
   const { products } = shop
 
-  const productsWithPriceRange = addPriceRange(products)
-  const productsWithNewKeys = cleanData(productsWithPriceRange)
+  const productsWithNewKeys = cleanData(products)
 
   const allTags = getAllTags(productsWithNewKeys)
   const topStyles = getTopStyles(allTags)
   const categories = getCategories(categoryCollection.items, allTags)
-
-  // console.log(categoryCollection)
 
   store.dispatch(setTopStyles(topStyles))
   store.dispatch(setLocale(locale))

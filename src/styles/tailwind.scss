@@ -1,32 +1,6 @@
-/* purgecss start ignore */
 @tailwind base;
-
 @tailwind components;
-/* purgecss end ignore */
 @tailwind utilities;
-
-//@layer base {
-//  @font-face {
-//    font-family: 'Stolzl';
-//    font-weight: 350;
-//    src: url(/fonts/stolzl/stolzl-book.woff2) format('woff2');
-//  }
-//  @font-face {
-//    font-family: 'Stolzl';
-//    font-weight: 400;
-//    src: url(/fonts/stolzl/stolzl-regular.woff2) format('woff2');
-//  }
-//  @font-face {
-//    font-family: 'Stolzl';
-//    font-weight: 500;
-//    src: url(/fonts/stolzl/stolzl-medium.woff2) format('woff2');
-//  }
-//  @font-face {
-//    font-family: 'Stolzl';
-//    font-weight: 700;
-//    src: url(/fonts/stolzl/stolzl-bold.woff2) format('woff2');
-//  }
-//}
 
 @layer utilities {
   img {
@@ -55,10 +29,6 @@
     list-style-type: none;
   }
 
-  //a {
-  //  min-height: 48px;
-  //  min-width: 48px;
-  //}
   .overflow-auto {
     overflow: auto;
   }
@@ -437,11 +407,6 @@
       width: 9rem;
     }
 
-    //@media (min-width: 640px) {
-    //  width: 9rem;
-    //  //display: block;
-    //}
-
     @media (min-width: 768px) {
       width: 8rem;
       right: calc(23% + 10.8%);
@@ -450,13 +415,7 @@
 
     @media (min-width: 1280px) {
       width: 10rem;
-      //right: calc((100% / 6) + 6rem);
     }
-
-    //@media (min-width: 1536px) {
-    //  width: 11rem;
-    //  right: calc((100% / 6) + 8rem);
-    //}
   }
 
   .modal-initial-position {
@@ -544,14 +503,6 @@
       left: -1.5rem;
       right: 0;
     }
-
-    // Xl
-    //@media (min-width: 1280px) {
-    //}
-
-    // 2xl
-    //@media (min-width: 1536px) {
-    //}
   }
 
   .grid-row-1 {
@@ -572,9 +523,9 @@
 
   .team-members-bg {
     background: linear-gradient(
-      to top,
-      #dfff85 calc(100% * 8 / 12 + 1rem),
-      white calc(100% * 4 / 12 + 1rem)
+                    to top,
+                    #dfff85 calc(100% * 8 / 12 + 1rem),
+                    white calc(100% * 4 / 12 + 1rem)
     );
   }
 
@@ -691,12 +642,6 @@
       right: -10rem;
     }
 
-    //// Xl
-    //@media (min-width: 1280px) and (min-height: 1000px) {
-    //  width: 57rem;
-    //  right: -12rem;
-    //}
-
     // 2xl
     @media (min-width: 1536px) {
       width: 57rem;
@@ -711,11 +656,6 @@
     @media (min-width: 1024px) {
       width: 11.1rem;
     }
-
-    // Xl
-    //@media (min-width: 1280px) {
-    //  width: 11.1rem;
-    //}
 
     // 2xl
     @media (min-width: 1536px) {
@@ -751,9 +691,6 @@
     }
   }
 
-  //.feature-hover:hover div div  {
-  //  color: #2c148e;
-  //}
   .hero-modal-center {
     position: fixed;
     z-index: 50;
@@ -857,27 +794,9 @@
       margin-left: 50%;
     }
 
-    //.section-padding {
-    //
-    //  padding-top: 6rem;
-    //  padding-bottom: 6rem;
-    //
-    //  // Xl
-    //  @media (min-width: 1280px) {
-    //    padding-top: 7rem;
-    //    padding-bottom: 7rem;
-    //  }
-    //
-    //  // 2xl
-    //  @media (min-width: 1536px) {
-    //    padding-top: 8rem;
-    //    padding-bottom: 8rem;
-    //  }
-    //}
   }
 }
 
-/* purgecss start ignore */
 html {
   @apply antialiased;
 }

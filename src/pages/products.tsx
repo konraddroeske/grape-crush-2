@@ -20,6 +20,7 @@ import { selectGlobal } from '@redux/globalSlice'
 import {
   selectProducts,
   setAllTags,
+  setMaxPrice,
   setMissingImage,
   setProducts,
 } from '@redux/productsSlice'
@@ -44,6 +45,7 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
   useEffect(() => {
     dispatch(setMissingImage(missingImage))
     dispatch(setAllTags(products))
+    dispatch(setMaxPrice(products))
     dispatch(setProducts(products))
   }, [dispatch, products, missingImage])
 

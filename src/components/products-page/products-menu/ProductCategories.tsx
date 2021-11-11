@@ -3,21 +3,12 @@ import React, { FunctionComponent } from 'react'
 import { useSelector } from 'react-redux'
 
 import Category from '@components/products-page/products-menu/Category'
+import RangeCategory from '@components/products-page/products-menu/range-slider/RangeCategory'
 import { selectProducts } from '@redux/productsSlice'
 
 interface Props {
   closeMobileMenu?: () => void
 }
-
-// interface TagOptions {
-//   parentType: string[]
-//   category: string[]
-//   type: string[]
-//   style: string[]
-//   country: string[]
-//   varietal: string[]
-//   priceRange: string[]
-// }
 
 const ProductCategories: FunctionComponent<Props> = () => {
   const { allTags } = useSelector(selectProducts())
@@ -31,6 +22,7 @@ const ProductCategories: FunctionComponent<Props> = () => {
             category="parentType"
             tagsObj={allTags.parentType}
           />
+          <RangeCategory />
           <Category
             title="Category"
             category="category"
@@ -38,11 +30,6 @@ const ProductCategories: FunctionComponent<Props> = () => {
           />
           <Category title="Featured" category="type" tagsObj={allTags.type} />
           <Category title="Style" category="style" tagsObj={allTags.style} />
-          <Category
-            title="Price Range"
-            category="range"
-            tagsObj={allTags.range}
-          />
           <Category
             title="Country"
             category="country"

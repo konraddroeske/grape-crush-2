@@ -15,7 +15,6 @@ export interface TagsByCategory {
   style: string[]
   country: string[]
   varietal: string[]
-  range: string[]
 }
 
 export interface TagsByCount {
@@ -25,7 +24,6 @@ export interface TagsByCount {
   country: Record<string, number>
   varietal: Record<string, number>
   type: Record<string, number>
-  range: Record<string, number>
 }
 
 export type SortOption =
@@ -50,6 +48,11 @@ interface ProductsSlice {
   menuOpen: boolean
   mobileMenuOpen: boolean
   missingImage: Asset | null
+  maxPrice: number | null
+  priceRange: {
+    min: number
+    max: number | null
+  }
 }
 
 const initialState: ProductsSlice = {
@@ -65,7 +68,6 @@ const initialState: ProductsSlice = {
     style: [],
     country: [],
     varietal: [],
-    range: [],
   },
   page: 1,
   productsPerPage: 48,
@@ -74,7 +76,11 @@ const initialState: ProductsSlice = {
   menuOpen: true,
   mobileMenuOpen: false,
   missingImage: null,
-  // isLoading: true,
+  maxPrice: null,
+  priceRange: {
+    min: 0,
+    max: null,
+  },
 }
 
 export const productsSlice = createSlice({
@@ -89,7 +95,14 @@ export const productsSlice = createSlice({
     },
     handleProducts(state, action) {
       // console.log('handling products')
-      const { products, page, selectedTags: selectedTagsObj } = state
+      const {
+        products,
+        page,
+        priceRange,
+        selectedTags: selectedTagsObj,
+      } = state
+
+      // console.log('handle products', current(priceRange))
 
       const {
         productsSearch,
@@ -181,9 +194,18 @@ export const productsSlice = createSlice({
               return inCountry || inTags || inName || inDescription
             })
 
-      // HANDLE SORT
+      const { min, max } = priceRange
 
-      const sortedProducts = sortProducts([...searchedProducts], productsSort)
+      // HANDLE PRICE RANGE
+      const pricedProducts = max
+        ? [...searchedProducts].filter((product) => {
+            const price = product?.data?.variants?.[0]?.amount
+            return price && price >= min && price <= max
+          })
+        : searchedProducts
+
+      // HANDLE SORT
+      const sortedProducts = sortProducts([...pricedProducts], productsSort)
 
       const selectedProductsByPage = chunk(
         sortedProducts,
@@ -250,7 +272,6 @@ export const productsSlice = createSlice({
         'style',
         'varietal',
         'country',
-        'range',
       ]
 
       const tagsByCategory = products.reduce((acc, cur) => {
@@ -328,7 +349,6 @@ export const productsSlice = createSlice({
           style: [],
           country: [],
           varietal: [],
-          range: [],
         },
       }
     },
@@ -363,6 +383,30 @@ export const productsSlice = createSlice({
         missingImage: action.payload,
       }
     },
+    setMaxPrice(state, action) {
+      if (state.maxPrice) return state
+
+      const prices = action.payload.map(
+        (product: ProductLowercase) => product?.data?.variants?.[0]?.amount || 0
+      )
+
+      const maxPrice = Math.ceil(Math.max(...prices) / 100) * 100
+
+      return {
+        ...state,
+        maxPrice,
+        priceRange: {
+          min: 0,
+          max: maxPrice,
+        },
+      }
+    },
+    setPriceRange(state, action) {
+      return {
+        ...state,
+        priceRange: action.payload,
+      }
+    },
     // setIsLoading(state, action) {
     //   return { ...state, isLoading: action.payload }
     // },
@@ -390,6 +434,8 @@ export const {
   toggleMobileMenuOpen,
   setMenuOpen,
   setMissingImage,
+  setMaxPrice,
+  setPriceRange,
   // setIsLoading,
 } = productsSlice.actions
 
