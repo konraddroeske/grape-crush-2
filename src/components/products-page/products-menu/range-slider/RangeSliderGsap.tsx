@@ -1,7 +1,8 @@
-import React, { FunctionComponent, useEffect, useRef } from 'react'
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 
 import gsap from 'gsap'
 
+import { CSSRulePlugin } from 'gsap/dist/CSSRulePlugin'
 import { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 
@@ -21,15 +22,20 @@ const RangeSliderGsap: FunctionComponent = () => {
   const leftKnobDraggable = useRef<Draggable | null>(null)
   const rightKnobDraggable = useRef<Draggable | null>(null)
 
+  const [leftVal, setLeftVal] = useState<number>(0)
+  const [rightVal, setRightVal] = useState<number>(0)
+
   const updateLeft = () => {
-    if (min.current && leftKnobDraggable.current) {
-      min.current.innerHTML = `Min: ${leftKnobDraggable.current.x}`
+    if (leftKnobDraggable.current) {
+      // min.current.innerHTML = `Min: ${leftKnobDraggable.current.x}`
+      setLeftVal(leftKnobDraggable.current.x)
     }
   }
 
   const updateRight = () => {
-    if (max.current && rightKnobDraggable.current) {
-      max.current.innerHTML = `Max: ${rightKnobDraggable.current.x}`
+    if (rightKnobDraggable.current) {
+      // max.current.innerHTML = `Max: ${rightKnobDraggable.current.x}`
+      setRightVal(rightKnobDraggable.current.x)
     }
   }
 
@@ -61,25 +67,28 @@ const RangeSliderGsap: FunctionComponent = () => {
     if (leftKnobDraggable.current && rightKnobDraggable.current) {
       gsap.set(leftKnobDraggable.current.target, {
         x: minRange.current,
-        onUpdate: leftKnobDraggable.current.update,
-        onUpdateScope: leftKnobDraggable.current,
+        onUpdate: () => {
+          leftKnobDraggable.current?.update()
+        },
       })
 
       gsap.set(rightKnobDraggable.current.target, {
         x: maxRange.current,
-        onUpdate: rightKnobDraggable.current.update,
-        onUpdateScope: rightKnobDraggable.current,
+        onUpdate: () => {
+          rightKnobDraggable?.current?.update()
+        },
       })
     }
 
     if (min.current && max.current) {
+      console.log('updating')
       min.current.innerHTML = `Min: ${minRange.current}`
       max.current.innerHTML = `Max: ${maxRange.current}`
     }
   }
 
   useEffect(() => {
-    gsap.registerPlugin(Draggable, InertiaPlugin)
+    gsap.registerPlugin(Draggable, InertiaPlugin, CSSRulePlugin)
 
     if (containerRef.current) {
       leftKnobDraggable.current = new Draggable(leftKnob.current, {
@@ -106,8 +115,8 @@ const RangeSliderGsap: FunctionComponent = () => {
 
   return (
     <div className="h-60">
-      <div id="min">Min: 0</div>
-      <div id="max">Max: 0</div>
+      <div id="min">{leftVal}</div>
+      <div id="max">{rightVal}</div>
       <div ref={containerRef} className={s.container} id="container">
         <div ref={leftKnob} className={`${s.knob} ${s.knob1}`} id="knob1" />
         <div ref={rightKnob} className={`${s.knob} ${s.knob2}`} id="knob2" />
