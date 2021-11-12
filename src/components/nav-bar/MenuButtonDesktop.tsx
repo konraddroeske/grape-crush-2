@@ -46,7 +46,7 @@ const MenuButtonDesktop: FunctionComponent<MenuButtonProps> = ({
         }
       }}
     >
-      <div ref={buttonRef} className="mr-2">
+      <div ref={buttonRef} className="mr-2 text-blue-dark">
         {children}
       </div>
       <MenuArrow className="svg-desktop-arrow w-3" />
