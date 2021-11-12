@@ -7,11 +7,10 @@ import React, {
 } from 'react'
 
 import debounce from 'lodash.debounce'
-import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { remToPixels } from '@lib/remToPixels'
-import { setPriceRange } from '@redux/productsSlice'
+import { selectProducts, setPriceRange } from '@redux/productsSlice'
 
 import s from './RangeSlider.module.scss'
 
@@ -23,6 +22,7 @@ interface OwnProps {
 type Props = OwnProps
 
 const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
+  const { priceRange } = useSelector(selectProducts())
   const [minVal, setMinVal] = useState(min)
   const [maxVal, setMaxVal] = useState(max)
   const minValRef = useRef<HTMLInputElement | null>(null)
@@ -32,15 +32,21 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
   const range = useRef<HTMLDivElement | null>(null)
 
   const dispatch = useDispatch()
-  const router = useRouter()
 
   useEffect(() => {
-    if (router.asPath === '/products' || router.asPath === '/products?page=1') {
-      setMinVal(0)
-      setMaxVal(max)
-      dispatch(setPriceRange({ min: 0, max }))
+    if (priceRange.max) {
+      setMinVal(priceRange.min)
+      setMaxVal(priceRange.max)
     }
-  }, [dispatch, router, max])
+  }, [priceRange])
+
+  // useEffect(() => {
+  //   if (router.asPath === '/products' || router.asPath === '/products?page=1') {
+  //     setMinVal(0)
+  //     setMaxVal(max)
+  //     dispatch(setPriceRange({ min: 0, max }))
+  //   }
+  // }, [dispatch, router, max])
 
   // Convert to percentage
   const getPercent = useCallback(

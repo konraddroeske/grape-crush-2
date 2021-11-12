@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react'
 
 import { useRouter } from 'next/dist/client/router'
-import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 
 import ProductCard from '@components/common/product/ProductCard'
@@ -16,6 +15,7 @@ import {
   handleTags,
   resetTags,
   selectProducts,
+  setPriceRange,
 } from '@redux/productsSlice'
 
 const ProductsList: FunctionComponent = () => {
@@ -106,11 +106,20 @@ const ProductsList: FunctionComponent = () => {
                 </span>
                 <span className="block">
                   Try removing{' '}
-                  <span className="underline">
-                    <Link href="/products?page=1" shallow>
-                      <a>some filters</a>
-                    </Link>
-                  </span>{' '}
+                  <button
+                    type="button"
+                    className="underline"
+                    onClick={() => {
+                      dispatch(setPriceRange({ min: 0, max: maxPrice }))
+                      router
+                        .push('/products?page=1', '/products?page=1', {
+                          shallow: true,
+                        })
+                        .then(() => window.scrollTo(0, 0))
+                    }}
+                  >
+                    some filters
+                  </button>{' '}
                   or{' '}
                   <span className="underline">
                     <button
