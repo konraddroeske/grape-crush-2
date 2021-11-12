@@ -3,14 +3,14 @@ import React, { FunctionComponent, useRef, useState } from 'react'
 import useResizeObserver from '@react-hook/resize-observer'
 import debounce from 'lodash.debounce'
 
-// import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import TriangleArrow from '@assets/svgs/triangle-arrow.svg'
 import RangeSliderGsap from '@components/products-page/products-menu/range-slider/RangeSliderGsap'
-// import { selectProducts } from '@redux/productsSlice'
+import { selectProducts } from '@redux/productsSlice'
 
 const RangeCategory: FunctionComponent = () => {
-  // const { maxPrice } = useSelector(selectProducts())
+  const { maxPrice } = useSelector(selectProducts())
 
   const [menuOpen, setMenuOpen] = useState<boolean>(true)
   const [scrollHeight, setScrollHeight] = useState<string>('none')
@@ -58,7 +58,7 @@ const RangeCategory: FunctionComponent = () => {
           }}
         >
           {/* {maxPrice && <RangeSlider min={0} max={maxPrice} />} */}
-          <RangeSliderGsap />
+          {maxPrice && <RangeSliderGsap minPrice={0} maxPrice={maxPrice} />}
         </div>
       </div>
     </>
