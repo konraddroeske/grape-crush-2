@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react'
 
+import gsap from 'gsap'
 import debounce from 'lodash.debounce'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -23,8 +24,10 @@ type Props = OwnProps
 
 const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
   const { priceRange } = useSelector(selectProducts())
+
   const [minVal, setMinVal] = useState(min)
   const [maxVal, setMaxVal] = useState(max)
+
   const minValRef = useRef<HTMLInputElement | null>(null)
   const maxValRef = useRef<HTMLInputElement | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -77,8 +80,10 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
       const maxPercent = getPercent(+maxValRef.current.value) // Preceding with '+' converts the value from type string to type number
 
       if (range.current) {
-        range.current.style.left = `${minPercent}%`
-        range.current.style.width = `${maxPercent - minPercent}%`
+        gsap.set(range.current, {
+          left: `${minPercent}%`,
+          width: `${maxPercent - minPercent}%`,
+        })
       }
     }
   }, [minVal, getPercent])
@@ -90,7 +95,9 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
       const maxPercent = getPercent(maxVal)
 
       if (range.current) {
-        range.current.style.width = `${maxPercent - minPercent}%`
+        gsap.set(range.current, {
+          width: `${maxPercent - minPercent}%`,
+        })
       }
     }
   }, [maxVal, getPercent])
