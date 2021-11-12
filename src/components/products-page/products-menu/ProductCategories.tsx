@@ -17,12 +17,12 @@ const ProductCategories: FunctionComponent<Props> = () => {
     <div>
       {allTags && (
         <>
+          <RangeCategory />
           <Category
             title="Type"
             category="parentType"
             tagsObj={allTags.parentType}
           />
-          <RangeCategory />
           <Category
             title="Category"
             category="category"
