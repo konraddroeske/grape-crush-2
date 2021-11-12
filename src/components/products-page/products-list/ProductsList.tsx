@@ -19,7 +19,6 @@ import {
 } from '@redux/productsSlice'
 
 const ProductsList: FunctionComponent = () => {
-  // const { isLoading } = useSelector(selectClient())
   const dispatch = useDispatch()
 
   const {

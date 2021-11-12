@@ -10,6 +10,7 @@ import debounce from 'lodash.debounce'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 
+import { remToPixels } from '@lib/remToPixels'
 import { setPriceRange } from '@redux/productsSlice'
 
 import s from './RangeSlider.module.scss'
@@ -26,6 +27,8 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
   const [maxVal, setMaxVal] = useState(max)
   const minValRef = useRef<HTMLInputElement | null>(null)
   const maxValRef = useRef<HTMLInputElement | null>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
   const range = useRef<HTMLDivElement | null>(null)
 
   const dispatch = useDispatch()
@@ -44,6 +47,30 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
     (value) => Math.round(((value - min) / (max - min)) * 100),
     [min, max]
   )
+
+  const [minDistance, setMinDistance] = useState<number>(0)
+
+  const handleResize = useCallback(() => {
+    const buttonWidth = remToPixels(1.5)
+    const rangeWidth = containerRef.current?.offsetWidth
+
+    if (rangeWidth) {
+      const distance = (buttonWidth / rangeWidth) * max
+      setMinDistance(Math.ceil(distance / 100) * 100)
+    }
+  }, [max])
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedResize = useCallback(debounce(handleResize, 200), [])
+
+  useEffect(() => {
+    if (window) {
+      debouncedResize()
+      window.addEventListener('resize', debouncedResize)
+    }
+
+    return () => window.removeEventListener('resize', debouncedResize)
+  }, [debouncedResize])
 
   // Set width of the range to decrease from the left side
   useEffect(() => {
@@ -79,7 +106,7 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
   const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newMinVal = Math.min(
       Math.floor(+event.target.value / 100) * 100,
-      maxVal - max * 0.05
+      maxVal - minDistance
     )
     setMinVal(newMinVal)
     debouncedPriceRange({ min: newMinVal, max: maxVal })
@@ -88,7 +115,7 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
   const handleMaxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newMaxVal = Math.max(
       Math.ceil(+event.target.value / 100) * 100,
-      minVal + max * 0.05
+      minVal + minDistance
     )
     setMaxVal(newMaxVal)
     debouncedPriceRange({ min: minVal, max: newMaxVal })
@@ -104,7 +131,7 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
           ${maxVal / 100}
         </div>
       </div>
-      <div className={s.container}>
+      <div ref={containerRef} className={s.container}>
         <input
           type="range"
           min={min}
@@ -112,9 +139,7 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
           value={minVal}
           ref={minValRef}
           onChange={handleMinChange}
-          className={`${s.thumb} ${s.thumbZIndex3} ${
-            minVal > max - 1000 ? s.thumbZIndex5 : ''
-          }`}
+          className={`${s.thumb} ${s.thumbZIndex3}`}
         />
         <input
           type="range"
