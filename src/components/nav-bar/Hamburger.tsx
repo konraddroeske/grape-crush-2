@@ -35,16 +35,16 @@ const Hamburger: FunctionComponent = () => {
   return (
     <button
       type="button"
-      className="relative flex flex-col justify-between h-3.5 w-5 lg:hidden"
+      className="relative flex flex-col justify-between h-4 w-7 lg:hidden"
       onClick={() => dispatch(setNavOpen(!navOpen))}
       aria-label="open menu"
     >
-      <div ref={topBar} className="absolute w-5 h-0.5 top-0 left-0" />
+      <div ref={topBar} className="absolute w-7 h-0.5 top-0 left-0" />
       <div
         ref={midBar}
-        className="absolute w-5 h-0.5 top-1/2 left-0 transform -translate-y-1/2"
+        className="absolute w-7 h-0.5 top-1/2 left-0 transform -translate-y-1/2"
       />
-      <div ref={lowBar} className="absolute w-5 h-0.5 bottom-0 left-0" />
+      <div ref={lowBar} className="absolute w-7 h-0.5 bottom-0 left-0" />
     </button>
   )
 }
