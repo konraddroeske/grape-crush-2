@@ -40,14 +40,6 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
     }
   }, [priceRange])
 
-  // useEffect(() => {
-  //   if (router.asPath === '/products' || router.asPath === '/products?page=1') {
-  //     setMinVal(0)
-  //     setMaxVal(max)
-  //     dispatch(setPriceRange({ min: 0, max }))
-  //   }
-  // }, [dispatch, router, max])
-
   // Convert to percentage
   const getPercent = useCallback(
     (value) => Math.round(((value - min) / (max - min)) * 100),
@@ -57,7 +49,7 @@ const RangeSlider: FunctionComponent<Props> = ({ min, max }) => {
   const [minDistance, setMinDistance] = useState<number>(0)
 
   const handleResize = useCallback(() => {
-    const buttonWidth = remToPixels(1.5)
+    const buttonWidth = remToPixels(1.75)
     const rangeWidth = containerRef.current?.offsetWidth
 
     if (rangeWidth) {
