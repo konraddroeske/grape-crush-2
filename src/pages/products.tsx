@@ -20,6 +20,7 @@ import { selectGlobal } from '@redux/globalSlice'
 import {
   selectProducts,
   setAllTags,
+  setMaxPrice,
   setMissingImage,
   setProducts,
 } from '@redux/productsSlice'
@@ -44,6 +45,7 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
   useEffect(() => {
     dispatch(setMissingImage(missingImage))
     dispatch(setAllTags(products))
+    dispatch(setMaxPrice(products))
     dispatch(setProducts(products))
   }, [dispatch, products, missingImage])
 
@@ -72,7 +74,7 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
           <DesktopMenu />
           <div
             className={`w-full px-2 ${
-              warningVisible ? 'min-h-0' : 'min-h-screen'
+              warningVisible ? 'min-h-0' : 'lg:min-h-screen'
             } sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl`}
           >
             <ProductsList />

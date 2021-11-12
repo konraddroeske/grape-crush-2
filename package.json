@@ -43,6 +43,7 @@
     "axios": "^0.21.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "body-scroll-lock": "^4.0.0-beta.0",
+    "classnames": "^2.3.1",
     "contentful": "^8.3.6",
     "contentful-management": "^7.22.2",
     "cookies-next": "^2.0.3",

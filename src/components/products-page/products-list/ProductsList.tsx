@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react'
 
 import { useRouter } from 'next/dist/client/router'
-import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 
 import ProductCard from '@components/common/product/ProductCard'
@@ -16,10 +15,10 @@ import {
   handleTags,
   resetTags,
   selectProducts,
+  setPriceRange,
 } from '@redux/productsSlice'
 
 const ProductsList: FunctionComponent = () => {
-  // const { isLoading } = useSelector(selectClient())
   const dispatch = useDispatch()
 
   const {
@@ -27,9 +26,11 @@ const ProductsList: FunctionComponent = () => {
     selectedProductsByPage,
     page,
     selectedTags,
-    totalSelectedTags,
     productsSearch,
     productsSort,
+    priceRange,
+    maxPrice,
+    totalSelectedTags,
   } = useSelector(selectProducts())
 
   const router = useRouter()
@@ -56,13 +57,27 @@ const ProductsList: FunctionComponent = () => {
         productsSort,
       })
     )
-  }, [products, selectedTags, productsSearch, productsSort, page, dispatch])
+  }, [
+    products,
+    selectedTags,
+    productsSearch,
+    productsSort,
+    page,
+    priceRange,
+    dispatch,
+  ])
 
   const resetSearch = () => {
     dispatch(setNavSearch(''))
     dispatch(setSearch(''))
     dispatch(handleProductsSearch(''))
   }
+
+  const isFilters = totalSelectedTags > 0
+  const isSearch = productsSearch.length > 0
+  const isPriceRange =
+    priceRange.min > 0 ||
+    (priceRange.max && maxPrice && priceRange.max < maxPrice)
 
   return (
     <div className="flex flex-col h-full">
@@ -82,7 +97,7 @@ const ProductsList: FunctionComponent = () => {
         </ul>
       )}
       {selectedProductsByPage.length === 0 &&
-        (totalSelectedTags > 0 || productsSearch.length > 0) && (
+        (isPriceRange || isSearch || isFilters) && (
           <div className="h-full flex justify-center items-center pt-32 lg:pt-20">
             <Warning text="Oops!">
               <p className="font-headline relative z-10 my-4">
@@ -91,11 +106,20 @@ const ProductsList: FunctionComponent = () => {
                 </span>
                 <span className="block">
                   Try removing{' '}
-                  <span className="underline">
-                    <Link href="/products?page=1" shallow>
-                      <a>some filters</a>
-                    </Link>
-                  </span>{' '}
+                  <button
+                    type="button"
+                    className="underline"
+                    onClick={() => {
+                      dispatch(setPriceRange({ min: 0, max: maxPrice }))
+                      router
+                        .push('/products?page=1', '/products?page=1', {
+                          shallow: true,
+                        })
+                        .then(() => window.scrollTo(0, 0))
+                    }}
+                  >
+                    some filters
+                  </button>{' '}
                   or{' '}
                   <span className="underline">
                     <button

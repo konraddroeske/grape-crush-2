@@ -18,7 +18,9 @@ interface Props {
 
 const MenuToggle: FunctionComponent<Props> = ({ type, menuOpen }) => {
   const dispatch = useDispatch()
-  const { totalSelectedTags } = useSelector(selectProducts())
+  const { totalSelectedTags, priceRange, maxPrice } = useSelector(
+    selectProducts()
+  )
 
   const handleClick = () => {
     if (type === 'desktop') {
@@ -27,6 +29,10 @@ const MenuToggle: FunctionComponent<Props> = ({ type, menuOpen }) => {
       dispatch(toggleMobileMenuOpen())
     }
   }
+
+  const isPriceRange =
+    priceRange.min > 0 ||
+    (priceRange.max && maxPrice && priceRange.max < maxPrice)
 
   return (
     <button
@@ -53,12 +59,12 @@ const MenuToggle: FunctionComponent<Props> = ({ type, menuOpen }) => {
         </span>
         Filters
       </span>
-      {totalSelectedTags > 0 && (
+      {(totalSelectedTags > 0 || isPriceRange) && (
         <div
           className="ml-1 w-6 h-6 rounded-full bg-blue-lightest flex
       justify-center items-center text-blue-dark font-bold"
         >
-          {totalSelectedTags}
+          {isPriceRange ? totalSelectedTags + 1 : totalSelectedTags}
         </div>
       )}
     </button>
