@@ -7,6 +7,7 @@ import OutlineMarquee from '@components/common/OutlineMarquee'
 import Seo from '@components/common/Seo'
 import ItemBar from '@components/item-page/item-bar/ItemBar'
 import ItemContent from '@components/item-page/ItemContent'
+import Suggested from '@components/item-page/Suggested'
 import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import ambassador from '@lib/ambassador'
 import fetchGlobalData from '@lib/fetchGlobalData'
@@ -15,6 +16,7 @@ import { Product, ProductLowercase } from '@models/ambassador'
 
 import { Asset } from '@models/contentful-graph'
 import { selectGlobal, setPageProductData } from '@redux/globalSlice'
+import { setSuggestedProducts } from '@redux/itemSlice'
 import { setMissingImage, setProducts } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
@@ -87,7 +89,7 @@ const Item: FunctionComponent<Props> = ({ products, missingImage }) => {
             <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl bg-purple">
               <ItemContent product={pageProductData} />
             </div>
-            {/* <Suggested product={productData} /> */}
+            <Suggested />
           </>
         )}
       </div>
@@ -126,7 +128,8 @@ export const getStaticProps = wrapper.getStaticProps(
       }
     }
 
-    store.dispatch(setPageProductData(currentProduct || null))
+    store.dispatch(setPageProductData(currentProduct))
+    store.dispatch(setSuggestedProducts({ currentProduct, products }))
     const missingImage = await fetchMissingImage()
 
     return {

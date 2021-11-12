@@ -9,6 +9,7 @@ import { faqSlice } from '@redux/faqSlice'
 import { globalSlice } from '@redux/globalSlice'
 import { heroSlice } from '@redux/heroSlice'
 import { indexSlice } from '@redux/indexSlice'
+import { itemSlice } from '@redux/itemSlice'
 import { productsSlice } from '@redux/productsSlice'
 import { socialSlice } from '@redux/socialSlice'
 
@@ -24,6 +25,7 @@ const makeStore = () =>
       [clientSlice.name]: clientSlice.reducer,
       [aboutSlice.name]: aboutSlice.reducer,
       [contactSlice.name]: contactSlice.reducer,
+      [itemSlice.name]: itemSlice.reducer,
     },
     devTools: true,
   })
