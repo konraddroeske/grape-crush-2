@@ -74,7 +74,7 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
           <DesktopMenu />
           <div
             className={`w-full px-2 ${
-              warningVisible ? 'min-h-0' : 'min-h-screen'
+              warningVisible ? 'min-h-0' : 'lg:min-h-screen'
             } sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl`}
           >
             <ProductsList />
