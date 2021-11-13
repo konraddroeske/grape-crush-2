@@ -110,7 +110,7 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
     if (rightKnobDraggable.current) {
       vars.applyBounds({
         minX,
-        maxX: rightKnobDraggable.current.x - remToPixels(1.95),
+        maxX: rightKnobDraggable.current.x - remToPixels(1.7),
         minY: 0,
         maxY: 0,
       })
@@ -123,7 +123,7 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
 
     if (leftKnobDraggable.current) {
       vars.applyBounds({
-        minX: leftKnobDraggable.current.x + remToPixels(1.95),
+        minX: leftKnobDraggable.current.x + remToPixels(1.7),
         maxX: resizedMax,
         minY: 0,
         maxY: 0,
@@ -238,10 +238,10 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
   return (
     <div className="mb-8">
       <div className="flex justify-between">
-        <div className="text-blue-dark font-sans">
+        <div className="text-blue-dark text-sm font-sans">
           ${Math.floor(leftVal / 100)}
         </div>
-        <div className="text-blue-dark font-sans">
+        <div className="text-blue-dark text-sm font-sans">
           ${Math.ceil(rightVal / 100)}
         </div>
       </div>
