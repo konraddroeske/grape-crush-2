@@ -5,9 +5,9 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import AmbassadorImage from '@components/common/AmbassadorImage'
+import LearnMoreSm from '@components/common/buttons/LearnMoreSm'
 import QuickBuyDesktopAlt from '@components/common/buttons/QuickBuyDesktopAlt'
 import QuickBuyMobile from '@components/common/buttons/QuickBuyMobile'
-import LearnMoreMobile from '@components/common/product/LearnMoreMobile'
 import ProductSubheading from '@components/common/product/ProductSubheading'
 
 import Tags from '@components/common/product/Tags'
@@ -103,7 +103,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
           </a>
         </Link>
         {buyVisible && (
-          <div className="hidden sm:block absolute bottom-0 right-0">
+          <div className="hidden sm:block absolute bottom-0 right-0 left-0">
             <QuickBuyDesktopAlt handleClick={handleClick}>
               Add to cart
             </QuickBuyDesktopAlt>
@@ -148,7 +148,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
           <QuickBuyMobile handleClick={handleClick}>Add to cart</QuickBuyMobile>
         </div>
         <div className="hidden mt-auto pt-2 sm:mt-0 sm:pt-0 sm:flex justify-start">
-          <LearnMoreMobile name={name} />
+          <LearnMoreSm name={name} />
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ interface Props {
   name: string
 }
 
-const LearnMoreMobile: FunctionComponent<Props> = ({ name }) => {
+const LearnMoreSm: FunctionComponent<Props> = ({ name }) => {
   const uriName = encodeURIComponent(name)
 
   return (
@@ -26,4 +26,4 @@ const LearnMoreMobile: FunctionComponent<Props> = ({ name }) => {
   )
 }
 
-export default LearnMoreMobile
+export default LearnMoreSm

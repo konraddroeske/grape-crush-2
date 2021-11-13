@@ -1,7 +1,8 @@
 import React, { FunctionComponent, useState } from 'react'
 
 import AmbassadorImage from '@components/common/AmbassadorImage'
-import LearnMoreDesktop from '@components/common/product/LearnMoreDesktop'
+import LearnMoreLg from '@components/common/buttons/LearnMoreLg'
+import LearnMoreSm from '@components/common/buttons/LearnMoreSm'
 import ProductSubheading from '@components/common/product/ProductSubheading'
 import ProductTitle from '@components/common/product/ProductTitle'
 import { getPriceAsString } from '@lib/getPriceAsString'
@@ -33,8 +34,8 @@ const ProductsSlide: FunctionComponent<Props> = ({ product }) => {
           title={product.data.name}
         />
         {buyVisible && (
-          <div className="absolute right-0 bottom-0 flex justify-start">
-            <LearnMoreDesktop name={name} />
+          <div className="hidden absolute left-0 right-0 bottom-0 sm:block">
+            <LearnMoreLg name={name} />
           </div>
         )}
       </div>
@@ -57,6 +58,9 @@ const ProductsSlide: FunctionComponent<Props> = ({ product }) => {
               </h5>
             </div>
           )}
+        </div>
+        <div className="mt-auto pt-2 flex justify-start sm:hidden">
+          <LearnMoreSm name={name} />
         </div>
       </div>
     </div>

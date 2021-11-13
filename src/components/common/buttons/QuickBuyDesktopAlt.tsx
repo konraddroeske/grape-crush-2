@@ -14,7 +14,7 @@ const QuickBuyDesktopAlt: FunctionComponent<Props> = ({
   return (
     <button
       type="button"
-      className="flex bg-lime items-center cursor-pointer px-2 py-2"
+      className="flex bg-lime justify-center items-center cursor-pointer w-full px-4 py-3"
       onClick={() => handleClick()}
     >
       <span className="mr-3 text-base text-blue-dark leading-none font-bold uppercase">
