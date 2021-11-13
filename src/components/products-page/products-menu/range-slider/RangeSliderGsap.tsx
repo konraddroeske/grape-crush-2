@@ -52,8 +52,10 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
     if (priceRangeMax) {
       setLeftVal(priceRangeMin)
       setRightVal(priceRangeMax)
+
+      updateSlider()
     }
-  }, [priceRangeMax, priceRangeMin])
+  }, [priceRangeMax, priceRangeMin, updateSlider])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedPriceRangeMin = useCallback(
@@ -157,6 +159,11 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
         onUpdate: () => {
           rightKnobDraggable?.current?.update()
         },
+      })
+
+      gsap.set(rangeRef.current, {
+        left: leftX,
+        right: `calc(100% - ${rightX}px)`,
       })
     }
   }, [maxPrice, priceRangeMax, priceRangeMin])

@@ -44,8 +44,11 @@ const CategoryTag: FunctionComponent<Props> = ({ url, variant, tag }) => {
       className={`${variants[variant]} flex justify-between items-center text-left 
       text-blue-dark shadow-blue-dark border-blue-dark text-base font-bold uppercase h-8 px-3 border`}
       onClick={() => {
-        dispatch(setPriceRangeMin(0))
-        dispatch(setPriceRangeMax(maxPrice))
+        if (variant === 'clear') {
+          dispatch(setPriceRangeMin(0))
+          dispatch(setPriceRangeMax(maxPrice))
+        }
+
         router
           .push(url, url, { shallow: true })
           .then(() => window.scrollTo(0, 0))
