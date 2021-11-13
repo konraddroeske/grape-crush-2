@@ -59,7 +59,6 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
   }, [data, variants, price])
 
   const handleClick = () => {
-    console.log('clicking')
     if (window?.AmbassadorChat) {
       window.AmbassadorChat.send({
         command: 'webview',

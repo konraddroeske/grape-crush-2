@@ -214,7 +214,6 @@ const ProductsSlideshow: FunctionComponent<Props> = ({ products }) => {
   }, [handleSnap])
 
   useEffect(() => {
-    console.log('loading slideshow')
     if (!draggable) {
       gsap.registerPlugin(Draggable, InertiaPlugin)
 
