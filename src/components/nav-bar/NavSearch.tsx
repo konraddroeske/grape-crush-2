@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 
 import { setSearch } from '@redux/clientSlice'
+import { handleProductsSearch } from '@redux/productsSlice'
 
 interface Props {
   variant: 'mobile' | 'desktop'
@@ -22,10 +23,12 @@ const NavSearch: FunctionComponent<Props> = ({ variant }) => {
     setLocalSearch(event.currentTarget.value)
   }
 
-  const handleSearch = (event: React.SyntheticEvent) => {
+  const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault()
     dispatch(setSearch(localSearch))
+    dispatch(handleProductsSearch(localSearch))
     setLocalSearch('')
+
     router
       .push('/products', '/products', {
         shallow: true,
@@ -36,7 +39,7 @@ const NavSearch: FunctionComponent<Props> = ({ variant }) => {
   return (
     <form
       className={`flex ${variants[variant]} w-full max-w-xl lg:max-w-none lg:mx-auto shadow-lime`}
-      onSubmit={(event) => handleSearch(event)}
+      onSubmit={(event) => handleSubmit(event)}
     >
       <label htmlFor="searchField" className="sr-only">
         Search
