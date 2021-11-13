@@ -1,0 +1,31 @@
+.itemSlideButtonPosition {
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  left: 0;
+  right: 0;
+}
+
+.productsSlideButtonPosition {
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+
+  position: absolute;
+  transform: translateY(-50%);
+  top: 10rem;
+  left: 0;
+  right: 0;
+
+  @media (min-width: 1024px) {
+    top: 12rem;
+  }
+
+  @media (min-width: 1536px) {
+    top: 14rem;
+  }
+}

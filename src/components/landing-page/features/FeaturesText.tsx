@@ -5,7 +5,7 @@ import { SplitText } from 'gsap/dist/SplitText'
 
 import Link from 'next/link'
 
-import ShadowLink from '@components/common/ShadowLink'
+import ShadowLink from '@components/common/buttons/ShadowLink'
 import {
   buttonSlideIn,
   buttonSlideOut,

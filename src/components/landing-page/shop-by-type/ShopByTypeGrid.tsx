@@ -3,9 +3,9 @@ import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
+import ShadowLink from '@components/common/buttons/ShadowLink'
 import ContentfulImage from '@components/common/ContentfulImage'
 import OutlineMarquee from '@components/common/OutlineMarquee'
-import ShadowLink from '@components/common/ShadowLink'
 import { selectGlobal } from '@redux/globalSlice'
 
 const ShopByTypeGrid: FunctionComponent = () => {

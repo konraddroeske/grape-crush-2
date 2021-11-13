@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
-import BuyButton from '@components/common/BuyButton'
+import BuyButtonQuantity from '@components/common/buttons/BuyButtonQuantity'
 import ProductSubheading from '@components/common/product/ProductSubheading'
 import ProductTitle from '@components/common/product/ProductTitle'
 import { ProductLowercase } from '@models/ambassador'
@@ -34,7 +34,7 @@ const ProductSlide: FunctionComponent<Props> = ({ product }) => {
             <ProductSubheading region={region} vintage={vintage} />
             <p className="text-xs text-purple mt-1 font-bold">${value}</p>
           </div>
-          <BuyButton productId={productId} />
+          <BuyButtonQuantity productId={productId} />
         </div>
       </div>
     </div>

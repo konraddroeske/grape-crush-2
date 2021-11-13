@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
 
 import AnimatedText from '@components/common/AnimatedText'
-import ShadowLink from '@components/common/ShadowLink'
+import ShadowLink from '@components/common/buttons/ShadowLink'
 
 const Description: FunctionComponent = () => {
   return (

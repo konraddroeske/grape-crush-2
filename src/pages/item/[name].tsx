@@ -1,9 +1,12 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import { useRouter } from 'next/dist/client/router'
+import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 
+import ShadowLink from '@components/common/buttons/ShadowLink'
 import OutlineMarquee from '@components/common/OutlineMarquee'
+import ProductsSlideshow from '@components/common/products-slideshow/ProductsSlideshow'
 import Seo from '@components/common/Seo'
 import ItemBar from '@components/item-page/item-bar/ItemBar'
 import ItemContent from '@components/item-page/ItemContent'
@@ -15,6 +18,7 @@ import { Product, ProductLowercase } from '@models/ambassador'
 
 import { Asset } from '@models/contentful-graph'
 import { selectGlobal, setPageProductData } from '@redux/globalSlice'
+import { selectItem, setSuggestedProducts } from '@redux/itemSlice'
 import { setMissingImage, setProducts } from '@redux/productsSlice'
 import { wrapper } from '@redux/store'
 
@@ -25,9 +29,11 @@ interface Props {
 
 const Item: FunctionComponent<Props> = ({ products, missingImage }) => {
   useRouterScrollUpdate()
+
   const dispatch = useDispatch()
   const router = useRouter()
   const { pageProductData } = useSelector(selectGlobal())
+  const { suggestedProducts } = useSelector(selectItem())
 
   const [dimensions, setDimensions] = useState<{
     height: number
@@ -75,7 +81,7 @@ const Item: FunctionComponent<Props> = ({ products, missingImage }) => {
           }}
         />
       )}
-      <div className="min-h-screen py-12 pb-28">
+      <div className="min-h-screen py-12">
         <div className="my-4 overflow-hidden">
           <OutlineMarquee text="shop" />
         </div>
@@ -87,9 +93,21 @@ const Item: FunctionComponent<Props> = ({ products, missingImage }) => {
             <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl bg-purple">
               <ItemContent product={pageProductData} />
             </div>
-            {/* <Suggested product={productData} /> */}
           </>
         )}
+        <div className="my-12 overflow-hidden">
+          <OutlineMarquee text="suggestions" direction="-=" />
+        </div>
+        <div className="body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
+          <ProductsSlideshow products={suggestedProducts} />
+        </div>
+        <div className="flex justify-center mt-12" id="shop">
+          <Link href="/products">
+            <a>
+              <ShadowLink>Back to shop</ShadowLink>
+            </a>
+          </Link>
+        </div>
       </div>
     </>
   )
@@ -126,11 +144,13 @@ export const getStaticProps = wrapper.getStaticProps(
       }
     }
 
-    store.dispatch(setPageProductData(currentProduct || null))
+    store.dispatch(setPageProductData(currentProduct))
+    store.dispatch(setSuggestedProducts({ currentProduct, products }))
     const missingImage = await fetchMissingImage()
 
     return {
       props: {
+        key: currentProduct._id,
         products,
         missingImage,
       },

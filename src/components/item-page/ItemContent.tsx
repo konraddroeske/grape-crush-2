@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux'
 import { useMediaQuery } from 'react-responsive'
 
 import AmbassadorImage from '@components/common/AmbassadorImage'
-import BuyButton from '@components/common/BuyButton'
+import BuyButtonQuantity from '@components/common/buttons/BuyButtonQuantity'
 import Tags from '@components/common/product/Tags'
 import FactList from '@components/item-page/FactList'
 import ItemSlideshow from '@components/item-page/ItemSlideshow'
@@ -152,7 +152,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
                 <span className="text-xl">${price}</span>{' '}
                 <span className="text-sm"> / per {label}</span>
               </div>
-              <BuyButton productId={id} />
+              <BuyButtonQuantity productId={id} />
             </div>
           )}
         </div>
@@ -170,7 +170,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
           ) : (
             <>
               {imageUrl?.length > 0 ? (
-                <div className="bg-blue-lightest pointer-events-auto p-6 h-122 xl:h-144">
+                <div className="bg-blue-lightest pointer-events-auto p-6 h-112 xl:h-144">
                   <AmbassadorImage url={imageUrl[0]} title={productName} />
                 </div>
               ) : (
@@ -198,11 +198,9 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
             <FactList facts={facts} />
           </div>
         </div>
-        {/* {desktopTitleHeight && ( */}
         <div className="w-full mt-8 lg:mt-0 lg:w-7/12">
           <p className="">{description}</p>
         </div>
-        {/* )} */}
       </div>
     </div>
   )

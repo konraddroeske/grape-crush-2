@@ -4,15 +4,26 @@ import Arrow from '@components/common/Arrow'
 
 import { Direction } from '@models/misc'
 
+import s from './ItemSlideButtons.module.scss'
+
 interface OwnProps {
   handleSlide: (direction: number) => void
+  variant?: 'products' | 'item'
 }
 
 type Props = OwnProps
 
-const ItemSlideButtons: FunctionComponent<Props> = ({ handleSlide }) => {
+const ItemSlideButtons: FunctionComponent<Props> = ({
+  handleSlide,
+  variant = 'item',
+}) => {
+  const variants = {
+    item: s.itemSlideButtonPosition,
+    products: s.productsSlideButtonPosition,
+  }
+
   return (
-    <div className="pointer-events-none item-slide-button-position">
+    <div className={variants[variant]}>
       <button
         type="button"
         className="pointer-events-auto transform -translate-x-1/4"

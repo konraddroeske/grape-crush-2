@@ -10,7 +10,7 @@ import { setCookies } from 'cookies-next'
 import throttle from 'lodash.throttle'
 import { useDispatch } from 'react-redux'
 
-import ShadowButton from '@components/common/ShadowButton'
+import ShadowButton from '@components/common/buttons/ShadowButton'
 import { modalSlideUp } from '@lib/animations'
 import { closeModal } from '@redux/clientSlice'
 

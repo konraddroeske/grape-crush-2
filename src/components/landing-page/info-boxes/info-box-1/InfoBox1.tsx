@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
-import ShadowLink from '@components/common/ShadowLink'
+import ShadowLink from '@components/common/buttons/ShadowLink'
 import SvgPopUp from '@components/landing-page/info-boxes/info-box-1/SvgPopUp'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'

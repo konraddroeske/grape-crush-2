@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { useDispatch, useSelector } from 'react-redux'
 
-import ShadowButton from '@components/common/ShadowButton'
+import ShadowButton from '@components/common/buttons/ShadowButton'
 import SvgPreview from '@components/nav-bar/SvgPreview'
 import { Asset } from '@models/contentful-graph'
 import { selectGlobal, setNavOpen } from '@redux/globalSlice'

@@ -13,16 +13,18 @@ import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 
 import debounce from 'lodash.debounce'
 
-import AmbassadorImage from '@components/common/AmbassadorImage'
+import ProductsSlide from '@components/common/products-slideshow/ProductsSlide'
 import ItemSlideButtons from '@components/item-page/item-slide-buttons/ItemSlideButtons'
+import { ProductLowercase } from '@models/ambassador'
 import { Direction } from '@models/misc'
 
+import s from './ProductsSlideshow.module.scss'
+
 interface Props {
-  slides: string[]
-  title: string
+  products: ProductLowercase[]
 }
 
-const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
+const ProductsSlideshow: FunctionComponent<Props> = ({ products }) => {
   const useTimer = false
   const slider = useRef<HTMLDivElement>(null)
   const list = useRef<HTMLUListElement>(null)
@@ -30,7 +32,7 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
   const titles = useRef<(HTMLDivElement | null)[]>([])
   const proxy = useRef<HTMLDivElement | null>(null)
   const prevPosition = useRef<number>(0)
-  const count = useRef(slides.length)
+  const count = useRef(products.length)
 
   const itemWidth = useRef(0)
   const wrapWidth = useRef(0)
@@ -39,7 +41,7 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
   const [draggable, setDraggable] = useState<Draggable[] | null>(null)
 
   const timer = useRef<gsap.core.Tween | null>(null)
-  const slideDelay = useRef(5)
+  // const slideDelay = useRef(5)
   const slideDuration = useRef(1)
   const slideAnimation = useRef(
     gsap.to(
@@ -151,13 +153,21 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
   }
 
   const setHeight = () => {
-    const [item] = items.current
+    if (items.current.length > 0) {
+      const maxHeight = Math.max(
+        ...contentRefs.current.map((item) => item?.offsetHeight || 0)
+      )
 
-    if (!item) return
+      gsap.set(slider.current, {
+        height: maxHeight,
+      })
 
-    gsap.set(slider.current, {
-      height: item.offsetHeight,
-    })
+      items.current.forEach((item) => {
+        gsap.set(item, {
+          height: maxHeight,
+        })
+      })
+    }
   }
 
   const handleResize = useCallback(() => {
@@ -206,6 +216,7 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
   useEffect(() => {
     if (!draggable) {
       gsap.registerPlugin(Draggable, InertiaPlugin)
+
       proxy.current = document.createElement('div')
       gsap.set(proxy.current, {
         x: 0,
@@ -217,9 +228,9 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
       initDraggable()
       updateAnimation()
 
-      timer.current = useTimer
-        ? gsap.delayedCall(slideDelay.current, autoPlay)
-        : null
+      // timer.current = useTimer
+      //   ? gsap.delayedCall(slideDelay.current, autoPlay)
+      //   : null
     }
   }, [
     draggable,
@@ -233,6 +244,7 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
   ])
 
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const contentRefs = useRef<(HTMLDivElement | null)[]>([])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedResize = useCallback(debounce(handleResize, 200), [])
@@ -241,32 +253,36 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
 
   return (
     <>
-      {slides && (
+      {products && (
         <div ref={containerRef} className="relative">
           <div ref={slider} className="w-full relative overflow-hidden">
-            <ul ref={list} className="absolute inset-0 m-0 p-0">
-              {slides.map((slide, index) => (
-                <li
-                  key={slide}
-                  ref={(el) => {
-                    items.current[index] = el
-                  }}
-                  className="absolute w-full top-0 right-0"
-                >
-                  <div className="w-full">
-                    <div className="bg-blue-lightest pointer-events-auto p-6 h-112 xl:h-144">
-                      {slide && <AmbassadorImage url={slide} title={title} />}
+            <ul ref={list} className={`absolute inset-0 m-0 p-0 ${s.list}`}>
+              {products.map((product, index) => {
+                return (
+                  <li
+                    key={product._id}
+                    ref={(el) => {
+                      items.current[index] = el
+                    }}
+                    className={s.item}
+                  >
+                    <div
+                      ref={(el) => {
+                        contentRefs.current[index] = el
+                      }}
+                    >
+                      <ProductsSlide product={product} />
                     </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                )
+              })}
             </ul>
           </div>
-          <ItemSlideButtons handleSlide={animateSlides} />
+          <ItemSlideButtons handleSlide={animateSlides} variant="products" />
         </div>
       )}
     </>
   )
 }
 
-export default ItemSlideshow
+export default ProductsSlideshow

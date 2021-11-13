@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from 'react'
 
-import Minus from '../../assets/svgs/minus.svg'
-import Plus from '../../assets/svgs/plus.svg'
+import Minus from '../../../assets/svgs/minus.svg'
+import Plus from '../../../assets/svgs/plus.svg'
 
 interface OwnProps {
   productId: string
@@ -9,7 +9,7 @@ interface OwnProps {
 
 type Props = OwnProps
 
-const BuyButton: FunctionComponent<Props> = ({ productId }) => {
+const BuyButtonQuantity: FunctionComponent<Props> = ({ productId }) => {
   const [quantity, setQuantity] = useState<number>(1)
 
   const handleClick = () => {
@@ -69,4 +69,4 @@ const BuyButton: FunctionComponent<Props> = ({ productId }) => {
   )
 }
 
-export default BuyButton
+export default BuyButtonQuantity
