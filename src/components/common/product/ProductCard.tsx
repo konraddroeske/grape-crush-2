@@ -103,7 +103,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
           </a>
         </Link>
         {buyVisible && (
-          <div className="hidden sm:block absolute bottom-0 right-0 left-0">
+          <div className="hidden sm:block absolute bottom-0 right-0">
             <QuickBuyDesktopAlt handleClick={handleClick}>
               Add to cart
             </QuickBuyDesktopAlt>

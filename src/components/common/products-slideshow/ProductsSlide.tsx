@@ -34,7 +34,7 @@ const ProductsSlide: FunctionComponent<Props> = ({ product }) => {
           title={product.data.name}
         />
         {buyVisible && (
-          <div className="hidden absolute left-0 right-0 bottom-0 sm:block">
+          <div className="hidden absolute right-0 bottom-0 sm:block">
             <LearnMoreLg name={name} />
           </div>
         )}

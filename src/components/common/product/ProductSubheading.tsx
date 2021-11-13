@@ -14,9 +14,9 @@ const ProductSubheading: FunctionComponent<Props> = ({
   variant = 'card',
 }) => {
   const variants = {
-    card: 'flex flex-wrap justify-start text-xs capitalize h-5 mt-1 font-bold overflow-hidden',
+    card: 'flex flex-wrap justify-start text-sm capitalize h-5 mt-1 font-bold overflow-hidden',
     slideshow:
-      'flex flex-wrap justify-start text-xs capitalize h-5 my-1 font-bold overflow-hidden',
+      'flex flex-wrap justify-start text-sm capitalize h-5 my-1 font-bold overflow-hidden',
   }
 
   return (
