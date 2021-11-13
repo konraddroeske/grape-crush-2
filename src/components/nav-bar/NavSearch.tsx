@@ -3,7 +3,7 @@ import React, { FunctionComponent, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 
-import { setNavSearch } from '@redux/clientSlice'
+import { setSearch } from '@redux/clientSlice'
 
 interface Props {
   variant: 'mobile' | 'desktop'
@@ -12,20 +12,20 @@ interface Props {
 const NavSearch: FunctionComponent<Props> = ({ variant }) => {
   const router = useRouter()
   const dispatch = useDispatch()
-  const [search, setSearch] = useState<string>('')
+  const [localSearch, setLocalSearch] = useState<string>('')
   const variants = {
     mobile: 'mt-6',
     desktop: 'my-0',
   }
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setSearch(event.currentTarget.value)
+    setLocalSearch(event.currentTarget.value)
   }
 
   const handleSearch = (event: React.SyntheticEvent) => {
     event.preventDefault()
-    dispatch(setNavSearch(search))
-    setSearch('')
+    dispatch(setSearch(localSearch))
+    setLocalSearch('')
     router
       .push('/products', '/products', {
         shallow: true,
@@ -48,7 +48,7 @@ const NavSearch: FunctionComponent<Props> = ({ variant }) => {
         className="border border-lime flex-grow min-w-0 bg-transparent
             placeholder-gray-light text-white italic uppercase text-xs pl-4 pr-2 py-2
             border-r-transparent"
-        value={search}
+        value={localSearch}
         onChange={handleChange}
       />
       <label htmlFor="searchSubmit" className="sr-only">
