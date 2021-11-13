@@ -48,9 +48,11 @@ export const itemSlice = createSlice({
 
           return { ...product, count }
         })
+        .filter((product) => product.data.imageUrl.length > 0)
         .sort((a, b) => {
           return b.count - a.count
         })
+        .slice(0, 8)
 
       return { ...state, suggestedProducts: rankedProducts }
     },

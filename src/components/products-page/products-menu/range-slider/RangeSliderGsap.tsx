@@ -67,7 +67,7 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ maxPrice }) => {
       setLeftVal(price)
 
       gsap.set(rangeRef.current, {
-        left: leftKnobDraggable.current.x,
+        left: `calc(${leftKnobDraggable.current.x}px + ${remToPixels(1)}`,
       })
 
       debouncedPriceRangeMin(price)
@@ -139,6 +139,7 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ maxPrice }) => {
         gsap.set(leftKnobDraggable.current.target, {
           x: leftX,
           y: '-50%',
+          opacity: 1,
           onUpdate: () => {
             leftKnobDraggable.current?.update()
           },
@@ -147,13 +148,14 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ maxPrice }) => {
         gsap.set(rightKnobDraggable.current.target, {
           x: rightX,
           y: '-50%',
+          opacity: 1,
           onUpdate: () => {
             rightKnobDraggable.current?.update()
           },
         })
 
         gsap.set(rangeRef.current, {
-          left: leftX,
+          left: `calc(${leftX}px + ${remToPixels(1)}px)`,
           right: `calc(100% - ${rightX}px)`,
         })
       }

@@ -198,11 +198,9 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
             <FactList facts={facts} />
           </div>
         </div>
-        {/* {desktopTitleHeight && ( */}
         <div className="w-full mt-8 lg:mt-0 lg:w-7/12">
           <p className="">{description}</p>
         </div>
-        {/* )} */}
       </div>
     </div>
   )

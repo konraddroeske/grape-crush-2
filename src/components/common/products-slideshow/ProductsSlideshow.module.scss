@@ -1,0 +1,34 @@
+
+.list {
+  transform: translateX(-0.5rem);
+
+  @media (min-width: 1536px) {
+    transform: translateX(-1rem);
+  }
+}
+
+.item {
+  position: absolute;
+  width: calc(100% + 1rem / 1);
+  padding: 0 0.5rem 0 0.5rem;
+
+  @media (min-width: 475px) {
+    width: calc(100% / 2 + 1rem / 2);
+    padding: 0 0.5rem 0 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    width: calc(100% / 3 + 1rem / 3);
+    padding: 0 0.5rem 0 0.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    width: calc(100% / 4 + 1rem / 4);
+    padding: 0 0.5rem 0 0.5rem;
+  }
+
+  @media (min-width: 1536px) {
+    width: calc(100% / 5 + 2rem / 5);
+    padding: 0 1rem 0 1rem;
+  }
+}
