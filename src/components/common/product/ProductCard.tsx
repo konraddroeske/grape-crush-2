@@ -67,8 +67,9 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
         <Link href={`/item/${encodeURIComponent(name)}`}>
           <a>
             <div
-              className={`relative h-60 sm:h-72 lg:h-96 xl:h-96 2xl:h-122 relative bg-blue-lightest 
-                ${url ? 'py-4 sm:p-4 lg:p-4 xl:p-4 2xl:p-4' : ''}`}
+              className={`relative h-60 sm:h-72 lg:h-96 2xl:h-112 bg-blue-lightest ${
+                url ? 'py-4 sm:p-4' : ''
+              } pointer-events-auto`}
             >
               {url ? (
                 <AmbassadorImage url={url} title={name} />

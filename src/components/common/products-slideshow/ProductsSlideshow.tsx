@@ -14,7 +14,10 @@ import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 import debounce from 'lodash.debounce'
 
 import AmbassadorImage from '@components/common/AmbassadorImage'
-import ItemSlideButtons from '@components/item-page/ItemSlideButtons'
+import ProductSubheading from '@components/common/product/ProductSubheading'
+import ProductTitle from '@components/common/product/ProductTitle'
+import ItemSlideButtons from '@components/item-page/item-slide-buttons/ItemSlideButtons'
+import { getPriceAsString } from '@lib/getPriceAsString'
 import { ProductLowercase } from '@models/ambassador'
 import { Direction } from '@models/misc'
 
@@ -153,13 +156,15 @@ const ProductsSlideshow: FunctionComponent<Props> = ({ products }) => {
   }
 
   const setHeight = () => {
-    const [item] = items.current
+    if (items.current.length > 0) {
+      const maxHeight = Math.max(
+        ...items.current.map((item) => item?.offsetHeight || 0)
+      )
 
-    if (!item) return
-
-    gsap.set(slider.current, {
-      height: item.offsetHeight,
-    })
+      gsap.set(slider.current, {
+        height: maxHeight,
+      })
+    }
   }
 
   const handleResize = useCallback(() => {
@@ -247,27 +252,61 @@ const ProductsSlideshow: FunctionComponent<Props> = ({ products }) => {
         <div ref={containerRef} className="relative">
           <div ref={slider} className="w-full relative overflow-hidden">
             <ul ref={list} className={`absolute inset-0 m-0 p-0 ${s.list}`}>
-              {products.map((product, index) => (
-                <li
-                  key={product._id}
-                  ref={(el) => {
-                    items.current[index] = el
-                  }}
-                  className={s.item}
-                >
-                  <div className="w-full">
-                    <div className="bg-blue-lightest pointer-events-auto p-6 h-122 xl:h-144">
+              {products.map((product, index) => {
+                const { data } = product
+                const { name, vintage, region, variants } = data
+                const [variant] = variants
+                const { amount } = variant
+                const price = getPriceAsString(amount)
+
+                return (
+                  <li
+                    key={product._id}
+                    ref={(el) => {
+                      items.current[index] = el
+                    }}
+                    className={s.item}
+                  >
+                    <div
+                      className="relative h-80 lg:h-96 2xl:h-112 bg-blue-lightest
+                    p-4 pointer-events-auto"
+                    >
                       <AmbassadorImage
                         url={product.data.imageUrl[0]}
                         title={product.data.name}
                       />
                     </div>
-                  </div>
-                </li>
-              ))}
+                    <div className="mt-4">
+                      <div className="flex justify-between">
+                        <div className="flex-grow-1">
+                          <ProductTitle
+                            name={name}
+                            fontSize="text-sm"
+                            variant="slideshow"
+                          />
+                          {(region || vintage) && (
+                            <ProductSubheading
+                              region={region}
+                              vintage={vintage}
+                              variant="slideshow"
+                            />
+                          )}
+                        </div>
+                        {price && (
+                          <div className="block">
+                            <h5 className="text-sm leading-5 text-center font-bold uppercase">
+                              ${price}
+                            </h5>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </li>
+                )
+              })}
             </ul>
           </div>
-          <ItemSlideButtons handleSlide={animateSlides} />
+          <ItemSlideButtons handleSlide={animateSlides} variant="products" />
         </div>
       )}
     </>

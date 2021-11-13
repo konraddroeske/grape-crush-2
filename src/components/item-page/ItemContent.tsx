@@ -170,7 +170,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
           ) : (
             <>
               {imageUrl?.length > 0 ? (
-                <div className="bg-blue-lightest pointer-events-auto p-6 h-122 xl:h-144">
+                <div className="bg-blue-lightest pointer-events-auto p-6 h-112 xl:h-144">
                   <AmbassadorImage url={imageUrl[0]} title={productName} />
                 </div>
               ) : (

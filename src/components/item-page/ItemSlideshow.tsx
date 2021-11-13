@@ -14,7 +14,7 @@ import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 import debounce from 'lodash.debounce'
 
 import AmbassadorImage from '@components/common/AmbassadorImage'
-import ItemSlideButtons from '@components/item-page/ItemSlideButtons'
+import ItemSlideButtons from '@components/item-page/item-slide-buttons/ItemSlideButtons'
 import { Direction } from '@models/misc'
 
 interface Props {
@@ -245,14 +245,16 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
         <div ref={containerRef} className="relative">
           <div ref={slider} className="w-full relative overflow-hidden">
             <ul ref={list} className="absolute inset-0 m-0 p-0">
-              {slides.map((slide) => (
+              {slides.map((slide, index) => (
                 <li
                   key={slide}
-                  ref={(el) => items.current.push(el)}
+                  ref={(el) => {
+                    items.current[index] = el
+                  }}
                   className="absolute w-full top-0 right-0"
                 >
                   <div className="w-full">
-                    <div className="bg-blue-lightest pointer-events-auto p-6 h-122 xl:h-144">
+                    <div className="bg-blue-lightest pointer-events-auto p-6 h-112 xl:h-144">
                       {slide && <AmbassadorImage url={slide} title={title} />}
                     </div>
                   </div>

@@ -220,10 +220,12 @@ const SocialGallery: FunctionComponent = () => {
           lg:mt-24 lg:mb-20 lg:h-64 xl:mb-24 xl:h-80"
         >
           <ul ref={list} className="absolute inset-0 m-0 p-0">
-            {reorderedSlides.map((slide) => (
+            {reorderedSlides.map((slide, index) => (
               <li
                 key={slide.id}
-                ref={(el) => items.current.push(el)}
+                ref={(el) => {
+                  items.current[index] = el
+                }}
                 className="absolute w-36 top-0 left-0 sm:w-48 lg:w-64 xl:w-80"
               >
                 <div className="flex w-full h-36 my-0 px-3 mx-auto sm:px-4 sm:h-48 lg:px-5 lg:h-64 xl:h-80">
