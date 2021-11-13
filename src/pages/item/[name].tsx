@@ -4,10 +4,10 @@ import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 
+import ShadowLink from '@components/common/buttons/ShadowLink'
 import OutlineMarquee from '@components/common/OutlineMarquee'
 import ProductsSlideshow from '@components/common/products-slideshow/ProductsSlideshow'
 import Seo from '@components/common/Seo'
-import ShadowLink from '@components/common/ShadowLink'
 import ItemBar from '@components/item-page/item-bar/ItemBar'
 import ItemContent from '@components/item-page/ItemContent'
 import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
@@ -29,6 +29,7 @@ interface Props {
 
 const Item: FunctionComponent<Props> = ({ products, missingImage }) => {
   useRouterScrollUpdate()
+
   const dispatch = useDispatch()
   const router = useRouter()
   const { pageProductData } = useSelector(selectGlobal())
@@ -149,6 +150,7 @@ export const getStaticProps = wrapper.getStaticProps(
 
     return {
       props: {
+        key: currentProduct._id,
         products,
         missingImage,
       },

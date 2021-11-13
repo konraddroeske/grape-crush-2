@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import RoundedButton from '@components/common/buttons/RoundedButton'
 import ContentfulImage from '@components/common/ContentfulImage'
-import RoundedButton from '@components/common/RoundedButton'
 import InfoBoxText from '@components/landing-page/info-boxes/InfoBoxText'
 import InfoBoxTitle from '@components/landing-page/info-boxes/InfoBoxTitle'
 import { selectIndex } from '@redux/indexSlice'

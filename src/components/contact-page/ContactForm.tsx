@@ -7,7 +7,7 @@ import React, {
 
 import axios from 'axios'
 
-import ShadowButton from '@components/common/ShadowButton'
+import ShadowButton from '@components/common/buttons/ShadowButton'
 
 interface ContactStatus {
   submitted: boolean

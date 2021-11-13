@@ -5,11 +5,12 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import AmbassadorImage from '@components/common/AmbassadorImage'
-import LearnMore from '@components/common/product/LearnMore'
+import QuickBuyDesktopAlt from '@components/common/buttons/QuickBuyDesktopAlt'
+import QuickBuyMobile from '@components/common/buttons/QuickBuyMobile'
+import LearnMoreMobile from '@components/common/product/LearnMoreMobile'
 import ProductSubheading from '@components/common/product/ProductSubheading'
 
 import Tags from '@components/common/product/Tags'
-import QuickBuy from '@components/common/QuickBuy'
 import { getPriceAsString } from '@lib/getPriceAsString'
 import { ProductDataLowercase } from '@models/ambassador'
 
@@ -57,6 +58,22 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
     }
   }, [data, variants, price])
 
+  const handleClick = () => {
+    console.log('clicking')
+    if (window?.AmbassadorChat) {
+      window.AmbassadorChat.send({
+        command: 'webview',
+        webview: 'payment-xdoxqKHH',
+        webviewCommands: [
+          {
+            command: 'addToCart',
+            productId: id,
+          },
+        ],
+      })
+    }
+  }
+
   return (
     <div
       className="flex flex-col h-full"
@@ -87,15 +104,17 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
           </a>
         </Link>
         {buyVisible && (
-          <div className="hidden sm:block absolute bottom-3 left-3 right-3">
-            <QuickBuy productId={id} />
+          <div className="hidden sm:block absolute bottom-0 right-0">
+            <QuickBuyDesktopAlt handleClick={handleClick}>
+              Add to cart
+            </QuickBuyDesktopAlt>
           </div>
         )}
       </div>
       <div className="flex flex-col flex-grow px-2 sm:px-0">
         <div className="flex justify-between mb-1">
           <div className="flex-grow-1">
-            <ProductTitle name={name} fontSize="text-base" />
+            <ProductTitle name={name} />
             {(region || vintage) && (
               <ProductSubheading region={region} vintage={vintage} />
             )}
@@ -127,10 +146,10 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
           </div>
         )}
         <div className="mt-auto pt-2 sm:mt-0 sm:pt-0 flex justify-center sm:hidden">
-          <QuickBuy productId={id} />
+          <QuickBuyMobile handleClick={handleClick}>Add to cart</QuickBuyMobile>
         </div>
         <div className="hidden mt-auto pt-2 sm:mt-0 sm:pt-0 sm:flex justify-start">
-          <LearnMore name={name} />
+          <LearnMoreMobile name={name} />
         </div>
       </div>
     </div>

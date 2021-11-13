@@ -10,14 +10,10 @@ interface OwnProps {
 
 type Props = OwnProps
 
-const ProductTitle: FunctionComponent<Props> = ({
-  name,
-  fontSize = 'text-base',
-  variant = 'card',
-}) => {
+const ProductTitle: FunctionComponent<Props> = ({ name, variant = 'card' }) => {
   const variants = {
-    card: `${fontSize} text-left leading-5 font-bold uppercase`,
-    slideshow: `${fontSize} text-left leading-5 font-bold uppercase`,
+    card: `text-left leading-5 font-bold uppercase`,
+    slideshow: `text-left leading-5 font-bold uppercase`,
   }
 
   return (

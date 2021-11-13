@@ -8,11 +8,11 @@ interface Props {
   name: string
 }
 
-const LearnMore: FunctionComponent<Props> = ({ name }) => {
+const LearnMoreMobile: FunctionComponent<Props> = ({ name }) => {
   const uriName = encodeURIComponent(name)
 
   return (
-    <Link href={`/item/${uriName}`}>
+    <Link href={`/item/${uriName}`} shallow={false} scroll>
       <a>
         <div className="flex bg-lime items-center cursor-pointer">
           <span className="mr-2 text-base text-blue-dark leading-none font-bold uppercase">
@@ -26,4 +26,4 @@ const LearnMore: FunctionComponent<Props> = ({ name }) => {
   )
 }
 
-export default LearnMore
+export default LearnMoreMobile

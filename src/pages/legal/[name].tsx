@@ -22,8 +22,6 @@ const LegalPage: FunctionComponent = () => {
   const { allPages } = useSelector(selectGlobal())
   const { name } = router.query
 
-  // console.log('all pages', allPages)
-
   const [title, setTitle] = useState<string | null>(null)
   const [document, setDocument] = useState<Document | null>(null)
 
@@ -114,13 +112,18 @@ export const getStaticPaths = async () => {
   return { paths, fallback: false }
 }
 
-export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  await fetchGlobalData(store)
+export const getStaticProps = wrapper.getStaticProps(
+  (store) => async (context) => {
+    await fetchGlobalData(store)
+    const name = context?.params?.name as string
 
-  return {
-    props: {},
-    revalidate: 60,
+    return {
+      props: {
+        key: name,
+      },
+      revalidate: 60,
+    }
   }
-})
+)
 
 export default LegalPage

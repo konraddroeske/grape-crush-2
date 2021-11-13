@@ -13,11 +13,8 @@ import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 
 import debounce from 'lodash.debounce'
 
-import AmbassadorImage from '@components/common/AmbassadorImage'
-import ProductSubheading from '@components/common/product/ProductSubheading'
-import ProductTitle from '@components/common/product/ProductTitle'
+import ProductsSlide from '@components/common/products-slideshow/ProductsSlide'
 import ItemSlideButtons from '@components/item-page/item-slide-buttons/ItemSlideButtons'
-import { getPriceAsString } from '@lib/getPriceAsString'
 import { ProductLowercase } from '@models/ambassador'
 import { Direction } from '@models/misc'
 
@@ -44,7 +41,7 @@ const ProductsSlideshow: FunctionComponent<Props> = ({ products }) => {
   const [draggable, setDraggable] = useState<Draggable[] | null>(null)
 
   const timer = useRef<gsap.core.Tween | null>(null)
-  const slideDelay = useRef(5)
+  // const slideDelay = useRef(5)
   const slideDuration = useRef(1)
   const slideAnimation = useRef(
     gsap.to(
@@ -158,11 +155,17 @@ const ProductsSlideshow: FunctionComponent<Props> = ({ products }) => {
   const setHeight = () => {
     if (items.current.length > 0) {
       const maxHeight = Math.max(
-        ...items.current.map((item) => item?.offsetHeight || 0)
+        ...contentRefs.current.map((item) => item?.offsetHeight || 0)
       )
 
       gsap.set(slider.current, {
         height: maxHeight,
+      })
+
+      items.current.forEach((item) => {
+        gsap.set(item, {
+          height: maxHeight,
+        })
       })
     }
   }
@@ -211,8 +214,10 @@ const ProductsSlideshow: FunctionComponent<Props> = ({ products }) => {
   }, [handleSnap])
 
   useEffect(() => {
+    console.log('loading slideshow')
     if (!draggable) {
       gsap.registerPlugin(Draggable, InertiaPlugin)
+
       proxy.current = document.createElement('div')
       gsap.set(proxy.current, {
         x: 0,
@@ -224,9 +229,9 @@ const ProductsSlideshow: FunctionComponent<Props> = ({ products }) => {
       initDraggable()
       updateAnimation()
 
-      timer.current = useTimer
-        ? gsap.delayedCall(slideDelay.current, autoPlay)
-        : null
+      // timer.current = useTimer
+      //   ? gsap.delayedCall(slideDelay.current, autoPlay)
+      //   : null
     }
   }, [
     draggable,
@@ -240,6 +245,7 @@ const ProductsSlideshow: FunctionComponent<Props> = ({ products }) => {
   ])
 
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const contentRefs = useRef<(HTMLDivElement | null)[]>([])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedResize = useCallback(debounce(handleResize, 200), [])
@@ -253,12 +259,6 @@ const ProductsSlideshow: FunctionComponent<Props> = ({ products }) => {
           <div ref={slider} className="w-full relative overflow-hidden">
             <ul ref={list} className={`absolute inset-0 m-0 p-0 ${s.list}`}>
               {products.map((product, index) => {
-                const { data } = product
-                const { name, vintage, region, variants } = data
-                const [variant] = variants
-                const { amount } = variant
-                const price = getPriceAsString(amount)
-
                 return (
                   <li
                     key={product._id}
@@ -268,38 +268,11 @@ const ProductsSlideshow: FunctionComponent<Props> = ({ products }) => {
                     className={s.item}
                   >
                     <div
-                      className="relative h-80 lg:h-96 2xl:h-112 bg-blue-lightest
-                    p-4 pointer-events-auto"
+                      ref={(el) => {
+                        contentRefs.current[index] = el
+                      }}
                     >
-                      <AmbassadorImage
-                        url={product.data.imageUrl[0]}
-                        title={product.data.name}
-                      />
-                    </div>
-                    <div className="mt-4">
-                      <div className="flex justify-between">
-                        <div className="flex-grow-1">
-                          <ProductTitle
-                            name={name}
-                            fontSize="text-sm"
-                            variant="slideshow"
-                          />
-                          {(region || vintage) && (
-                            <ProductSubheading
-                              region={region}
-                              vintage={vintage}
-                              variant="slideshow"
-                            />
-                          )}
-                        </div>
-                        {price && (
-                          <div className="block">
-                            <h5 className="text-sm leading-5 text-center font-bold uppercase">
-                              ${price}
-                            </h5>
-                          </div>
-                        )}
-                      </div>
+                      <ProductsSlide product={product} />
                     </div>
                   </li>
                 )

@@ -11,7 +11,7 @@ import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
 import _Draggable, { Draggable } from 'gsap/Draggable'
 import { useSelector } from 'react-redux'
 
-import RoundedButton from '@components/common/RoundedButton'
+import RoundedButton from '@components/common/buttons/RoundedButton'
 import { Direction } from '@models/misc'
 import { selectSocial } from '@redux/socialSlice'
 

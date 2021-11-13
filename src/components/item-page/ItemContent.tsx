@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux'
 import { useMediaQuery } from 'react-responsive'
 
 import AmbassadorImage from '@components/common/AmbassadorImage'
-import BuyButton from '@components/common/BuyButton'
+import BuyButtonQuantity from '@components/common/buttons/BuyButtonQuantity'
 import Tags from '@components/common/product/Tags'
 import FactList from '@components/item-page/FactList'
 import ItemSlideshow from '@components/item-page/ItemSlideshow'
@@ -152,7 +152,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
                 <span className="text-xl">${price}</span>{' '}
                 <span className="text-sm"> / per {label}</span>
               </div>
-              <BuyButton productId={id} />
+              <BuyButtonQuantity productId={id} />
             </div>
           )}
         </div>
