@@ -15,7 +15,8 @@ import {
   handleTags,
   resetTags,
   selectProducts,
-  setPriceRange,
+  setPriceRangeMin,
+  setPriceRangeMax,
 } from '@redux/productsSlice'
 
 const ProductsList: FunctionComponent = () => {
@@ -28,7 +29,8 @@ const ProductsList: FunctionComponent = () => {
     selectedTags,
     productsSearch,
     productsSort,
-    priceRange,
+    priceRangeMin,
+    priceRangeMax,
     maxPrice,
     totalSelectedTags,
   } = useSelector(selectProducts())
@@ -63,7 +65,8 @@ const ProductsList: FunctionComponent = () => {
     productsSearch,
     productsSort,
     page,
-    priceRange,
+    priceRangeMin,
+    priceRangeMax,
     dispatch,
   ])
 
@@ -76,8 +79,7 @@ const ProductsList: FunctionComponent = () => {
   const isFilters = totalSelectedTags > 0
   const isSearch = productsSearch.length > 0
   const isPriceRange =
-    priceRange.min > 0 ||
-    (priceRange.max && maxPrice && priceRange.max < maxPrice)
+    priceRangeMin > 0 || (priceRangeMax && maxPrice && priceRangeMax < maxPrice)
 
   return (
     <div className="flex flex-col h-full">
@@ -108,9 +110,10 @@ const ProductsList: FunctionComponent = () => {
                   Try removing{' '}
                   <button
                     type="button"
-                    className="underline"
+                    className="underline font-bold"
                     onClick={() => {
-                      dispatch(setPriceRange({ min: 0, max: maxPrice }))
+                      dispatch(setPriceRangeMin(0))
+                      dispatch(setPriceRangeMax(maxPrice))
                       router
                         .push('/products?page=1', '/products?page=1', {
                           shallow: true,
@@ -124,7 +127,7 @@ const ProductsList: FunctionComponent = () => {
                   <span className="underline">
                     <button
                       type="button"
-                      className="underline"
+                      className="underline font-bold"
                       onClick={() => resetSearch()}
                     >
                       <a>resetting search</a>

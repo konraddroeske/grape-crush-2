@@ -49,10 +49,12 @@ interface ProductsSlice {
   mobileMenuOpen: boolean
   missingImage: Asset | null
   maxPrice: number | null
-  priceRange: {
-    min: number
-    max: number | null
-  }
+  // priceRange: {
+  //   min: number
+  //   max: number | null
+  // }
+  priceRangeMin: number
+  priceRangeMax: number | null
 }
 
 const initialState: ProductsSlice = {
@@ -77,10 +79,12 @@ const initialState: ProductsSlice = {
   mobileMenuOpen: false,
   missingImage: null,
   maxPrice: null,
-  priceRange: {
-    min: 0,
-    max: null,
-  },
+  // priceRange: {
+  //   min: 0,
+  //   max: null,
+  // },
+  priceRangeMin: 0,
+  priceRangeMax: null,
 }
 
 export const productsSlice = createSlice({
@@ -98,7 +102,8 @@ export const productsSlice = createSlice({
       const {
         products,
         page,
-        priceRange,
+        priceRangeMin,
+        priceRangeMax,
         selectedTags: selectedTagsObj,
       } = state
 
@@ -194,13 +199,13 @@ export const productsSlice = createSlice({
               return inCountry || inTags || inName || inDescription
             })
 
-      const { min, max } = priceRange
+      // const { min, max } = priceRange
 
       // HANDLE PRICE RANGE
-      const pricedProducts = max
+      const pricedProducts = priceRangeMax
         ? [...searchedProducts].filter((product) => {
             const price = product?.data?.variants?.[0]?.amount
-            return price && price >= min && price <= max
+            return price && price >= priceRangeMin && price <= priceRangeMax
           })
         : searchedProducts
 
@@ -401,15 +406,18 @@ export const productsSlice = createSlice({
         },
       }
     },
-    setPriceRange(state, action) {
+    setPriceRangeMin(state, action) {
       return {
         ...state,
-        priceRange: action.payload,
+        priceRangeMin: action.payload,
       }
     },
-    // setIsLoading(state, action) {
-    //   return { ...state, isLoading: action.payload }
-    // },
+    setPriceRangeMax(state, action) {
+      return {
+        ...state,
+        priceRangeMax: action.payload,
+      }
+    },
   },
   // extraReducers: {
   //   [HYDRATE]: (state, action) => {
@@ -435,8 +443,8 @@ export const {
   setMenuOpen,
   setMissingImage,
   setMaxPrice,
-  setPriceRange,
-  // setIsLoading,
+  setPriceRangeMin,
+  setPriceRangeMax,
 } = productsSlice.actions
 
 export const selectProducts = () => (state: AppState) =>

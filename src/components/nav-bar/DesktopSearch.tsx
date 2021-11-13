@@ -1,7 +1,7 @@
 import React, {
   BaseSyntheticEvent,
+  FormEvent,
   FunctionComponent,
-  SyntheticEvent,
   useCallback,
   useEffect,
   useRef,
@@ -13,6 +13,8 @@ import debounce from 'lodash.debounce'
 import { useRouter } from 'next/router'
 
 import { useDispatch, useSelector } from 'react-redux'
+
+import { useMediaQuery } from 'react-responsive'
 
 import { selectClient, setNavSearch, setSearch } from '@redux/clientSlice'
 
@@ -29,6 +31,7 @@ interface Props {
 const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
   const router = useRouter()
   const dispatch = useDispatch()
+  const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
 
   const { navOpen } = useSelector(selectGlobal())
   const { navSearch, search } = useSelector(selectClient())
@@ -66,16 +69,6 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
     }
   }
 
-  const handleClickNavBar = () => {
-    if (!expanded && inputRef.current) {
-      setExpanded(true)
-    } else if (variant === 'navBar') handleRoute()
-  }
-
-  const handleClickProductsBar = () => {
-    setExpanded(!expanded)
-  }
-
   const handleRoute = () => {
     dispatch(setNavSearch(search))
     dispatch(setSearch(''))
@@ -87,9 +80,11 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
       .then(() => window.scrollTo(0, 0))
   }
 
-  const handleSubmit = (event: SyntheticEvent) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    handleRoute()
+    if (variant === 'navBar' && search.length > 0) {
+      handleRoute()
+    }
   }
 
   const formRef = useRef<HTMLFormElement | null>(null)
@@ -134,12 +129,7 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
       style={{
         backgroundColor: expanded ? '#f4f3f9' : 'transparent',
       }}
-      onSubmit={(event) => {
-        event.preventDefault()
-        if (variant === 'navBar') {
-          handleSubmit(event)
-        }
-      }}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="searchField" className="sr-only">
         Search
@@ -155,7 +145,11 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
           text-blue-dark uppercase italic transition-all duration-300 pointer-events-auto`}
         value={search}
         onChange={handleChange}
-        onBlur={() => setExpanded(false)}
+        onBlur={() => {
+          if (!isDesktop) {
+            setExpanded(false)
+          }
+        }}
         style={{
           width: expanded ? variants[variant].width : 0,
           paddingLeft: expanded ? '1rem' : 0,
@@ -167,9 +161,7 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
         className={`w-8 h-8 ${
           navOpen ? 'bg-lime' : 'bg-blue-lightest'
         } rounded-full flex justify-center items-center pointer-events-auto transition-all duration-300`}
-        onClick={
-          variant === 'navBar' ? handleClickNavBar : handleClickProductsBar
-        }
+        onClick={() => setExpanded(!expanded)}
       >
         <SearchIcon className="w-6" />
       </button>

@@ -1,0 +1,25 @@
+.container {
+  background-color: rgba(44, 20, 142, 0.25);
+  height: 0.4rem;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+.knob {
+  position: absolute;
+  background-color: #2c148e;
+  border: 0.3rem solid white;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  cursor: pointer;
+  height: 1.75rem;
+  width: 1.75rem;
+  pointer-events: all;
+}
+
+.range {
+  background-color: #2c148e;
+}

@@ -34,12 +34,7 @@ interface Props {
 const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
   useRouterScrollUpdate()
   const dispatch = useDispatch()
-  const {
-    mobileMenuOpen,
-    selectedProductsByPage,
-    totalSelectedTags,
-    productsSearch,
-  } = useSelector(selectProducts())
+  const { mobileMenuOpen } = useSelector(selectProducts())
   const { isSticky } = useSelector(selectGlobal())
 
   useEffect(() => {
@@ -49,9 +44,9 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
     dispatch(setProducts(products))
   }, [dispatch, products, missingImage])
 
-  const warningVisible =
-    selectedProductsByPage.length === 0 &&
-    (totalSelectedTags > 0 || productsSearch.length > 0)
+  // const warningVisible =
+  //   selectedProductsByPage.length === 0 &&
+  //   (totalSelectedTags > 0 || productsSearch.length > 0)
 
   return (
     <>
@@ -73,9 +68,10 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
         <div className="flex flex-grow">
           <DesktopMenu />
           <div
-            className={`w-full px-2 ${
-              warningVisible ? 'min-h-0' : 'lg:min-h-screen'
-            } sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl`}
+            // className={`w-full px-2
+            // ${warningVisible ? 'min-h-0' : 'lg:min-h-screen'}
+            //   sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl`}
+            className="w-full px-2 sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl"
           >
             <ProductsList />
           </div>
