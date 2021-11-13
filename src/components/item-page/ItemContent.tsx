@@ -56,9 +56,13 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
   }, [isDesktop])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedResize = useCallback(debounce(handleResize, 100), [])
+  const debouncedResize = useCallback(debounce(handleResize, 0), [])
 
   useResizeObserver(containerRef, debouncedResize)
+
+  useEffect(() => {
+    handleResize()
+  }, [handleResize])
 
   useEffect(() => {
     const { data } = product
