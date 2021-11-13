@@ -48,7 +48,11 @@ export const itemSlice = createSlice({
 
           return { ...product, count }
         })
-        .filter((product) => product.data.imageUrl.length > 0)
+        .filter(
+          (product) =>
+            product.data.imageUrl.length > 0 &&
+            product._id !== currentProduct._id
+        )
         .sort((a, b) => {
           return b.count - a.count
         })
