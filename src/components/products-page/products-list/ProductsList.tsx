@@ -110,7 +110,7 @@ const ProductsList: FunctionComponent = () => {
                   Try removing{' '}
                   <button
                     type="button"
-                    className="underline"
+                    className="underline font-bold"
                     onClick={() => {
                       dispatch(setPriceRangeMin(0))
                       dispatch(setPriceRangeMax(maxPrice))
@@ -127,7 +127,7 @@ const ProductsList: FunctionComponent = () => {
                   <span className="underline">
                     <button
                       type="button"
-                      className="underline"
+                      className="underline font-bold"
                       onClick={() => resetSearch()}
                     >
                       <a>resetting search</a>
