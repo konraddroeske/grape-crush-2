@@ -18,9 +18,8 @@ interface Props {
 
 const MenuToggle: FunctionComponent<Props> = ({ type, menuOpen }) => {
   const dispatch = useDispatch()
-  const { totalSelectedTags, priceRange, maxPrice } = useSelector(
-    selectProducts()
-  )
+  const { totalSelectedTags, priceRangeMin, priceRangeMax, maxPrice } =
+    useSelector(selectProducts())
 
   const handleClick = () => {
     if (type === 'desktop') {
@@ -31,8 +30,7 @@ const MenuToggle: FunctionComponent<Props> = ({ type, menuOpen }) => {
   }
 
   const isPriceRange =
-    priceRange.min > 0 ||
-    (priceRange.max && maxPrice && priceRange.max < maxPrice)
+    priceRangeMin > 0 || (priceRangeMax && maxPrice && priceRangeMax < maxPrice)
 
   return (
     <button
