@@ -17,6 +17,7 @@ import debounce from 'lodash.debounce'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import { remToPixels } from '@lib/remToPixels'
 import {
   selectProducts,
   setPriceRangeMin,
@@ -109,7 +110,7 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
     if (rightKnobDraggable.current) {
       vars.applyBounds({
         minX,
-        maxX: rightKnobDraggable.current.x,
+        maxX: rightKnobDraggable.current.x - remToPixels(1.95),
         minY: 0,
         maxY: 0,
       })
@@ -122,7 +123,7 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
 
     if (leftKnobDraggable.current) {
       vars.applyBounds({
-        minX: leftKnobDraggable.current.x,
+        minX: leftKnobDraggable.current.x + remToPixels(1.95),
         maxX: resizedMax,
         minY: 0,
         maxY: 0,
@@ -157,11 +158,6 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
           rightKnobDraggable?.current?.update()
         },
       })
-
-      // gsap.set(rangeRef.current, {
-      //   left: leftX,
-      //   right: `calc(100% - ${rightX}px)`,
-      // })
     }
   }, [maxPrice, priceRangeMax, priceRangeMin])
 
@@ -240,10 +236,16 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
   }, [updateSlider, initDraggable])
 
   return (
-    <div className="h-60">
-      <div id="min">{leftVal}</div>
-      <div id="max">{rightVal}</div>
-      <div ref={containerRef} className={s.container} id="container">
+    <div className="mb-8">
+      <div className="flex justify-between">
+        <div className="text-blue-dark font-sans">
+          ${Math.floor(leftVal / 100)}
+        </div>
+        <div className="text-blue-dark font-sans">
+          ${Math.ceil(rightVal / 100)}
+        </div>
+      </div>
+      <div ref={containerRef} className={`${s.container} my-4`} id="container">
         <div
           ref={leftKnob}
           className={`${s.knob} ${s.knob1} top-1/2 z-20`}
