@@ -40,6 +40,7 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
   useEffect(() => {
     if (search.length > 0) {
       setExpanded(true)
+      // dispatch(handleProductsSearch(search))
     }
   }, [dispatch, search.length])
 
@@ -72,6 +73,7 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
     event.preventDefault()
 
     if (variant === 'navBar' && search.length > 0) {
+      dispatch(handleProductsSearch(search))
       router
         .push('/products', '/products', {
           shallow: true,
