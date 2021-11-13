@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react'
 import { useSelector } from 'react-redux'
 
 import Category from '@components/products-page/products-menu/Category'
+import RangeCategory from '@components/products-page/products-menu/range-slider/RangeCategory'
 import { selectProducts } from '@redux/productsSlice'
 
 interface Props {
@@ -16,7 +17,7 @@ const ProductCategories: FunctionComponent<Props> = () => {
     <div>
       {allTags && (
         <>
-          {/* <RangeCategory /> */}
+          <RangeCategory />
           <Category
             title="Type"
             category="parentType"

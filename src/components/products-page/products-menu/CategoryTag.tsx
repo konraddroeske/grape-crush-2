@@ -6,7 +6,11 @@ import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Close from '@assets/svgs/close-rounded.svg'
-import { selectProducts, setPriceRange } from '@redux/productsSlice'
+import {
+  selectProducts,
+  setPriceRangeMax,
+  setPriceRangeMin,
+} from '@redux/productsSlice'
 
 interface OwnProps {
   url: string
@@ -40,7 +44,11 @@ const CategoryTag: FunctionComponent<Props> = ({ url, variant, tag }) => {
       className={`${variants[variant]} flex justify-between items-center text-left 
       text-blue-dark shadow-blue-dark border-blue-dark text-base font-bold uppercase h-8 px-3 border`}
       onClick={() => {
-        dispatch(setPriceRange({ min: 0, max: maxPrice }))
+        if (variant === 'clear') {
+          dispatch(setPriceRangeMin(0))
+          dispatch(setPriceRangeMax(maxPrice))
+        }
+
         router
           .push(url, url, { shallow: true })
           .then(() => window.scrollTo(0, 0))

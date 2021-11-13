@@ -6,7 +6,7 @@ import debounce from 'lodash.debounce'
 import { useSelector } from 'react-redux'
 
 import TriangleArrow from '@assets/svgs/triangle-arrow.svg'
-import RangeSlider from '@components/products-page/products-menu/range-slider/RangeSlider'
+import RangeSliderGsap from '@components/products-page/products-menu/range-slider/RangeSliderGsap'
 import { selectProducts } from '@redux/productsSlice'
 
 const RangeCategory: FunctionComponent = () => {
@@ -57,7 +57,8 @@ const RangeCategory: FunctionComponent = () => {
             maxHeight: menuOpen ? scrollHeight : 0,
           }}
         >
-          {maxPrice && <RangeSlider min={0} max={maxPrice} />}
+          {/* {maxPrice && <RangeSlider min={0} max={maxPrice} />} */}
+          {maxPrice && <RangeSliderGsap minPrice={0} maxPrice={maxPrice} />}
         </div>
       </div>
     </>
