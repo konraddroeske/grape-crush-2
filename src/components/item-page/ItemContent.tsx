@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react'
 
+import useResizeObserver from '@react-hook/resize-observer'
 import debounce from 'lodash.debounce'
 import { useSelector } from 'react-redux'
 import { useMediaQuery } from 'react-responsive'
@@ -38,6 +39,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
 
   const mobileTitleRef = useRef<null | HTMLDivElement>(null)
   const desktopTitleRef = useRef<null | HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
 
@@ -54,18 +56,9 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
   }, [isDesktop])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedResize = useCallback(debounce(handleResize, 500), [])
+  const debouncedResize = useCallback(debounce(handleResize, 100), [])
 
-  useEffect(() => {
-    if (window) {
-      handleResize()
-      window.addEventListener('resize', debouncedResize)
-    }
-
-    return () => {
-      window.removeEventListener('resize', debouncedResize)
-    }
-  }, [handleResize, debouncedResize])
+  useResizeObserver(containerRef, debouncedResize)
 
   useEffect(() => {
     const { data } = product
@@ -109,7 +102,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
   ] as Facts
 
   return (
-    <div>
+    <div ref={containerRef}>
       <div
         ref={desktopTitleRef}
         className="hidden pointer-events-none lg:block relative z-10"

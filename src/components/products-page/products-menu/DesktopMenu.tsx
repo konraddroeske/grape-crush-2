@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 
 import { ResizeObserver } from '@juggle/resize-observer'
+import useResizeObserver from '@react-hook/resize-observer'
 import { gsap } from 'gsap'
 import debounce from 'lodash.debounce'
 import { useRouter } from 'next/dist/client/router'
@@ -92,6 +93,8 @@ const DesktopMenu: FunctionComponent = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedHandleMargin = useCallback(debounce(handleMargin, 250), [])
 
+  useResizeObserver(containerRef, debouncedHandleMargin)
+
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
       const height = entries[0].borderBoxSize[0].blockSize
@@ -101,8 +104,6 @@ const DesktopMenu: FunctionComponent = () => {
 
     if (window) {
       handleMargin()
-      window.addEventListener('resize', debouncedHandleMargin)
-
       const categories = document.getElementById('product-categories')
 
       if (categories) {
@@ -111,7 +112,6 @@ const DesktopMenu: FunctionComponent = () => {
     }
 
     return () => {
-      window.removeEventListener('resize', debouncedHandleMargin)
       resizeObserver.disconnect()
     }
   }, [handleMargin, debouncedHandleMargin])

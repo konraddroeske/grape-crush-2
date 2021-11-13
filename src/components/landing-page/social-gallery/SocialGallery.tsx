@@ -199,13 +199,13 @@ const SocialGallery: FunctionComponent = () => {
     setWidths,
   ])
 
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleResize)
-  //
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize)
-  //   }
-  // }, [handleResize])
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [handleResize])
 
   return (
     <section className="pb-12 pt-24 overflow-hidden relative sm:pt-28 lg:pt-40 xl:pt-48">

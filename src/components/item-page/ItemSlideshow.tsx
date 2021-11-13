@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react'
 
+import useResizeObserver from '@react-hook/resize-observer'
 import gsap from 'gsap'
 import { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
@@ -231,21 +232,17 @@ const ItemSlideshow: FunctionComponent<Props> = ({ slides, title }) => {
     useTimer,
   ])
 
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedResize = useCallback(debounce(handleResize, 500), [])
+  const debouncedResize = useCallback(debounce(handleResize, 200), [])
 
-  useEffect(() => {
-    window.addEventListener('resize', debouncedResize)
-
-    return () => {
-      window.removeEventListener('resize', debouncedResize)
-    }
-  }, [debouncedResize])
+  useResizeObserver(containerRef, debouncedResize)
 
   return (
     <>
       {slides && (
-        <div className="relative">
+        <div ref={containerRef} className="relative">
           <div ref={slider} className="w-full relative overflow-hidden">
             <ul ref={list} className="absolute inset-0 m-0 p-0">
               {slides.map((slide) => (

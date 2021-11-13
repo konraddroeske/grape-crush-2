@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react'
 
+import useResizeObserver from '@react-hook/resize-observer'
 import gsap from 'gsap'
 import { Draggable } from 'gsap/dist/Draggable'
 import { InertiaPlugin } from 'gsap/dist/InertiaPlugin'
@@ -296,16 +297,10 @@ const FeaturesSlideshow: FunctionComponent = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedResize = useCallback(debounce(handleResize, 250), [])
 
-  useEffect(() => {
-    window.addEventListener('resize', debouncedResize)
-
-    return () => {
-      window.removeEventListener('resize', debouncedResize)
-    }
-  }, [debouncedResize])
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  useResizeObserver(containerRef, debouncedResize)
 
   useEffect(() => {
-    // console.log('handling opacity', upcomingSlide)
     handleOpacity(upcomingSlide)
   }, [handleOpacity, upcomingSlide])
 
@@ -314,7 +309,10 @@ const FeaturesSlideshow: FunctionComponent = () => {
       {slides && (
         <section ref={ref} className="section-margin">
           <OutlineMarquee text="Shop by Featured" direction="-=" />
-          <div className="hero-background overflow-hidden features-slideshow-padding">
+          <div
+            ref={containerRef}
+            className="hero-background overflow-hidden features-slideshow-padding"
+          >
             <div ref={slider} className="w-full relative">
               {inView && (
                 <FeaturesText
