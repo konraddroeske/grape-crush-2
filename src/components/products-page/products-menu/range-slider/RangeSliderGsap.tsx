@@ -124,7 +124,7 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ maxPrice }) => {
   }, [])
 
   const updateSlider = useCallback(
-    (leftPrice, rightPrice) => {
+    (leftPrice: number, rightPrice: number) => {
       if (
         leftKnobDraggable.current &&
         rightKnobDraggable.current &&
@@ -214,7 +214,6 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ maxPrice }) => {
     if (priceRangeMax) {
       setLeftVal(priceRangeMin)
       setRightVal(priceRangeMax)
-
       updateSlider(priceRangeMin, priceRangeMax)
     }
 
@@ -226,9 +225,9 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ maxPrice }) => {
       rightKnob.current
     ) {
       initDraggable()
-      updateSlider(priceRangeMin, priceRangeMax)
+      updateSlider(priceRangeMin, priceRangeMax || maxPrice)
     }
-  }, [updateSlider, initDraggable, priceRangeMin, priceRangeMax])
+  }, [updateSlider, initDraggable, priceRangeMin, priceRangeMax, maxPrice])
 
   return (
     <div className="mb-8">
