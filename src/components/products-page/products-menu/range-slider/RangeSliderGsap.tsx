@@ -148,7 +148,7 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
         x: rightX,
         y: '-50%',
         onUpdate: () => {
-          rightKnobDraggable?.current?.update()
+          rightKnobDraggable.current?.update()
         },
       })
 
