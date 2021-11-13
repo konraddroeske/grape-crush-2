@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { useMediaQuery } from 'react-responsive'
 
-import { selectClient, setNavSearch, setSearch } from '@redux/clientSlice'
+import { selectClient, setSearch } from '@redux/clientSlice'
 
 import { selectGlobal } from '@redux/globalSlice'
 
@@ -34,25 +34,23 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
 
   const { navOpen } = useSelector(selectGlobal())
-  const { navSearch, search } = useSelector(selectClient())
+  const { search } = useSelector(selectClient())
   const [expanded, setExpanded] = useState<boolean>(false)
 
   useEffect(() => {
-    if (navSearch.length > 0) {
+    if (search.length > 0) {
       setExpanded(true)
-      dispatch(setSearch(navSearch))
-      dispatch(handleProductsSearch(navSearch))
     }
+  }, [dispatch, search.length])
 
+  useEffect(() => {
     return () => {
-      setExpanded(false)
-      dispatch(setSearch(''))
-
       if (variant === 'productsBar') {
-        dispatch(setNavSearch(''))
+        dispatch(setSearch(''))
+        dispatch(handleProductsSearch(''))
       }
     }
-  }, [variant, dispatch, navSearch])
+  }, [variant, dispatch])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSearch = useCallback(
@@ -61,29 +59,24 @@ const DesktopSearch: FunctionComponent<Props> = ({ variant = 'navBar' }) => {
   )
 
   const handleChange = (event: BaseSyntheticEvent) => {
-    if (variant === 'navBar') dispatch(setSearch(event.target.value))
-    else {
+    if (variant === 'navBar') {
+      dispatch(setSearch(event.target.value))
+    } else {
       const { value: nextValue } = event.target
       dispatch(setSearch(nextValue))
       debouncedSearch(nextValue)
     }
   }
 
-  const handleRoute = () => {
-    dispatch(setNavSearch(search))
-    dispatch(setSearch(''))
-
-    router
-      .push('/products', '/products', {
-        shallow: true,
-      })
-      .then(() => window.scrollTo(0, 0))
-  }
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
     if (variant === 'navBar' && search.length > 0) {
-      handleRoute()
+      router
+        .push('/products', '/products', {
+          shallow: true,
+        })
+        .then(() => window.scrollTo(0, 0))
     }
   }
 

@@ -7,7 +7,7 @@ import ProductCard from '@components/common/product/ProductCard'
 
 import Warning from '@components/common/Warning'
 import PageNav from '@components/products-page/products-list/PageNav'
-import { setNavSearch, setSearch } from '@redux/clientSlice'
+import { setSearch } from '@redux/clientSlice'
 import {
   handlePage,
   handleProducts,
@@ -71,7 +71,6 @@ const ProductsList: FunctionComponent = () => {
   ])
 
   const resetSearch = () => {
-    dispatch(setNavSearch(''))
     dispatch(setSearch(''))
     dispatch(handleProductsSearch(''))
   }

@@ -57,8 +57,7 @@ const RangeCategory: FunctionComponent = () => {
             maxHeight: menuOpen ? scrollHeight : 0,
           }}
         >
-          {/* {maxPrice && <RangeSlider min={0} max={maxPrice} />} */}
-          {maxPrice && <RangeSliderGsap minPrice={0} maxPrice={maxPrice} />}
+          {maxPrice && <RangeSliderGsap maxPrice={maxPrice} />}
         </div>
       </div>
     </>
