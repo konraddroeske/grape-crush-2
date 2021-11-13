@@ -27,11 +27,10 @@ import {
 import s from './RangeSliderGsap.module.scss'
 
 interface Props {
-  minPrice: number
   maxPrice: number
 }
 
-const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
+const RangeSliderGsap: FunctionComponent<Props> = ({ maxPrice }) => {
   const dispatch = useDispatch()
   const { priceRangeMin, priceRangeMax } = useSelector(selectProducts())
 
@@ -45,8 +44,8 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
   const leftKnobDraggable = useRef<Draggable | null>(null)
   const rightKnobDraggable = useRef<Draggable | null>(null)
 
-  const [leftVal, setLeftVal] = useState<number>(minPrice)
-  const [rightVal, setRightVal] = useState<number>(maxPrice)
+  const [leftVal, setLeftVal] = useState<number>(priceRangeMin)
+  const [rightVal, setRightVal] = useState<number>(priceRangeMax || maxPrice)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedPriceRangeMin = useCallback(
@@ -124,63 +123,49 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
     }
   }, [])
 
-  const updateSlider = useCallback(() => {
-    if (
-      leftKnobDraggable.current &&
-      rightKnobDraggable.current &&
-      containerRef.current
-    ) {
-      setWidth()
+  const updateSlider = useCallback(
+    (leftPrice, rightPrice) => {
+      if (
+        leftKnobDraggable.current &&
+        rightKnobDraggable.current &&
+        containerRef.current
+      ) {
+        setWidth()
 
-      const leftX = (priceRangeMin / maxPrice) * rangeWidth.current
-      const rightX =
-        ((priceRangeMax || maxPrice) / maxPrice) * rangeWidth.current
+        const leftX = (leftPrice / maxPrice) * rangeWidth.current
+        const rightX =
+          ((rightPrice || maxPrice) / maxPrice) * rangeWidth.current
 
-      gsap.set(leftKnobDraggable.current.target, {
-        x: leftX,
-        y: '-50%',
-        onUpdate: () => {
-          leftKnobDraggable.current?.update()
-        },
-      })
+        gsap.set(leftKnobDraggable.current.target, {
+          x: leftX,
+          y: '-50%',
+          onUpdate: () => {
+            leftKnobDraggable.current?.update()
+          },
+        })
 
-      gsap.set(rightKnobDraggable.current.target, {
-        x: rightX,
-        y: '-50%',
-        onUpdate: () => {
-          rightKnobDraggable.current?.update()
-        },
-      })
+        gsap.set(rightKnobDraggable.current.target, {
+          x: rightX,
+          y: '-50%',
+          onUpdate: () => {
+            rightKnobDraggable.current?.update()
+          },
+        })
 
-      gsap.set(rangeRef.current, {
-        left: leftX,
-        right: `calc(100% - ${rightX}px)`,
-      })
-    }
-  }, [maxPrice, priceRangeMax, priceRangeMin])
+        gsap.set(rangeRef.current, {
+          left: leftX,
+          right: `calc(100% - ${rightX}px)`,
+        })
+      }
+    },
+    [maxPrice]
+  )
 
   const handleResize = () => {
     setWidth()
 
     if (leftKnobDraggable.current && rightKnobDraggable.current) {
-      const leftPos = (leftVal / maxPrice) * rangeWidth.current
-
-      gsap.set(leftKnobDraggable.current.target, {
-        x: leftPos,
-        y: '-50%',
-      })
-
-      const rightPos = (rightVal / maxPrice) * rangeWidth.current
-
-      gsap.set(rightKnobDraggable.current.target, {
-        x: rightPos,
-        y: '-50%',
-      })
-
-      gsap.set(rangeRef.current, {
-        left: leftPos,
-        right: `calc(100% - ${rightPos}px)`,
-      })
+      updateSlider(priceRangeMin || leftVal, priceRangeMax || rightVal)
 
       leftKnobDraggable.current.kill()
       rightKnobDraggable.current.kill()
@@ -190,7 +175,12 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedResize = debounce(handleResize, 50)
+  const debouncedResize = useCallback(debounce(handleResize, 50), [
+    leftVal,
+    rightVal,
+    priceRangeMin,
+    priceRangeMax,
+  ])
 
   useResizeObserver(containerRef, debouncedResize)
 
@@ -221,6 +211,13 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
   useEffect(() => {
     gsap.registerPlugin(Draggable, InertiaPlugin, CSSRulePlugin)
 
+    if (priceRangeMax) {
+      setLeftVal(priceRangeMin)
+      setRightVal(priceRangeMax)
+
+      updateSlider(priceRangeMin, priceRangeMax)
+    }
+
     if (
       containerRef.current &&
       !leftKnobDraggable.current &&
@@ -229,18 +226,9 @@ const RangeSliderGsap: FunctionComponent<Props> = ({ minPrice, maxPrice }) => {
       rightKnob.current
     ) {
       initDraggable()
-      updateSlider()
+      updateSlider(priceRangeMin, priceRangeMax)
     }
-  }, [updateSlider, initDraggable])
-
-  useEffect(() => {
-    if (priceRangeMax) {
-      setLeftVal(priceRangeMin)
-      setRightVal(priceRangeMax)
-
-      updateSlider()
-    }
-  }, [priceRangeMax, priceRangeMin, updateSlider])
+  }, [updateSlider, initDraggable, priceRangeMin, priceRangeMax])
 
   return (
     <div className="mb-8">
