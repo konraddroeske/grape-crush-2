@@ -27,6 +27,11 @@ export const itemSlice = createSlice({
         a1.filter((val) => a2.includes(val)).length
 
       const rankedProducts = products
+        .filter(
+          (product) =>
+            product.data.imageUrl.length > 0 &&
+            product._id !== currentProduct._id
+        )
         .map((product) => {
           let count = 0
           const { type: parentType, data } = product
@@ -48,11 +53,6 @@ export const itemSlice = createSlice({
 
           return { ...product, count }
         })
-        .filter(
-          (product) =>
-            product.data.imageUrl.length > 0 &&
-            product._id !== currentProduct._id
-        )
         .sort((a, b) => {
           return b.count - a.count
         })
