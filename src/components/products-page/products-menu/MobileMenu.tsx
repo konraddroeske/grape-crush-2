@@ -5,6 +5,8 @@ import { gsap } from 'gsap'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import { useMediaQuery } from 'react-responsive'
+
 import ProductsTags from '@components/products-page/products-bar/ProductsTags'
 import ProductCategories from '@components/products-page/products-menu/ProductCategories'
 import { selectProducts, toggleMobileMenuOpen } from '@redux/productsSlice'
@@ -12,20 +14,10 @@ import { selectProducts, toggleMobileMenuOpen } from '@redux/productsSlice'
 const MobileMenu: FunctionComponent = () => {
   const menuRef = useRef<HTMLDivElement | null>(null)
   const categoriesRef = useRef<HTMLDivElement | null>(null)
+  const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
 
   const { mobileMenuOpen } = useSelector(selectProducts())
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (mobileMenuOpen && menuRef.current && categoriesRef.current) {
-      gsap.to(menuRef.current, {
-        duration: 0.2,
-        marginTop: 0,
-      })
-
-      disableBodyScroll(categoriesRef.current)
-    }
-  }, [mobileMenuOpen])
 
   const closeMobileMenu = () => {
     const tl = gsap.timeline({
@@ -40,6 +32,26 @@ const MobileMenu: FunctionComponent = () => {
       marginTop: '100vh',
     })
   }
+
+  useEffect(() => {
+    if (
+      !isDesktop &&
+      mobileMenuOpen &&
+      menuRef.current &&
+      categoriesRef.current
+    ) {
+      gsap.to(menuRef.current, {
+        duration: 0.2,
+        marginTop: 0,
+      })
+
+      disableBodyScroll(categoriesRef.current)
+    }
+
+    if (isDesktop && mobileMenuOpen) {
+      clearAllBodyScrollLocks()
+    }
+  }, [mobileMenuOpen, isDesktop])
 
   return (
     <div
