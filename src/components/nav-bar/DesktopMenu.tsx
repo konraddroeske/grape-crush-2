@@ -24,7 +24,7 @@ const DesktopMenu: FunctionComponent = () => {
         target=" _blank"
         rel=" noopener noreferrer"
       >
-        <NavLinkDesktop>Reservations</NavLinkDesktop>
+        <NavLinkDesktop>Bookings</NavLinkDesktop>
       </a>
     </div>
   )
