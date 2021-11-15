@@ -67,12 +67,7 @@ const Products: FunctionComponent<Props> = ({ products, missingImage }) => {
         </div>
         <div className="flex flex-grow">
           <DesktopMenu />
-          <div
-            // className={`w-full px-2
-            // ${warningVisible ? 'min-h-0' : 'lg:min-h-screen'}
-            //   sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl`}
-            className="w-full px-2 sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl"
-          >
+          <div className="w-full px-2 sm:body-gutter-sm lg:body-gutter-lg xl:body-gutter-xl 2xl:body-gutter-2xl">
             <ProductsList />
           </div>
         </div>

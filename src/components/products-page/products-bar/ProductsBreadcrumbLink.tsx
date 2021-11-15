@@ -30,15 +30,27 @@ const ProductsBreadcrumbLink: FunctionComponent<Props> = ({
         <span className="mr-2 text-sm sm:text-base">{'>'}</span>
       )}
       <span className="relative mr-2">
-        <span
-          className={`${
-            hasBorder ? 'breadcrumb-border' : ''
-          } uppercase text-sm sm:text-base font-bold text-blue-dark`}
-        >
-          <Link href={url}>
-            <a>{text}</a>
-          </Link>
-        </span>
+        <Link href={url}>
+          <a>
+            {category.length > 0 ? (
+              <span
+                className={`${
+                  hasBorder ? 'breadcrumb-border' : ''
+                } uppercase text-sm sm:text-base font-bold text-blue-dark`}
+              >
+                {text}
+              </span>
+            ) : (
+              <h1
+                className={`${
+                  hasBorder ? 'breadcrumb-border' : ''
+                } uppercase text-sm sm:text-base font-bold text-blue-dark`}
+              >
+                {text}
+              </h1>
+            )}
+          </a>
+        </Link>
       </span>
       {hasBorder && (
         <span className="uppercase mr-2 text-sm sm:text-base text-blue-dark">
