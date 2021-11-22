@@ -165,7 +165,7 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
                 : 0,
           }}
         >
-          {imageUrl?.length > 1 ? (
+          {imageUrl?.length > 2 ? (
             <ItemSlideshow slides={imageUrl} title={productName} />
           ) : (
             <>
