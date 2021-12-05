@@ -39,7 +39,6 @@ const FeaturesSlideshow: FunctionComponent = () => {
   const proxy = useRef<HTMLDivElement | null>(null)
   const prevPosition = useRef<number>(0)
 
-  const reorderedSlides = [...slides.slice(-1), ...slides.slice(0, -1)]
   const count = useRef(slides.length)
 
   const itemWidth = useRef(0)
@@ -315,13 +314,10 @@ const FeaturesSlideshow: FunctionComponent = () => {
           >
             <div ref={slider} className="w-full relative">
               {inView && (
-                <FeaturesText
-                  slides={reorderedSlides}
-                  upcomingSlide={upcomingSlide}
-                />
+                <FeaturesText slides={slides} upcomingSlide={upcomingSlide} />
               )}
               <ul ref={list} className="absolute inset-0 m-0 p-0">
-                {reorderedSlides.map((slide, index) => (
+                {slides.map((slide, index) => (
                   <li
                     key={slide.title}
                     ref={(el) => {
