@@ -247,7 +247,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
       type: 'x',
       trigger: list.current,
       inertia: true,
-      dragResistance: 0.6,
+      dragResistance: 0.5,
       onPress() {
         slideAnimation.current.kill()
         // eslint-disable-next-line react/no-this-in-sfc
@@ -323,7 +323,7 @@ const FeaturesSlideshow: FunctionComponent = () => {
                     ref={(el) => {
                       items.current[index] = el
                     }}
-                    className="absolute slide-width top-0 h-112 sm:h-144 xl:h-172 
+                    className="absolute slide-width top-0 h-112 sm:h-144 xl:h-172
                     max-h-75vh"
                   >
                     <div className="w-full h-full">
