@@ -323,12 +323,13 @@ const FeaturesSlideshow: FunctionComponent = () => {
                     ref={(el) => {
                       items.current[index] = el
                     }}
-                    className="absolute slide-width top-0"
+                    className="absolute slide-width top-0 h-112 sm:h-144 xl:h-172 
+                    max-h-75vh"
                   >
-                    <div className="w-full">
+                    <div className="w-full h-full">
                       <div
-                        className="my-0 min-h-80 max-h-75vh body-gutter-sm
-                      md:px-0 image-width mx-auto flex"
+                        className="my-0 body-gutter-sm md:px-0 image-width
+                      mx-auto flex h-full"
                       >
                         {slide.image && <ContentfulImage image={slide.image} />}
                       </div>

@@ -292,6 +292,14 @@
     height: 36rem;
   }
 
+  .h-160 {
+    height: 40rem;
+  }
+
+  .h-172 {
+    height: 43rem;
+  }
+
   .max-h-4\/5 {
     max-height: 80%;
   }
@@ -523,9 +531,9 @@
 
   .team-members-bg {
     background: linear-gradient(
-      to top,
-      #dfff85 calc(100% * 8 / 12 + 1rem),
-      white calc(100% * 4 / 12 + 1rem)
+                    to top,
+                    #dfff85 calc(100% * 8 / 12 + 1rem),
+                    white calc(100% * 4 / 12 + 1rem)
     );
   }
 
