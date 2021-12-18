@@ -1,4 +1,8 @@
 import { QueryOptions } from '@apollo/client'
+import {
+  Client,
+  PlaceDetailsRequest,
+} from '@googlemaps/google-maps-services-js'
 import axios from 'axios'
 import { DocumentNode } from 'graphql'
 import cacheData from 'memory-cache'
@@ -18,6 +22,24 @@ export const fetchWithCacheAxios = async <T>(url: string) => {
   cacheData.put(url, data, hours * 1000 * 60 * 60)
 
   return data
+}
+
+export const fetchWithCacheGoogle = async (request: PlaceDetailsRequest) => {
+  const requestKey = JSON.stringify(request)
+  const value = cacheData.get(requestKey)
+
+  if (value) {
+    return value
+  }
+
+  const googleClient = new Client({})
+
+  const hours = 1
+  const { data: locationData } = await googleClient.placeDetails(request)
+
+  cacheData.put(requestKey, locationData, hours * 1000 * 60 * 60)
+
+  return locationData
 }
 
 const getGqlString = (doc: DocumentNode) => {
