@@ -12,7 +12,7 @@ import ItemBar from '@components/item-page/item-bar/ItemBar'
 import ItemContent from '@components/item-page/ItemContent'
 import useRouterScrollUpdate from '@hooks/useRouterScrollUpdate'
 import ambassador from '@lib/ambassador'
-import fetchGlobalData from '@lib/fetchGlobalData'
+import fetchItemData from '@lib/fetchItemData'
 import fetchMissingImage from '@lib/fetchMissingImage'
 import { Product, ProductLowercase } from '@models/ambassador'
 
@@ -126,21 +126,18 @@ export const getStaticPaths = async () => {
     },
   }))
 
-  return { paths, fallback: true }
+  return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps = wrapper.getStaticProps(
   (store) => async (context) => {
-    const { products } = await fetchGlobalData(store)
     const name = context?.params?.name as string
-
-    const currentProduct = products.find(
-      (product) => product.data.name === decodeURIComponent(name)
-    )
+    const { products, currentProduct } = await fetchItemData(store, name)
 
     if (!currentProduct) {
       return {
         notFound: true,
+        revalidate: 60,
       }
     }
 

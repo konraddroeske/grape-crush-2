@@ -2,7 +2,9 @@ const path = require('path')
 
 const contentful = require('contentful-management')
 
-require('dotenv').config({ path: path.resolve(process.cwd(), '.env.local') })
+require('dotenv').config({
+  path: path.resolve(process.cwd(), '.env.local'),
+})
 
 module.exports = function () {
   const contentfulClient = contentful.createClient({
