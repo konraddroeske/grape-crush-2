@@ -11,11 +11,14 @@ import client from '@lib/apolloClient'
 
 // eslint-disable-next-line import/prefer-default-export
 export const fetchWithCacheAxios = async <T>(url: string) => {
+  console.log('url', url)
   const value = cacheData.get(url)
 
   if (value) {
     return value
   }
+
+  console.log('fetching without cache')
 
   const hours = 1
   const data = await axios.get<T>(url)
