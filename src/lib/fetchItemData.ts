@@ -3,7 +3,6 @@ import { EnhancedStore } from '@reduxjs/toolkit'
 import ambassador from '@lib/ambassador'
 import { cleanData } from '@lib/cleanData'
 import { fetchWithCacheApollo } from '@lib/fetchWithCache'
-import handleMissingProduct from '@lib/handleMissingProduct'
 import { getAllTags, getCategories, getTopStyles } from '@lib/handleTags'
 import { AmbassadorShops } from '@models/ambassador'
 import { globalQuery } from '@models/schema'
@@ -40,17 +39,17 @@ export default async function fetchItemData(
   const [shop] = shops
   const { products } = shop
 
-  let productsWithNewKeys = cleanData(products)
+  const productsWithNewKeys = cleanData(products)
 
-  let currentProduct = productsWithNewKeys.find(
+  const currentProduct = productsWithNewKeys.find(
     (product) => product.data.name === decodeURIComponent(name)
   )
 
-  if (!currentProduct) {
-    const results = await handleMissingProduct(name)
-    productsWithNewKeys = results.products
-    currentProduct = results.product
-  }
+  // if (!currentProduct) {
+  //   const results = await handleMissingProduct(name)
+  //   productsWithNewKeys = results.products
+  //   currentProduct = results.product
+  // }
 
   const allTags = getAllTags(productsWithNewKeys)
   const topStyles = getTopStyles(allTags)
