@@ -67,11 +67,17 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
   useEffect(() => {
     const { data } = product
     const { variants } = data
-    const [variant] = variants
+    let variant = variants.find((ele) => ele.tags?.includes('grapecrush'))
+
+    if (!variant) {
+      const [first] = variants
+      variant = first
+    }
 
     if (variant) {
       const { amount, label: primaryLabel } = variant
-      setPrice(getPriceAsString(amount))
+      const convertedPrice = getPriceAsString(amount)
+      setPrice(convertedPrice)
       setLabel(primaryLabel)
     }
   }, [product])

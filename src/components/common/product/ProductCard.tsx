@@ -44,7 +44,13 @@ const ProductCard: FunctionComponent<Props> = ({ id, data }) => {
   } = data
 
   useEffect(() => {
-    const [variant] = variants
+    let variant = variants.find((ele) => ele.tags?.includes('grapecrush'))
+
+    if (!variant) {
+      const [first] = variants
+      variant = first
+    }
+
     if (variant) {
       const { amount, label: primaryLabel } = variant
       setPrice(getPriceAsString(amount))
