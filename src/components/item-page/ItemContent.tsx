@@ -78,7 +78,12 @@ const ItemContent: FunctionComponent<Props> = ({ product }) => {
       const { amount, label: primaryLabel } = variant
       const convertedPrice = getPriceAsString(amount)
       setPrice(convertedPrice)
-      setLabel(primaryLabel)
+
+      if (!primaryLabel) {
+        setLabel('item')
+      } else {
+        setLabel(primaryLabel)
+      }
     }
   }, [product])
 

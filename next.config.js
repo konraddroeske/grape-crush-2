@@ -7,6 +7,7 @@ module.exports = (phase, { defaultConfig }) => {
     images: {
       domains: [
         'ambassador-media-library-assets.s3.amazonaws.com',
+        'ambassador-media-library-assets.s3.us-east-1.amazonaws.com',
         'images.ctfassets.net',
       ],
     },
